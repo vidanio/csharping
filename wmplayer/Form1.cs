@@ -66,6 +66,7 @@ namespace wmplayer
             tbarMainVol.Value = axWMPMain.settings.volume;
             axWMPMain.PlayStateChange += axWMPMain_PlayStateChange; // damos de alta el evento PlayStateChange con su handler
             txtboxStatusMain.AppendText(String.Format("[0] {0}\r\n", axWMPMain.playState.ToString()));
+            openFileMain.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         }
 
         private void tbarMainVol_Scroll(object sender, EventArgs e)

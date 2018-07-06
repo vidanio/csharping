@@ -52,7 +52,6 @@
             // 
             // openFileMain
             // 
-            this.openFileMain.FileName = "openFileDialog1";
             this.openFileMain.Filter = "MP3 Files|*.mp3|WMA Files|*.wma|All Files|*.*";
             // 
             // btnOpenMainSong
@@ -209,6 +208,7 @@
             this.Controls.Add(this.lblMainSong);
             this.Controls.Add(this.btnOpenMainSong);
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WMPlayer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
