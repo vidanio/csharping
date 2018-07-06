@@ -92,6 +92,7 @@ namespace wmplayer
                     btnPlayMainSong.Text = "Play";
                     mainplay = true;
                     timer1.Stop();
+                    lblMediaName.Text = "(nothing)";
                     lblEllapsed.Text = "0 sec";
                     progbarMainSong.Value = 0;
                     btnPause.Visible = false;
@@ -110,6 +111,7 @@ namespace wmplayer
 
         private void btnPause_Click(object sender, EventArgs e)
         {
+            // usamos el mismo botón para PAUSE y PLAY
             if (mainpause)
                 axWMPMain.Ctlcontrols.pause();
             else
