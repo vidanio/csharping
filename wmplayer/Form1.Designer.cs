@@ -53,6 +53,7 @@
             // openFileMain
             // 
             this.openFileMain.FileName = "openFileDialog1";
+            this.openFileMain.Filter = "MP3 Files|*.mp3|WMA Files|*.wma|All Files|*.*";
             // 
             // btnOpenMainSong
             // 
