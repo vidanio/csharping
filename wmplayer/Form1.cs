@@ -109,6 +109,12 @@ namespace wmplayer
             txtboxStatusMain.Clear();
         }
 
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timer1.Stop();
+            timer1.Dispose();
+        }
+
         private void btnPause_Click(object sender, EventArgs e)
         {
             // usamos el mismo botón para PAUSE y PLAY

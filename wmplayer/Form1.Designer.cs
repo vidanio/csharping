@@ -210,6 +210,7 @@
             this.Controls.Add(this.btnOpenMainSong);
             this.Name = "FormMain";
             this.Text = "WMPlayer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axWMPMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarMainVol)).EndInit();
