@@ -11,5 +11,5 @@ Proyectos:
  7. **filing** .- Lectura y escritura de ficheros de texto y binarios.
  8. **database** .- CRUD completo y avanzado con SQLite.
 
-Todos los proyectos irán sobre .NET Framework 4.0 y Windows Forms en C# 4.
+Todos los proyectos irán sobre .NET Framework 4.0 y Windows Forms en C# 4.  
 (c) Vidanio 2018
