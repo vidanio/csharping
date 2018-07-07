@@ -5,6 +5,20 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wmplayer", "wmplayer\wmplayer.csproj", "{353C1160-C79B-4ED7-AA22-7C9FB7017C2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "twoplay", "twoplay\twoplay.csproj", "{11AA16B0-B9D5-4998-8A6A-795AE118F20F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "threads", "threads\threads.csproj", "{DE879769-9259-48C8-97E9-B769232EA9A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "shuffle", "shuffle\shuffle.csproj", "{94D1B03A-C22A-42F5-8DEA-2520EC978EBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "updown", "updown\updown.csproj", "{43F7E928-D097-42E6-AB8A-627BB4C60268}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "database", "database\database.csproj", "{76046AFD-F2FB-4E6B-B7CC-3D96F053F7D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "crypto", "crypto\crypto.csproj", "{64456686-E29C-44F3-9F34-6DD9F7080375}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "filing", "filing\filing.csproj", "{75D7C23D-2F77-4339-9C66-E55D767B60F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +29,34 @@ Global
 		{353C1160-C79B-4ED7-AA22-7C9FB7017C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{353C1160-C79B-4ED7-AA22-7C9FB7017C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{353C1160-C79B-4ED7-AA22-7C9FB7017C2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11AA16B0-B9D5-4998-8A6A-795AE118F20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11AA16B0-B9D5-4998-8A6A-795AE118F20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11AA16B0-B9D5-4998-8A6A-795AE118F20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11AA16B0-B9D5-4998-8A6A-795AE118F20F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE879769-9259-48C8-97E9-B769232EA9A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE879769-9259-48C8-97E9-B769232EA9A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE879769-9259-48C8-97E9-B769232EA9A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE879769-9259-48C8-97E9-B769232EA9A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94D1B03A-C22A-42F5-8DEA-2520EC978EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94D1B03A-C22A-42F5-8DEA-2520EC978EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94D1B03A-C22A-42F5-8DEA-2520EC978EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94D1B03A-C22A-42F5-8DEA-2520EC978EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43F7E928-D097-42E6-AB8A-627BB4C60268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43F7E928-D097-42E6-AB8A-627BB4C60268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43F7E928-D097-42E6-AB8A-627BB4C60268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43F7E928-D097-42E6-AB8A-627BB4C60268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76046AFD-F2FB-4E6B-B7CC-3D96F053F7D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76046AFD-F2FB-4E6B-B7CC-3D96F053F7D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76046AFD-F2FB-4E6B-B7CC-3D96F053F7D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76046AFD-F2FB-4E6B-B7CC-3D96F053F7D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64456686-E29C-44F3-9F34-6DD9F7080375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64456686-E29C-44F3-9F34-6DD9F7080375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64456686-E29C-44F3-9F34-6DD9F7080375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64456686-E29C-44F3-9F34-6DD9F7080375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D7C23D-2F77-4339-9C66-E55D767B60F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D7C23D-2F77-4339-9C66-E55D767B60F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D7C23D-2F77-4339-9C66-E55D767B60F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D7C23D-2F77-4339-9C66-E55D767B60F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
