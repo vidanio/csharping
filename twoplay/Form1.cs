@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace twoplay
 {
@@ -20,7 +21,9 @@ namespace twoplay
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            axWMP1.settings.volume = 100;
             tbarVol1.Value = axWMP1.settings.volume;
+            axWMP2.settings.volume = 0;
             tbarVol2.Value = axWMP2.settings.volume;
         }
 
@@ -37,11 +40,15 @@ namespace twoplay
         private void tbarVol1_Scroll(object sender, EventArgs e)
         {
             axWMP1.settings.volume = tbarVol1.Value;
+            axWMP2.settings.volume = 100 - axWMP1.settings.volume;
+            tbarVol2.Value = axWMP2.settings.volume;
         }
 
         private void tbarVol2_Scroll(object sender, EventArgs e)
         {
             axWMP2.settings.volume = tbarVol2.Value;
+            axWMP1.settings.volume = 100 - axWMP2.settings.volume;
+            tbarVol1.Value = axWMP1.settings.volume;
         }
 
         private void btnLoadSong1_Click(object sender, EventArgs e)
