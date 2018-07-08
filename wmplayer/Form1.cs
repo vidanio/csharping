@@ -97,6 +97,7 @@ namespace wmplayer
                     lblMediaName.Text = "(nothing)";
                     lblEllapsed.Text = "0 sec";
                     progbarMainSong.Value = 0;
+                    percent.Text = progbarMainSong.Value.ToString() + "%";
                     btnPause.Visible = false;
                     break;
                 case 2: // paused
@@ -131,6 +132,7 @@ namespace wmplayer
             ellapsed = Convert.ToInt32(axWMPMain.Ctlcontrols.currentPosition);
             lblEllapsed.Text = ellapsed.ToString() + " sec";
             progbarMainSong.Value = Convert.ToInt32(ellapsed * 100 / total);
+            percent.Text = progbarMainSong.Value.ToString() + "%";
         }
     }
 }

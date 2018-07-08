@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.percent = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axWMPMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarMainVol)).BeginInit();
             this.SuspendLayout();
@@ -152,9 +153,9 @@
             // 
             // progbarMainSong
             // 
-            this.progbarMainSong.Location = new System.Drawing.Point(342, 225);
+            this.progbarMainSong.Location = new System.Drawing.Point(342, 220);
             this.progbarMainSong.Name = "progbarMainSong";
-            this.progbarMainSong.Size = new System.Drawing.Size(395, 18);
+            this.progbarMainSong.Size = new System.Drawing.Size(395, 23);
             this.progbarMainSong.Step = 1;
             this.progbarMainSong.TabIndex = 9;
             // 
@@ -189,11 +190,25 @@
             this.label2.TabIndex = 12;
             this.label2.Text = "WMP Events:";
             // 
+            // percent
+            // 
+            this.percent.AutoSize = true;
+            this.percent.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.percent.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.percent.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.percent.Location = new System.Drawing.Point(528, 225);
+            this.percent.Name = "percent";
+            this.percent.Size = new System.Drawing.Size(23, 13);
+            this.percent.TabIndex = 13;
+            this.percent.Text = "0%";
+            this.percent.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(863, 295);
+            this.Controls.Add(this.percent);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnPause);
@@ -237,6 +252,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label percent;
     }
 }
 
