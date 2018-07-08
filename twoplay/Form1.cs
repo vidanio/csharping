@@ -9,11 +9,49 @@ using System.Windows.Forms;
 
 namespace twoplay
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        private string song1, song2;
+
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            tbarVol1.Value = axWMP1.settings.volume;
+            tbarVol2.Value = axWMP2.settings.volume;
+        }
+
+        private void btnLoadSong2_Click(object sender, EventArgs e)
+        {
+            if (openSong.ShowDialog() == DialogResult.OK)
+            {
+                song2 = openSong.FileName;
+                lblSong2.Text = song2;
+                axWMP2.URL = song2;
+            }
+        }
+
+        private void tbarVol1_Scroll(object sender, EventArgs e)
+        {
+            axWMP1.settings.volume = tbarVol1.Value;
+        }
+
+        private void tbarVol2_Scroll(object sender, EventArgs e)
+        {
+            axWMP2.settings.volume = tbarVol2.Value;
+        }
+
+        private void btnLoadSong1_Click(object sender, EventArgs e)
+        {
+            if (openSong.ShowDialog() == DialogResult.OK)
+            {
+                song1 = openSong.FileName;
+                lblSong1.Text = song1;
+                axWMP1.URL = song1;
+            }
         }
     }
 }
