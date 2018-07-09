@@ -28,11 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.folderOpen = new System.Windows.Forms.FolderBrowserDialog();
             this.txtboxFolder = new System.Windows.Forms.TextBox();
             this.txtboxFiles = new System.Windows.Forms.TextBox();
             this.lblExcept = new System.Windows.Forms.Label();
             this.btnShuffle = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
+            this.txtboxInfo = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.axWMP = new AxWMPLib.AxWindowsMediaPlayer();
+            ((System.ComponentModel.ISupportInitialize)(this.axWMP)).BeginInit();
             this.SuspendLayout();
             // 
             // txtboxFolder
@@ -76,11 +83,51 @@
             this.btnShuffle.UseVisualStyleBackColor = false;
             this.btnShuffle.Click += new System.EventHandler(this.btnShuffle_Click);
             // 
+            // btnPlay
+            // 
+            this.btnPlay.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlay.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnPlay.Location = new System.Drawing.Point(491, 367);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(97, 29);
+            this.btnPlay.TabIndex = 3;
+            this.btnPlay.Text = "Play";
+            this.btnPlay.UseVisualStyleBackColor = false;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
+            // txtboxInfo
+            // 
+            this.txtboxInfo.Location = new System.Drawing.Point(31, 427);
+            this.txtboxInfo.Multiline = true;
+            this.txtboxInfo.Name = "txtboxInfo";
+            this.txtboxInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtboxInfo.Size = new System.Drawing.Size(710, 108);
+            this.txtboxInfo.TabIndex = 6;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // axWMP
+            // 
+            this.axWMP.Enabled = true;
+            this.axWMP.Location = new System.Drawing.Point(665, 367);
+            this.axWMP.Name = "axWMP";
+            this.axWMP.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWMP.OcxState")));
+            this.axWMP.Size = new System.Drawing.Size(75, 23);
+            this.axWMP.TabIndex = 4;
+            this.axWMP.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(793, 586);
+            this.Controls.Add(this.txtboxInfo);
+            this.Controls.Add(this.axWMP);
+            this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnShuffle);
             this.Controls.Add(this.lblExcept);
             this.Controls.Add(this.txtboxFiles);
@@ -88,7 +135,9 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shuffle";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.axWMP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,6 +150,10 @@
         private System.Windows.Forms.TextBox txtboxFiles;
         private System.Windows.Forms.Label lblExcept;
         private System.Windows.Forms.Button btnShuffle;
+        private AxWMPLib.AxWindowsMediaPlayer axWMP;
+        private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.TextBox txtboxInfo;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

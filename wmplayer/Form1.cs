@@ -45,7 +45,7 @@ namespace wmplayer
                 ruta = openFileMain.FileName;
                 lblMainSong.Text = ruta;
                 axWMPMain.URL = ruta; // abre el fichero y comienza a reproducirlo solo
-                axWMPMain.Ctlcontrols.stop();
+                //axWMPMain.Ctlcontrols.stop();
             }
         }
 
