@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+Es un ejemplo sencillo de mezcla de audios donde ambos players estan en continuo crossfade de manera que el volumen de uno es
+100 menos el volumen del otro, sumando ambos siempre 100, y creando efecto de crossfade al mover las barras de volumenes de ambos
+WMP players
+ *  */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
