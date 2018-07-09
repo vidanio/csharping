@@ -37,6 +37,7 @@ namespace shuffle
                 }
                 catch (Exception except)
                 {
+                    files = null;
                     lblExcept.Text = except.Message;
                 }
             }
@@ -49,12 +50,15 @@ namespace shuffle
 
         private void btnShuffle_Click(object sender, EventArgs e)
         {
-            var rnd = new Random();
-            shuffle = files.OrderBy(item => rnd.Next());
-            txtboxFiles.Clear();
-            foreach (string currentFile in shuffle)
+            if (files != null)
             {
-                txtboxFiles.AppendText(string.Format("{0}\r\n", currentFile));
+                var rnd = new Random();
+                shuffle = files.OrderBy(item => rnd.Next());
+                txtboxFiles.Clear();
+                foreach (string currentFile in shuffle)
+                {
+                    txtboxFiles.AppendText(string.Format("{0}\r\n", currentFile));
+                }
             }
         }
     }
