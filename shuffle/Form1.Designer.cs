@@ -39,6 +39,7 @@
             this.txtboxInfo = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.axWMP = new AxWMPLib.AxWindowsMediaPlayer();
+            this.pbarSong = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.axWMP)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,7 +89,7 @@
             this.btnPlay.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlay.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPlay.Location = new System.Drawing.Point(491, 367);
+            this.btnPlay.Location = new System.Drawing.Point(644, 366);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(97, 29);
             this.btnPlay.TabIndex = 3;
@@ -113,18 +114,27 @@
             // axWMP
             // 
             this.axWMP.Enabled = true;
-            this.axWMP.Location = new System.Drawing.Point(665, 367);
+            this.axWMP.Location = new System.Drawing.Point(544, 372);
             this.axWMP.Name = "axWMP";
             this.axWMP.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWMP.OcxState")));
             this.axWMP.Size = new System.Drawing.Size(75, 23);
             this.axWMP.TabIndex = 4;
             this.axWMP.Visible = false;
             // 
+            // pbarSong
+            // 
+            this.pbarSong.Location = new System.Drawing.Point(31, 411);
+            this.pbarSong.Name = "pbarSong";
+            this.pbarSong.Size = new System.Drawing.Size(710, 10);
+            this.pbarSong.Step = 1;
+            this.pbarSong.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 586);
+            this.Controls.Add(this.pbarSong);
             this.Controls.Add(this.txtboxInfo);
             this.Controls.Add(this.axWMP);
             this.Controls.Add(this.btnPlay);
@@ -154,6 +164,7 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.TextBox txtboxInfo;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ProgressBar pbarSong;
     }
 }
 

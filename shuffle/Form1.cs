@@ -82,6 +82,14 @@ namespace shuffle
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            if (axWMP.playState == WMPLib.WMPPlayState.wmppsPlaying)
+            {
+                pbarSong.Value = Convert.ToInt32(axWMP.Ctlcontrols.currentPosition * 100 / axWMP.currentMedia.duration);
+            }
+            else
+            {
+                pbarSong.Value = 0;
+            }
             if (stopped)
             {
                 stopped = false;
@@ -118,9 +126,10 @@ namespace shuffle
                 {
                     playlist.Add(currentFile);
                 }
+                int i = 0;
                 foreach (string currentFile in playlist)
                 {
-                    txtboxFiles.AppendText(string.Format("{0}\r\n", currentFile));
+                    txtboxFiles.AppendText(string.Format("[{0}] {1}\r\n", i++, currentFile));
                 }
             }
         }
