@@ -1,8 +1,8 @@
 ﻿/*
  Puesto que el uso de hilos hace que acceder a datos no creados por el hilo hijo complique mucho el código (esto no es Go)
- hemos hecho lo mismo pero usando 9 controles Timer de WinForms que permiten hacerlo de manera sencilla. Para evitar tener que bloquear
- con Mutex los accesos a recursos compartidos, la idea es no usar más de un hilo o proceso que escriba dicho recurso, o si hay más de
- un proceso que escribe en el recurso compartido que el valor que ponga, no depende de su valor anterior evitando así el race condition
+ hemos hecho lo mismo pero usando 9 controles Timer de WinForms que permiten hacerlo de manera sencilla. Como los Timers disparan sus eventos
+ desde un Scheduler que funciona sobre un solo Hilo de procesador, es Thread Safe y no requiere de uso de Mutex nunca para acceder a recursos
+ compartidos, lo que facilita mucho la programación que nosotros necesitamos en Windows.
  */
 using System;
 using System.Collections.Generic;
