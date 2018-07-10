@@ -34,7 +34,7 @@
             // userContainer
             // 
             this.userContainer.FormattingEnabled = true;
-            this.userContainer.Location = new System.Drawing.Point(218, 40);
+            this.userContainer.Location = new System.Drawing.Point(224, 132);
             this.userContainer.Name = "userContainer";
             this.userContainer.Size = new System.Drawing.Size(324, 160);
             this.userContainer.TabIndex = 0;
