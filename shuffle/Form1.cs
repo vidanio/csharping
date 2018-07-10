@@ -4,6 +4,8 @@ WMP y un playback de la playlist generada, me he dado cuenta del inconveniente q
 mediante su propiedad URL, cosa que no es posible ya que desestabiliza el comportamiento del player, por lo que he tenido que crear una variable de estado
 global que es solamente cambiada por el delegado y un Timer que usamos para vigilar dicha variable de estado, y es desde el Timer desde donde manjeamos
 la carga de nuevas canciones de la playlist.
+Este ejemplo lleva una extensión de código en un fichero de Clase partial en Extend1.cs. Sirva como ejemplo de como extender una clase en más de un fichero
+o añadir nuevas clases a un mismo proyecto con el mismo namespace
  */
 using System;
 using System.Collections.Generic;
@@ -31,14 +33,6 @@ namespace shuffle
             InitializeComponent();
             playlist = new List<string>();
             axWMP.PlayStateChange += AxWMP_PlayStateChange;
-        }
-
-        private void AxWMP_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
-        {
-            if (e.newState == 1) // stopped
-            {
-                stopped = true;
-            }
         }
 
         private void txtboxFolder_MouseClick(object sender, MouseEventArgs e)
@@ -77,35 +71,6 @@ namespace shuffle
                 axWMP.URL = playlist[0];
                 txtboxInfo.AppendText(string.Format("Play [{0}] {1}\r\n", index, playlist[index]));
                 timer1.Start();
-            }
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if (axWMP.playState == WMPLib.WMPPlayState.wmppsPlaying)
-            {
-                pbarSong.Value = Convert.ToInt32(axWMP.Ctlcontrols.currentPosition * 100 / axWMP.currentMedia.duration);
-            }
-            else
-            {
-                pbarSong.Value = 0;
-            }
-            if (stopped)
-            {
-                stopped = false;
-                index++;
-                if (index < playlist.Count)
-                {
-                    axWMP.URL = playlist[index];
-                    txtboxInfo.AppendText(string.Format("Play [{0}] {1}\r\n", index, playlist[index]));
-                }
-                else
-                {
-                    index = 0;
-                    axWMP.close();
-                    btnPlay.Enabled = true;
-                    timer1.Stop();
-                }
             }
         }
 
