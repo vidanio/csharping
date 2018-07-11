@@ -45,7 +45,7 @@ namespace icrypto
                         //Añadimos la nueva extension (.xxx)
                         string f_name_encript = f_name + ".xxx";
                         //Se realiza la encriptación
-                        EncryptFile(file, "../../cifrados/" + f_name_encript, Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(key));
+                        EncryptFile(file, @"C:\Users\0oIsa\Desktop\cifrados\" + f_name_encript, Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(key));
                         //Mostramos los directorios encriptados
                         st_encriptado.ForeColor = Color.Green;
                         st_encriptado.Text = "Los ficheros han sido encriptados";
@@ -61,7 +61,7 @@ namespace icrypto
             fout.SetLength(0);
 
             //Create variables to help with read and write.
-            byte[] bin = new byte[100]; //This is intermediate storage for the encryption.
+            byte[] bin = new byte[100];  //This is intermediate storage for the encryption.
             long rdlen = 0;              //This is the total number of bytes written.
             long totlen = fin.Length;    //This is the total length of the input file.
             int len;                     //This is the number of bytes to be written at a time.
