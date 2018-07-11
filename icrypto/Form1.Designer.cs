@@ -33,9 +33,10 @@
             this.btnEncript = new System.Windows.Forms.Button();
             this.groupBoxDirs = new System.Windows.Forms.GroupBox();
             this.listadoDirectorios = new System.Windows.Forms.ListBox();
-            this.groupListDir = new System.Windows.Forms.GroupBox();
+            this.comboDirs = new System.Windows.Forms.GroupBox();
+            this.st_encriptado = new System.Windows.Forms.Label();
             this.groupBoxDirs.SuspendLayout();
-            this.groupListDir.SuspendLayout();
+            this.comboDirs.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxDirectory
@@ -75,29 +76,39 @@
             this.listadoDirectorios.Size = new System.Drawing.Size(714, 160);
             this.listadoDirectorios.TabIndex = 3;
             // 
-            // groupListDir
+            // comboDirs
             // 
-            this.groupListDir.Controls.Add(this.listadoDirectorios);
-            this.groupListDir.Location = new System.Drawing.Point(12, 136);
-            this.groupListDir.Name = "groupListDir";
-            this.groupListDir.Size = new System.Drawing.Size(776, 215);
-            this.groupListDir.TabIndex = 4;
-            this.groupListDir.TabStop = false;
-            this.groupListDir.Text = "Listado de Ficheros";
+            this.comboDirs.Controls.Add(this.listadoDirectorios);
+            this.comboDirs.Location = new System.Drawing.Point(12, 136);
+            this.comboDirs.Name = "comboDirs";
+            this.comboDirs.Size = new System.Drawing.Size(776, 215);
+            this.comboDirs.TabIndex = 4;
+            this.comboDirs.TabStop = false;
+            this.comboDirs.Text = "Ficheros Encriptados";
+            // 
+            // st_encriptado
+            // 
+            this.st_encriptado.AutoSize = true;
+            this.st_encriptado.Location = new System.Drawing.Point(52, 368);
+            this.st_encriptado.Name = "st_encriptado";
+            this.st_encriptado.Size = new System.Drawing.Size(0, 13);
+            this.st_encriptado.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.groupListDir);
+            this.Controls.Add(this.st_encriptado);
+            this.Controls.Add(this.comboDirs);
             this.Controls.Add(this.groupBoxDirs);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBoxDirs.ResumeLayout(false);
             this.groupBoxDirs.PerformLayout();
-            this.groupListDir.ResumeLayout(false);
+            this.comboDirs.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -108,7 +119,8 @@
         private System.Windows.Forms.Button btnEncript;
         private System.Windows.Forms.GroupBox groupBoxDirs;
         private System.Windows.Forms.ListBox listadoDirectorios;
-        private System.Windows.Forms.GroupBox groupListDir;
+        private System.Windows.Forms.GroupBox comboDirs;
+        private System.Windows.Forms.Label st_encriptado;
     }
 }
 

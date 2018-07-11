@@ -13,11 +13,11 @@ namespace icrypto
 {
     public partial class Form1 : Form
     {
+        const string key = "12345678";
+
         public Form1()
         {
-            string key = "12345678";
             InitializeComponent();
-            EncryptFile(@"C:\Users\0oIsa\Desktop\Cuñas\Supersol_Andalucia.mp3", @"C:\Users\0oIsa\Desktop\Cuñas\Supersol_Andalucia.xxx", Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(key));
         }
 
         private void textBoxDirectory_Click(object sender, EventArgs e)
@@ -30,14 +30,30 @@ namespace icrypto
 
         private void btnEncript_Click(object sender, EventArgs e)
         {
-            string [] files = Directory.GetFiles(selectDirectory.SelectedPath);
-
-            foreach (string file in files)
-            {
-                listadoDirectorios.Items.Add(file);
+            listadoDirectorios.Items.Clear();
+            st_encriptado.Text = "";
+            //Seleccion de directorio no puede estar vacío
+            if (textBoxDirectory.Text != "") {
+                string[] files = Directory.GetFiles(selectDirectory.SelectedPath);
+                foreach (string file in files)
+                {
+                    //Solo ficheros MP3 o WMA
+                    if ((file.Contains(".mp3") || (file.Contains(".wma"))))
+                    {
+                        //Mostramos solo el nombre de fichero (sin extension)
+                        string f_name = Path.GetFileNameWithoutExtension(file);
+                        //Añadimos la nueva extension (.xxx)
+                        string f_name_encript = f_name + ".xxx";
+                        //Se realiza la encriptación
+                        EncryptFile(file, "../../cifrados/" + f_name_encript, Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(key));
+                        //Mostramos los directorios encriptados
+                        st_encriptado.ForeColor = Color.Green;
+                        st_encriptado.Text = "Los ficheros han sido encriptados";
+                        listadoDirectorios.Items.Add(file);
+                    }
+                }
             }
         }
-
         static void EncryptFile(string inPath, string outPath, byte[] desKey, byte[] desIV)
         {
             FileStream fin = new FileStream(inPath, FileMode.Open, FileAccess.Read);
