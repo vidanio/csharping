@@ -87,13 +87,10 @@ namespace shuffle
                 shuffle = files.OrderBy(item => rnd.Next());
                 txtboxFiles.Clear();
                 playlist.Clear();
+                int i = 0;
                 foreach (string currentFile in shuffle)
                 {
                     playlist.Add(currentFile);
-                }
-                int i = 0;
-                foreach (string currentFile in playlist)
-                {
                     txtboxFiles.AppendText(string.Format("[{0}] {1}\r\n", i++, currentFile));
                 }
             }
