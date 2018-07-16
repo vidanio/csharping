@@ -28,85 +28,142 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxDirectory = new System.Windows.Forms.TextBox();
-            this.selectDirectory = new System.Windows.Forms.FolderBrowserDialog();
+            this.components = new System.ComponentModel.Container();
+            this.txtEntradaEnc = new System.Windows.Forms.TextBox();
+            this.DirectorioEntrada = new System.Windows.Forms.FolderBrowserDialog();
             this.btnEncript = new System.Windows.Forms.Button();
             this.groupBoxDirs = new System.Windows.Forms.GroupBox();
+            this.txtSalidaEnc = new System.Windows.Forms.TextBox();
             this.listadoDirectorios = new System.Windows.Forms.ListBox();
             this.comboDirs = new System.Windows.Forms.GroupBox();
-            this.st_encriptado = new System.Windows.Forms.Label();
+            this.emptySelects = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblEntrada = new System.Windows.Forms.Label();
+            this.lblSalida = new System.Windows.Forms.Label();
+            this.statusStripEnc = new System.Windows.Forms.StatusStrip();
+            this.status_enc = new System.Windows.Forms.ToolStripStatusLabel();
+            this.DirectorioSalida = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBoxDirs.SuspendLayout();
             this.comboDirs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySelects)).BeginInit();
+            this.statusStripEnc.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBoxDirectory
+            // txtEntradaEnc
             // 
-            this.textBoxDirectory.Location = new System.Drawing.Point(48, 38);
-            this.textBoxDirectory.Name = "textBoxDirectory";
-            this.textBoxDirectory.Size = new System.Drawing.Size(263, 20);
-            this.textBoxDirectory.TabIndex = 0;
-            this.textBoxDirectory.Click += new System.EventHandler(this.textBoxDirectory_Click);
+            this.txtEntradaEnc.Location = new System.Drawing.Point(42, 49);
+            this.txtEntradaEnc.Name = "txtEntradaEnc";
+            this.txtEntradaEnc.Size = new System.Drawing.Size(263, 20);
+            this.txtEntradaEnc.TabIndex = 0;
+            this.txtEntradaEnc.Click += new System.EventHandler(this.txtEntradaEnc_Click);
             // 
             // btnEncript
             // 
-            this.btnEncript.Location = new System.Drawing.Point(317, 36);
+            this.btnEncript.BackColor = System.Drawing.Color.LightGreen;
+            this.btnEncript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEncript.Location = new System.Drawing.Point(332, 97);
             this.btnEncript.Name = "btnEncript";
             this.btnEncript.Size = new System.Drawing.Size(75, 23);
             this.btnEncript.TabIndex = 1;
             this.btnEncript.Text = "Encriptar";
-            this.btnEncript.UseVisualStyleBackColor = true;
+            this.btnEncript.UseVisualStyleBackColor = false;
             this.btnEncript.Click += new System.EventHandler(this.btnEncript_Click);
             // 
             // groupBoxDirs
             // 
-            this.groupBoxDirs.Controls.Add(this.textBoxDirectory);
+            this.groupBoxDirs.Controls.Add(this.lblSalida);
+            this.groupBoxDirs.Controls.Add(this.lblEntrada);
+            this.groupBoxDirs.Controls.Add(this.txtSalidaEnc);
+            this.groupBoxDirs.Controls.Add(this.txtEntradaEnc);
             this.groupBoxDirs.Controls.Add(this.btnEncript);
-            this.groupBoxDirs.Location = new System.Drawing.Point(185, 43);
+            this.groupBoxDirs.Location = new System.Drawing.Point(185, 35);
             this.groupBoxDirs.Name = "groupBoxDirs";
-            this.groupBoxDirs.Size = new System.Drawing.Size(429, 87);
+            this.groupBoxDirs.Size = new System.Drawing.Size(429, 145);
             this.groupBoxDirs.TabIndex = 2;
             this.groupBoxDirs.TabStop = false;
-            this.groupBoxDirs.Text = "Directorio para encriptar";
+            this.groupBoxDirs.Text = "Encriptar";
+            // 
+            // txtSalidaEnc
+            // 
+            this.txtSalidaEnc.Location = new System.Drawing.Point(42, 100);
+            this.txtSalidaEnc.Name = "txtSalidaEnc";
+            this.txtSalidaEnc.Size = new System.Drawing.Size(263, 20);
+            this.txtSalidaEnc.TabIndex = 2;
+            this.txtSalidaEnc.Click += new System.EventHandler(this.txtSalidaEnc_Click);
             // 
             // listadoDirectorios
             // 
             this.listadoDirectorios.FormattingEnabled = true;
             this.listadoDirectorios.Location = new System.Drawing.Point(40, 34);
             this.listadoDirectorios.Name = "listadoDirectorios";
-            this.listadoDirectorios.Size = new System.Drawing.Size(714, 160);
+            this.listadoDirectorios.Size = new System.Drawing.Size(666, 160);
             this.listadoDirectorios.TabIndex = 3;
             // 
             // comboDirs
             // 
             this.comboDirs.Controls.Add(this.listadoDirectorios);
-            this.comboDirs.Location = new System.Drawing.Point(12, 136);
+            this.comboDirs.Location = new System.Drawing.Point(12, 186);
             this.comboDirs.Name = "comboDirs";
-            this.comboDirs.Size = new System.Drawing.Size(776, 215);
+            this.comboDirs.Size = new System.Drawing.Size(740, 228);
             this.comboDirs.TabIndex = 4;
             this.comboDirs.TabStop = false;
             this.comboDirs.Text = "Ficheros Encriptados";
             // 
-            // st_encriptado
+            // emptySelects
             // 
-            this.st_encriptado.AutoSize = true;
-            this.st_encriptado.Location = new System.Drawing.Point(52, 368);
-            this.st_encriptado.Name = "st_encriptado";
-            this.st_encriptado.Size = new System.Drawing.Size(0, 13);
-            this.st_encriptado.TabIndex = 5;
+            this.emptySelects.ContainerControl = this;
+            // 
+            // lblEntrada
+            // 
+            this.lblEntrada.AutoSize = true;
+            this.lblEntrada.Location = new System.Drawing.Point(39, 33);
+            this.lblEntrada.Name = "lblEntrada";
+            this.lblEntrada.Size = new System.Drawing.Size(107, 13);
+            this.lblEntrada.TabIndex = 3;
+            this.lblEntrada.Text = "Directorio de Entrada";
+            // 
+            // lblSalida
+            // 
+            this.lblSalida.AutoSize = true;
+            this.lblSalida.Location = new System.Drawing.Point(42, 81);
+            this.lblSalida.Name = "lblSalida";
+            this.lblSalida.Size = new System.Drawing.Size(99, 13);
+            this.lblSalida.TabIndex = 4;
+            this.lblSalida.Text = "Directorio de Salida";
+            // 
+            // statusStripEnc
+            // 
+            this.statusStripEnc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.status_enc});
+            this.statusStripEnc.Location = new System.Drawing.Point(0, 440);
+            this.statusStripEnc.Name = "statusStripEnc";
+            this.statusStripEnc.Size = new System.Drawing.Size(764, 22);
+            this.statusStripEnc.TabIndex = 5;
+            this.statusStripEnc.Text = "statusStrip1";
+            // 
+            // status_enc
+            // 
+            this.status_enc.Name = "status_enc";
+            this.status_enc.Size = new System.Drawing.Size(0, 17);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.st_encriptado);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(764, 462);
+            this.Controls.Add(this.statusStripEnc);
             this.Controls.Add(this.comboDirs);
             this.Controls.Add(this.groupBoxDirs);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBoxDirs.ResumeLayout(false);
             this.groupBoxDirs.PerformLayout();
             this.comboDirs.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.emptySelects)).EndInit();
+            this.statusStripEnc.ResumeLayout(false);
+            this.statusStripEnc.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,13 +171,19 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBoxDirectory;
-        private System.Windows.Forms.FolderBrowserDialog selectDirectory;
+        private System.Windows.Forms.TextBox txtEntradaEnc;
+        private System.Windows.Forms.FolderBrowserDialog DirectorioEntrada;
         private System.Windows.Forms.Button btnEncript;
         private System.Windows.Forms.GroupBox groupBoxDirs;
         private System.Windows.Forms.ListBox listadoDirectorios;
         private System.Windows.Forms.GroupBox comboDirs;
-        private System.Windows.Forms.Label st_encriptado;
+        private System.Windows.Forms.TextBox txtSalidaEnc;
+        private System.Windows.Forms.ErrorProvider emptySelects;
+        private System.Windows.Forms.Label lblSalida;
+        private System.Windows.Forms.Label lblEntrada;
+        private System.Windows.Forms.StatusStrip statusStripEnc;
+        private System.Windows.Forms.ToolStripStatusLabel status_enc;
+        private System.Windows.Forms.FolderBrowserDialog DirectorioSalida;
     }
 }
 
