@@ -17,6 +17,7 @@ namespace crypto
         private IEnumerable<string> files; // input files *.*
         private List<string> inputfiles; // real audio files
         private const byte KEYCODE = 0x45;
+        private int num_crypted = 0;
 
         public MainForm()
         {
@@ -30,6 +31,7 @@ namespace crypto
             {
                 folderOut = fldbrwDlg.SelectedPath;
                 txtboxFolderOut.Text = folderOut;
+                txtListOut.Clear();
             }
         }
 
@@ -37,6 +39,10 @@ namespace crypto
         {
             if ((files != null) && (folderOut != ""))
             {
+                DateTime inicial, final;
+                btnCrypt.Enabled = false;
+                inicial = DateTime.Now;
+                num_crypted = 0;
                 if (encoding)
                 { // encoding
                     foreach (string file in inputfiles)
@@ -50,6 +56,7 @@ namespace crypto
                             }
                             File.WriteAllBytes(folderOut + @"\" + Path.GetFileName(file) + ".xxx", bytes);
                             txtListOut.AppendText(string.Format("[OK] {0}\r\n", Path.GetFileName(file)));
+                            num_crypted++;
                         }
                         catch
                         {
@@ -70,6 +77,7 @@ namespace crypto
                             }
                             File.WriteAllBytes(folderOut + @"\" + Path.GetFileNameWithoutExtension(file), bytes);
                             txtListOut.AppendText(string.Format("[OK] {0}\r\n", Path.GetFileName(file)));
+                            num_crypted++;
                         }
                         catch
                         {
@@ -77,6 +85,9 @@ namespace crypto
                         }
                     }
                 }
+                final = DateTime.Now;
+                float secs = (float) (final.Ticks - inicial.Ticks) / 10000000.0f;
+                lblMsg.Text = string.Format("{0} files proccessed in {1:F} seconds", num_crypted, secs);
             }
         }
 
@@ -84,8 +95,15 @@ namespace crypto
         {
             if (fldbrwDlg.ShowDialog() == DialogResult.OK)
             {
+                txtListIn.Clear();
+                txtListOut.Clear();
+                txtboxFolderOut.Text = "(chose output folder)";
+                folderOut = "";
+                btnCrypt.Enabled = true;
                 folderIn = fldbrwDlg.SelectedPath;
                 txtboxFolderIn.Text = folderIn;
+                // limpia la lista de ficheros a procesar
+                inputfiles.Clear();
                 try
                 {
                     files = Directory.EnumerateFiles(txtboxFolderIn.Text, "*.*", SearchOption.AllDirectories);
