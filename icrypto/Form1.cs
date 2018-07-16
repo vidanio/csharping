@@ -20,21 +20,22 @@ namespace icrypto
             InitializeComponent();
         }
 
-        private void textBoxDirectory_Click(object sender, EventArgs e)
+        private void txtEntradaEnc_Click(object sender, EventArgs e)
         {
-            if (selectDirectory.ShowDialog() == DialogResult.OK)
+            if (DirectorioEntrada.ShowDialog() == DialogResult.OK)
             {
-                textBoxDirectory.Text = selectDirectory.SelectedPath;
+                listadoDirectorios.Items.Clear();
+                status_enc.Text = "";
+                txtEntradaEnc.Text = DirectorioEntrada.SelectedPath;
             }
         }
 
         private void btnEncript_Click(object sender, EventArgs e)
         {
             listadoDirectorios.Items.Clear();
-            st_encriptado.Text = "";
             //Seleccion de directorio no puede estar vacío
-            if (textBoxDirectory.Text != "") {
-                string[] files = Directory.GetFiles(selectDirectory.SelectedPath);
+            if ((txtEntradaEnc.Text != "") && (txtSalidaEnc.Text != "")){
+                string[] files = Directory.GetFiles(DirectorioEntrada.SelectedPath);
                 foreach (string file in files)
                 {
                     //Solo ficheros MP3 o WMA
@@ -45,13 +46,18 @@ namespace icrypto
                         //Añadimos la nueva extension (.xxx)
                         string f_name_encript = f_name + ".xxx";
                         //Se realiza la encriptación
-                        EncryptFile(file, @"C:\Users\0oIsa\Desktop\cifrados\" + f_name_encript, Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(key));
+                        string fileToEncript = txtSalidaEnc.Text + "\\" + f_name_encript;
+                        EncryptFile(file, fileToEncript, Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(key));
                         //Mostramos los directorios encriptados
-                        st_encriptado.ForeColor = Color.Green;
-                        st_encriptado.Text = "Los ficheros han sido encriptados";
+                        status_enc.ForeColor = Color.Green;
+                        status_enc.Text = "Los ficheros han sido encriptados";
                         listadoDirectorios.Items.Add(file);
                     }
                 }
+            }
+            else
+            {
+                emptySelects.SetError(txtSalidaEnc, "Ruta vacía");
             }
         }
         static void EncryptFile(string inPath, string outPath, byte[] desKey, byte[] desIV)
@@ -79,6 +85,16 @@ namespace icrypto
             encStream.Close();
             fout.Close();
             fin.Close();
+        }
+
+        private void txtSalidaEnc_Click(object sender, EventArgs e)
+        {
+            if (DirectorioSalida.ShowDialog() == DialogResult.OK)
+            {
+                listadoDirectorios.Items.Clear();
+                status_enc.Text = "";
+                txtSalidaEnc.Text = DirectorioSalida.SelectedPath;
+            }
         }
     }
 }
