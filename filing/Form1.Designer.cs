@@ -121,6 +121,10 @@
             // 
             this.OpenFileDlg.Filter = "Text File|*.txt";
             // 
+            // SaveFileDlg
+            // 
+            this.SaveFileDlg.Filter = "Text File|*.txt";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
