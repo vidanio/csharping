@@ -18,6 +18,16 @@ namespace database
             InitializeComponent();
         }
 
+        // Cambia los Enter dentro del Form en TABs (mirar nuevo orden de tabulación y TabStop property
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Enter))
+            {
+                SendKeys.Send("{TAB}");
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if ((txtCodigo.Text != "") && (txtNombre.Text != "") && (txtPrecio.Text != ""))
@@ -32,7 +42,7 @@ namespace database
                 txtCodigo.Text = "";
                 txtNombre.Text = "";
                 txtPrecio.Text = "";
-                lblInfo.Text = "Columna añadida";
+                lblInfo.Text = "Fila añadida";
             }
             else
             {

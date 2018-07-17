@@ -56,6 +56,7 @@
             this.dtgvProductos.Name = "dtgvProductos";
             this.dtgvProductos.Size = new System.Drawing.Size(446, 192);
             this.dtgvProductos.TabIndex = 5;
+            this.dtgvProductos.TabStop = false;
             this.dtgvProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvProductos_CellClick);
             // 
             // Code
@@ -146,6 +147,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 4;
+            this.btnDelete.TabStop = false;
             this.btnDelete.Text = "Borrar";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
