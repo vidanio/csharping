@@ -53,7 +53,7 @@
             this.txtboxFolderOut.Name = "txtboxFolderOut";
             this.txtboxFolderOut.ReadOnly = true;
             this.txtboxFolderOut.Size = new System.Drawing.Size(452, 20);
-            this.txtboxFolderOut.TabIndex = 0;
+            this.txtboxFolderOut.TabIndex = 1;
             this.txtboxFolderOut.Text = "(choose output folder)";
             this.txtboxFolderOut.Click += new System.EventHandler(this.txtboxFolderOut_Click);
             // 
@@ -64,7 +64,7 @@
             this.txtListIn.Name = "txtListIn";
             this.txtListIn.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtListIn.Size = new System.Drawing.Size(452, 381);
-            this.txtListIn.TabIndex = 1;
+            this.txtListIn.TabIndex = 3;
             // 
             // txtListOut
             // 
@@ -73,7 +73,7 @@
             this.txtListOut.Name = "txtListOut";
             this.txtListOut.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtListOut.Size = new System.Drawing.Size(452, 381);
-            this.txtListOut.TabIndex = 1;
+            this.txtListOut.TabIndex = 4;
             // 
             // btnCrypt
             // 
@@ -90,12 +90,14 @@
             // 
             // lblMsg
             // 
+            this.lblMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMsg.AutoSize = true;
-            this.lblMsg.Location = new System.Drawing.Point(461, 553);
+            this.lblMsg.Location = new System.Drawing.Point(505, 538);
             this.lblMsg.Name = "lblMsg";
             this.lblMsg.Size = new System.Drawing.Size(37, 13);
-            this.lblMsg.TabIndex = 3;
+            this.lblMsg.TabIndex = 5;
             this.lblMsg.Text = "(none)";
+            this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
