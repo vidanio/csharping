@@ -21,10 +21,7 @@ namespace database
         // Cambia los Enter dentro del Form en TABs (mirar nuevo orden de tabulación y TabStop property
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == (Keys.Enter))
-            {
-                SendKeys.Send("{TAB}");
-            }
+            if (keyData == Keys.Enter) SendKeys.Send("{TAB}");
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -70,14 +67,18 @@ namespace database
         {
             if (rowselected != -1)
             {
-                if ((txtCodigo.Text != "") && (txtNombre.Text != "") && (txtPrecio.Text != ""))
+                try
                 {
                     dtgvProductos.Rows.RemoveAt(rowselected);
-                    txtCodigo.Text = "";
-                    txtNombre.Text = "";
-                    txtPrecio.Text = "";
+                }
+                catch
+                {
+                    lblInfo.Text = "Esta fila no se puede borrar";
                 }
             }
+            txtCodigo.Text = "";
+            txtNombre.Text = "";
+            txtPrecio.Text = "";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -87,7 +88,7 @@ namespace database
 
         private void dtgvProductos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            lblInfo.Text = string.Format("Cambio Fila = {0}, Columna = {1}", e.RowIndex, e.ColumnIndex);
+            lblInfo.Text = string.Format("Cambio Fila = {0}, Columna = {1} [{2},{3}]", e.RowIndex, e.ColumnIndex, dtgvProductos.Columns.Count, dtgvProductos.Rows.Count);
         }
     }
 }
