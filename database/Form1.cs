@@ -84,5 +84,10 @@ namespace database
         {
             lblInfo.Text = "";
         }
+
+        private void dtgvProductos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            lblInfo.Text = string.Format("Cambio Fila = {0}, Columna = {1}", e.RowIndex, e.ColumnIndex);
+        }
     }
 }

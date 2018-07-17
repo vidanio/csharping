@@ -58,6 +58,7 @@
             this.dtgvProductos.TabIndex = 5;
             this.dtgvProductos.TabStop = false;
             this.dtgvProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvProductos_CellClick);
+            this.dtgvProductos.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvProductos_CellValueChanged);
             // 
             // Code
             // 
