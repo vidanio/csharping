@@ -120,6 +120,7 @@
             this.axWMP.Size = new System.Drawing.Size(75, 23);
             this.axWMP.TabIndex = 4;
             this.axWMP.Visible = false;
+            this.axWMP.ErrorEvent += new System.EventHandler(this.axWMP_ErrorEvent);
             // 
             // pbarSong
             // 

@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+Este es un ejemplo donde hemos querido mostrar el uso de una BBDD SQLite a la vez que un formulario con un DataGridView en modo ReadOnly
+Con botones para crear un CRUD completo, donde se pueden insertar nuevos datos, actualizar los viejos, borrarlos o buscarlos mediante un
+criterio alfabético de búsqueda. Asímismo hemos mostrado como validar un campo de texto que recoger números decimales en coma flotante.
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +17,9 @@ namespace database
     public partial class MainForm : Form
     {
         private int rowselected = -1;
+        private double precio = 0.0;
+        // valor que advierte de registro en edición (update)
+        private bool selected = false; // false = (modo insert), true = (modo update)
 
         public MainForm()
         {
@@ -29,38 +37,37 @@ namespace database
         {
             if ((txtCodigo.Text != "") && (txtNombre.Text != "") && (txtPrecio.Text != ""))
             {
+                // sitio donde hacer un INSERT o UPDATE (añadir/actualizar)
+
                 // añadimos una columna antes de introducir los datos, recibimos el numero de la columna nuevo
-                int n = dtgvProductos.Rows.Add();
+                int n = rowselected;
+                if (!selected) n = dtgvProductos.Rows.Add();
                 // colocamos la información nueva en ese sitio
                 dtgvProductos.Rows[n].Cells[0].Value = txtCodigo.Text;
                 dtgvProductos.Rows[n].Cells[1].Value = txtNombre.Text;
-                dtgvProductos.Rows[n].Cells[2].Value = txtPrecio.Text;
+                dtgvProductos.Rows[n].Cells[2].Value = precio; // ha sido validado
                 // Limpiamos los textboxes
                 txtCodigo.Text = "";
                 txtNombre.Text = "";
                 txtPrecio.Text = "";
-                lblInfo.Text = "Fila añadida";
+                if (selected)
+                {
+                    lblInfo.Text = "Fila actualizada";
+                    btnAdd.Text = "Añadir";
+                    selected = false;
+                }
+                else
+                {
+                    lblInfo.Text = "Fila añadida";
+                }
             }
             else
             {
                 lblInfo.Text = "Todos los campos requieren un valor";
+                if (selected) btnAdd.Text = "Añadir";
             }
 
 
-        }
-
-        private void dtgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int n = e.RowIndex;
-            if (n != -1)
-            {
-                lblInfo.Text = string.Format("Fila {0} seleccionada", n);
-                // rellenamos valores 
-                txtCodigo.Text = (string)dtgvProductos.Rows[n].Cells[0].Value;
-                txtNombre.Text = (string)dtgvProductos.Rows[n].Cells[1].Value;
-                txtPrecio.Text = (string)dtgvProductos.Rows[n].Cells[2].Value;
-                rowselected = n;
-            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -75,6 +82,9 @@ namespace database
                 {
                     lblInfo.Text = "Esta fila no se puede borrar";
                 }
+                btnAdd.Text = "Añadir";
+                selected = false;
+                // sitio donde hacer un DELETE y recargar la base de datos de nuevo en el DataGridView
             }
             txtCodigo.Text = "";
             txtNombre.Text = "";
@@ -84,11 +94,59 @@ namespace database
         private void MainForm_Load(object sender, EventArgs e)
         {
             lblInfo.Text = "";
+            // sitio donde cargar la base de datos completa
         }
 
-        private void dtgvProductos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void dtgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            lblInfo.Text = string.Format("Cambio Fila = {0}, Columna = {1} [{2},{3}]", e.RowIndex, e.ColumnIndex, dtgvProductos.Columns.Count, dtgvProductos.Rows.Count);
+            int n = e.RowIndex;
+            if ((n != -1) && (dtgvProductos.Rows.Count > 1))
+            {
+                lblInfo.Text = string.Format("Fila {0} seleccionada Rows = {1}", n, dtgvProductos.Rows.Count);
+                // rellenamos valores 
+                try
+                {
+                    txtCodigo.Text = dtgvProductos.Rows[n].Cells[0].Value.ToString();
+                    txtNombre.Text = dtgvProductos.Rows[n].Cells[1].Value.ToString();
+                    txtPrecio.Text = dtgvProductos.Rows[n].Cells[2].Value.ToString();
+                }
+                catch
+                {
+                    txtCodigo.Text = "";
+                    txtNombre.Text = "";
+                    txtPrecio.Text = "";
+                }
+                rowselected = n;
+                selected = true;
+                btnAdd.Text = "Actualizar";
+                try
+                {
+                    precio = Convert.ToDouble(txtPrecio.Text);
+                }
+                catch
+                {
+                    precio = 0;
+                }
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            // sitio del SELECT
+        }
+
+        private void txtPrecio_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                precio = Convert.ToDouble(txtPrecio.Text.Replace('.', ','));
+                txtPrecio.Text = precio.ToString();
+            }
+            catch
+            {
+                txtPrecio.Text = "";
+                lblInfo.Text = "Valor de Precio no válido";
+            }
         }
     }
 }

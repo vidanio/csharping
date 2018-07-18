@@ -15,6 +15,12 @@ namespace shuffle
             }
         }
 
+        // cualquier error de reproducción saltamos a la siguiente pista
+        private void axWMP_ErrorEvent(object sender, EventArgs e)
+        {
+            stopped = true;
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (axWMP.playState == WMPLib.WMPPlayState.wmppsPlaying)
