@@ -45,12 +45,13 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // dtgvProductos
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.dtgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvProductos.CausesValidation = false;
@@ -181,11 +182,23 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(433, 117);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 4;
+            this.btnLimpiar.TabStop = false;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(544, 375);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
@@ -228,6 +241,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 

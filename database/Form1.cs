@@ -41,28 +41,42 @@ namespace database
         {
             if ((txtCodigo.Text != "") && (txtNombre.Text != "") && (txtPrecio.Text != ""))
             {
+                string query = "";
                 // sitio donde hacer un INSERT o UPDATE (añadir/actualizar)
-
-                // añadimos una columna antes de introducir los datos, recibimos el numero de la columna nuevo
-                int n = rowselected;
-                if (!selected) n = dtgvProductos.Rows.Add();
-                // colocamos la información nueva en ese sitio
-                dtgvProductos.Rows[n].Cells[0].Value = txtCodigo.Text;
-                dtgvProductos.Rows[n].Cells[1].Value = txtNombre.Text;
-                dtgvProductos.Rows[n].Cells[2].Value = precio; // ha sido validado
-                // Limpiamos los textboxes
-                txtCodigo.Text = "";
-                txtNombre.Text = "";
-                txtPrecio.Text = "";
                 if (selected)
                 {
-                    lblInfo.Text = "Fila actualizada";
-                    btnAdd.Text = "Añadir";
-                    selected = false;
+                    query = string.Format("update Productos set Codigo = '{0}', Nombre = '{1}', Precio = '{2}' where Codigo = '{3}';",
+                        txtCodigo.Text, txtNombre.Text, txtPrecio.Text, dtgvProductos.Rows[rowselected].Cells[0].Value.ToString());
                 }
                 else
                 {
-                    lblInfo.Text = "Fila añadida";
+                    query = string.Format("INSERT into Productos values ('{0}','{1}','{2}');", txtCodigo.Text, txtNombre.Text, txtPrecio.Text);
+                }
+                SQLiteCommand cmd = new SQLiteCommand(query, conn);
+                int res = cmd.ExecuteNonQuery();
+                if (res > 0) // ha entrado en la BBDD, vamos a ponerlo en el DataGrid
+                {
+                    // añadimos una columna antes de introducir los datos, recibimos el numero de la columna nuevo
+                    int n = rowselected;
+                    if (!selected) n = dtgvProductos.Rows.Add();
+                    // colocamos la información nueva en ese sitio
+                    dtgvProductos.Rows[n].Cells[0].Value = txtCodigo.Text;
+                    dtgvProductos.Rows[n].Cells[1].Value = txtNombre.Text;
+                    dtgvProductos.Rows[n].Cells[2].Value = precio; // ha sido validado
+                                                                   // Limpiamos los textboxes
+                    txtCodigo.Text = "";
+                    txtNombre.Text = "";
+                    txtPrecio.Text = "";
+                    if (selected)
+                    {
+                        lblInfo.Text = "Fila actualizada";
+                        btnAdd.Text = "Añadir";
+                        selected = false;
+                    }
+                    else
+                    {
+                        lblInfo.Text = "Fila añadida";
+                    }
                 }
             }
             else
@@ -79,6 +93,15 @@ namespace database
                 try
                 {
                     dtgvProductos.Rows.RemoveAt(rowselected);
+                    // se ha ejecutado en el Datagrid ahora vamos a hacerlo en la base de datos
+                    string query = string.Format("DELETE from Productos where Codigo = '{0}';", txtCodigo.Text);
+                    SQLiteCommand cmd = new SQLiteCommand(query, conn);
+                    int res = cmd.ExecuteNonQuery();
+                    if (res < 1)
+                    {
+                        lblInfo.Text = "Esta fila no se ha borrado de la BBDD";
+                        loadAllSQLiteOnDataGrid();
+                    }
                 }
                 catch
                 {
@@ -99,13 +122,22 @@ namespace database
             // sitio donde cargar la base de datos completa SELECT * from TABLE
             conn.Open();            
             lblInfo.Text = "Base de datos SQLite status = " + conn.State.ToString();
+            loadAllSQLiteOnDataGrid();
+        }
+
+        private void loadAllSQLiteOnDataGrid()
+        {
+            dtgvProductos.Rows.Clear();
+            dtgvProductos.Update();
+            dtgvProductos.Refresh();
+
             string query = "SELECT * from Productos;";
             SQLiteCommand cmd = new SQLiteCommand(query, conn);
             SQLiteDataReader datos = cmd.ExecuteReader();
             while (datos.Read())
             {
                 // los leemos todos como strings completos
-                string codigo = datos.GetString(0); 
+                string codigo = datos.GetString(0);
                 string nombre = datos.GetString(1);
                 string price = datos.GetString(2);
                 int n = dtgvProductos.Rows.Add();
@@ -151,7 +183,33 @@ namespace database
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            // vaciamos el DataGrid y redibujamos sus controles
+            dtgvProductos.Rows.Clear();
+            dtgvProductos.Update();
+            dtgvProductos.Refresh();
+            btnAdd.Text = "Añadir";
+            selected = false;
+
+            string query = "SELECT * from Productos;";
             // sitio del SELECT
+            if (txtNombre.Text != "")
+            {
+                query = string.Format("SELECT * from Productos where Nombre LIKE '{0}%';", txtNombre.Text.Trim(' '));
+            }
+            SQLiteCommand cmd = new SQLiteCommand(query, conn);
+            SQLiteDataReader datos = cmd.ExecuteReader();
+            while (datos.Read())
+            {
+                // los leemos todos como strings completos
+                string codigo = datos.GetString(0);
+                string nombre = datos.GetString(1);
+                string price = datos.GetString(2);
+                int n = dtgvProductos.Rows.Add();
+                // convertimos los que hagan falta desde string a lo que sea
+                dtgvProductos.Rows[n].Cells[0].Value = codigo;
+                dtgvProductos.Rows[n].Cells[1].Value = nombre;
+                dtgvProductos.Rows[n].Cells[2].Value = Convert.ToDouble(price);
+            }
         }
 
         private void txtPrecio_Validating(object sender, CancelEventArgs e)
@@ -172,6 +230,13 @@ namespace database
         {
             conn.Close();
             conn.Dispose();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            dtgvProductos.Rows.Clear();
+            dtgvProductos.Update();
+            dtgvProductos.Refresh();
         }
     }
 }
