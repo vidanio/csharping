@@ -33,12 +33,12 @@
             this.DirectorioEntrada = new System.Windows.Forms.FolderBrowserDialog();
             this.btnEncript = new System.Windows.Forms.Button();
             this.groupBoxDirs = new System.Windows.Forms.GroupBox();
+            this.lblSalida = new System.Windows.Forms.Label();
+            this.lblEntrada = new System.Windows.Forms.Label();
             this.txtSalidaEnc = new System.Windows.Forms.TextBox();
             this.listadoDirectorios = new System.Windows.Forms.ListBox();
             this.comboDirs = new System.Windows.Forms.GroupBox();
             this.emptySelects = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblEntrada = new System.Windows.Forms.Label();
-            this.lblSalida = new System.Windows.Forms.Label();
             this.statusStripEnc = new System.Windows.Forms.StatusStrip();
             this.status_enc = new System.Windows.Forms.ToolStripStatusLabel();
             this.DirectorioSalida = new System.Windows.Forms.FolderBrowserDialog();
@@ -82,6 +82,24 @@
             this.groupBoxDirs.TabStop = false;
             this.groupBoxDirs.Text = "Encriptar";
             // 
+            // lblSalida
+            // 
+            this.lblSalida.AutoSize = true;
+            this.lblSalida.Location = new System.Drawing.Point(42, 81);
+            this.lblSalida.Name = "lblSalida";
+            this.lblSalida.Size = new System.Drawing.Size(99, 13);
+            this.lblSalida.TabIndex = 4;
+            this.lblSalida.Text = "Directorio de Salida";
+            // 
+            // lblEntrada
+            // 
+            this.lblEntrada.AutoSize = true;
+            this.lblEntrada.Location = new System.Drawing.Point(39, 33);
+            this.lblEntrada.Name = "lblEntrada";
+            this.lblEntrada.Size = new System.Drawing.Size(107, 13);
+            this.lblEntrada.TabIndex = 3;
+            this.lblEntrada.Text = "Directorio de Entrada";
+            // 
             // txtSalidaEnc
             // 
             this.txtSalidaEnc.Location = new System.Drawing.Point(42, 100);
@@ -111,24 +129,6 @@
             // emptySelects
             // 
             this.emptySelects.ContainerControl = this;
-            // 
-            // lblEntrada
-            // 
-            this.lblEntrada.AutoSize = true;
-            this.lblEntrada.Location = new System.Drawing.Point(39, 33);
-            this.lblEntrada.Name = "lblEntrada";
-            this.lblEntrada.Size = new System.Drawing.Size(107, 13);
-            this.lblEntrada.TabIndex = 3;
-            this.lblEntrada.Text = "Directorio de Entrada";
-            // 
-            // lblSalida
-            // 
-            this.lblSalida.AutoSize = true;
-            this.lblSalida.Location = new System.Drawing.Point(42, 81);
-            this.lblSalida.Name = "lblSalida";
-            this.lblSalida.Size = new System.Drawing.Size(99, 13);
-            this.lblSalida.TabIndex = 4;
-            this.lblSalida.Text = "Directorio de Salida";
             // 
             // statusStripEnc
             // 
