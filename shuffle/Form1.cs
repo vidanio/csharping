@@ -79,6 +79,11 @@ namespace shuffle
             timer1.Stop(); timer1.Dispose();
         }
 
+        private void axWMP_ErrorEvent(object sender, EventArgs e)
+        {
+            stopped = true;
+        }
+
         private void btnShuffle_Click(object sender, EventArgs e)
         {
             if (files != null)
