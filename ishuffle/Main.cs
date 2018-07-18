@@ -12,16 +12,16 @@ namespace ishuffle
 {
     public partial class MainShuffle : Form
     {   
-        
         private IEnumerable<string> ficheros, mezcla; //Ordenado y Desordenado de los ficheros
         private List<string> playlist; //Playlist de reproducción
-        //private bool stop = false; //Parada del WMP
+        private bool stop = false; //Parada del WMP
+        private int index = 0; // cancion actual
 
         public MainShuffle()
         {
             InitializeComponent();
             playlist = new List<string>();
-            //axWMPro.PlayStateChange += axWMPro_PlayStateChange;
+            axWMPro.PlayStateChange += axWMPro_PlayStateChange;
         }
 
         private void txtSelectDir_Click(object sender, EventArgs e)
@@ -51,14 +51,21 @@ namespace ishuffle
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            playingInfo.Items.Clear();
             if (playlist.Count > 0)
             {
                 btnPlay.Enabled = false;
                 axWMPro.URL = playlist[0];
 
-                //playingInfo.AppendText(string.Format("Play [{0}] {1}\r\n", index, playlist[index]));
-                //timer1.Start();
+                playingInfo.Items.Add(string.Format("Reproduciendo: {0}\r\n", playlist[index]));
+                timerShuffle.Start();
             }
+        }
+
+        private void MainShuffle_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timerShuffle.Stop();
+            timerShuffle.Dispose();
         }
 
         private void btnMezcla_Click(object sender, EventArgs e)

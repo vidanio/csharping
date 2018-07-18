@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainShuffle));
             this.txtSelectDir = new System.Windows.Forms.TextBox();
             this.btnMezcla = new System.Windows.Forms.Button();
@@ -37,6 +38,8 @@
             this.axWMPro = new AxWMPLib.AxWindowsMediaPlayer();
             this.btnPlay = new System.Windows.Forms.Button();
             this.playingInfo = new System.Windows.Forms.ListBox();
+            this.timerShuffle = new System.Windows.Forms.Timer(this.components);
+            this.progressShuffle = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.axWMPro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,6 +91,7 @@
             this.axWMPro.Size = new System.Drawing.Size(110, 35);
             this.axWMPro.TabIndex = 4;
             this.axWMPro.Visible = false;
+            this.axWMPro.ErrorEvent += new System.EventHandler(this.axWMPro_ErrorEvent);
             // 
             // btnPlay
             // 
@@ -109,12 +113,26 @@
             this.playingInfo.Size = new System.Drawing.Size(642, 121);
             this.playingInfo.TabIndex = 6;
             // 
+            // timerShuffle
+            // 
+            this.timerShuffle.Interval = 500;
+            this.timerShuffle.Tick += new System.EventHandler(this.timerShuffle_Tick);
+            // 
+            // progressShuffle
+            // 
+            this.progressShuffle.Location = new System.Drawing.Point(53, 285);
+            this.progressShuffle.Name = "progressShuffle";
+            this.progressShuffle.Size = new System.Drawing.Size(642, 13);
+            this.progressShuffle.Step = 1;
+            this.progressShuffle.TabIndex = 7;
+            // 
             // MainShuffle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(764, 462);
+            this.Controls.Add(this.progressShuffle);
             this.Controls.Add(this.playingInfo);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.axWMPro);
@@ -124,7 +142,8 @@
             this.Controls.Add(this.txtSelectDir);
             this.MaximizeBox = false;
             this.Name = "MainShuffle";
-            this.Text = "Form1";
+            this.Text = "Shuffle";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainShuffle_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axWMPro)).EndInit();
             this.ResumeLayout(false);
@@ -142,6 +161,8 @@
         private AxWMPLib.AxWindowsMediaPlayer axWMPro;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.ListBox playingInfo;
+        private System.Windows.Forms.Timer timerShuffle;
+        private System.Windows.Forms.ProgressBar progressShuffle;
     }
 }
 
