@@ -15,7 +15,7 @@ namespace shuffle
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timerShuffle_Tick(object sender, EventArgs e)
         {
             if (axWMP.playState == WMPLib.WMPPlayState.wmppsPlaying)
             {
