@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace database
 {
@@ -20,10 +21,13 @@ namespace database
         private double precio = 0.0;
         // valor que advierte de registro en edición (update)
         private bool selected = false; // false = (modo insert), true = (modo update)
+        SQLiteConnection conn;
 
         public MainForm()
         {
             InitializeComponent();
+
+            conn = new SQLiteConnection("Data Source=productos.sqlite;Version=3;");
         }
 
         // Cambia los Enter dentro del Form en TABs (mirar nuevo orden de tabulación y TabStop property
@@ -66,8 +70,6 @@ namespace database
                 lblInfo.Text = "Todos los campos requieren un valor";
                 if (selected) btnAdd.Text = "Añadir";
             }
-
-
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -95,6 +97,8 @@ namespace database
         {
             lblInfo.Text = "";
             // sitio donde cargar la base de datos completa
+            conn.Open();
+            lblInfo.Text = "Base de datos SQLite abierta";
         }
 
         private void dtgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -147,6 +151,12 @@ namespace database
                 txtPrecio.Text = "";
                 lblInfo.Text = "Valor de Precio no válido";
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            conn.Close();
+            conn.Dispose();
         }
     }
 }
