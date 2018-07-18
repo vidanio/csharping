@@ -2,6 +2,7 @@
 Este es un ejemplo donde hemos querido mostrar el uso de una BBDD SQLite a la vez que un formulario con un DataGridView en modo ReadOnly
 Con botones para crear un CRUD completo, donde se pueden insertar nuevos datos, actualizar los viejos, borrarlos o buscarlos mediante un
 criterio alfabético de búsqueda. Asímismo hemos mostrado como validar un campo de texto que recoger números decimales en coma flotante.
+Aunque en nuestro proyecto final, no hacen falta las filigranas que he tenido que meterle al DataGrid para que se redibuje correctamente.
  */
 using System;
 using System.Collections.Generic;
