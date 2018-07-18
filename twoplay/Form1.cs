@@ -31,16 +31,6 @@ namespace twoplay
             tbarVol2.Value = axWMP2.settings.volume;
         }
 
-        private void btnLoadSong2_Click(object sender, EventArgs e)
-        {
-            if (openSong.ShowDialog() == DialogResult.OK)
-            {
-                song2 = openSong.FileName;
-                lblSong2.Text = song2;
-                axWMP2.URL = song2;
-            }
-        }
-
         private void tbarVol1_Scroll(object sender, EventArgs e)
         {
             axWMP1.settings.volume = tbarVol1.Value;
@@ -62,6 +52,16 @@ namespace twoplay
                 song1 = openSong.FileName;
                 lblSong1.Text = song1;
                 axWMP1.URL = song1;
+            }
+        }
+
+        private void btnLoadSong2_Click(object sender, EventArgs e)
+        {
+            if (openSong.ShowDialog() == DialogResult.OK)
+            {
+                song2 = openSong.FileName;
+                lblSong2.Text = song2;
+                axWMP2.URL = song2;
             }
         }
     }
