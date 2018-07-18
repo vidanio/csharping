@@ -96,9 +96,24 @@ namespace database
         private void MainForm_Load(object sender, EventArgs e)
         {
             lblInfo.Text = "";
-            // sitio donde cargar la base de datos completa
-            conn.Open();
-            lblInfo.Text = "Base de datos SQLite abierta";
+            // sitio donde cargar la base de datos completa SELECT * from TABLE
+            conn.Open();            
+            lblInfo.Text = "Base de datos SQLite status = " + conn.State.ToString();
+            string query = "SELECT * from Productos;";
+            SQLiteCommand cmd = new SQLiteCommand(query, conn);
+            SQLiteDataReader datos = cmd.ExecuteReader();
+            while (datos.Read())
+            {
+                // los leemos todos como strings completos
+                string codigo = datos.GetString(0); 
+                string nombre = datos.GetString(1);
+                string price = datos.GetString(2);
+                int n = dtgvProductos.Rows.Add();
+                // convertimos los que hagan falta desde string a lo que sea
+                dtgvProductos.Rows[n].Cells[0].Value = codigo;
+                dtgvProductos.Rows[n].Cells[1].Value = nombre;
+                dtgvProductos.Rows[n].Cells[2].Value = Convert.ToDouble(price);
+            }
         }
 
         private void dtgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
