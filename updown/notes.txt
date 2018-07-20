@@ -40,19 +40,21 @@ https://stackoverflow.com/questions/10237983/upload-to-php-server-from-c-sharp-c
 
 private void button1_Click(object sender, EventArgs e)
 {
-    System.Net.WebClient Client = new System.Net.WebClient();
-    Client.Headers.Add("Content-Type", "binary/octet-stream");
-    byte[] result = Client.UploadFile("http://localhost/project1/upload.php", "POST", @"C:\test\a.jpg");
+    System.Net.WebClient client = new System.Net.WebClient();
+    client.Encoding = System.Text.Encoding.UTF8;
+    client.Headers.Add("Content-Type", "binary/octet-stream");
+    byte[] result = client.UploadFile("http://localhost/project1/upload.php", "POST", @"C:\test\a.jpg");
     string s = System.Text.Encoding.UTF8.GetString(result, 0, result.Length); 
 }
 
 <?php
 $uploads_dir = './files'; //Directory to save the file that comes from client application.
-if ($_FILES["file"]["error"] == UPLOAD_ERR_OK) {
-    $tmp_name = $_FILES["file"]["tmp_name"];
-    $name = $_FILES["file"]["name"];
+if ($_FILES["upfile"]["error"] == UPLOAD_ERR_OK) {
+    $tmp_name = $_FILES["upfile"]["tmp_name"];
+    $name = $_FILES["upfile"]["name"];
     move_uploaded_file($tmp_name, "$uploads_dir/$name");
-}
+    echo "File uploaded OK";
+}else echo "File not uploaded";
 ?>
 
 public static void UploadString (string address)

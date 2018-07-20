@@ -28,7 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.webCli = new System.Net.WebClient();
             this.SuspendLayout();
+            // 
+            // webCli
+            // 
+            this.webCli.BaseAddress = "";
+            this.webCli.CachePolicy = null;
+            this.webCli.Credentials = null;
+            this.webCli.Encoding = ((System.Text.Encoding)(resources.GetObject("webCli.Encoding")));
+            this.webCli.Headers = ((System.Net.WebHeaderCollection)(resources.GetObject("webCli.Headers")));
+            this.webCli.QueryString = ((System.Collections.Specialized.NameValueCollection)(resources.GetObject("webCli.QueryString")));
+            this.webCli.UseDefaultCredentials = false;
             // 
             // MainForm
             // 
@@ -43,6 +55,8 @@
         }
 
         #endregion
+
+        private System.Net.WebClient webCli;
     }
 }
 
