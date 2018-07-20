@@ -33,21 +33,21 @@
             this.folderBrwDlg = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.grpUpload = new System.Windows.Forms.GroupBox();
-            this.grpDownload = new System.Windows.Forms.GroupBox();
-            this.txtUpFile = new System.Windows.Forms.TextBox();
-            this.txtUploadURL = new System.Windows.Forms.TextBox();
-            this.lblUpURL = new System.Windows.Forms.Label();
-            this.btnUploadFile = new System.Windows.Forms.Button();
-            this.progbarUpload = new System.Windows.Forms.ProgressBar();
-            this.lblUpInfo = new System.Windows.Forms.Label();
             this.txtUpLogging = new System.Windows.Forms.TextBox();
+            this.lblUpInfo = new System.Windows.Forms.Label();
+            this.progbarUpload = new System.Windows.Forms.ProgressBar();
+            this.btnUploadFile = new System.Windows.Forms.Button();
+            this.lblUpURL = new System.Windows.Forms.Label();
+            this.txtUploadURL = new System.Windows.Forms.TextBox();
+            this.txtUpFile = new System.Windows.Forms.TextBox();
+            this.grpDownload = new System.Windows.Forms.GroupBox();
+            this.txtDownLogging = new System.Windows.Forms.TextBox();
+            this.lblDownInfo = new System.Windows.Forms.Label();
             this.txtDownFolder = new System.Windows.Forms.TextBox();
+            this.progbarDownload = new System.Windows.Forms.ProgressBar();
             this.txtDownURLFile = new System.Windows.Forms.TextBox();
             this.lblDown = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
-            this.progbarDownload = new System.Windows.Forms.ProgressBar();
-            this.lblDownInfo = new System.Windows.Forms.Label();
-            this.txtDownLogging = new System.Windows.Forms.TextBox();
             this.grpUpload.SuspendLayout();
             this.grpDownload.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +82,71 @@
             this.grpUpload.TabStop = false;
             this.grpUpload.Text = "Upload";
             // 
+            // txtUpLogging
+            // 
+            this.txtUpLogging.Location = new System.Drawing.Point(36, 230);
+            this.txtUpLogging.Multiline = true;
+            this.txtUpLogging.Name = "txtUpLogging";
+            this.txtUpLogging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtUpLogging.Size = new System.Drawing.Size(376, 183);
+            this.txtUpLogging.TabIndex = 6;
+            // 
+            // lblUpInfo
+            // 
+            this.lblUpInfo.AutoSize = true;
+            this.lblUpInfo.Location = new System.Drawing.Point(36, 177);
+            this.lblUpInfo.Name = "lblUpInfo";
+            this.lblUpInfo.Size = new System.Drawing.Size(37, 13);
+            this.lblUpInfo.TabIndex = 5;
+            this.lblUpInfo.Text = "(none)";
+            // 
+            // progbarUpload
+            // 
+            this.progbarUpload.Location = new System.Drawing.Point(36, 196);
+            this.progbarUpload.Name = "progbarUpload";
+            this.progbarUpload.Size = new System.Drawing.Size(376, 15);
+            this.progbarUpload.Step = 1;
+            this.progbarUpload.TabIndex = 4;
+            // 
+            // btnUploadFile
+            // 
+            this.btnUploadFile.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnUploadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadFile.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUploadFile.Location = new System.Drawing.Point(36, 121);
+            this.btnUploadFile.Name = "btnUploadFile";
+            this.btnUploadFile.Size = new System.Drawing.Size(138, 29);
+            this.btnUploadFile.TabIndex = 3;
+            this.btnUploadFile.Text = "Upload File";
+            this.btnUploadFile.UseVisualStyleBackColor = false;
+            // 
+            // lblUpURL
+            // 
+            this.lblUpURL.AutoSize = true;
+            this.lblUpURL.Location = new System.Drawing.Point(33, 79);
+            this.lblUpURL.Name = "lblUpURL";
+            this.lblUpURL.Size = new System.Drawing.Size(66, 13);
+            this.lblUpURL.TabIndex = 2;
+            this.lblUpURL.Text = "Upload URL";
+            // 
+            // txtUploadURL
+            // 
+            this.txtUploadURL.Location = new System.Drawing.Point(109, 76);
+            this.txtUploadURL.Name = "txtUploadURL";
+            this.txtUploadURL.Size = new System.Drawing.Size(303, 20);
+            this.txtUploadURL.TabIndex = 1;
+            this.txtUploadURL.Text = "http://";
+            // 
+            // txtUpFile
+            // 
+            this.txtUpFile.Location = new System.Drawing.Point(36, 38);
+            this.txtUpFile.Name = "txtUpFile";
+            this.txtUpFile.ReadOnly = true;
+            this.txtUpFile.Size = new System.Drawing.Size(376, 20);
+            this.txtUpFile.TabIndex = 0;
+            this.txtUpFile.TabStop = false;
+            this.txtUpFile.Text = "(Choose Upload File...)";
+            // 
             // grpDownload
             // 
             this.grpDownload.Controls.Add(this.txtDownLogging);
@@ -98,70 +163,23 @@
             this.grpDownload.TabStop = false;
             this.grpDownload.Text = "Download";
             // 
-            // txtUpFile
+            // txtDownLogging
             // 
-            this.txtUpFile.Location = new System.Drawing.Point(36, 38);
-            this.txtUpFile.Name = "txtUpFile";
-            this.txtUpFile.ReadOnly = true;
-            this.txtUpFile.Size = new System.Drawing.Size(376, 20);
-            this.txtUpFile.TabIndex = 0;
-            this.txtUpFile.TabStop = false;
-            this.txtUpFile.Text = "(Choose Upload File...)";
+            this.txtDownLogging.Location = new System.Drawing.Point(30, 230);
+            this.txtDownLogging.Multiline = true;
+            this.txtDownLogging.Name = "txtDownLogging";
+            this.txtDownLogging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDownLogging.Size = new System.Drawing.Size(376, 183);
+            this.txtDownLogging.TabIndex = 6;
             // 
-            // txtUploadURL
+            // lblDownInfo
             // 
-            this.txtUploadURL.Location = new System.Drawing.Point(109, 76);
-            this.txtUploadURL.Name = "txtUploadURL";
-            this.txtUploadURL.Size = new System.Drawing.Size(303, 20);
-            this.txtUploadURL.TabIndex = 1;
-            this.txtUploadURL.Text = "http://";
-            // 
-            // lblUpURL
-            // 
-            this.lblUpURL.AutoSize = true;
-            this.lblUpURL.Location = new System.Drawing.Point(33, 79);
-            this.lblUpURL.Name = "lblUpURL";
-            this.lblUpURL.Size = new System.Drawing.Size(66, 13);
-            this.lblUpURL.TabIndex = 2;
-            this.lblUpURL.Text = "Upload URL";
-            // 
-            // btnUploadFile
-            // 
-            this.btnUploadFile.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnUploadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUploadFile.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUploadFile.Location = new System.Drawing.Point(36, 121);
-            this.btnUploadFile.Name = "btnUploadFile";
-            this.btnUploadFile.Size = new System.Drawing.Size(138, 29);
-            this.btnUploadFile.TabIndex = 3;
-            this.btnUploadFile.Text = "Upload File";
-            this.btnUploadFile.UseVisualStyleBackColor = false;
-            // 
-            // progbarUpload
-            // 
-            this.progbarUpload.Location = new System.Drawing.Point(36, 196);
-            this.progbarUpload.Name = "progbarUpload";
-            this.progbarUpload.Size = new System.Drawing.Size(376, 15);
-            this.progbarUpload.Step = 1;
-            this.progbarUpload.TabIndex = 4;
-            // 
-            // lblUpInfo
-            // 
-            this.lblUpInfo.AutoSize = true;
-            this.lblUpInfo.Location = new System.Drawing.Point(36, 177);
-            this.lblUpInfo.Name = "lblUpInfo";
-            this.lblUpInfo.Size = new System.Drawing.Size(37, 13);
-            this.lblUpInfo.TabIndex = 5;
-            this.lblUpInfo.Text = "(none)";
-            // 
-            // txtUpLogging
-            // 
-            this.txtUpLogging.Location = new System.Drawing.Point(36, 230);
-            this.txtUpLogging.Multiline = true;
-            this.txtUpLogging.Name = "txtUpLogging";
-            this.txtUpLogging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtUpLogging.Size = new System.Drawing.Size(376, 183);
-            this.txtUpLogging.TabIndex = 6;
+            this.lblDownInfo.AutoSize = true;
+            this.lblDownInfo.Location = new System.Drawing.Point(30, 177);
+            this.lblDownInfo.Name = "lblDownInfo";
+            this.lblDownInfo.Size = new System.Drawing.Size(37, 13);
+            this.lblDownInfo.TabIndex = 5;
+            this.lblDownInfo.Text = "(none)";
             // 
             // txtDownFolder
             // 
@@ -173,11 +191,19 @@
             this.txtDownFolder.TabStop = false;
             this.txtDownFolder.Text = "(Choose Download Folder...)";
             // 
+            // progbarDownload
+            // 
+            this.progbarDownload.Location = new System.Drawing.Point(30, 196);
+            this.progbarDownload.Name = "progbarDownload";
+            this.progbarDownload.Size = new System.Drawing.Size(376, 15);
+            this.progbarDownload.Step = 1;
+            this.progbarDownload.TabIndex = 4;
+            // 
             // txtDownURLFile
             // 
-            this.txtDownURLFile.Location = new System.Drawing.Point(103, 72);
+            this.txtDownURLFile.Location = new System.Drawing.Point(113, 72);
             this.txtDownURLFile.Name = "txtDownURLFile";
-            this.txtDownURLFile.Size = new System.Drawing.Size(303, 20);
+            this.txtDownURLFile.Size = new System.Drawing.Size(293, 20);
             this.txtDownURLFile.TabIndex = 1;
             this.txtDownURLFile.Text = "http://";
             // 
@@ -186,9 +212,9 @@
             this.lblDown.AutoSize = true;
             this.lblDown.Location = new System.Drawing.Point(27, 75);
             this.lblDown.Name = "lblDown";
-            this.lblDown.Size = new System.Drawing.Size(66, 13);
+            this.lblDown.Size = new System.Drawing.Size(80, 13);
             this.lblDown.TabIndex = 2;
-            this.lblDown.Text = "Upload URL";
+            this.lblDown.Text = "Download URL";
             // 
             // btnDownload
             // 
@@ -201,32 +227,6 @@
             this.btnDownload.TabIndex = 3;
             this.btnDownload.Text = "Download File";
             this.btnDownload.UseVisualStyleBackColor = false;
-            // 
-            // progbarDownload
-            // 
-            this.progbarDownload.Location = new System.Drawing.Point(30, 196);
-            this.progbarDownload.Name = "progbarDownload";
-            this.progbarDownload.Size = new System.Drawing.Size(376, 15);
-            this.progbarDownload.Step = 1;
-            this.progbarDownload.TabIndex = 4;
-            // 
-            // lblDownInfo
-            // 
-            this.lblDownInfo.AutoSize = true;
-            this.lblDownInfo.Location = new System.Drawing.Point(30, 177);
-            this.lblDownInfo.Name = "lblDownInfo";
-            this.lblDownInfo.Size = new System.Drawing.Size(37, 13);
-            this.lblDownInfo.TabIndex = 5;
-            this.lblDownInfo.Text = "(none)";
-            // 
-            // txtDownLogging
-            // 
-            this.txtDownLogging.Location = new System.Drawing.Point(30, 230);
-            this.txtDownLogging.Multiline = true;
-            this.txtDownLogging.Name = "txtDownLogging";
-            this.txtDownLogging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDownLogging.Size = new System.Drawing.Size(376, 183);
-            this.txtDownLogging.TabIndex = 6;
             // 
             // MainForm
             // 
