@@ -1,0 +1,68 @@
+                // Cosas del axWMP control: (https://docs.microsoft.com/es-es/windows/desktop/WMP/object-model-reference-for-scripting) 
+                // axWMPMain.URL                            -> string con la URL del fichero a reproducir o la ruta OpenFileDialog.FileName
+                // axWMPMain.Ctlcontrols.play()             -> play
+                // axWMPMain.Ctlcontrols.stop()             -> stop
+                // axWMPMain.settings.volume                -> int de 0 a 100
+                // axWMPMain.settings.mute                  -> bool
+                // axWMPMain.currentMedia.duration          -> devuelve double con la duración en segundos del media actual
+                // axWMPMain.Ctlcontrols.currentPosition    -> devuelve double con la posición actual de reproducción del media actual
+                // axWMPMain.currentMedia.name              -> devuelve string con el nombre del media actual
+                // axWMPMain.Ctlcontrols.currentItem.name   -> devuelve string con el nombre del media actual
+                // axWMPMain.playState                      -> enum  WMPLib.WMPPlayState.wmppsPlaying/wmppsReady/wmppsStopped/wmppsUndefined/wmppsTransitioning/wmppsMediaEnded/wmppsPaused
+                // (int) axWMPMain.playState                -> int 3/10/8 (https://docs.microsoft.com/es-es/windows/desktop/WMP/player-playstate)
+                // axWMPMain.PlayStateChange                -> evento axWMPMain_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+
+# URL for WebClient (System.Net)
+https://stackoverflow.com/questions/3840762/how-do-you-urlencode-without-using-system-web
+System.Web.HttpUtility.UrlDecode
+System.Web.HttpUtility.UrlEncode
+# encoding byte[] to string (ASCII, Unicode, UTF8, UTF7, UTF32, Default = OS actual, etc) "System.Text"
+Encoding.ASCII.GetString(postData); // .GetBytes, .GetChars
+
+// dentro de la clase Form, hacemos override de ProcessCmdKey
+// ahora todo enter se ejecutará como un TAB
+protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+{            
+    if (keyData == Keys.Enter) SendKeys.Send("{TAB}");
+    return base.ProcessCmdKey(ref msg, keyData);
+}
+
+protected override void OnPaint(PaintEventArgs pe)  
+{  
+   base.OnPaint(pe);  
+   // Insert code to do custom painting.  
+   // If you want to completely change the appearance of your control,  
+   // do not call base.OnPaint(pe).  
+}
+
+===================================
+https://stackoverflow.com/questions/10237983/upload-to-php-server-from-c-sharp-client-application
+
+private void button1_Click(object sender, EventArgs e)
+{
+    System.Net.WebClient Client = new System.Net.WebClient();
+    Client.Headers.Add("Content-Type", "binary/octet-stream");
+    byte[] result = Client.UploadFile("http://localhost/project1/upload.php", "POST", @"C:\test\a.jpg");
+    string s = System.Text.Encoding.UTF8.GetString(result, 0, result.Length); 
+}
+
+<?php
+$uploads_dir = './files'; //Directory to save the file that comes from client application.
+if ($_FILES["file"]["error"] == UPLOAD_ERR_OK) {
+    $tmp_name = $_FILES["file"]["tmp_name"];
+    $name = $_FILES["file"]["name"];
+    move_uploaded_file($tmp_name, "$uploads_dir/$name");
+}
+?>
+
+public static void UploadString (string address)
+{
+    string data = "Time = 12:00am temperature = 50";
+    WebClient client = new WebClient ();
+    // Optionally specify an encoding for uploading and downloading strings.
+    client.Encoding = System.Text.Encoding.UTF8; //================================???????
+    // Upload the data.
+    string reply = client.UploadString (address, data);
+    // Disply the server's response.
+    Console.WriteLine (reply);
+}
