@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace updown
 {
@@ -64,10 +65,12 @@ namespace updown
             {
                 try
                 {
+                    string filename = "default-download.bin";
                     btnDownload.Enabled = false;
                     Uri url = new Uri(txtDownURLFile.Text);
-                    webCli.DownloadFileAsync(url, downloadFolder + url.LocalPath);
-                    txtDownLogging.AppendText(string.Format("Downloading File: {0}\r\n", txtDownURLFile.Text));
+                    if (url.IsFile) filename = Path.GetFileName(url.LocalPath);
+                    webCli.DownloadFileAsync(url, downloadFolder + @"\" + filename); // aquí url dede de ir escaped ++++
+                    txtDownLogging.AppendText(string.Format("Downloading File: {0}\r\n", filename));
                 }catch (Exception exc)
                 {
                     btnDownload.Enabled = true;
