@@ -11,9 +11,30 @@ namespace updown
 {
     public partial class MainForm : Form
     {
+        private string uploadFile = "", uploadURL = "";
+        private string downloadFolder = "", downloadURL = "";
+
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void txtUpFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDlg.ShowDialog() == DialogResult.OK)
+            {
+                txtUpFile.Text = openFileDlg.FileName;
+                uploadFile = txtUpFile.Text;
+            }
+        }
+
+        private void txtDownFolder_Click(object sender, EventArgs e)
+        {
+            if (folderBrwDlg.ShowDialog() == DialogResult.OK)
+            {
+                txtDownFolder.Text = folderBrwDlg.SelectedPath;
+                downloadFolder = txtDownFolder.Text;
+            }
         }
     }
 }

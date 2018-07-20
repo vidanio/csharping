@@ -146,6 +146,7 @@
             this.txtUpFile.TabIndex = 0;
             this.txtUpFile.TabStop = false;
             this.txtUpFile.Text = "(Choose Upload File...)";
+            this.txtUpFile.Click += new System.EventHandler(this.txtUpFile_Click);
             // 
             // grpDownload
             // 
@@ -190,6 +191,7 @@
             this.txtDownFolder.TabIndex = 0;
             this.txtDownFolder.TabStop = false;
             this.txtDownFolder.Text = "(Choose Download Folder...)";
+            this.txtDownFolder.Click += new System.EventHandler(this.txtDownFolder_Click);
             // 
             // progbarDownload
             // 
