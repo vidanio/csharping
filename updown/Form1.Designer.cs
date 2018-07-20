@@ -61,6 +61,10 @@
             this.webCli.Headers = ((System.Net.WebHeaderCollection)(resources.GetObject("webCli.Headers")));
             this.webCli.QueryString = ((System.Collections.Specialized.NameValueCollection)(resources.GetObject("webCli.QueryString")));
             this.webCli.UseDefaultCredentials = false;
+            this.webCli.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.webCli_DownloadFileCompleted);
+            this.webCli.UploadFileCompleted += new System.Net.UploadFileCompletedEventHandler(this.webCli_UploadFileCompleted);
+            this.webCli.DownloadProgressChanged += new System.Net.DownloadProgressChangedEventHandler(this.webCli_DownloadProgressChanged);
+            this.webCli.UploadProgressChanged += new System.Net.UploadProgressChangedEventHandler(this.webCli_UploadProgressChanged);
             // 
             // openFileDlg
             // 
@@ -119,6 +123,7 @@
             this.btnUploadFile.TabIndex = 3;
             this.btnUploadFile.Text = "Upload File";
             this.btnUploadFile.UseVisualStyleBackColor = false;
+            this.btnUploadFile.Click += new System.EventHandler(this.btnUploadFile_Click);
             // 
             // lblUpURL
             // 
@@ -229,6 +234,7 @@
             this.btnDownload.TabIndex = 3;
             this.btnDownload.Text = "Download File";
             this.btnDownload.UseVisualStyleBackColor = false;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // MainForm
             // 
