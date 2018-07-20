@@ -127,12 +127,15 @@
             // 
             // btnUploadFile
             // 
+            this.btnUploadFile.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnUploadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadFile.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnUploadFile.Location = new System.Drawing.Point(36, 121);
             this.btnUploadFile.Name = "btnUploadFile";
-            this.btnUploadFile.Size = new System.Drawing.Size(92, 23);
+            this.btnUploadFile.Size = new System.Drawing.Size(138, 29);
             this.btnUploadFile.TabIndex = 3;
             this.btnUploadFile.Text = "Upload File";
-            this.btnUploadFile.UseVisualStyleBackColor = true;
+            this.btnUploadFile.UseVisualStyleBackColor = false;
             // 
             // progbarUpload
             // 
@@ -189,12 +192,15 @@
             // 
             // btnDownload
             // 
+            this.btnDownload.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnDownload.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDownload.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnDownload.Location = new System.Drawing.Point(30, 121);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(92, 23);
+            this.btnDownload.Size = new System.Drawing.Size(131, 29);
             this.btnDownload.TabIndex = 3;
             this.btnDownload.Text = "Download File";
-            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.UseVisualStyleBackColor = false;
             // 
             // progbarDownload
             // 
@@ -229,6 +235,10 @@
             this.ClientSize = new System.Drawing.Size(931, 457);
             this.Controls.Add(this.grpDownload);
             this.Controls.Add(this.grpUpload);
+            this.Location = new System.Drawing.Point(947, 496);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(947, 496);
+            this.MinimumSize = new System.Drawing.Size(947, 496);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UpDown";
