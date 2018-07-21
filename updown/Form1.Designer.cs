@@ -48,6 +48,7 @@
             this.txtDownURLFile = new System.Windows.Forms.TextBox();
             this.lblDown = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
+            this.btnConvert = new System.Windows.Forms.Button();
             this.grpUpload.SuspendLayout();
             this.grpDownload.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +95,7 @@
             this.txtUpLogging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtUpLogging.Size = new System.Drawing.Size(376, 183);
             this.txtUpLogging.TabIndex = 6;
+            this.txtUpLogging.TabStop = false;
             // 
             // lblUpInfo
             // 
@@ -120,7 +122,7 @@
             this.btnUploadFile.Location = new System.Drawing.Point(36, 121);
             this.btnUploadFile.Name = "btnUploadFile";
             this.btnUploadFile.Size = new System.Drawing.Size(138, 29);
-            this.btnUploadFile.TabIndex = 3;
+            this.btnUploadFile.TabIndex = 1;
             this.btnUploadFile.Text = "Upload File";
             this.btnUploadFile.UseVisualStyleBackColor = false;
             this.btnUploadFile.Click += new System.EventHandler(this.btnUploadFile_Click);
@@ -139,7 +141,7 @@
             this.txtUploadURL.Location = new System.Drawing.Point(109, 76);
             this.txtUploadURL.Name = "txtUploadURL";
             this.txtUploadURL.Size = new System.Drawing.Size(303, 20);
-            this.txtUploadURL.TabIndex = 1;
+            this.txtUploadURL.TabIndex = 0;
             this.txtUploadURL.Text = "http://";
             // 
             // txtUpFile
@@ -155,6 +157,7 @@
             // 
             // grpDownload
             // 
+            this.grpDownload.Controls.Add(this.btnConvert);
             this.grpDownload.Controls.Add(this.txtDownLogging);
             this.grpDownload.Controls.Add(this.lblDownInfo);
             this.grpDownload.Controls.Add(this.txtDownFolder);
@@ -177,6 +180,7 @@
             this.txtDownLogging.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtDownLogging.Size = new System.Drawing.Size(376, 183);
             this.txtDownLogging.TabIndex = 6;
+            this.txtDownLogging.TabStop = false;
             // 
             // lblDownInfo
             // 
@@ -211,7 +215,7 @@
             this.txtDownURLFile.Location = new System.Drawing.Point(113, 72);
             this.txtDownURLFile.Name = "txtDownURLFile";
             this.txtDownURLFile.Size = new System.Drawing.Size(293, 20);
-            this.txtDownURLFile.TabIndex = 1;
+            this.txtDownURLFile.TabIndex = 0;
             this.txtDownURLFile.Text = "http://";
             // 
             // lblDown
@@ -231,10 +235,21 @@
             this.btnDownload.Location = new System.Drawing.Point(30, 121);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(131, 29);
-            this.btnDownload.TabIndex = 3;
+            this.btnDownload.TabIndex = 1;
             this.btnDownload.Text = "Download File";
             this.btnDownload.UseVisualStyleBackColor = false;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
+            // btnConvert
+            // 
+            this.btnConvert.Location = new System.Drawing.Point(331, 124);
+            this.btnConvert.Name = "btnConvert";
+            this.btnConvert.Size = new System.Drawing.Size(75, 23);
+            this.btnConvert.TabIndex = 7;
+            this.btnConvert.TabStop = false;
+            this.btnConvert.Text = "Escape URL";
+            this.btnConvert.UseVisualStyleBackColor = true;
+            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // MainForm
             // 
@@ -279,6 +294,7 @@
         private System.Windows.Forms.TextBox txtDownURLFile;
         private System.Windows.Forms.Label lblDown;
         private System.Windows.Forms.Button btnDownload;
+        private System.Windows.Forms.Button btnConvert;
     }
 }
 

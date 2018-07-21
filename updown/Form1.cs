@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Net;
 
 namespace updown
 {
@@ -24,7 +25,7 @@ namespace updown
 
         private void btnUploadFile_Click(object sender, EventArgs e)
         {
-            // añadimos el heahder q dice el tipo de contenido que vamos a subir
+            // añadimos el header q dice el tipo de contenido que vamos a subir
             webCli.Headers.Add("Content-Type", "binary/octet-stream");
             if ((txtUpFile.Text != "") && (txtUploadURL.Text != ""))
             {
@@ -52,9 +53,10 @@ namespace updown
 
         private void webCli_UploadProgressChanged(object sender, System.Net.UploadProgressChangedEventArgs e)
         {
+            long percent = e.BytesSent * 100 / e.TotalBytesToSend;
             lblUpInfo.Text = string.Format("{0}   uploaded {1} of {2} bytes. {3} % complete...", 
-                (string)e.UserState, e.BytesSent, e.TotalBytesToSend, e.ProgressPercentage);
-            progbarUpload.Value = e.ProgressPercentage;
+                (string)e.UserState, e.BytesSent, e.TotalBytesToSend, percent);
+            progbarUpload.Value = (int) percent;
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
@@ -69,9 +71,9 @@ namespace updown
                     btnDownload.Enabled = false;
                     Uri url = new Uri(txtDownURLFile.Text);
                     if (url.IsFile) filename = Path.GetFileName(url.LocalPath);
-                    Uri escapedurl = new Uri(Uri.EscapeUriString(url.ToString()));
-                    lblDownInfo.Text = escapedurl.ToString();
-                    webCli.DownloadFileAsync(escapedurl, downloadFolder + @"\" + filename);
+                    //Uri escapedurl = new Uri(Uri.EscapeUriString(url.ToString()));
+                    //lblDownInfo.Text = escapedurl.ToString();
+                    webCli.DownloadFileAsync(url, downloadFolder + @"\" + filename);
                     txtDownLogging.AppendText(string.Format("Downloading File: {0}\r\n", filename));
                 }catch (Exception exc)
                 {
@@ -86,14 +88,23 @@ namespace updown
         {
             btnDownload.Enabled = true;
             lblDownInfo.Text = "File sucessfully downloaded";
-            txtDownLogging.AppendText(string.Format("{0} bytes downloaded\r\n", webCli.ResponseHeaders.Get("Content-Length ")));
+            try
+            {
+                txtDownLogging.AppendText(string.Format("{0} bytes downloaded\r\n", webCli.ResponseHeaders.Get("Content-Length")));
+
+            }
+            catch
+            {
+                txtDownLogging.AppendText("No ha funcionado !!!");
+            }
         }
 
         private void webCli_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
         {
+            long percent = e.BytesReceived * 100 / e.TotalBytesToReceive;
             lblDownInfo.Text = string.Format("{0}   downloaded {1} of {2} bytes. {3} % complete...", 
-                (string)e.UserState, e.BytesReceived, e.TotalBytesToReceive,e.ProgressPercentage);
-            progbarDownload.Value = e.ProgressPercentage;
+                (string)e.UserState, e.BytesReceived, e.TotalBytesToReceive, percent);
+            progbarDownload.Value = (int) percent;
         }
 
         private void txtUpFile_Click(object sender, EventArgs e)
@@ -112,6 +123,11 @@ namespace updown
                 txtDownFolder.Text = folderBrwDlg.SelectedPath;
                 downloadFolder = txtDownFolder.Text;
             }
+        }
+
+        private void btnConvert_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

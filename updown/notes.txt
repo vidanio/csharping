@@ -68,3 +68,8 @@ public static void UploadString (string address)
     // Disply the server's response.
     Console.WriteLine (reply);
 }
+
+http://jrweb.todostreaming.es/uploadx/files/Espa%c3%b1a%20comi%c3%b3%20ba%c3%a7alao%20-%20to'ma$.mp3
+http://jrweb.todostreaming.es/uploadx/files/Espa%f1a%20comi%f3%20ba%e7alao%20-%20to'ma$.mp3
+http://jrweb.todostreaming.es/uploadx/files/España comió baçalao - to'ma$.mp3
+

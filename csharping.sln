@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itwoplay", "itwoplay\itwopl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iupdown", "iupdown\iupdown.csproj", "{A39E06A1-E1D0-40E5-ADB2-2C7A0B876DBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console", "console\console.csproj", "{BC31A795-FDB3-4A7B-862A-76819053B49E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{A39E06A1-E1D0-40E5-ADB2-2C7A0B876DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A39E06A1-E1D0-40E5-ADB2-2C7A0B876DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A39E06A1-E1D0-40E5-ADB2-2C7A0B876DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC31A795-FDB3-4A7B-862A-76819053B49E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC31A795-FDB3-4A7B-862A-76819053B49E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC31A795-FDB3-4A7B-862A-76819053B49E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC31A795-FDB3-4A7B-862A-76819053B49E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
