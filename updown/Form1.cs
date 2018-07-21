@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+Sorprendentemente el código q hace la gente por ahí en foros para este tema, es muy complicado cuando .NET ya provee de herramientas como Uri y Path que permiten
+libremente usar URL encoded como decoded de una manera muy simple y sencilla. Hay que tener en cuenta que el URLUpload que recibe la petición HTTP POST desde 
+el método WebClient.UploadFile (y similares), debe procesar por defecto el input_type file con nombre "file", no he mirado si se puede cambiar el nombre de este
+recurso por defecto, indagaremos sobre este tema en posteriores versiones. 
+Es importante recoger información fidedigna del server sobre el tamaño recibido y bajado, para asegurar que el proceso fue completado exitosamente, ya que los
+errores interceptados por excepciones solamente tienen que ver con problemas en la comunicación y nada más.
+ *  */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -67,12 +75,17 @@ namespace updown
             {
                 try
                 {
-                    string filename = "default-download.bin";
+                    string filename;
                     btnDownload.Enabled = false;
                     Uri url = new Uri(txtDownURLFile.Text);
-                    if (url.IsFile) filename = Path.GetFileName(url.LocalPath);
-                    //Uri escapedurl = new Uri(Uri.EscapeUriString(url.ToString()));
-                    //lblDownInfo.Text = escapedurl.ToString();
+                    try
+                    {
+                        filename = Path.GetFileName(url.LocalPath);
+                    }
+                    catch
+                    {
+                        filename = "default-download.bin";
+                    }
                     webCli.DownloadFileAsync(url, downloadFolder + @"\" + filename);
                     txtDownLogging.AppendText(string.Format("Downloading File: {0}\r\n", filename));
                 }catch (Exception exc)
@@ -125,9 +138,5 @@ namespace updown
             }
         }
 
-        private void btnConvert_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -48,7 +48,6 @@
             this.txtDownURLFile = new System.Windows.Forms.TextBox();
             this.lblDown = new System.Windows.Forms.Label();
             this.btnDownload = new System.Windows.Forms.Button();
-            this.btnConvert = new System.Windows.Forms.Button();
             this.grpUpload.SuspendLayout();
             this.grpDownload.SuspendLayout();
             this.SuspendLayout();
@@ -157,7 +156,6 @@
             // 
             // grpDownload
             // 
-            this.grpDownload.Controls.Add(this.btnConvert);
             this.grpDownload.Controls.Add(this.txtDownLogging);
             this.grpDownload.Controls.Add(this.lblDownInfo);
             this.grpDownload.Controls.Add(this.txtDownFolder);
@@ -240,17 +238,6 @@
             this.btnDownload.UseVisualStyleBackColor = false;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
-            // btnConvert
-            // 
-            this.btnConvert.Location = new System.Drawing.Point(331, 124);
-            this.btnConvert.Name = "btnConvert";
-            this.btnConvert.Size = new System.Drawing.Size(75, 23);
-            this.btnConvert.TabIndex = 7;
-            this.btnConvert.TabStop = false;
-            this.btnConvert.Text = "Escape URL";
-            this.btnConvert.UseVisualStyleBackColor = true;
-            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,7 +281,6 @@
         private System.Windows.Forms.TextBox txtDownURLFile;
         private System.Windows.Forms.Label lblDown;
         private System.Windows.Forms.Button btnDownload;
-        private System.Windows.Forms.Button btnConvert;
     }
 }
 
