@@ -47,7 +47,7 @@ namespace updown
         {
             btnUploadFile.Enabled = true;
             lblUpInfo.Text = "File sucessfully uploaded";
-            txtUpLogging.AppendText(lblUpInfo.Text + "\r\n");
+            txtUpLogging.AppendText(string.Format("Server response: {0}\r\n", Encoding.UTF8.GetString(e.Result, 0, e.Result.Length)));
         }
 
         private void webCli_UploadProgressChanged(object sender, System.Net.UploadProgressChangedEventArgs e)
@@ -69,7 +69,9 @@ namespace updown
                     btnDownload.Enabled = false;
                     Uri url = new Uri(txtDownURLFile.Text);
                     if (url.IsFile) filename = Path.GetFileName(url.LocalPath);
-                    webCli.DownloadFileAsync(url, downloadFolder + @"\" + filename); // aquí url dede de ir escaped ++++
+                    Uri escapedurl = new Uri(Uri.EscapeUriString(url.ToString()));
+                    lblDownInfo.Text = escapedurl.ToString();
+                    webCli.DownloadFileAsync(escapedurl, downloadFolder + @"\" + filename);
                     txtDownLogging.AppendText(string.Format("Downloading File: {0}\r\n", filename));
                 }catch (Exception exc)
                 {
@@ -84,7 +86,7 @@ namespace updown
         {
             btnDownload.Enabled = true;
             lblDownInfo.Text = "File sucessfully downloaded";
-            txtDownLogging.AppendText(lblDownInfo.Text + "\r\n");
+            txtDownLogging.AppendText(string.Format("{0} bytes downloaded\r\n", webCli.ResponseHeaders.Get("Content-Length ")));
         }
 
         private void webCli_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
