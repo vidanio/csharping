@@ -84,6 +84,11 @@ namespace shuffle
             stopped = true;
         }
 
+        private void axWMP_StatusChange(object sender, EventArgs e)
+        {
+            lblExcept.Text = axWMP.playState.ToString();
+        }
+
         private void btnShuffle_Click(object sender, EventArgs e)
         {
             if (files != null)
