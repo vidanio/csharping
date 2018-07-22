@@ -43,9 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extend1.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Extend1.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
