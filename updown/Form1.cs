@@ -5,6 +5,7 @@ el método WebClient.UploadFile (y similares), debe procesar por defecto el inpu
 recurso por defecto, indagaremos sobre este tema en posteriores versiones. 
 Es importante recoger información fidedigna del server sobre el tamaño recibido y bajado, para asegurar que el proceso fue completado exitosamente, ya que los
 errores interceptados por excepciones solamente tienen que ver con problemas en la comunicación y nada más.
+Atento al uso de funciones asíncronas UploadFileAsync y DownloadFileAsync con la captura de excepciones en UploadFileCompleted y DownloadFileCompleted
  *  */
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,8 @@ namespace updown
                 try
                 {
                     btnUploadFile.Enabled = false;
+                    // Async al no blquear, si hay un error posterior no pasaría por esta excepción, si no que generaría antes
+                    // el evento UploadFileCompleted y es allí donde debe interceptarse con e.Cancel y e.Error
                     webCli.UploadFileAsync(new Uri(txtUploadURL.Text), uploadFile);
                     txtUpLogging.AppendText(string.Format("Uploading File: {0}\r\n", uploadFile));
                 }
@@ -54,9 +57,23 @@ namespace updown
 
         private void webCli_UploadFileCompleted(object sender, System.Net.UploadFileCompletedEventArgs e)
         {
+            if (e.Cancelled) // subida cancelada
+            {
+                lblDownInfo.Text = "File upload cancelled";
+                txtDownLogging.AppendText(lblDownInfo.Text + "\r\n");
+            }
+            else if (e.Error != null) // excepcion diferida atrapada aquí
+            {
+                lblDownInfo.Text = "Error during upload";
+                txtDownLogging.AppendText(lblDownInfo.Text + "\r\n");
+            }
+            else // todo fue perfecto
+            {
+                lblDownInfo.Text = "File sucessfully uploaded";
+                txtUpLogging.AppendText(string.Format("Server response: {0}\r\n", Encoding.UTF8.GetString(e.Result, 0, e.Result.Length)));
+            }
+
             btnUploadFile.Enabled = true;
-            lblUpInfo.Text = "File sucessfully uploaded";
-            txtUpLogging.AppendText(string.Format("Server response: {0}\r\n", Encoding.UTF8.GetString(e.Result, 0, e.Result.Length)));
         }
 
         private void webCli_UploadProgressChanged(object sender, System.Net.UploadProgressChangedEventArgs e)
@@ -86,6 +103,8 @@ namespace updown
                     {
                         filename = "default-download.bin";
                     }
+                    // Async al no blquear, si hay un error posterior no pasaría por esta excepción, si no que generaría antes
+                    // el evento DownloadFileCompleted y es allí donde debe interceptarse con e.Cancel y e.Error
                     webCli.DownloadFileAsync(url, downloadFolder + @"\" + filename);
                     txtDownLogging.AppendText(string.Format("Downloading File: {0}\r\n", filename));
                 }catch (Exception exc)
@@ -99,17 +118,23 @@ namespace updown
 
         private void webCli_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            btnDownload.Enabled = true;
-            lblDownInfo.Text = "File sucessfully downloaded";
-            try
+            if (e.Cancelled) // download cancelado
             {
+                lblDownInfo.Text = "File download cancelled";
+                txtDownLogging.AppendText(lblDownInfo.Text + "\r\n");
+            }
+            else if (e.Error != null) // excepcion diferida atrapada aquí
+            {
+                lblDownInfo.Text = "Error during download";
+                txtDownLogging.AppendText(lblDownInfo.Text + "\r\n");
+            }
+            else // todo fue perfecto
+            {
+                lblDownInfo.Text = "File sucessfully downloaded";
                 txtDownLogging.AppendText(string.Format("{0} bytes downloaded\r\n", webCli.ResponseHeaders.Get("Content-Length")));
+            }
 
-            }
-            catch
-            {
-                txtDownLogging.AppendText("No ha funcionado !!!");
-            }
+            btnDownload.Enabled = true;
         }
 
         private void webCli_DownloadProgressChanged(object sender, System.Net.DownloadProgressChangedEventArgs e)
