@@ -138,9 +138,9 @@ namespace database
             while (datos.Read())
             {
                 // los leemos todos como strings completos
-                string codigo = datos.GetString(0);
-                string nombre = datos.GetString(1);
-                string price = datos.GetString(2);
+                string codigo = datos.GetString(datos.GetOrdinal("Codigo"));
+                string nombre = datos.GetString(datos.GetOrdinal("Nombre"));
+                string price = datos.GetString(datos.GetOrdinal("Precio"));
                 int n = dtgvProductos.Rows.Add();
                 // convertimos los que hagan falta desde string a lo que sea
                 dtgvProductos.Rows[n].Cells[0].Value = codigo;
@@ -202,9 +202,9 @@ namespace database
             while (datos.Read())
             {
                 // los leemos todos como strings completos
-                string codigo = datos.GetString(0);
-                string nombre = datos.GetString(1);
-                string price = datos.GetString(2);
+                string codigo = datos.GetString(datos.GetOrdinal("Codigo"));
+                string nombre = datos.GetString(datos.GetOrdinal("Nombre"));
+                string price = datos.GetString(datos.GetOrdinal("Precio"));
                 int n = dtgvProductos.Rows.Add();
                 // convertimos los que hagan falta desde string a lo que sea
                 dtgvProductos.Rows[n].Cells[0].Value = codigo;

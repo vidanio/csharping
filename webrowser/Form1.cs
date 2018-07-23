@@ -29,7 +29,7 @@ namespace webrowser
         {
             url = txtURL.Text;
 
-            if (url.Contains("http") || url.Contains("https"))
+            if (url.Contains("http://") || url.Contains("https://"))
                                 webContent.Url = new Uri(txtURL.Text);
         }
 
