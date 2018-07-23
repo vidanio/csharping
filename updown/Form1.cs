@@ -64,7 +64,7 @@ namespace updown
             }
             else if (e.Error != null) // excepcion diferida atrapada aquí
             {
-                lblDownInfo.Text = "Error during upload";
+                lblDownInfo.Text = string.Format("Error during upload: {0}", e.Error.Message);
                 txtDownLogging.AppendText(lblDownInfo.Text + "\r\n");
             }
             else // todo fue perfecto
@@ -125,7 +125,7 @@ namespace updown
             }
             else if (e.Error != null) // excepcion diferida atrapada aquí
             {
-                lblDownInfo.Text = "Error during download";
+                lblDownInfo.Text = string.Format("Error during download: {0}", e.Error.Message);
                 txtDownLogging.AppendText(lblDownInfo.Text + "\r\n");
             }
             else // todo fue perfecto
