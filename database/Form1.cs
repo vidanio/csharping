@@ -1,8 +1,10 @@
 ﻿/*
 Este es un ejemplo donde hemos querido mostrar el uso de una BBDD SQLite a la vez que un formulario con un DataGridView en modo ReadOnly
 Con botones para crear un CRUD completo, donde se pueden insertar nuevos datos, actualizar los viejos, borrarlos o buscarlos mediante un
-criterio alfabético de búsqueda. Asímismo hemos mostrado como validar un campo de texto que recoger números decimales en coma flotante.
-Aunque en nuestro proyecto final, no hacen falta las filigranas que he tenido que meterle al DataGrid para que se redibuje correctamente.
+criterio alfabético de búsqueda. 
+Debido a que la conversion de REAL SQLite a Double C#, solo funciona cuando el valor esta guardado en formato en-US con el '.' como separador decimal,
+en el Load del Form, antes de nada hemos definido las reglas de Globalización Cultural del hilo principal del programa con esta salvedad, de manera 
+que ya no hay problemas al usar la linea#154 ni que el contenido en el DataGrid use el separado del sistema operativo local
  */
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Globalization;
+using System.Threading;
 
 namespace database
 {
@@ -64,7 +68,7 @@ namespace database
                     dtgvProductos.Rows[n].Cells[0].Value = txtCodigo.Text;
                     dtgvProductos.Rows[n].Cells[1].Value = txtNombre.Text;
                     dtgvProductos.Rows[n].Cells[2].Value = precio; // ha sido validado
-                                                                   // Limpiamos los textboxes
+                    // Limpiamos los textboxes
                     txtCodigo.Text = "";
                     txtNombre.Text = "";
                     txtPrecio.Text = "";
@@ -119,6 +123,13 @@ namespace database
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //Definimos como carácter de separación entero-decimal con el punto (para evitar problemas con SQLite REAL)
+            CultureInfo cultureCA = CultureInfo.CreateSpecificCulture("en-US");
+            NumberFormatInfo numberFormat = cultureCA.NumberFormat;
+            numberFormat.CurrencyGroupSeparator = ","; // separador de miles
+            numberFormat.CurrencyDecimalSeparator = "."; // separador de decimales
+            Thread.CurrentThread.CurrentCulture = cultureCA; // activamos la cultura en-US en este hilo
+
             lblInfo.Text = "";
             // sitio donde cargar la base de datos completa SELECT * from TABLE
             conn.Open();            
@@ -138,14 +149,14 @@ namespace database
             while (datos.Read())
             {
                 // los leemos todos como strings completos
-                string codigo = datos["Codigo"].ToString();
-                string nombre = datos["Nombre"].ToString();
-                string price = datos["Precio"].ToString();
+                string codigo = datos.GetString(datos.GetOrdinal("Codigo"));
+                string nombre = datos.GetString(datos.GetOrdinal("Nombre"));
+                double price = datos.GetDouble(datos.GetOrdinal("Precio"));
                 int n = dtgvProductos.Rows.Add();
                 // convertimos los que hagan falta desde string a lo que sea
                 dtgvProductos.Rows[n].Cells[0].Value = codigo;
                 dtgvProductos.Rows[n].Cells[1].Value = nombre;
-                dtgvProductos.Rows[n].Cells[2].Value = Convert.ToDouble(price);
+                dtgvProductos.Rows[n].Cells[2].Value = price;
             }
         }
 
@@ -204,12 +215,12 @@ namespace database
                 // los leemos todos como strings completos
                 string codigo = datos.GetString(datos.GetOrdinal("Codigo"));
                 string nombre = datos.GetString(datos.GetOrdinal("Nombre"));
-                string price = datos.GetString(datos.GetOrdinal("Precio"));
+                double price = datos.GetDouble(datos.GetOrdinal("Precio"));
                 int n = dtgvProductos.Rows.Add();
                 // convertimos los que hagan falta desde string a lo que sea
                 dtgvProductos.Rows[n].Cells[0].Value = codigo;
                 dtgvProductos.Rows[n].Cells[1].Value = nombre;
-                dtgvProductos.Rows[n].Cells[2].Value = Convert.ToDouble(price);
+                dtgvProductos.Rows[n].Cells[2].Value = price;
             }
         }
 
@@ -217,7 +228,7 @@ namespace database
         {
             try
             {
-                precio = Convert.ToDouble(txtPrecio.Text.Replace('.', ','));
+                precio = Convert.ToDouble(txtPrecio.Text.Replace(',', '.'));
                 txtPrecio.Text = precio.ToString();
             }
             catch
