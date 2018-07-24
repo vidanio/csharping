@@ -72,3 +72,50 @@ public static void UploadString (string address)
 http://jrweb.todostreaming.es/uploadx/files/Espa%c3%b1a%20comi%c3%b3%20ba%c3%a7alao%20-%20to'ma$.mp3
 http://jrweb.todostreaming.es/uploadx/files/España comió baçalao - to'ma$.mp3
 
+=============================== BackgroundWorker instead of Timers
+
+If LookForItWhichMightTakeALongTime() is going to take a long time, I would suggest not using a System.Windows.Forms.Timer 
+because doing so will lock up your UI thread and the user may kill your application thinking that it has frozen.
+
+What you could use is a BackgroundWorker (along with a Timer if so desired).
+
+<?
+public class MyForm : Form
+{
+  private BackgroundWorker backgroundWorker = new BackgroundWorker();
+
+  public MyForm()
+  {
+    InitializeComponents();
+    backgroundWorker.DoWork += backgroundWorker_DoWork;
+    backgroundWorker.RunWorkerCompleted +=
+                                backgroundWorker_RunWorkerCompleted;
+    backgroundWorker.RunWorkerAsync();
+  }
+
+  private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+  {
+    e.Result = LookForItWhichMightTakeALongTime();
+  }
+
+  private void backgroundWorker_RunWorkerCompleted(object sender,
+                                             RunWorkerCompletedEventArgs e)
+  {
+    found = e.Result as MyClass;
+  }
+}
+?>
+
+And you can call RunWorkerAsync() from anywhere you want to, even from a Timer if you want. And just make sure to check if the 
+BackgroundWorker is running already since calling RunWorkerAsync() when it's running will throw an exception.
+
+<?
+private void timer_Tick(object sender, EventArgs e)
+{
+  if (!backgroundWorker.IsBusy)
+    backgroundWorker.RunWorkerAsync();
+}
+?>
+
+https://www.codeproject.com/Articles/99143/BackgroundWorker-Class-Sample-for-Beginners
+

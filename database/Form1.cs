@@ -87,7 +87,7 @@ namespace database
                                 lblInfo.Text = "Fila añadida";
                             }
                         }
-                        conn.Close();
+                        //conn.Close();
                     }
                 }
                 catch
@@ -121,7 +121,7 @@ namespace database
                             lblInfo.Text = "Esta fila no se ha borrado de la BBDD";
                             loadAllSQLiteOnDataGrid();
                         }
-                        conn.Close();
+                        //conn.Close();
                     }
                 }
                 catch
@@ -155,7 +155,7 @@ namespace database
                     conn.Open();
                     lblInfo.Text = "Base de datos SQLite status = " + conn.State.ToString();
                     loadAllSQLiteOnDataGrid();
-                    conn.Close();
+                    //conn.Close();
                 }
             }
             catch
@@ -255,7 +255,7 @@ namespace database
                         dtgvProductos.Rows[n].Cells[1].Value = nombre;
                         dtgvProductos.Rows[n].Cells[2].Value = price;
                     }
-                    conn.Close();
+                    //conn.Close();
                 }
             }
             catch
