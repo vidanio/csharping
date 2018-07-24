@@ -4,7 +4,7 @@ Con botones para crear un CRUD completo, donde se pueden insertar nuevos datos, 
 criterio alfabético de búsqueda. 
 Debido a que la conversion de REAL SQLite a Double C#, solo funciona cuando el valor esta guardado en formato en-US con el '.' como separador decimal,
 en el Load del Form, antes de nada hemos definido las reglas de Globalización Cultural del hilo principal del programa con esta salvedad, de manera 
-que ya no hay problemas al usar la linea#154 ni que el contenido en el DataGrid use el separado del sistema operativo local
+que ya no hay problemas al usar la linea#181 ni que el contenido en el DataGrid use el separado del sistema operativo local
  */
 using System;
 using System.Collections.Generic;
