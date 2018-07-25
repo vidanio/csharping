@@ -21,9 +21,9 @@ namespace Test2BackgroundWorkers
         {
             int i;
 
-            mutex.WaitOne();
+            mutex.WaitOne();//
             i = ++this.counter;
-            mutex.ReleaseMutex();
+            mutex.ReleaseMutex();//
 
             return i;
         }
@@ -41,5 +41,7 @@ namespace Test2BackgroundWorkers
     }
 }
 /*
-La clase Counter es sencilla, solamente contiene la variable a asegurar con su mutex, y los métodos publicos que nos interesan para implementar el ejemplo TestHilos
+La clase Counter es sencilla, solamente contiene la variable a asegurar con su mutex, y los métodos publicos que nos interesan para implementar el ejemplo TestHilos.
+Puedes hacer la prueba de comentar las lineas q acaban con // y verás como el resultado ya no es 2000000 al hacer condiciones de carrera entre ambos hilos al acceder
+al counter
 */
