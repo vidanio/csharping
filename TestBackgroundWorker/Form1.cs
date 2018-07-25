@@ -23,6 +23,7 @@ namespace TestBackgroundWorker
         {
             InitializeComponent();
 
+            m = new Mutex();//
             // llenamos la Lista
             lista = new List<string>();
             lista.Add("Manzana");
@@ -33,7 +34,6 @@ namespace TestBackgroundWorker
         private void bgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             counter = 0;
-            m = new Mutex();//
             hilo1 = new Thread(proc_hilo1);
             hilo2 = new Thread(proc_hilo2);
 

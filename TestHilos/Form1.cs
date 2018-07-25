@@ -23,6 +23,7 @@ namespace TestHilos
         {
             InitializeComponent();
 
+            m = new Mutex();//
             // llenamos la Lista
             lista = new List<string>();
             lista.Add("Manzana");
@@ -35,7 +36,6 @@ namespace TestHilos
             btnStart.Enabled = false;
 
             counter = 0;
-            m = new Mutex();//
             hilo1 = new Thread(proc_hilo1);
             hilo2 = new Thread(proc_hilo2);
 
