@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.userContainer = new System.Windows.Forms.ListBox();
             this.btnAnadir = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -37,17 +36,14 @@
             this.lblID = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblPass = new System.Windows.Forms.Label();
-            this.lblInfo = new System.Windows.Forms.Label();
+            this.MiTabla = new System.Windows.Forms.ListView();
+            this.col_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_user = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_pass = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblInfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // userContainer
-            // 
-            this.userContainer.FormattingEnabled = true;
-            this.userContainer.Location = new System.Drawing.Point(199, 153);
-            this.userContainer.Name = "userContainer";
-            this.userContainer.Size = new System.Drawing.Size(398, 199);
-            this.userContainer.TabIndex = 0;
-            this.userContainer.SelectedIndexChanged += new System.EventHandler(this.userContainer_SelectedIndexChanged);
             // 
             // btnAnadir
             // 
@@ -121,21 +117,61 @@
             this.lblPass.TabIndex = 8;
             this.lblPass.Text = "Contraseña";
             // 
+            // MiTabla
+            // 
+            this.MiTabla.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.col_id,
+            this.col_user,
+            this.col_pass});
+            this.MiTabla.FullRowSelect = true;
+            this.MiTabla.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.MiTabla.Location = new System.Drawing.Point(66, 156);
+            this.MiTabla.Name = "MiTabla";
+            this.MiTabla.Size = new System.Drawing.Size(656, 210);
+            this.MiTabla.TabIndex = 10;
+            this.MiTabla.UseCompatibleStateImageBehavior = false;
+            this.MiTabla.View = System.Windows.Forms.View.Details;
+            this.MiTabla.SelectedIndexChanged += new System.EventHandler(this.MiTabla_SelectedIndexChanged);
+            // 
+            // col_id
+            // 
+            this.col_id.Text = "ID";
+            // 
+            // col_user
+            // 
+            this.col_user.Text = "Usuario";
+            this.col_user.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // col_pass
+            // 
+            this.col_pass.Text = "Contraseña";
+            this.col_pass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblInfo});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 11;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // lblInfo
             // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.Location = new System.Drawing.Point(196, 369);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(35, 13);
-            this.lblInfo.TabIndex = 9;
-            this.lblInfo.Text = "label1";
+            this.lblInfo.Size = new System.Drawing.Size(42, 17);
+            this.lblInfo.Text = "Estado";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblInfo);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.MiTabla);
             this.Controls.Add(this.lblPass);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.lblID);
@@ -144,18 +180,18 @@
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnAnadir);
-            this.Controls.Add(this.userContainer);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Manejo de Base de Datos";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox userContainer;
         private System.Windows.Forms.Button btnAnadir;
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.TextBox txtID;
@@ -164,7 +200,12 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblPass;
-        private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.ListView MiTabla;
+        private System.Windows.Forms.ColumnHeader col_id;
+        private System.Windows.Forms.ColumnHeader col_user;
+        private System.Windows.Forms.ColumnHeader col_pass;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblInfo;
     }
 }
 
