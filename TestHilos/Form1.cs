@@ -49,7 +49,7 @@ namespace TestHilos
             btnStart.Enabled = true;
         }
 
-        // proceso Hilo hijo de UI Thread
+        // procesos Hilo hijos de UI Thread
         private void proc_hilo1()
         {
             //lblCounter.Text = "Hilo 1 ..."; // Esta linea produce una excepción al ejecutarse
@@ -88,5 +88,6 @@ Queríamos comprobar unas cuantas reglas con el multihilo:
     durante ese tiempo. Algo así se puede evitar no llamando a Join() que es quien hace que se espere a que los hilos acaben su tarea, bloqueando el UI Thread, pero el problema
     es ¿cuando sabemos que el resultado final del counter esta disponible?. Esto se puede hacer de 2 maneras elegantes tan solo:
     a) Mediante el uso de un Delegado que sea llamado cuando el proceso termine (como un Event Handler)
-    b) Metiendo los hilos en 1 componentes BackgroundWorker para ejecutar los 2 hilos y usar el evento RunWorkerCompleted para mostrar el resultado una vez acabado.
+    b) Metiendo los hilos en 1 componentes BackgroundWorker para ejecutar los 2 hilos y usar el evento RunWorkerCompleted para mostrar el resultado una vez acabado. (ver
+       TestBackgroundWorker)
 */
