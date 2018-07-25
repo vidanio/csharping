@@ -85,7 +85,7 @@ namespace TestBackgroundWorker
     }
 }
 /*
-Este test es un remake de TestHilos, donde mostramos la opción b) de cómo no bloquear el hilo principal (UI Thread), que se encarga del interfaz gráfico de usuario.
+Este test es un remake de TestHilos, donde mostramos cómo no bloquear el hilo principal (UI Thread), que se encarga del interfaz gráfico de usuario.
 Esta forma es la más sencilla y simple que hay, donde hacemos uso de un componente de WinForms llamado BackgroundWorker, que contiene una serie de propiedades, métodos
 y eventos que nos ayudan a hacer que un proceso muy largo, no bloquee el hilo principal. 
 De nuevo es btnStart_Click() quien inicia el proceso, pero esta vez ejecutando asíncronamente (es decir sin bloqueo) mediante el método RunWorkerAsync() un hilo hijo

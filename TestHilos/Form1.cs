@@ -86,8 +86,6 @@ Queríamos comprobar unas cuantas reglas con el multihilo:
     que la ventana gráfica se quede bloqueada durante ese tiempo, quedando sin respuesta a acciones por parte del usuario durante todo ese tiempo. Esto es algo no deseable
     y que tb ocurriría si usamos una serie de componentes Timers, donde al menos uno ejecute un proceso que sea largo, haría que la ventana quedara bloqueada sin respuesta
     durante ese tiempo. Algo así se puede evitar no llamando a Join() que es quien hace que se espere a que los hilos acaben su tarea, bloqueando el UI Thread, pero el problema
-    es ¿cuando sabemos que el resultado final del counter esta disponible?. Esto se puede hacer de 2 maneras elegantes tan solo:
-    a) Mediante el uso de un Delegado que sea llamado cuando el proceso termine (como un Event Handler)
-    b) Metiendo los hilos en 1 componentes BackgroundWorker para ejecutar los 2 hilos y usar el evento RunWorkerCompleted para mostrar el resultado una vez acabado. (ver
-       TestBackgroundWorker)
+    es ¿cuando sabemos que el resultado final del counter esta disponible?. Esto se puede hacer de una manera elegante tan solo metiendo los hilos en 1 componente 
+    BackgroundWorker para ejecutar los 2 hilos y usar el evento RunWorkerCompleted para mostrar el resultado una vez acabado. (ver TestBackgroundWorker)
 */
