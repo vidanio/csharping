@@ -14,7 +14,6 @@ namespace idatabase
     {
         SQLiteConnection connection;
         private string string_connection = @"Data Source=shop.db; Version=3;";
-        private string[] seleccionado;
 
         public Form1()
         {
@@ -23,6 +22,7 @@ namespace idatabase
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            lblInfo.Text = "";
             loadData();
         }
         //Contiene los datos actuales en BD
@@ -39,7 +39,10 @@ namespace idatabase
                     int id = datos.GetInt32(datos.GetOrdinal("id"));
                     string user = datos.GetString(datos.GetOrdinal("user"));
                     string pass = datos.GetString(datos.GetOrdinal("pass"));
-                    userContainer.Items.Add(string.Format("{0}-{1}-{2}", id, user, pass));
+                    ListViewItem items = new ListViewItem(Convert.ToString(id));
+                    items.SubItems.Add(user);
+                    items.SubItems.Add(pass);
+                    MiTabla.Items.Add(items);
                 }
                 connection.Close();
             }
@@ -47,42 +50,45 @@ namespace idatabase
         //Boton de (Añadir/Actualizar)
         private void btnAnadir_Click(object sender, EventArgs e)
         {
+            string query = "";
+            int res = 0;
+
             //Se añaden nuevos datos
             if (btnAnadir.Text == "Añadir")
             {
                 if ((txtID.Text != "") && (txtUser.Text != "") && (txtPass.Text != ""))
                 {
-                    string query = "";
-                    int res = 0;
-                    using (connection = new SQLiteConnection(string_connection))
+                    try
                     {
-                        connection.Open();
-                        SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM usuarios", connection);
-                        SQLiteDataReader datos2 = cmd.ExecuteReader();
-                        while (datos2.Read())
+                        using (connection = new SQLiteConnection(string_connection))
                         {
-                            int id = datos2.GetInt32(datos2.GetOrdinal("id"));
-                            string user = datos2.GetString(datos2.GetOrdinal("user"));
-                            string pass = datos2.GetString(datos2.GetOrdinal("pass"));
-                            query = string.Format("INSERT INTO usuarios VALUES ('{0}','{1}','{2}');", txtID.Text, txtUser.Text, txtPass.Text);
-                            try
+                            connection.Open();
+                            SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM usuarios", connection);
+                            SQLiteDataReader datos2 = cmd.ExecuteReader();
+                            while (datos2.Read())
                             {
+                                int id = datos2.GetInt32(datos2.GetOrdinal("id"));
+                                string user = datos2.GetString(datos2.GetOrdinal("user"));
+                                string pass = datos2.GetString(datos2.GetOrdinal("pass"));
+                                query = string.Format("INSERT INTO usuarios VALUES ('{0}','{1}','{2}');", txtID.Text, txtUser.Text, txtPass.Text);
                                 SQLiteCommand cmd_exc = new SQLiteCommand(query, connection);
                                 res = cmd_exc.ExecuteNonQuery();
                             }
-                            catch
-                            {
-                                lblInfo.Text = "El ID o el Usuario ya existen";
-                            }
+                            connection.Close();
                         }
-                        connection.Close();
+                    }
+                    catch
+                    {
+                        lblInfo.ForeColor = Color.Red;
+                        lblInfo.Text = "Fallo al añadir usuario";
                     }
                     if (res > 0)
                     {
                         txtID.Text = "";
                         txtUser.Text = "";
                         txtPass.Text = "";
-                        userContainer.Items.Clear();
+                        MiTabla.Items.Clear();
+                        lblInfo.ForeColor = Color.Green;
                         lblInfo.Text = "Usuario Añadido";
                         loadData();
                     }
@@ -93,54 +99,58 @@ namespace idatabase
             {
                 if ((txtID.Text != "") && (txtUser.Text != "") && (txtPass.Text != ""))
                 {
-                    int res = 0;
-                    using (connection = new SQLiteConnection(string_connection))
+                    try
                     {
-                        connection.Open();
-                        string query = string.Format("SELECT * FROM usuarios WHERE id = {0};", seleccionado[0]);
-                        SQLiteCommand cmd = new SQLiteCommand(query, connection);
-                        SQLiteDataReader datos2 = cmd.ExecuteReader();
-                        while (datos2.Read())
+                        using (connection = new SQLiteConnection(string_connection))
                         {
-                            int id = datos2.GetInt32(datos2.GetOrdinal("id"));
-                            string user = datos2.GetString(datos2.GetOrdinal("user"));
-                            string pass = datos2.GetString(datos2.GetOrdinal("pass"));
-                            if (id != Convert.ToInt32(txtID.Text) || (user != txtUser.Text) || (pass != txtPass.Text))
+                            if (MiTabla.Items.Count > 0)
                             {
-                                query = string.Format("UPDATE usuarios SET id = '{0}', user = '{1}', pass = '{2}' WHERE id = {3};",
-                                txtID.Text, txtUser.Text, txtPass.Text, id);
-                                SQLiteCommand cmd2 = new SQLiteCommand(query, connection);
-                                res = cmd2.ExecuteNonQuery();
+                                foreach (ListViewItem item in MiTabla.SelectedItems)
+                                {
+                                    connection.Open();
+                                    query = string.Format("SELECT * FROM usuarios WHERE id = {0};", item.Text);
+                                    SQLiteCommand cmd = new SQLiteCommand(query, connection);
+                                    SQLiteDataReader datos2 = cmd.ExecuteReader();
+                                    while (datos2.Read())
+                                    {
+                                        int id = datos2.GetInt32(datos2.GetOrdinal("id"));
+                                        string user = datos2.GetString(datos2.GetOrdinal("user"));
+                                        string pass = datos2.GetString(datos2.GetOrdinal("pass"));
+                                        if (id != Convert.ToInt32(txtID.Text) || (user != txtUser.Text) || (pass != txtPass.Text))
+                                        {
+                                            query = string.Format("UPDATE usuarios SET id = '{0}', user = '{1}', pass = '{2}' WHERE id = {3};",
+                                            txtID.Text, txtUser.Text, txtPass.Text, id);
+                                            SQLiteCommand cmd2 = new SQLiteCommand(query, connection);
+                                            res = cmd2.ExecuteNonQuery();
+                                        }
+                                    }
+                                    connection.Close();
+                                }
                             }
                         }
-                        connection.Close();
+                    }
+                    catch
+                    {
+                        lblInfo.ForeColor = Color.Red;
+                        lblInfo.Text = "Fallo al actualizar usuario";
                     }
                     if (res > 0)
                     {
                         txtID.Text = "";
                         txtUser.Text = "";
                         txtPass.Text = "";
-                        userContainer.Items.Clear();
+                        MiTabla.Items.Clear();
+                        lblInfo.ForeColor = Color.Green;
                         lblInfo.Text = "Usuario Modificado";
                         loadData();
-                        btnAnadir.Text = "Añadir";
                         btnAnadir.BackColor = Color.LightGreen;
+                        btnAnadir.Text = "Añadir";
+
                     }
                 }
             }
         }
-        //Cuando seleccionamos entre los distintos items del listado
-        private void userContainer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lblInfo.Text = "";
-            string resultado = userContainer.SelectedItem.ToString();
-            seleccionado = resultado.Split('-');
-            txtID.Text = seleccionado[0];
-            txtUser.Text = seleccionado[1];
-            txtPass.Text = seleccionado[2];
-            btnAnadir.Text = "Actualizar";
-            btnAnadir.BackColor = Color.LightSkyBlue;
-        }
+
         //Borrar un item de base de datos
         private void btnBorrar_Click(object sender, EventArgs e)
         {
@@ -149,15 +159,22 @@ namespace idatabase
             {
                 using (connection = new SQLiteConnection(string_connection))
                 {
-                    connection.Open();
-                    string query = string.Format("DELETE FROM usuarios WHERE id = {0};", seleccionado[0]);
-                    SQLiteCommand cmd = new SQLiteCommand(query, connection);
-                    res = cmd.ExecuteNonQuery();
-                    connection.Close();
+                    if (MiTabla.Items.Count > 0)
+                    {
+                        foreach (ListViewItem item in MiTabla.SelectedItems)
+                        {
+                            connection.Open();
+                            string query = string.Format("DELETE FROM usuarios WHERE id = {0};", item.Text);
+                            SQLiteCommand cmd = new SQLiteCommand(query, connection);
+                            res = cmd.ExecuteNonQuery();
+                            connection.Close();
+                        }
+                    }
                 }
             }
             catch
             {
+                lblInfo.ForeColor = Color.Red;
                 lblInfo.Text = "Fallo al borrar usuario";
             }
             if (res > 0)
@@ -165,11 +182,27 @@ namespace idatabase
                 txtID.Text = "";
                 txtUser.Text = "";
                 txtPass.Text = "";
-                userContainer.Items.Clear();
+                MiTabla.Items.Clear();
+                lblInfo.ForeColor = Color.Green;
                 lblInfo.Text = "Usuario Borrado";
                 loadData();
                 btnAnadir.Text = "Añadir";
                 btnAnadir.BackColor = Color.LightGreen;
+            }
+    }
+    //Cuando cambiamos de elemento en la Lista
+    private void MiTabla_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (MiTabla.Items.Count > 0)
+            {
+                foreach (ListViewItem item in MiTabla.SelectedItems)
+                {
+                    txtID.Text = item.Text;
+                    txtUser.Text = item.SubItems[1].Text;
+                    txtPass.Text = item.SubItems[2].Text;
+                }
+                btnAnadir.Text = "Actualizar";
+                btnAnadir.BackColor = Color.LightSkyBlue;
             }
         }
     }
