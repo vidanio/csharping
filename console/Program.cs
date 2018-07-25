@@ -9,7 +9,9 @@ namespace console
     {
         static void Main(string[] args)
         {
+            int counter = 0;
 
+           
             Console.ReadKey();
         }
     }
