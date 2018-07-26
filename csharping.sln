@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHilos", "TestHilos\Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBackgroundWorker", "TestBackgroundWorker\TestBackgroundWorker.csproj", "{8CE50BD6-E63B-4965-A811-F74E2096071D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test2BackgroundWorkers", "Test2BackgroundWorkers\Test2BackgroundWorkers.csproj", "{D4D02E56-BF83-4E71-8522-EB32E940574F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{8CE50BD6-E63B-4965-A811-F74E2096071D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CE50BD6-E63B-4965-A811-F74E2096071D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CE50BD6-E63B-4965-A811-F74E2096071D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4D02E56-BF83-4E71-8522-EB32E940574F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D02E56-BF83-4E71-8522-EB32E940574F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D02E56-BF83-4E71-8522-EB32E940574F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D02E56-BF83-4E71-8522-EB32E940574F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
