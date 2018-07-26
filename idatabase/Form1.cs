@@ -39,10 +39,7 @@ namespace idatabase
                     int id = datos.GetInt32(datos.GetOrdinal("id"));
                     string user = datos.GetString(datos.GetOrdinal("user"));
                     string pass = datos.GetString(datos.GetOrdinal("pass"));
-                    ListViewItem items = new ListViewItem(Convert.ToString(id));
-                    items.SubItems.Add(user);
-                    items.SubItems.Add(pass);
-                    MiTabla.Items.Add(items);
+                    addItem(id, user, pass);
                 }
                 connection.Close();
             }
@@ -50,9 +47,7 @@ namespace idatabase
         //Boton de (Añadir/Actualizar)
         private void btnAnadir_Click(object sender, EventArgs e)
         {
-            string query = "";
             int res = 0;
-
             //Se añaden nuevos datos
             if (btnAnadir.Text == "Añadir")
             {
@@ -63,17 +58,9 @@ namespace idatabase
                         using (connection = new SQLiteConnection(string_connection))
                         {
                             connection.Open();
-                            SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM usuarios", connection);
-                            SQLiteDataReader datos2 = cmd.ExecuteReader();
-                            while (datos2.Read())
-                            {
-                                int id = datos2.GetInt32(datos2.GetOrdinal("id"));
-                                string user = datos2.GetString(datos2.GetOrdinal("user"));
-                                string pass = datos2.GetString(datos2.GetOrdinal("pass"));
-                                query = string.Format("INSERT INTO usuarios VALUES ('{0}','{1}','{2}');", txtID.Text, txtUser.Text, txtPass.Text);
-                                SQLiteCommand cmd_exc = new SQLiteCommand(query, connection);
-                                res = cmd_exc.ExecuteNonQuery();
-                            }
+                            string query = string.Format("INSERT INTO usuarios VALUES ({0},'{1}','{2}');", txtID.Text, txtUser.Text, txtPass.Text);
+                            SQLiteCommand cmd_exc = new SQLiteCommand(query, connection);
+                            res = cmd_exc.ExecuteNonQuery();
                             connection.Close();
                         }
                     }
@@ -108,7 +95,7 @@ namespace idatabase
                                 foreach (ListViewItem item in MiTabla.SelectedItems)
                                 {
                                     connection.Open();
-                                    query = string.Format("SELECT * FROM usuarios WHERE id = {0};", item.Text);
+                                    string query = string.Format("SELECT * FROM usuarios WHERE id = {0};", item.Text);
                                     SQLiteCommand cmd = new SQLiteCommand(query, connection);
                                     SQLiteDataReader datos2 = cmd.ExecuteReader();
                                     while (datos2.Read())
@@ -145,7 +132,6 @@ namespace idatabase
                         loadData();
                         btnAnadir.BackColor = Color.LightGreen;
                         btnAnadir.Text = "Añadir";
-
                     }
                 }
             }
@@ -189,10 +175,11 @@ namespace idatabase
                 btnAnadir.Text = "Añadir";
                 btnAnadir.BackColor = Color.LightGreen;
             }
-    }
-    //Cuando cambiamos de elemento en la Lista
-    private void MiTabla_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        //Cuando cambiamos de elemento en la Lista
+        private void MiTabla_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblInfo.Text = "";
             if (MiTabla.Items.Count > 0)
             {
                 foreach (ListViewItem item in MiTabla.SelectedItems)
@@ -201,9 +188,84 @@ namespace idatabase
                     txtUser.Text = item.SubItems[1].Text;
                     txtPass.Text = item.SubItems[2].Text;
                 }
-                btnAnadir.Text = "Actualizar";
                 btnAnadir.BackColor = Color.LightSkyBlue;
+                btnAnadir.Text = "Actualizar";
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtUser.Text != "")
+            {
+                try
+                {
+                    MiTabla.Items.Clear();
+                    using (connection = new SQLiteConnection(string_connection))
+                    {
+                        connection.Open();
+                        string query = string.Format("SELECT * FROM usuarios WHERE user = '{0}';", txtUser.Text.Trim(' '));
+                        SQLiteCommand cmd = new SQLiteCommand(query, connection);
+                        SQLiteDataReader datos2 = cmd.ExecuteReader();
+                        while (datos2.Read())
+                        {
+                            int id = datos2.GetInt32(datos2.GetOrdinal("id"));
+                            string user = datos2.GetString(datos2.GetOrdinal("user"));
+                            string pass = datos2.GetString(datos2.GetOrdinal("pass"));
+                            addItem(id, user, pass);
+                        }
+                    }
+                }
+                catch
+                {
+                    lblInfo.ForeColor = Color.Red;
+                    lblInfo.Text = "Fallo en la busqueda";
+                }
+            }
+            else
+            {
+                try
+                {
+                    MiTabla.Items.Clear();
+                    using (connection = new SQLiteConnection(string_connection))
+                    {
+                        connection.Open();
+                        string query = string.Format("SELECT * FROM usuarios;");
+                        SQLiteCommand cmd = new SQLiteCommand(query, connection);
+                        SQLiteDataReader datos2 = cmd.ExecuteReader();
+                        while (datos2.Read())
+                        {
+                            int id = datos2.GetInt32(datos2.GetOrdinal("id"));
+                            string user = datos2.GetString(datos2.GetOrdinal("user"));
+                            string pass = datos2.GetString(datos2.GetOrdinal("pass"));
+                            addItem(id, user, pass);
+                        }
+                    }
+                }
+                catch
+                {
+                    lblInfo.ForeColor = Color.Red;
+                    lblInfo.Text = "Fallo en la busqueda";
+                }
+            }
+            
+        }
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            lblInfo.Text = "";
+            txtID.Text = "";
+            txtUser.Text = "";
+            txtPass.Text = "";
+            MiTabla.Items.Clear();
+            btnAnadir.Text = "Añadir";
+            btnAnadir.BackColor = Color.LightGreen;
+        }
+        //Añade los datos en el List View
+        private void addItem(int id, string user, string pass)
+        {
+            ListViewItem items = new ListViewItem(Convert.ToString(id));
+            items.SubItems.Add(user);
+            items.SubItems.Add(pass);
+            MiTabla.Items.Add(items);
         }
     }
 }
