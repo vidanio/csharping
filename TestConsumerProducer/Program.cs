@@ -26,7 +26,7 @@ namespace console
 
                     // Need to do this to keep foreach below from hanging
                     bc.CompleteAdding();//
-                    Console.WriteLine("Exiting Producer");
+                    Console.WriteLine("Exiting Producer - {0} - {1}", bc.IsCompleted, bc.IsAddingCompleted);
                 });
 
                 // Now consume the blocking collection with foreach.
@@ -45,3 +45,10 @@ namespace console
         }
     }
 }
+/*
+Este es un ejemplo de consola sencillo, donde se pueden probar las capacidades del un multiproducer-multiconsumer, con una clase moderna del NET 4.0 (compatible XP), llamada
+BlockingCollection, que nos permite manejar fácilmente 1 o varios colecciones del (cola, pila o bolsa) con una capacidad determinada, de ser alimentada por varios hilos producer
+y consumida por varios hilos consumer. Si comentas y descomentas la linea 28 puedes ver como afecta la propiedad isCompleted. 
+Es importante que uno de los hilos consumidores, sea el padre del resto de hilos consumidores y productores para que dicha propiedad bloquee a los consumers, mientras 
+isCompleted = false.
+*/
