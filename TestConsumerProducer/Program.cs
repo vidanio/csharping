@@ -15,7 +15,7 @@ namespace console
             using (BlockingCollection<int> bc = new BlockingCollection<int>())
             {
 
-                // Kick off a producer task
+                // lanzamos la tarea del productor
                 Task.Factory.StartNew(() =>
                 {
                     for (int i = 0; i < 10; i++)
@@ -29,10 +29,7 @@ namespace console
                     Console.WriteLine("Exiting Producer - {0} - {1}", bc.IsCompleted, bc.IsAddingCompleted);
                 });
 
-                // Now consume the blocking collection with foreach.
-                // Use bc.GetConsumingEnumerable() instead of just bc because the
-                // former will block waiting for completion and the latter will
-                // simply take a snapshot of the current state of the underlying collection.
+                // parte de código del consumidor de datos
                 foreach (var item in bc.GetConsumingEnumerable())
                 {
                     Console.WriteLine(item);
