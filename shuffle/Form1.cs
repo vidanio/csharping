@@ -81,6 +81,8 @@ namespace shuffle
 
         private void axWMP_ErrorEvent(object sender, EventArgs e)
         {
+            // avoid hanging on bad-formed media files
+            axWMP.Ctlcontrols.stop();
             stopped = true;
         }
 
