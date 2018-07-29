@@ -9,7 +9,7 @@ Proyectos:
  5. **updown** .- Subida y Bajada de archivos y datos a un server HTTP/S
  6. **crypto** .- Cifrado y descifrado de ficheros de una carpeta. Cronometrado de tiempo por fichero y total.
  7. **filing** .- Lectura y escritura de ficheros de texto y binarios.
- 8. **database** .- CRUD completo y avanzado con SQLite.
+ 8. **database** .- CRUD completo y avanzado con SQLite.  
  9. **TestHilos** .- Test con Hilos basicos Thread y Mutex globales.  
 10.- **TestBackgroundWorker** .- Mismo test pero con hilos Thread sobre 1 BackgroundWorker.  
 11.- **Test2BackgroundWorkers** .- Mismo test pero con 2 BackgroundWorkers.  
