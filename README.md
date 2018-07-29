@@ -1,5 +1,5 @@
 # csharping
-## Códigos de pruebas y test en C#
+### Códigos de pruebas y test en C#
 Proyectos:
 
  1. **wmplayer** .- Ejemplo de uso de las funcionalidades más interesante del control Windows Media Player v.12
