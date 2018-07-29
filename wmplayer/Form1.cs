@@ -32,10 +32,18 @@ namespace wmplayer
         private string ruta = "";
         private bool mainplay = true, mainpause = true; // show play or pause on buttons
         private int total, ellapsed; // duracion total y reproducida del medio actual
+        private bool gotMetadata = false;
+        private MetaData metaData;
 
         public FormMain()
         {
             InitializeComponent();
+
+            // instanciamos la clase contenedora de MetaData
+            metaData = new MetaData();
+            // ajustamos default settings del WMP player para un comportamiento ideal
+            axWMPMain.settings.enableErrorDialogs = false;
+            axWMPMain.settings.autoStart = true;
         }
 
         private void btnOpenMainSong_Click(object sender, EventArgs e)
@@ -44,8 +52,10 @@ namespace wmplayer
             {
                 ruta = openFileMain.FileName;
                 lblMainSong.Text = ruta;
-                axWMPMain.URL = ruta; // abre el fichero y comienza a reproducirlo solo
-                //axWMPMain.Ctlcontrols.stop();
+                // para el player antes de cargar una ruta nueva para evitar quedarse en un estado indefinido
+                // esto solo es necesario si el autoStart es false      
+                if (!axWMPMain.settings.autoStart) axWMPMain.Ctlcontrols.stop();
+                axWMPMain.URL = ruta; // abre el fichero y comienza a reproducirlo si settings.autoStart = true (sin play())
             }
         }
 
@@ -75,6 +85,25 @@ namespace wmplayer
             axWMPMain.settings.volume = tbarMainVol.Value;
         }
 
+        // intenta recoger los MetaData de la canción que esta tocando ahora mismo, si lo consigue devuelve (true)
+        private bool GetCurrentMetadata(WMPLib.IWMPMedia3 cm, ref MetaData metaData)
+        {
+            // Recogemos los Metadata de la pista recien abierta
+            int attCount = cm.attributeCount;
+            if (attCount > 90)
+            {
+                var parts = cm.getItemInfo("AlbumIDAlbumArtist").Replace("*;*", "=").Split('=');
+                int bps = Convert.ToInt32(cm.getItemInfo("Bitrate"));
+                int avg = Convert.ToInt32(cm.getItemInfo("AverageLevel"));
+                metaData.SetMetaData(parts[0], cm.getItemInfo("Author"), cm.getItemInfo("WM/TrackNumber"), cm.getItemInfo("Title"), cm.getItemInfo("WM/Genre"), bps/1000, avg);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void axWMPMain_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
             txtboxStatusMain.AppendText(String.Format("[{0}] {1}\r\n", e.newState, axWMPMain.playState.ToString()));
@@ -82,6 +111,8 @@ namespace wmplayer
             {
                 case 3: // playing
                     btnPlayMainSong.Text = "Stop";
+                    // cada canción nueva que seuna reiniciamos la busqueda de metadatos
+                    gotMetadata = false;
                     mainplay = false;
                     total = Convert.ToInt32(axWMPMain.currentMedia.duration);
                     lblMediaName.Text = "Playing: \"" + axWMPMain.currentMedia.name + "\" Duration: " + total.ToString() + " sec";
@@ -133,6 +164,25 @@ namespace wmplayer
             lblEllapsed.Text = ellapsed.ToString() + " sec";
             progbarMainSong.Value = Convert.ToInt32(ellapsed * 100 / total);
             percent.Text = progbarMainSong.Value.ToString() + "%";
+            // código que intenta recoger los MetaData de la canción que suena ahora
+            if (!gotMetadata)
+            {
+                WMPLib.IWMPMedia3 cm = (WMPLib.IWMPMedia3)axWMPMain.currentMedia;
+                gotMetadata = GetCurrentMetadata(cm, ref metaData);
+                // si consigue recoger los MetaData los muestra en el txtbox (primeros segundos de la canción)
+                if (gotMetadata)
+                {
+                    txtboxStatusMain.AppendText("=============================\r\n");
+                    txtboxStatusMain.AppendText(String.Format("Album: {0}\r\n", metaData.Album));
+                    txtboxStatusMain.AppendText(String.Format("Author: {0}\r\n", metaData.Author));
+                    txtboxStatusMain.AppendText(String.Format("Track: {0}\r\n", metaData.Track));
+                    txtboxStatusMain.AppendText(String.Format("Title: {0}\r\n", metaData.Title));
+                    txtboxStatusMain.AppendText(String.Format("Genre: {0}\r\n", metaData.Genre));
+                    txtboxStatusMain.AppendText(String.Format("BitRate: {0} kbps\r\n", metaData.BitRate));
+                    txtboxStatusMain.AppendText(String.Format("AvgLevel: {0}\r\n", metaData.AvgLevel));
+                    txtboxStatusMain.AppendText("=============================\r\n");
+                }
+            }
         }
     }
 }
