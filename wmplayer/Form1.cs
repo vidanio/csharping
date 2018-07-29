@@ -93,8 +93,17 @@ namespace wmplayer
             if (attCount > 90)
             {
                 var parts = cm.getItemInfo("AlbumIDAlbumArtist").Replace("*;*", "=").Split('=');
-                int bps = Convert.ToInt32(cm.getItemInfo("Bitrate"));
-                int avg = Convert.ToInt32(cm.getItemInfo("AverageLevel"));
+                int bps, avg;
+                try
+                {
+                    bps = Convert.ToInt32(cm.getItemInfo("Bitrate"));
+                    avg = Convert.ToInt32(cm.getItemInfo("AverageLevel"));
+                }
+                catch
+                {
+                    bps = 0;
+                    avg = 0;
+                }
                 metaData.SetMetaData(parts[0], cm.getItemInfo("Author"), cm.getItemInfo("WM/TrackNumber"), cm.getItemInfo("Title"), cm.getItemInfo("WM/Genre"), bps/1000, avg);
                 return true;
             }
@@ -111,8 +120,6 @@ namespace wmplayer
             {
                 case 3: // playing
                     btnPlayMainSong.Text = "Stop";
-                    // cada canción nueva que seuna reiniciamos la busqueda de metadatos
-                    gotMetadata = false;
                     mainplay = false;
                     total = Convert.ToInt32(axWMPMain.currentMedia.duration);
                     lblMediaName.Text = "Playing: \"" + axWMPMain.currentMedia.name + "\" Duration: " + total.ToString() + " sec";
@@ -147,6 +154,13 @@ namespace wmplayer
         {
             timer1.Stop();
             timer1.Dispose();
+        }
+
+        private void axWMPMain_PlaylistChange(object sender, AxWMPLib._WMPOCXEvents_PlaylistChangeEvent e)
+        {
+            // cada canción nueva que cargamos, reiniciamos la busqueda de metadatos
+            gotMetadata = false;
+            txtboxStatusMain.AppendText("New Song loaded ...\r\n");
         }
 
         private void btnPause_Click(object sender, EventArgs e)

@@ -34,7 +34,6 @@
             this.btnOpenMainSong = new System.Windows.Forms.Button();
             this.lblMainSong = new System.Windows.Forms.Label();
             this.btnPlayMainSong = new System.Windows.Forms.Button();
-            this.axWMPMain = new AxWMPLib.AxWindowsMediaPlayer();
             this.tbarMainVol = new System.Windows.Forms.TrackBar();
             this.txtboxStatusMain = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
@@ -47,8 +46,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.percent = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.axWMPMain)).BeginInit();
+            this.axWMPMain = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.tbarMainVol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWMPMain)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileMain
@@ -85,16 +85,6 @@
             this.toolTip1.SetToolTip(this.btnPlayMainSong, "Control Playback");
             this.btnPlayMainSong.UseVisualStyleBackColor = true;
             this.btnPlayMainSong.Click += new System.EventHandler(this.btnPlayMainSong_Click);
-            // 
-            // axWMPMain
-            // 
-            this.axWMPMain.Enabled = true;
-            this.axWMPMain.Location = new System.Drawing.Point(379, 21);
-            this.axWMPMain.Name = "axWMPMain";
-            this.axWMPMain.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWMPMain.OcxState")));
-            this.axWMPMain.Size = new System.Drawing.Size(75, 23);
-            this.axWMPMain.TabIndex = 3;
-            this.axWMPMain.Visible = false;
             // 
             // tbarMainVol
             // 
@@ -203,6 +193,17 @@
             this.percent.Text = "0%";
             this.percent.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // axWMPMain
+            // 
+            this.axWMPMain.Enabled = true;
+            this.axWMPMain.Location = new System.Drawing.Point(379, 21);
+            this.axWMPMain.Name = "axWMPMain";
+            this.axWMPMain.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWMPMain.OcxState")));
+            this.axWMPMain.Size = new System.Drawing.Size(75, 23);
+            this.axWMPMain.TabIndex = 3;
+            this.axWMPMain.Visible = false;
+            this.axWMPMain.PlaylistChange += new AxWMPLib._WMPOCXEvents_PlaylistChangeEventHandler(this.axWMPMain_PlaylistChange);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,8 +228,8 @@
             this.Text = "WMPlayer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.axWMPMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarMainVol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWMPMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
