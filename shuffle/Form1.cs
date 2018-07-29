@@ -31,6 +31,8 @@ namespace shuffle
         public MainForm()
         {
             InitializeComponent();
+
+            axWMP.settings.enableErrorDialogs = false;
             playlist = new List<string>();
             axWMP.PlayStateChange += AxWMP_PlayStateChange;
         }
