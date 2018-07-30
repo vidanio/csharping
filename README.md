@@ -14,6 +14,7 @@ Proyectos:
  10. **TestBackgroundWorker** .- Mismo test pero con hilos Thread sobre 1 BackgroundWorker.
  11.  **Test2BackgroundWorkers** .- Mismo test pero con 2 BackgroundWorkers.
  12.  **TestConsumerProducer** .- Test console con BlockingCollection y Tasks.
+ 13.  **FullBackgroundWorker** .- Ejemplo completo con todas las posibilidades de BackgroundWorker. 
  
 
 Todos los proyectos irán sobre .NET Framework 4.0 y Windows Forms en C# 4.  
