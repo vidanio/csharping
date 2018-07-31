@@ -15,6 +15,7 @@ Proyectos:
  11.  **Test2BackgroundWorkers** .- Mismo test pero con 2 BackgroundWorkers.
  12.  **TestConsumerProducer** .- Test console con BlockingCollection y Tasks.
  13.  **FullBackgroundWorker** .- Ejemplo completo con todas las posibilidades de BackgroundWorker. 
+ 14.  **TestInfiniteLoop** .- Ejemplo de bucle infinito UI sin cuelgue por apropiación del task scheduler.
  
 
 Todos los proyectos irán sobre .NET Framework 4.0 y Windows Forms en C# 4.  
