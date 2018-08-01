@@ -12,13 +12,9 @@ namespace ithreads
 {
     public partial class Form1 : Form
     {
-        private Mutex mu;
-
         public Form1()
         {
             InitializeComponent();
-
-            mu = new Mutex();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -47,9 +43,7 @@ namespace ithreads
         private void bgHilo1_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker bg = sender as BackgroundWorker;
-            SpinWait sw = new SpinWait();
-            int value = 0;
-
+            int cont = 0;
             for (int i = 0; i < 1000000; i++)
             {
                 if (bg.CancellationPending)
@@ -57,9 +51,9 @@ namespace ithreads
                     e.Cancel = true;
                     break;
                 }
-                value++;
-                bg.ReportProgress(0, value);
-                sw.SpinOnce();
+                cont++;
+                bg.ReportProgress(0, cont);
+                Thread.Sleep(100);
             }
         }
 
