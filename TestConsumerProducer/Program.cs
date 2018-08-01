@@ -25,7 +25,7 @@ namespace console
                     }
 
                     // Need to do this to keep foreach below from hanging
-                    //bc.CompleteAdding();//
+                    bc.CompleteAdding();//
                     Console.WriteLine("Exiting Producer - {0} - {1}", bc.IsCompleted, bc.IsAddingCompleted);
                 });
 
