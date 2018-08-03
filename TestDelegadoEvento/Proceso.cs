@@ -18,7 +18,7 @@ namespace TestDelegadoEvento
         // este es el constructor principal
         public Proceso()
         {
-
+            
         }
 
         // este método solamente dispara el evento Finished con sus argumentos (sender, e)
@@ -34,14 +34,13 @@ namespace TestDelegadoEvento
         }
 
         // metodo que ejecuta el proceso completo hasta su final, puede durar mucho
-        public void Run()
+        public void Run(int initvalue)
         {
-            int resultado = 100;
-            Thread.Sleep(5000);
+            Thread.Sleep(initvalue);
 
             // final del proceso, recogemos argumentos y disparamos el evento Finished (noticamos que hemos acabado)
             ProcesoFinishedEventArgs args = new ProcesoFinishedEventArgs();
-            args.Result = resultado;
+            args.Result = initvalue;
             OnFinished(args);
         }
     }
