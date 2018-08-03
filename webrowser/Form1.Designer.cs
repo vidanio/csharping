@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.webContent = new System.Windows.Forms.WebBrowser();
-            this.txtURL = new System.Windows.Forms.TextBox();
-            this.lblURL = new System.Windows.Forms.Label();
             this.btnGo = new System.Windows.Forms.Button();
+            this.lblURL = new System.Windows.Forms.Label();
+            this.txtURL = new System.Windows.Forms.TextBox();
+            this.webContent = new System.Windows.Forms.WebBrowser();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,21 +47,15 @@
             this.panel1.Size = new System.Drawing.Size(1203, 44);
             this.panel1.TabIndex = 0;
             // 
-            // webContent
+            // btnGo
             // 
-            this.webContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webContent.Location = new System.Drawing.Point(0, 44);
-            this.webContent.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webContent.Name = "webContent";
-            this.webContent.Size = new System.Drawing.Size(1203, 625);
-            this.webContent.TabIndex = 0;
-            // 
-            // txtURL
-            // 
-            this.txtURL.Location = new System.Drawing.Point(78, 10);
-            this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(640, 20);
-            this.txtURL.TabIndex = 0;
+            this.btnGo.Location = new System.Drawing.Point(741, 8);
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Size = new System.Drawing.Size(47, 23);
+            this.btnGo.TabIndex = 1;
+            this.btnGo.Text = "Go";
+            this.btnGo.UseVisualStyleBackColor = true;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // lblURL
             // 
@@ -72,15 +66,21 @@
             this.lblURL.TabIndex = 1;
             this.lblURL.Text = "Load URL:";
             // 
-            // btnGo
+            // txtURL
             // 
-            this.btnGo.Location = new System.Drawing.Point(741, 8);
-            this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(47, 23);
-            this.btnGo.TabIndex = 1;
-            this.btnGo.Text = "Go";
-            this.btnGo.UseVisualStyleBackColor = true;
-            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            this.txtURL.Location = new System.Drawing.Point(78, 10);
+            this.txtURL.Name = "txtURL";
+            this.txtURL.Size = new System.Drawing.Size(640, 20);
+            this.txtURL.TabIndex = 0;
+            // 
+            // webContent
+            // 
+            this.webContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webContent.Location = new System.Drawing.Point(0, 44);
+            this.webContent.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webContent.Name = "webContent";
+            this.webContent.Size = new System.Drawing.Size(1203, 625);
+            this.webContent.TabIndex = 0;
             // 
             // MainForm
             // 
