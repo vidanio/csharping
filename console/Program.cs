@@ -12,6 +12,8 @@ namespace console
     {
         static void Main(string[] args)
         {
+            //System.Diagnostics.Process.Start("iexplore", "http://www.todostreaming.es/");
+            System.Diagnostics.Process.Start("http://www.todostreaming.es/");
 
             Console.ReadKey();
         }
