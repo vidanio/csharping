@@ -16,6 +16,8 @@ Proyectos:
  12.  **TestConsumerProducer** .- Test console con BlockingCollection y Tasks.
  13.  **FullBackgroundWorker** .- Ejemplo completo con todas las posibilidades de BackgroundWorker. 
  14.  **TestInfiniteLoop** .- Ejemplo de bucle infinito UI sin cuelgue por apropiación del task scheduler.
+ 15.  **TestAsyncWait** .- Ejemplo de codigo sencillo asíncrono con async/wait (C# 5/.NET 4.5+)
+ 16.  **TestDelegadoEvento** .- Ejemplo de Evento creado adhoc con metodo asíncrono (C# 5/.NET 4.5+)
  
 
 Todos los proyectos irán sobre .NET Framework 4.0 y Windows Forms en C# 4.  

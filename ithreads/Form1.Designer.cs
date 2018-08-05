@@ -34,6 +34,7 @@
             this.bgHilo2 = new System.ComponentModel.BackgroundWorker();
             this.lblInfo = new System.Windows.Forms.Label();
             this.btnFin = new System.Windows.Forms.Button();
+            this.lblParImp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnInicio
@@ -64,6 +65,13 @@
             this.bgHilo1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgHilo1_ProgressChanged);
             this.bgHilo1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgHilo1_RunWorkerCompleted);
             // 
+            // bgHilo2
+            // 
+            this.bgHilo2.WorkerReportsProgress = true;
+            this.bgHilo2.WorkerSupportsCancellation = true;
+            this.bgHilo2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgHilo2_DoWork);
+            this.bgHilo2.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgHilo2_ProgressChanged);
+            // 
             // lblInfo
             // 
             this.lblInfo.AutoSize = true;
@@ -83,12 +91,22 @@
             this.btnFin.UseVisualStyleBackColor = true;
             this.btnFin.Click += new System.EventHandler(this.btnFin_Click);
             // 
+            // lblParImp
+            // 
+            this.lblParImp.AutoSize = true;
+            this.lblParImp.Location = new System.Drawing.Point(254, 149);
+            this.lblParImp.Name = "lblParImp";
+            this.lblParImp.Size = new System.Drawing.Size(64, 13);
+            this.lblParImp.TabIndex = 4;
+            this.lblParImp.Text = "<par/impar>";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(489, 297);
+            this.Controls.Add(this.lblParImp);
             this.Controls.Add(this.btnFin);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.lblEstado);
@@ -110,6 +128,7 @@
         private System.ComponentModel.BackgroundWorker bgHilo2;
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.Button btnFin;
+        private System.Windows.Forms.Label lblParImp;
     }
 }
 

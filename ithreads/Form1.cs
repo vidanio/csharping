@@ -12,6 +12,8 @@ namespace ithreads
 {
     public partial class Form1 : Form
     {
+        private HilosClass cont;
+
         public Form1()
         {
             InitializeComponent();
@@ -25,35 +27,39 @@ namespace ithreads
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            if (!bgHilo1.IsBusy)
+            cont = new HilosClass();
+
+            if ((!bgHilo1.IsBusy) && (!bgHilo2.IsBusy))
             {
                 lblInfo.Text = "";
-                bgHilo1.RunWorkerAsync(0);
+                lblParImp.Text = "";
+                bgHilo1.RunWorkerAsync(cont);
+                bgHilo2.RunWorkerAsync(cont);
             }
         }
 
         private void btnFin_Click(object sender, EventArgs e)
         {
-            if (bgHilo1.IsBusy)
+            if ((bgHilo1.IsBusy) && (bgHilo2.IsBusy))
             {
                 bgHilo1.CancelAsync();
+                bgHilo2.CancelAsync();
             }
         }
 
         private void bgHilo1_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker bg = sender as BackgroundWorker;
-            int cont = 0;
-            for (int i = 0; i < 1000000; i++)
+            HilosClass arg = (HilosClass) e.Argument; // recuperamos el objeto contador original
+            for (int i = 1; i < 1000000; i++)
             {
                 if (bg.CancellationPending)
                 {
                     e.Cancel = true;
                     break;
                 }
-                cont++;
-                bg.ReportProgress(0, cont);
-                Thread.Sleep(100);
+                bg.ReportProgress(0, arg.Incremento());
+                Thread.Sleep(1000);
             }
         }
 
@@ -64,6 +70,49 @@ namespace ithreads
         }
 
         private void bgHilo1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                lblInfo.Text = "Cancelado";
+            }
+            else
+            {
+                lblInfo.Text = "Terminado";
+            }
+        }
+
+        private void bgHilo2_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                BackgroundWorker bg = sender as BackgroundWorker;
+                HilosClass fol = (HilosClass)e.Argument;
+                SpinWait sw = new SpinWait();
+
+                while (true) // bucle infinito
+                {
+                    if (bg.CancellationPending)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                    bg.ReportProgress(0, fol.ParImpar());
+                    sw.SpinOnce();
+                }
+            }
+            catch
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void bgHilo2_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            string value = (string)e.UserState;
+            lblParImp.Text = value;
+        }
+
+        private void bgHilo2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
