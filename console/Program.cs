@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using System.Threading;
 
 namespace console
 {
@@ -13,13 +12,16 @@ namespace console
     {
         static void Main(string[] args)
         {
-            //System.Diagnostics.Process.Start("iexplore", "http://www.todostreaming.es/");
-            System.Diagnostics.Process.Start("http://www.todostreaming.es/");
-            Thread.Sleep(5000);
-            // it will open a new tab
-            System.Diagnostics.Process.Start("http://www.google.es/");
+            int worker = 0;
+            int io = 0;
+            ThreadPool.GetAvailableThreads(out worker, out io);
+
+            Console.WriteLine("Thread pool threads available at startup: ");
+            Console.WriteLine("   Worker threads: {0:N0}", worker);
+            Console.WriteLine("   Asynchronous I/O threads: {0:N0}", io);
 
             Console.ReadKey();
         }
+
     }
 }

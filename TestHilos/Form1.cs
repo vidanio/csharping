@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace TestHilos
 {
@@ -44,6 +45,11 @@ namespace TestHilos
 
             hilo1.Join();
             hilo2.Join();
+
+            // You can also do this with Tasks
+            //var task1 = Task.Factory.StartNew(() => proc_hilo1());
+            //var task2 = Task.Factory.StartNew(() => proc_hilo2());
+            //Task.WaitAll(task1, task2);
 
             lblCounter.Text = string.Format("{0} - {1}", counter, fruta);
             btnStart.Enabled = true;
