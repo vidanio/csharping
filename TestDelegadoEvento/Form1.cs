@@ -31,7 +31,7 @@ namespace TestDelegadoEvento
         private void btnStart_Click(object sender, EventArgs e)
         {
             lblResult.Text = "(calculando ...)";
-            proceso.Run(Convert.ToInt32(txtArg.Text));
+            proceso.Run(Convert.ToInt32(txtArg.Text)); // proceso asíncrono
         }
     }
 }
