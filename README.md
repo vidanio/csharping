@@ -18,6 +18,7 @@ Proyectos:
  14.  **TestInfiniteLoop** .- Ejemplo de bucle infinito UI sin cuelgue por apropiación del task scheduler.
  15.  **TestAsyncWait** .- Ejemplo de codigo sencillo asíncrono con async/wait (C# 5/.NET 4.5+)
  16.  **TestDelegadoEvento** .- Ejemplo de Evento creado adhoc con metodo asíncrono (C# 5/.NET 4.5+)
+ 17.  **TestTaskC4** .- Ejemplo Testhilo hecho con tareas paralelas compatibles con .NET 4
  
 
 Todos los proyectos irán sobre .NET Framework 4.0 y Windows Forms en C# 4.  
