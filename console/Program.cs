@@ -12,16 +12,24 @@ namespace console
     {
         static void Main(string[] args)
         {
-            int worker = 0;
-            int io = 0;
-            ThreadPool.GetAvailableThreads(out worker, out io);
-
-            Console.WriteLine("Thread pool threads available at startup: ");
-            Console.WriteLine("   Worker threads: {0:N0}", worker);
-            Console.WriteLine("   Asynchronous I/O threads: {0:N0}", io);
+            Task<int> task = new Task<int>(LongRunningTask);
+            task.Start();
+            Task<int> childTask = task.ContinueWith<int>(SquareOfNumber);
+            Console.WriteLine("Sqaure of number is :" + childTask.Result);
+            Console.WriteLine("The number is :" + task.Result);
 
             Console.ReadKey();
         }
 
+        private static int LongRunningTask()
+        {
+            Thread.Sleep(3000);
+            return 2;
+        }
+
+        private static int SquareOfNumber(Task<int> obj)
+        {
+            return obj.Result * obj.Result;
+        }
     }
 }
