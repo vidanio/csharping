@@ -37,7 +37,7 @@ namespace TestTaskC4
             taskcount = 0;
 
             counter = 0;
-            // se crean y arrancan los 2 hilos y se preparan sus callbacks de terminación
+            //se crean y arrancan los 2 hilos y se preparan sus callbacks de terminación
             Task.Factory.StartNew(proc_hilo1).ContinueWith(hilo1_finished);
             Task.Factory.StartNew(proc_hilo2).ContinueWith(hilo2_finished);
             timer1.Start();
