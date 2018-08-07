@@ -14,16 +14,15 @@ namespace TestTaskC4
     public partial class MainForm : Form
     {
         private int counter;
-        private Mutex m;//
         private List<string> lista;
         private string fruta = "";
         private int taskcount;
+        private Object obj = new Object(); // para bloqueo
 
         public MainForm()
         {
             InitializeComponent();
 
-            m = new Mutex();//
             // llenamos la Lista
             lista = new List<string>();
             lista.Add("Manzana");
@@ -58,34 +57,31 @@ namespace TestTaskC4
         // estas siguen siendo tareas, no acceder al UI
         private void hilo1_finished(Task obj)
         {
-            taskcount++;
+            lock(this) taskcount++;
         }
 
         private void hilo2_finished(Task obj)
         {
-            taskcount++;
+            lock(this) taskcount++;
         }
 
         // tareas hijas de UI Thread
         // no acceder al UI desde aquí
+        // el uso de lock como seccion crítica en vez de un Mutex es mucho más rápido
         private void proc_hilo1()
         {
             for (int i = 0; i < 1000000; i++)
             {
-                m.WaitOne();//
-                counter++;
-                m.ReleaseMutex();//
+                lock(obj) counter++;
             }
-            fruta = lista.Last<string>();
+            fruta = lista.First<string>();
         }
 
         private void proc_hilo2()
         {
             for (int i = 0; i < 1000000; i++)
             {
-                m.WaitOne();//
-                counter++;
-                m.ReleaseMutex();//
+                lock(obj) counter++;
             }
             fruta = lista.Last<string>();
         }
