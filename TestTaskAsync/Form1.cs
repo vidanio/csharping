@@ -38,7 +38,7 @@ namespace TestTaskAsync
         {
             for (int i = 0; i < 100000000; i++)
             {
-                lock (obj) counter++;
+                lock(obj) counter++; //
             }
         }
 
@@ -63,5 +63,6 @@ namespace TestTaskAsync
 Este ejemplo muestra lo extraordinariamente sencillo que es programar tareas asíncronas como si fueran síncronas con .NET 4.5 (no compatible con XP) sin necesidad
 de usar callbacks, ni delegados para saber cuando acabaron las tareas. Lo hemos mostrado como un proceso en 3 estadios, desde el procedimiento largo original y síncrono, su
 paso a TaskAsync que se podría usar con código más completo, y finalmente su paso a Async con el uso de async/wait y código síncrono posterior a la terminación del hilo.
-A día de hoy, la programación de procesos asíncronos es mucho más simple de esta manera, y se lee tan fácil como el código síncrono
+A día de hoy, la programación de procesos asíncronos es mucho más simple de esta manera, y se lee tan fácil como el código síncrono.
+Puedes probar a quitar lock(obj) en la linea 41 para constatar, que esta funcionando como un Mutex optimizado (sección crítica)
 */
