@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAsyncWait", "TestAsyncW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskC4", "TestTaskC4\TestTaskC4.csproj", "{DDEF3EDE-A440-454A-B7AD-A20860B3EF5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskAsync", "TestTaskAsync\TestTaskAsync.csproj", "{476EAAD4-5896-4C84-8743-1C450EA7F0DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{DDEF3EDE-A440-454A-B7AD-A20860B3EF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDEF3EDE-A440-454A-B7AD-A20860B3EF5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDEF3EDE-A440-454A-B7AD-A20860B3EF5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{476EAAD4-5896-4C84-8743-1C450EA7F0DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476EAAD4-5896-4C84-8743-1C450EA7F0DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476EAAD4-5896-4C84-8743-1C450EA7F0DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476EAAD4-5896-4C84-8743-1C450EA7F0DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
