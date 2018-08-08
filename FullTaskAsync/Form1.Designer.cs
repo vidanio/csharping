@@ -78,10 +78,10 @@
             this.numUpDown.Location = new System.Drawing.Point(12, 58);
             this.numUpDown.Name = "numUpDown";
             this.numUpDown.Size = new System.Drawing.Size(48, 20);
-            this.numUpDown.TabIndex = 5;
+            this.numUpDown.TabIndex = 0;
             this.numUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUpDown.Value = new decimal(new int[] {
-            5,
+            50,
             0,
             0,
             0});

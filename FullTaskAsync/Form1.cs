@@ -14,25 +14,24 @@ namespace FullTaskAsync
 {
     public partial class MainForm : Form
     {
-        private int value = 5;
+        private int value = 50;
         private CancellationTokenSource cts; // fase 3 cancelacion
         private bool running = false;
 
         public MainForm()
         {
             InitializeComponent();
-            cts = new CancellationTokenSource(); // fase 3 cancelacion
         }
 
         private void numUpDown_ValueChanged(object sender, EventArgs e)
         {
             value = (int) numUpDown.Value;
-            if (value < 5)
+            if (value < 50)
             {
-                value = 5;
-            }else if (value > 10)
+                value = 50;
+            }else if (value > 100)
             {
-                value = 10;
+                value = 100;
             }
             numUpDown.Value = value;
         }
@@ -48,6 +47,7 @@ namespace FullTaskAsync
             running = true;
 
             var progressIndicator = new Progress<int>(ReportProgress); // fase 2 progress
+            cts = new CancellationTokenSource(); // fase 3 cancelacion
             // fase 3 debemos capturar la excepción por cancelación try-catch
             try
             {
@@ -86,7 +86,7 @@ namespace FullTaskAsync
         {
             for (int i = 0; i < enter; i++)
             {
-                Thread.Sleep(1000); // 1 segundo cada vuelta (simulación de proceso lento)
+                Thread.Sleep(100); // 0.1 segundo cada vuelta (simulación de proceso lento)
                 ct.ThrowIfCancellationRequested(); // fase 3, lanza Excepcion OCE si IsCancellationRequested = true
                 if (progress != null) progress.Report((i+1) * 100 /enter); // fase 2 progress (reportamos el progreso en el proceso)
             }
