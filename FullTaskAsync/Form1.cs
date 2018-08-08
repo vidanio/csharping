@@ -17,6 +17,7 @@ namespace FullTaskAsync
         private int value = 50;
         private CancellationTokenSource cts; // fase 3 cancelacion
         private bool running = false;
+        private bool cancelled = false;
 
         public MainForm()
         {
@@ -43,7 +44,7 @@ namespace FullTaskAsync
             // iniciamos los valores
             lblPercent.Text = "0 %";
             progbarPercent.Value = 0;
-            bool cancelled = false; // fase 3 cancelacion
+            cancelled = false; // fase 3 cancelacion
             running = true;
 
             var progressIndicator = new Progress<int>(ReportProgress); // fase 2 progress
@@ -55,11 +56,13 @@ namespace FullTaskAsync
             }
             catch (OperationCanceledException) // excepcion OCE
             {
+                cancelled = true; // fase 3 cancelación
                 lblPercent.Text = "proceso cancelado"; // fase 3 cancelación
             }
             catch (Exception err)
             {
                 lblPercent.Text = "Error: " + err.Message; // error no capturado en el proceso, se relanza en sus funciones Async
+                cancelled = true;
             }
 
             running = false;
@@ -120,5 +123,5 @@ del progreso durante el proceso, para ello añadimos el segundo parámetro de la
 la posibilidad de cancelación mediante un CancelToken; de manera similar añadimos el tercer parámetro de las funciones ProcesoLento...() y el código que la controla.
 Como ves, en .NET 4.5 o superior se puede escribir un ejemplo con async/await/Task que tenga las mismas capacidades que el uso de BackgroundWorker en el ejemplo FullBackgroundWorker.
 De hecho el código queda más sencillo de entender ya que esta escrito como si fuera sincrónico.
-MUY IMPORTANTE: Si vas a probar la cancelación, compila antes una versión Release y ejecútala fuera de VisualStudio o el debugger te parará en la linea 90.
+MUY IMPORTANTE: Si vas a probar la cancelación, compila antes una versión Release y ejecútala fuera de VisualStudio o el debugger te parará en la linea 93.
 */
