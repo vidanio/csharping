@@ -21,6 +21,7 @@ namespace FullTaskAsync
         public MainForm()
         {
             InitializeComponent();
+            cts = new CancellationTokenSource(); // fase 3 cancelacion
         }
 
         private void numUpDown_ValueChanged(object sender, EventArgs e)
@@ -47,7 +48,6 @@ namespace FullTaskAsync
             running = true;
 
             var progressIndicator = new Progress<int>(ReportProgress); // fase 2 progress
-            cts = new CancellationTokenSource(); // fase 3 cancelacion
             // fase 3 debemos capturar la excepción por cancelación try-catch
             try
             {
