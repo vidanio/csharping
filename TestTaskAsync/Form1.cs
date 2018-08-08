@@ -49,6 +49,7 @@ namespace TestTaskAsync
         }
 
         // 3.- Este es el procedimiento convertido a Async con código síncrono del UI Thread que se ejecuta una vez acabado
+        // async void o async Task es lo mismo, no se devuelve nada, por lo dejamos async void
         private async void ProcedimientoLargoAsync()
         {
             await ProcedimientoLargoTaskAsync(); // esta parte se ejecuta en un hilo paralelo

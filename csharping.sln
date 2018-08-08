@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskC4", "TestTaskC4\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskAsync", "TestTaskAsync\TestTaskAsync.csproj", "{476EAAD4-5896-4C84-8743-1C450EA7F0DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullTaskAsync", "FullTaskAsync\FullTaskAsync.csproj", "{0516B3F8-4247-447B-8035-A14D8053FD9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +173,10 @@ Global
 		{476EAAD4-5896-4C84-8743-1C450EA7F0DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{476EAAD4-5896-4C84-8743-1C450EA7F0DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{476EAAD4-5896-4C84-8743-1C450EA7F0DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0516B3F8-4247-447B-8035-A14D8053FD9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0516B3F8-4247-447B-8035-A14D8053FD9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0516B3F8-4247-447B-8035-A14D8053FD9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0516B3F8-4247-447B-8035-A14D8053FD9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
