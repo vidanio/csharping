@@ -15,7 +15,7 @@ namespace FullTaskAsync
     public partial class MainForm : Form
     {
         private int value = 5;
-        CancellationTokenSource cts; // fase 3 cancelacion
+        private CancellationTokenSource cts; // fase 3 cancelacion
         private bool running = false;
 
         public MainForm()
@@ -67,7 +67,7 @@ namespace FullTaskAsync
         }
 
         // añadida en la fase 2 progress (valor 0-100)
-        void ReportProgress(int valor)
+        private void ReportProgress(int valor)
         {
             //actualizamos el UI
             lblPercent.Text = string.Format("{0} %", valor);
