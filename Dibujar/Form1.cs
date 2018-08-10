@@ -26,7 +26,8 @@ namespace Dibujar
         {
             Graphics g = e.Graphics;
             g.PageUnit = GraphicsUnit.Pixel; // medida por pixels
-                                             // Creamos un Bitmap donde dibujar puntos
+            // usa TranslateTransform, RotateTransform y ScaleTransform para cambiar origen y ejes de coordenadas
+            // Creamos un Bitmap donde dibujar puntos
             using (Bitmap bm = new Bitmap(pictBox.Width, pictBox.Height))
             {
                 bm.SetPixel(5, 5, Color.Red);
