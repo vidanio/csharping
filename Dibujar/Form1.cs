@@ -32,8 +32,8 @@ namespace Dibujar
             {
                 Graphics g = e.Graphics;
                 g.PageUnit = GraphicsUnit.Pixel; // medida por pixels
-                                                 // usa TranslateTransform, RotateTransform y ScaleTransform para cambiar origen y ejes de coordenadas
-                                                 // Creamos un Bitmap donde dibujar puntos
+                // usa TranslateTransform, RotateTransform y ScaleTransform para cambiar origen y ejes de coordenadas
+                // Creamos un Bitmap donde dibujar puntos
                 using (Bitmap bm = new Bitmap(pictBox.Width, pictBox.Height))
                 {
                     bm.SetPixel(5, 5, Color.Red);
@@ -42,6 +42,7 @@ namespace Dibujar
                     g.DrawImage(bm, 0, 0);
                     // dibujamos una elipse
                     g.DrawEllipse(Pens.Green, 0, 0, pictBox.Width - 1, pictBox.Height - 1);
+                    g.DrawLine(Pens.Black, 0, pictBox.Height - 1, pictBox.Width - 1, 0);
                 }
             }
         }

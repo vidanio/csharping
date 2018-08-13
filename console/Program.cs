@@ -12,24 +12,26 @@ namespace console
     {
         static void Main(string[] args)
         {
-            Task<int> task = new Task<int>(LongRunningTask);
-            task.Start();
-            Task<int> childTask = task.ContinueWith<int>(SquareOfNumber);
-            Console.WriteLine("Sqaure of number is :" + childTask.Result);
-            Console.WriteLine("The number is :" + task.Result);
+            Console.WriteLine(yturl("https://www.youtube.com/watch?v=axkZ2tL23M8"));
 
             Console.ReadKey();
         }
 
-        private static int LongRunningTask()
+        public static string yturl(string url, string videoFormat = "video/mp4")
         {
-            Thread.Sleep(3000);
-            return 2;
-        }
+            String id = url.Substring(url.IndexOf("v=") + 2);
 
-        private static int SquareOfNumber(Task<int> obj)
-        {
-            return obj.Result * obj.Result;
+            System.Net.WebClient wc = new System.Net.WebClient();
+            wc.CachePolicy = new System.Net.Cache.RequestCachePolicy(System.Net.Cache.RequestCacheLevel.NoCacheNoStore);
+            byte[] response = wc.DownloadData("http://www.youtube.com/get_video_info?video_id=" + id);
+            String html = System.Text.Encoding.ASCII.GetString(response);
+
+            String x = html.Substring(html.IndexOf("url_encoded_fmt_stream_map"));
+            x = Uri.UnescapeDataString(x);
+            x = x.Substring(x.IndexOf("url=") + 4);
+            x = x.Substring(0, x.IndexOf(","));
+            return Uri.UnescapeDataString(x);
+
         }
     }
 }
