@@ -76,6 +76,12 @@ namespace wmplayer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            if (!IsUserAdministrator())
+            {
+                MessageBox.Show("No eres el Admin", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+            }
+
             tbarMainVol.Value = axWMPMain.settings.volume;
             axWMPMain.PlayStateChange += axWMPMain_PlayStateChange; // damos de alta el evento PlayStateChange con su handler
             txtboxStatusMain.AppendText(String.Format("[0] {0}\r\n", axWMPMain.playState.ToString()));
