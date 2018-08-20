@@ -86,7 +86,7 @@ namespace EQF2EDJ
                 txtEQFfile.Text = file;
                 txtEDJcode.Clear();
                 // elije el nombre del fichero a guardar como edj con la misma base q en eqf
-                saveEDJDlg.FileName = Path.GetFileName(file).Replace(".eqf", ".edj");
+                saveEDJDlg.FileName = Path.GetFileName(file).ToLower().Replace(".eqf", ".edj");
                 // lee todo el fichero de una tacada
                 byte[] EQFcontent = File.ReadAllBytes(file);
                 // revisamos que contenga el string identificador de Winamp Equalizer
