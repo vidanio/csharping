@@ -58,6 +58,7 @@ namespace EQF2EDJ
                     saveEDJDlg.FileName = Path.GetFileName(file).Replace(".eqf", ".edj");
                     // lee todo el fichero de una tacada
                     byte[] EQFcontent = File.ReadAllBytes(file);
+                    // revisamos que contenga el string identificador de Winamp Equalizer
                     if (!Encoding.ASCII.GetString(EQFcontent).Contains(WinampEQF))
                     {
                         MessageBox.Show("Fichero no comparible", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
