@@ -17,6 +17,7 @@ namespace EQF2EDJ
         const int EQFoffset = 288;
         // las 10 bandas del ecualizador usadas
         int[] Band = new int[10] { 80, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000 };
+        const string WinampEQF = "Winamp EQ library file v1.1";
         string EDJcontent;
 
         public MainForm()
@@ -44,16 +45,24 @@ namespace EQF2EDJ
 
         private void txtEQFfile_Click(object sender, EventArgs e)
         {
+            EDJcontent = "";
+
             if (openFileDlg.ShowDialog() == DialogResult.OK)
             {
                 string file = openFileDlg.FileName;
                 txtEQFfile.Text = file;
                 try
                 {
+                    txtEDJcode.Clear();
                     // elije el nombre del fichero a guardar como edj con la misma base q en eqf
                     saveEDJDlg.FileName = Path.GetFileName(file).Replace(".eqf", ".edj");
                     // lee todo el fichero de una tacada
                     byte[] EQFcontent = File.ReadAllBytes(file);
+                    if (!Encoding.ASCII.GetString(EQFcontent).Contains(WinampEQF))
+                    {
+                        MessageBox.Show("Fichero no comparible", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     // convierte los datos HEX EQF a formato EDJ
                     for (int i = 0; i < 10; i++)
                     {
