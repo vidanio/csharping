@@ -48,19 +48,26 @@ namespace EQF2EDJ
             {
                 string file = openFileDlg.FileName;
                 txtEQFfile.Text = file;
-                // elije el nombre del fichero a guardar como edj con la misma base q en eqf
-                saveEDJDlg.FileName = Path.GetFileName(file).Replace(".eqf", ".edj");
-                // lee todo el fichero de una tacada
-                byte[] EQFcontent = File.ReadAllBytes(file);
-                // convierte los datos HEX EQF a formato EDJ
-                for (int i = 0; i < 10; i++)
+                try
                 {
-                    EDJcontent += string.Format("        <Band FreqInHz=\"{0}\" BandWidth=\"12\" GainIndB=\"{1}\">{2}</Band>\r\n", 
-                                                            Band[i], eqf2edjLevel(EQFcontent[EQFoffset + i]), i);
+                    // elije el nombre del fichero a guardar como edj con la misma base q en eqf
+                    saveEDJDlg.FileName = Path.GetFileName(file).Replace(".eqf", ".edj");
+                    // lee todo el fichero de una tacada
+                    byte[] EQFcontent = File.ReadAllBytes(file);
+                    // convierte los datos HEX EQF a formato EDJ
+                    for (int i = 0; i < 10; i++)
+                    {
+                        EDJcontent += string.Format("        <Band FreqInHz=\"{0}\" BandWidth=\"12\" GainIndB=\"{1}\">{2}</Band>\r\n",
+                                                                Band[i], eqf2edjLevel(EQFcontent[EQFoffset + i]), i);
+                    }
+                    EDJcontent = "<?xml version=\"1.0\" ?>\r\n<Equalizer>\r\n    <Bands>\r\n" + EDJcontent + "    </Bands>\r\n</Equalizer>\r\n";
+                    // lo escribimos en el TextBox para su inspección
+                    txtEDJcode.AppendText(EDJcontent);
                 }
-                EDJcontent = "<?xml version=\"1.0\" ?>\r\n<Equalizer>\r\n    <Bands>\r\n" + EDJcontent + "    </Bands>\r\n</Equalizer>\r\n";
-                // lo escribimos en el TextBox para su inspección
-                txtEDJcode.AppendText(EDJcontent);
+                catch
+                {
+                    MessageBox.Show("Error en el manejo del fichero EQF", "Error importante", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -69,8 +76,15 @@ namespace EQF2EDJ
             if (saveEDJDlg.ShowDialog() == DialogResult.OK)
             {
                 string file = saveEDJDlg.FileName;
-                // lo grabamos todo de una tacada en un EDJ
-                File.WriteAllText(file, EDJcontent);
+                try
+                {
+                    // lo grabamos todo de una tacada en un EDJ
+                    File.WriteAllText(file, EDJcontent);
+                }
+                catch
+                {
+                    MessageBox.Show("Error en la escritur del fichero EDJ", "Error importante", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
