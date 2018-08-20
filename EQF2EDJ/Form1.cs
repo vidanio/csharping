@@ -19,10 +19,17 @@ namespace EQF2EDJ
         int[] Band = new int[10] { 80, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000 };
         const string WinampEQF = "Winamp EQ library file v1.1";
         string EDJcontent;
+        // recogemos los argumentos de linea de comandos
+        string[] args = Environment.GetCommandLineArgs();
 
         public MainForm()
         {
             InitializeComponent();
+
+            if (args.Length > 1)
+            {
+                processFile(args[1]); // primer argumento es el fichero a procesar
+            }
         }
 
         // converts EQF hex codes from offset 288+0 to 288+9, to EDJ Gain Level in dB
@@ -50,34 +57,7 @@ namespace EQF2EDJ
             if (openFileDlg.ShowDialog() == DialogResult.OK)
             {
                 string file = openFileDlg.FileName;
-                txtEQFfile.Text = file;
-                try
-                {
-                    txtEDJcode.Clear();
-                    // elije el nombre del fichero a guardar como edj con la misma base q en eqf
-                    saveEDJDlg.FileName = Path.GetFileName(file).Replace(".eqf", ".edj");
-                    // lee todo el fichero de una tacada
-                    byte[] EQFcontent = File.ReadAllBytes(file);
-                    // revisamos que contenga el string identificador de Winamp Equalizer
-                    if (!Encoding.ASCII.GetString(EQFcontent).Contains(WinampEQF))
-                    {
-                        MessageBox.Show("Fichero no comparible", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    // convierte los datos HEX EQF a formato EDJ
-                    for (int i = 0; i < 10; i++)
-                    {
-                        EDJcontent += string.Format("        <Band FreqInHz=\"{0}\" BandWidth=\"12\" GainIndB=\"{1}\">{2}</Band>\r\n",
-                                                                Band[i], eqf2edjLevel(EQFcontent[EQFoffset + i]), i);
-                    }
-                    EDJcontent = "<?xml version=\"1.0\" ?>\r\n<Equalizer>\r\n    <Bands>\r\n" + EDJcontent + "    </Bands>\r\n</Equalizer>\r\n";
-                    // lo escribimos en el TextBox para su inspección
-                    txtEDJcode.AppendText(EDJcontent);
-                }
-                catch
-                {
-                    MessageBox.Show("Error en el manejo del fichero EQF", "Error importante", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                processFile(file);
             }
         }
 
@@ -95,6 +75,38 @@ namespace EQF2EDJ
                 {
                     MessageBox.Show("Error en la escritur del fichero EDJ", "Error importante", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void processFile(string file)
+        {
+            try
+            {
+                txtEQFfile.Text = file;
+                txtEDJcode.Clear();
+                // elije el nombre del fichero a guardar como edj con la misma base q en eqf
+                saveEDJDlg.FileName = Path.GetFileName(file).Replace(".eqf", ".edj");
+                // lee todo el fichero de una tacada
+                byte[] EQFcontent = File.ReadAllBytes(file);
+                // revisamos que contenga el string identificador de Winamp Equalizer
+                if (!Encoding.ASCII.GetString(EQFcontent).Contains(WinampEQF))
+                {
+                    MessageBox.Show("Fichero no comparible", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // convierte los datos HEX EQF a formato EDJ
+                for (int i = 0; i < 10; i++)
+                {
+                    EDJcontent += string.Format("        <Band FreqInHz=\"{0}\" BandWidth=\"12\" GainIndB=\"{1}\">{2}</Band>\r\n",
+                                                            Band[i], eqf2edjLevel(EQFcontent[EQFoffset + i]), i);
+                }
+                EDJcontent = "<?xml version=\"1.0\" ?>\r\n<Equalizer>\r\n    <Bands>\r\n" + EDJcontent + "    </Bands>\r\n</Equalizer>\r\n";
+                // lo escribimos en el TextBox para su inspección
+                txtEDJcode.AppendText(EDJcontent);
+            }
+            catch
+            {
+                MessageBox.Show("Error en el manejo del fichero EQF", "Error importante", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -33,6 +33,7 @@
             this.btnSaveToEDJ = new System.Windows.Forms.Button();
             this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
             this.saveEDJDlg = new System.Windows.Forms.SaveFileDialog();
+            this.lblLog = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtEQFfile
@@ -72,11 +73,21 @@
             // 
             this.saveEDJDlg.Filter = "EDJ File|*.edj";
             // 
+            // lblLog
+            // 
+            this.lblLog.AutoSize = true;
+            this.lblLog.Location = new System.Drawing.Point(426, 49);
+            this.lblLog.Name = "lblLog";
+            this.lblLog.Size = new System.Drawing.Size(37, 13);
+            this.lblLog.TabIndex = 3;
+            this.lblLog.Text = "(none)";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 421);
+            this.Controls.Add(this.lblLog);
             this.Controls.Add(this.btnSaveToEDJ);
             this.Controls.Add(this.txtEDJcode);
             this.Controls.Add(this.txtEQFfile);
@@ -95,6 +106,7 @@
         private System.Windows.Forms.Button btnSaveToEDJ;
         private System.Windows.Forms.OpenFileDialog openFileDlg;
         private System.Windows.Forms.SaveFileDialog saveEDJDlg;
+        private System.Windows.Forms.Label lblLog;
     }
 }
 
