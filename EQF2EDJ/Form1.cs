@@ -7,17 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
+using System.IO;
 
 namespace EQF2EDJ
 {
     public partial class MainForm : Form
     {
+        // offset en EQF desde donde estan los 10 levels del equalizador
+        const int EQFoffset = 288;
+        // las 10 bandas del ecualizador usadas
+        int[] Band = new int[10] { 80, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000 };
+        string EDJcontent;
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        // convert EQF hex code from offset 288+0 to 288+9, to EDJ Gain Level in dB
+        // converts EQF hex codes from offset 288+0 to 288+9, to EDJ Gain Level in dB
         public string eqf2edjLevel(byte hex)
         {
             string res = "";
@@ -33,6 +40,38 @@ namespace EQF2EDJ
             }
 
             return res;
+        }
+
+        private void txtEQFfile_Click(object sender, EventArgs e)
+        {
+            if (openFileDlg.ShowDialog() == DialogResult.OK)
+            {
+                string file = openFileDlg.FileName;
+                txtEQFfile.Text = file;
+                // elije el nombre del fichero a guardar como edj con la misma base q en eqf
+                saveEDJDlg.FileName = Path.GetFileName(file).Replace(".eqf", ".edj");
+                // lee todo el fichero de una tacada
+                byte[] EQFcontent = File.ReadAllBytes(file);
+                // convierte los datos HEX EQF a formato EDJ
+                for (int i = 0; i < 10; i++)
+                {
+                    EDJcontent += string.Format("        <Band FreqInHz=\"{0}\" BandWidth=\"12\" GainIndB=\"{1}\">{2}</Band>\r\n", 
+                                                            Band[i], eqf2edjLevel(EQFcontent[EQFoffset + i]), i);
+                }
+                EDJcontent = "<?xml version=\"1.0\" ?>\r\n<Equalizer>\r\n    <Bands>\r\n" + EDJcontent + "    </Bands>\r\n</Equalizer>\r\n";
+                // lo escribimos en el TextBox para su inspección
+                txtEDJcode.AppendText(EDJcontent);
+            }
+        }
+
+        private void btnSaveToEDJ_Click(object sender, EventArgs e)
+        {
+            if (saveEDJDlg.ShowDialog() == DialogResult.OK)
+            {
+                string file = saveEDJDlg.FileName;
+                // lo grabamos todo de una tacada en un EDJ
+                File.WriteAllText(file, EDJcontent);
+            }
         }
     }
 }

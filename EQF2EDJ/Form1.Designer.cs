@@ -28,21 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtEQFfile = new System.Windows.Forms.TextBox();
+            this.txtEDJcode = new System.Windows.Forms.TextBox();
+            this.btnSaveToEDJ = new System.Windows.Forms.Button();
+            this.openFileDlg = new System.Windows.Forms.OpenFileDialog();
+            this.saveEDJDlg = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
+            // 
+            // txtEQFfile
+            // 
+            this.txtEQFfile.Location = new System.Drawing.Point(41, 49);
+            this.txtEQFfile.Name = "txtEQFfile";
+            this.txtEQFfile.ReadOnly = true;
+            this.txtEQFfile.Size = new System.Drawing.Size(364, 20);
+            this.txtEQFfile.TabIndex = 0;
+            this.txtEQFfile.Text = "(choose EQF file)";
+            this.txtEQFfile.Click += new System.EventHandler(this.txtEQFfile_Click);
+            // 
+            // txtEDJcode
+            // 
+            this.txtEDJcode.Location = new System.Drawing.Point(41, 75);
+            this.txtEDJcode.Multiline = true;
+            this.txtEDJcode.Name = "txtEDJcode";
+            this.txtEDJcode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtEDJcode.Size = new System.Drawing.Size(599, 282);
+            this.txtEDJcode.TabIndex = 1;
+            // 
+            // btnSaveToEDJ
+            // 
+            this.btnSaveToEDJ.Location = new System.Drawing.Point(306, 363);
+            this.btnSaveToEDJ.Name = "btnSaveToEDJ";
+            this.btnSaveToEDJ.Size = new System.Drawing.Size(99, 23);
+            this.btnSaveToEDJ.TabIndex = 2;
+            this.btnSaveToEDJ.Text = "Save to EDJ";
+            this.btnSaveToEDJ.UseVisualStyleBackColor = true;
+            this.btnSaveToEDJ.Click += new System.EventHandler(this.btnSaveToEDJ_Click);
+            // 
+            // openFileDlg
+            // 
+            this.openFileDlg.Filter = "Winamp EQF|*.eqf";
+            // 
+            // saveEDJDlg
+            // 
+            this.saveEDJDlg.Filter = "EDJ File|*.edj";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(706, 421);
+            this.Controls.Add(this.btnSaveToEDJ);
+            this.Controls.Add(this.txtEDJcode);
+            this.Controls.Add(this.txtEQFfile);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EQF to edj";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox txtEQFfile;
+        private System.Windows.Forms.TextBox txtEDJcode;
+        private System.Windows.Forms.Button btnSaveToEDJ;
+        private System.Windows.Forms.OpenFileDialog openFileDlg;
+        private System.Windows.Forms.SaveFileDialog saveEDJDlg;
     }
 }
 
