@@ -48,12 +48,15 @@
             // 
             // txtEDJcode
             // 
+            this.txtEDJcode.AllowDrop = true;
             this.txtEDJcode.Location = new System.Drawing.Point(41, 75);
             this.txtEDJcode.Multiline = true;
             this.txtEDJcode.Name = "txtEDJcode";
             this.txtEDJcode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtEDJcode.Size = new System.Drawing.Size(599, 282);
             this.txtEDJcode.TabIndex = 1;
+            this.txtEDJcode.DragDrop += new System.Windows.Forms.DragEventHandler(this.txtEDJcode_DragDrop);
+            this.txtEDJcode.DragEnter += new System.Windows.Forms.DragEventHandler(this.txtEDJcode_DragEnter);
             // 
             // btnSaveToEDJ
             // 

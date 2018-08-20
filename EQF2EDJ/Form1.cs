@@ -26,6 +26,7 @@ namespace EQF2EDJ
         {
             InitializeComponent();
 
+            lblLog.Text = "";    
             if (args.Length > 1)
             {
                 processFile(args[1]); // primer argumento es el fichero a procesar
@@ -107,6 +108,20 @@ namespace EQF2EDJ
             catch
             {
                 MessageBox.Show("Error en el manejo del fichero EQF", "Error importante", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtEDJcode_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+        }
+
+        private void txtEDJcode_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] archivos = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (archivos.Length > 0)
+            {
+                processFile(archivos[0]);
             }
         }
     }
