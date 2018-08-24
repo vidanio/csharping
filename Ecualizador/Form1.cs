@@ -17,6 +17,7 @@ namespace Ecualizador
         private double songduration = 0;
         byte[] m_byteBuffer = null;
         private const byte KEYCODE = 0x45; // decryption key
+        private byte[] KeyCode = new byte[] { 11, 22, 33, 44, 55, 66, 77, 88 }; // Isaac decription keys
 
         public MainForm()
         {
@@ -197,7 +198,8 @@ namespace Ecualizador
                     lblSong.Text = "Descifrando";
                     for (int i= 0; i < read; i++)
                     {
-                        m_byteBuffer[i] ^= KEYCODE;
+                        // m_byteBuffer[i] ^= KEYCODE;
+                        m_byteBuffer[i] ^= KeyCode[i%8];
                     }
                     lblSong.Text = "Descifrado acabado";
                 }
@@ -404,6 +406,12 @@ namespace Ecualizador
             lblArtist.Text = "Artist: ";
             lblTitle.Text = "Title: ";
             lblPercent.Text = "0 %";
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timer1.Stop();
+            timer1.Dispose();
         }
     }
 }
