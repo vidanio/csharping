@@ -75,6 +75,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblDuration = new System.Windows.Forms.Label();
             this.lblPosition = new System.Windows.Forms.Label();
+            this.lblSpectrum = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -570,11 +571,20 @@
             this.lblPosition.TabIndex = 16;
             this.lblPosition.Text = "Position:";
             // 
+            // lblSpectrum
+            // 
+            this.lblSpectrum.BackColor = System.Drawing.Color.Black;
+            this.lblSpectrum.Location = new System.Drawing.Point(401, 331);
+            this.lblSpectrum.Name = "lblSpectrum";
+            this.lblSpectrum.Size = new System.Drawing.Size(189, 69);
+            this.lblSpectrum.TabIndex = 17;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 520);
+            this.ClientSize = new System.Drawing.Size(684, 420);
+            this.Controls.Add(this.lblSpectrum);
             this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.lblDuration);
             this.Controls.Add(this.progPlayback);
@@ -687,6 +697,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblDuration;
         private System.Windows.Forms.Label lblPosition;
+        private System.Windows.Forms.Label lblSpectrum;
     }
 }
 

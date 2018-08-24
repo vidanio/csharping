@@ -66,6 +66,10 @@ namespace Ecualizador
             // VUMeter drcho
             m_hWndVuMeterRight = CreateVuMeter(lblMeterRight, enumGraphicBarOrientations.GRAPHIC_BAR_ORIENT_VERTICAL);
 
+            // spectrum
+            audioDjStudio1.DisplaySpectrum.Create(0, lblSpectrum.Handle);
+            audioDjStudio1.DisplaySpectrum.Show(0, true);
+
             cboxWinampPresets.SelectedIndex = 0;
             audioDjStudio1.EnableAutoEqualiz = true;
 
@@ -397,7 +401,6 @@ namespace Ecualizador
         // evento cuando se acaba una canción
         private void audioDjStudio1_SoundDone(object sender, PlayerEventArgs e)
         {
-            lblSong.Text = "(none)";
             progPlayback.Value = 0;
             lblPosition.Text = "Position: ";
         }
