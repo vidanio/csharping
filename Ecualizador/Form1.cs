@@ -257,10 +257,7 @@ namespace Ecualizador
         {
             audioDjStudio1.StopSound(0); // parar el player 0
             timer1.Stop();
-            progPlayback.Value = 0;
-            lblPosition.Text = "Position: ";
-            lblArtist.Text = "Artist: ";
-            lblTitle.Text = "Title: ";
+            resetInfo();
         }
 
         private void tbarVolumen_Scroll(object sender, EventArgs e)
@@ -382,10 +379,7 @@ namespace Ecualizador
         // evento cuando se acaba una canción
         private void audioDjStudio1_SoundDone(object sender, PlayerEventArgs e)
         {
-            progPlayback.Value = 0;
-            lblPosition.Text = "Position: ";
-            lblArtist.Text = "Artist: ";
-            lblTitle.Text = "Title: ";
+            resetInfo();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -397,6 +391,14 @@ namespace Ecualizador
             double percentage = 0;
             percentage = position / songduration * 100.00;
             progPlayback.Value = (int)percentage;
+        }
+
+        private void resetInfo()
+        {
+            progPlayback.Value = 0;
+            lblPosition.Text = "Position: ";
+            lblArtist.Text = "Artist: ";
+            lblTitle.Text = "Title: ";
         }
     }
 }
