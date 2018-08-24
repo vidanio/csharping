@@ -13,12 +13,10 @@ namespace Ecualizador
 {
     public partial class MainForm : Form
     {
-        private IntPtr m_hWndVuMeterLeft;
-        private IntPtr m_hWndVuMeterRight;
         private string m_strLoadedSongPathname = "";
         private double songduration = 0;
         byte[] m_byteBuffer = null;
-        private const byte KEYCODE = 0x45;
+        private const byte KEYCODE = 0x45; // decryption key
 
         public MainForm()
         {
