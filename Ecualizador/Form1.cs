@@ -204,6 +204,11 @@ namespace Ecualizador
                     m_strLoadedSongPathname = openFileDialog1.FileName;
                     lblSong.Text = Path.GetFileName(m_strLoadedSongPathname);
 
+                    SoundInfo2 info = new SoundInfo2();
+                    audioDjStudio1.SoundInfoGet(0, ref info);
+                    lblArtist.Text = "Artist: " + info.strMP3Tag1Artist;
+                    lblTitle.Text = "Title: " + info.strMP3Tag1Title;
+
                     // resetea las bandas del ecualizador
                     CreateEqualizerBands(true);
                     // recoge la duración de la canción cargada
@@ -254,6 +259,8 @@ namespace Ecualizador
             timer1.Stop();
             progPlayback.Value = 0;
             lblPosition.Text = "Position: ";
+            lblArtist.Text = "Artist: ";
+            lblTitle.Text = "Title: ";
         }
 
         private void tbarVolumen_Scroll(object sender, EventArgs e)
@@ -377,6 +384,8 @@ namespace Ecualizador
         {
             progPlayback.Value = 0;
             lblPosition.Text = "Position: ";
+            lblArtist.Text = "Artist: ";
+            lblTitle.Text = "Title: ";
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -76,6 +76,8 @@
             this.lblSpectrum = new System.Windows.Forms.Label();
             this.lblOscilloscope = new System.Windows.Forms.Label();
             this.lblVumeter = new System.Windows.Forms.Label();
+            this.lblArtist = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -449,7 +451,7 @@
             // lblSong
             // 
             this.lblSong.AutoSize = true;
-            this.lblSong.Location = new System.Drawing.Point(19, 31);
+            this.lblSong.Location = new System.Drawing.Point(19, 9);
             this.lblSong.Name = "lblSong";
             this.lblSong.Size = new System.Drawing.Size(37, 13);
             this.lblSong.TabIndex = 11;
@@ -578,11 +580,31 @@
             this.lblVumeter.Size = new System.Drawing.Size(24, 140);
             this.lblVumeter.TabIndex = 18;
             // 
+            // lblArtist
+            // 
+            this.lblArtist.AutoSize = true;
+            this.lblArtist.Location = new System.Drawing.Point(21, 33);
+            this.lblArtist.Name = "lblArtist";
+            this.lblArtist.Size = new System.Drawing.Size(33, 13);
+            this.lblArtist.TabIndex = 19;
+            this.lblArtist.Text = "Artist:";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Location = new System.Drawing.Point(22, 50);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(30, 13);
+            this.lblTitle.TabIndex = 20;
+            this.lblTitle.Text = "Title:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 463);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.lblArtist);
             this.Controls.Add(this.lblVumeter);
             this.Controls.Add(this.lblOscilloscope);
             this.Controls.Add(this.lblSpectrum);
@@ -697,6 +719,8 @@
         private System.Windows.Forms.Label lblSpectrum;
         private System.Windows.Forms.Label lblOscilloscope;
         private System.Windows.Forms.Label lblVumeter;
+        private System.Windows.Forms.Label lblArtist;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
 
