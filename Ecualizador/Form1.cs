@@ -70,6 +70,11 @@ namespace Ecualizador
             audioDjStudio1.DisplaySpectrum.Create(0, lblSpectrum.Handle);
             audioDjStudio1.DisplaySpectrum.Show(0, true);
 
+            // osciloscopio
+            audioDjStudio1.DisplayOscilloscope.Create(0, lblOscilloscope.Handle);
+            audioDjStudio1.DisplayOscilloscope.set_ColorLine(0, Color.Red);
+            audioDjStudio1.DisplayOscilloscope.Show(0, true);
+
             cboxWinampPresets.SelectedIndex = 0;
             audioDjStudio1.EnableAutoEqualiz = true;
 

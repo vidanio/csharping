@@ -76,6 +76,7 @@
             this.lblDuration = new System.Windows.Forms.Label();
             this.lblPosition = new System.Windows.Forms.Label();
             this.lblSpectrum = new System.Windows.Forms.Label();
+            this.lblOscilloscope = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -93,7 +94,7 @@
             // 
             this.audioDjStudio1.FaderSettings = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
             this.audioDjStudio1.LastError = AudioDjStudio.enumErrorCodes.ERR_NOERROR;
-            this.audioDjStudio1.Location = new System.Drawing.Point(609, 72);
+            this.audioDjStudio1.Location = new System.Drawing.Point(612, 93);
             this.audioDjStudio1.Name = "audioDjStudio1";
             this.audioDjStudio1.Size = new System.Drawing.Size(48, 48);
             this.audioDjStudio1.TabIndex = 0;
@@ -104,7 +105,7 @@
             // lblMeterLeft
             // 
             this.lblMeterLeft.BackColor = System.Drawing.Color.Black;
-            this.lblMeterLeft.Location = new System.Drawing.Point(81, 144);
+            this.lblMeterLeft.Location = new System.Drawing.Point(84, 165);
             this.lblMeterLeft.Name = "lblMeterLeft";
             this.lblMeterLeft.Size = new System.Drawing.Size(12, 140);
             this.lblMeterLeft.TabIndex = 1;
@@ -112,14 +113,14 @@
             // lblMeterRight
             // 
             this.lblMeterRight.BackColor = System.Drawing.Color.Black;
-            this.lblMeterRight.Location = new System.Drawing.Point(93, 144);
+            this.lblMeterRight.Location = new System.Drawing.Point(96, 165);
             this.lblMeterRight.Name = "lblMeterRight";
             this.lblMeterRight.Size = new System.Drawing.Size(12, 140);
             this.lblMeterRight.TabIndex = 1;
             // 
             // tbarVolumen
             // 
-            this.tbarVolumen.Location = new System.Drawing.Point(13, 160);
+            this.tbarVolumen.Location = new System.Drawing.Point(16, 181);
             this.tbarVolumen.Maximum = 100;
             this.tbarVolumen.Name = "tbarVolumen";
             this.tbarVolumen.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -133,7 +134,7 @@
             // lblVolume
             // 
             this.lblVolume.AutoSize = true;
-            this.lblVolume.Location = new System.Drawing.Point(13, 144);
+            this.lblVolume.Location = new System.Drawing.Point(16, 165);
             this.lblVolume.Name = "lblVolume";
             this.lblVolume.Size = new System.Drawing.Size(48, 13);
             this.lblVolume.TabIndex = 3;
@@ -141,7 +142,7 @@
             // 
             // tbar80
             // 
-            this.tbar80.Location = new System.Drawing.Point(149, 160);
+            this.tbar80.Location = new System.Drawing.Point(152, 181);
             this.tbar80.Maximum = 1500;
             this.tbar80.Minimum = -1500;
             this.tbar80.Name = "tbar80";
@@ -155,7 +156,7 @@
             // lbl80
             // 
             this.lbl80.AutoSize = true;
-            this.lbl80.Location = new System.Drawing.Point(156, 144);
+            this.lbl80.Location = new System.Drawing.Point(159, 165);
             this.lbl80.Name = "lbl80";
             this.lbl80.Size = new System.Drawing.Size(38, 13);
             this.lbl80.TabIndex = 5;
@@ -163,7 +164,7 @@
             // 
             // tbar170
             // 
-            this.tbar170.Location = new System.Drawing.Point(200, 160);
+            this.tbar170.Location = new System.Drawing.Point(203, 181);
             this.tbar170.Maximum = 1500;
             this.tbar170.Minimum = -1500;
             this.tbar170.Name = "tbar170";
@@ -177,7 +178,7 @@
             // lbl170
             // 
             this.lbl170.AutoSize = true;
-            this.lbl170.Location = new System.Drawing.Point(204, 144);
+            this.lbl170.Location = new System.Drawing.Point(207, 165);
             this.lbl170.Name = "lbl170";
             this.lbl170.Size = new System.Drawing.Size(41, 13);
             this.lbl170.TabIndex = 5;
@@ -185,7 +186,7 @@
             // 
             // tbar310
             // 
-            this.tbar310.Location = new System.Drawing.Point(251, 160);
+            this.tbar310.Location = new System.Drawing.Point(254, 181);
             this.tbar310.Maximum = 1500;
             this.tbar310.Minimum = -1500;
             this.tbar310.Name = "tbar310";
@@ -199,7 +200,7 @@
             // lbl310
             // 
             this.lbl310.AutoSize = true;
-            this.lbl310.Location = new System.Drawing.Point(252, 144);
+            this.lbl310.Location = new System.Drawing.Point(255, 165);
             this.lbl310.Name = "lbl310";
             this.lbl310.Size = new System.Drawing.Size(44, 13);
             this.lbl310.TabIndex = 5;
@@ -207,7 +208,7 @@
             // 
             // tbar600
             // 
-            this.tbar600.Location = new System.Drawing.Point(302, 160);
+            this.tbar600.Location = new System.Drawing.Point(305, 181);
             this.tbar600.Maximum = 1500;
             this.tbar600.Minimum = -1500;
             this.tbar600.Name = "tbar600";
@@ -221,7 +222,7 @@
             // lbl600
             // 
             this.lbl600.AutoSize = true;
-            this.lbl600.Location = new System.Drawing.Point(306, 144);
+            this.lbl600.Location = new System.Drawing.Point(309, 165);
             this.lbl600.Name = "lbl600";
             this.lbl600.Size = new System.Drawing.Size(41, 13);
             this.lbl600.TabIndex = 5;
@@ -229,7 +230,7 @@
             // 
             // tbar1k
             // 
-            this.tbar1k.Location = new System.Drawing.Point(353, 160);
+            this.tbar1k.Location = new System.Drawing.Point(356, 181);
             this.tbar1k.Maximum = 1500;
             this.tbar1k.Minimum = -1500;
             this.tbar1k.Name = "tbar1k";
@@ -243,7 +244,7 @@
             // lbl1k
             // 
             this.lbl1k.AutoSize = true;
-            this.lbl1k.Location = new System.Drawing.Point(353, 144);
+            this.lbl1k.Location = new System.Drawing.Point(356, 165);
             this.lbl1k.Name = "lbl1k";
             this.lbl1k.Size = new System.Drawing.Size(35, 13);
             this.lbl1k.TabIndex = 5;
@@ -251,7 +252,7 @@
             // 
             // tbar3k
             // 
-            this.tbar3k.Location = new System.Drawing.Point(404, 160);
+            this.tbar3k.Location = new System.Drawing.Point(407, 181);
             this.tbar3k.Maximum = 1500;
             this.tbar3k.Minimum = -1500;
             this.tbar3k.Name = "tbar3k";
@@ -265,7 +266,7 @@
             // lbl3k
             // 
             this.lbl3k.AutoSize = true;
-            this.lbl3k.Location = new System.Drawing.Point(401, 144);
+            this.lbl3k.Location = new System.Drawing.Point(404, 165);
             this.lbl3k.Name = "lbl3k";
             this.lbl3k.Size = new System.Drawing.Size(35, 13);
             this.lbl3k.TabIndex = 5;
@@ -273,7 +274,7 @@
             // 
             // tbar6k
             // 
-            this.tbar6k.Location = new System.Drawing.Point(455, 160);
+            this.tbar6k.Location = new System.Drawing.Point(458, 181);
             this.tbar6k.Maximum = 1500;
             this.tbar6k.Minimum = -1500;
             this.tbar6k.Name = "tbar6k";
@@ -287,7 +288,7 @@
             // lbl6k
             // 
             this.lbl6k.AutoSize = true;
-            this.lbl6k.Location = new System.Drawing.Point(452, 144);
+            this.lbl6k.Location = new System.Drawing.Point(455, 165);
             this.lbl6k.Name = "lbl6k";
             this.lbl6k.Size = new System.Drawing.Size(35, 13);
             this.lbl6k.TabIndex = 5;
@@ -295,7 +296,7 @@
             // 
             // tbar12k
             // 
-            this.tbar12k.Location = new System.Drawing.Point(506, 160);
+            this.tbar12k.Location = new System.Drawing.Point(509, 181);
             this.tbar12k.Maximum = 1500;
             this.tbar12k.Minimum = -1500;
             this.tbar12k.Name = "tbar12k";
@@ -309,7 +310,7 @@
             // lbl12k
             // 
             this.lbl12k.AutoSize = true;
-            this.lbl12k.Location = new System.Drawing.Point(503, 144);
+            this.lbl12k.Location = new System.Drawing.Point(506, 165);
             this.lbl12k.Name = "lbl12k";
             this.lbl12k.Size = new System.Drawing.Size(41, 13);
             this.lbl12k.TabIndex = 5;
@@ -317,7 +318,7 @@
             // 
             // tbar14k
             // 
-            this.tbar14k.Location = new System.Drawing.Point(557, 160);
+            this.tbar14k.Location = new System.Drawing.Point(560, 181);
             this.tbar14k.Maximum = 1500;
             this.tbar14k.Minimum = -1500;
             this.tbar14k.Name = "tbar14k";
@@ -331,7 +332,7 @@
             // lbl14k
             // 
             this.lbl14k.AutoSize = true;
-            this.lbl14k.Location = new System.Drawing.Point(554, 144);
+            this.lbl14k.Location = new System.Drawing.Point(557, 165);
             this.lbl14k.Name = "lbl14k";
             this.lbl14k.Size = new System.Drawing.Size(41, 13);
             this.lbl14k.TabIndex = 5;
@@ -339,7 +340,7 @@
             // 
             // tbar16k
             // 
-            this.tbar16k.Location = new System.Drawing.Point(608, 160);
+            this.tbar16k.Location = new System.Drawing.Point(611, 181);
             this.tbar16k.Maximum = 1500;
             this.tbar16k.Minimum = -1500;
             this.tbar16k.Name = "tbar16k";
@@ -353,7 +354,7 @@
             // lbl16k
             // 
             this.lbl16k.AutoSize = true;
-            this.lbl16k.Location = new System.Drawing.Point(606, 144);
+            this.lbl16k.Location = new System.Drawing.Point(609, 165);
             this.lbl16k.Name = "lbl16k";
             this.lbl16k.Size = new System.Drawing.Size(41, 13);
             this.lbl16k.TabIndex = 5;
@@ -362,7 +363,7 @@
             // lblMas
             // 
             this.lblMas.AutoSize = true;
-            this.lblMas.Location = new System.Drawing.Point(130, 160);
+            this.lblMas.Location = new System.Drawing.Point(133, 181);
             this.lblMas.Name = "lblMas";
             this.lblMas.Size = new System.Drawing.Size(13, 13);
             this.lblMas.TabIndex = 6;
@@ -371,7 +372,7 @@
             // lblMenos
             // 
             this.lblMenos.AutoSize = true;
-            this.lblMenos.Location = new System.Drawing.Point(130, 271);
+            this.lblMenos.Location = new System.Drawing.Point(133, 292);
             this.lblMenos.Name = "lblMenos";
             this.lblMenos.Size = new System.Drawing.Size(13, 13);
             this.lblMenos.TabIndex = 6;
@@ -399,7 +400,7 @@
             "Soft",
             "Soft Rock",
             "Techno"});
-            this.cboxWinampPresets.Location = new System.Drawing.Point(16, 345);
+            this.cboxWinampPresets.Location = new System.Drawing.Point(19, 366);
             this.cboxWinampPresets.Name = "cboxWinampPresets";
             this.cboxWinampPresets.Size = new System.Drawing.Size(160, 21);
             this.cboxWinampPresets.TabIndex = 7;
@@ -408,7 +409,7 @@
             // lblWinampPresets
             // 
             this.lblWinampPresets.AutoSize = true;
-            this.lblWinampPresets.Location = new System.Drawing.Point(41, 329);
+            this.lblWinampPresets.Location = new System.Drawing.Point(44, 350);
             this.lblWinampPresets.Name = "lblWinampPresets";
             this.lblWinampPresets.Size = new System.Drawing.Size(112, 13);
             this.lblWinampPresets.TabIndex = 8;
@@ -416,7 +417,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(16, 96);
+            this.btnLoad.Location = new System.Drawing.Point(19, 117);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 23);
             this.btnLoad.TabIndex = 9;
@@ -426,7 +427,7 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(101, 96);
+            this.btnPlay.Location = new System.Drawing.Point(104, 117);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 23);
             this.btnPlay.TabIndex = 9;
@@ -436,7 +437,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(182, 96);
+            this.btnPause.Location = new System.Drawing.Point(185, 117);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 9;
@@ -446,7 +447,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(263, 96);
+            this.btnStop.Location = new System.Drawing.Point(266, 117);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 9;
@@ -457,7 +458,7 @@
             // lblSampleRate
             // 
             this.lblSampleRate.AutoSize = true;
-            this.lblSampleRate.Location = new System.Drawing.Point(353, 101);
+            this.lblSampleRate.Location = new System.Drawing.Point(356, 122);
             this.lblSampleRate.Name = "lblSampleRate";
             this.lblSampleRate.Size = new System.Drawing.Size(71, 13);
             this.lblSampleRate.TabIndex = 10;
@@ -466,7 +467,7 @@
             // lblSong
             // 
             this.lblSong.AutoSize = true;
-            this.lblSong.Location = new System.Drawing.Point(16, 27);
+            this.lblSong.Location = new System.Drawing.Point(19, 31);
             this.lblSong.Name = "lblSong";
             this.lblSong.Size = new System.Drawing.Size(37, 13);
             this.lblSong.TabIndex = 11;
@@ -474,7 +475,7 @@
             // 
             // btnLoadEDJ
             // 
-            this.btnLoadEDJ.Location = new System.Drawing.Point(200, 300);
+            this.btnLoadEDJ.Location = new System.Drawing.Point(203, 321);
             this.btnLoadEDJ.Name = "btnLoadEDJ";
             this.btnLoadEDJ.Size = new System.Drawing.Size(131, 23);
             this.btnLoadEDJ.TabIndex = 12;
@@ -484,7 +485,7 @@
             // 
             // btnSaveEQSettings
             // 
-            this.btnSaveEQSettings.Location = new System.Drawing.Point(356, 300);
+            this.btnSaveEQSettings.Location = new System.Drawing.Point(359, 321);
             this.btnSaveEQSettings.Name = "btnSaveEQSettings";
             this.btnSaveEQSettings.Size = new System.Drawing.Size(131, 23);
             this.btnSaveEQSettings.TabIndex = 12;
@@ -494,7 +495,7 @@
             // 
             // btnResetEQ
             // 
-            this.btnResetEQ.Location = new System.Drawing.Point(516, 300);
+            this.btnResetEQ.Location = new System.Drawing.Point(519, 321);
             this.btnResetEQ.Name = "btnResetEQ";
             this.btnResetEQ.Size = new System.Drawing.Size(131, 23);
             this.btnResetEQ.TabIndex = 12;
@@ -507,7 +508,7 @@
             this.chkboxAutoEQ.AutoSize = true;
             this.chkboxAutoEQ.Checked = true;
             this.chkboxAutoEQ.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkboxAutoEQ.Location = new System.Drawing.Point(200, 330);
+            this.chkboxAutoEQ.Location = new System.Drawing.Point(203, 351);
             this.chkboxAutoEQ.Name = "chkboxAutoEQ";
             this.chkboxAutoEQ.Size = new System.Drawing.Size(144, 17);
             this.chkboxAutoEQ.TabIndex = 13;
@@ -520,7 +521,7 @@
             this.chkboxEQOn.AutoSize = true;
             this.chkboxEQOn.Checked = true;
             this.chkboxEQOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkboxEQOn.Location = new System.Drawing.Point(200, 353);
+            this.chkboxEQOn.Location = new System.Drawing.Point(203, 374);
             this.chkboxEQOn.Name = "chkboxEQOn";
             this.chkboxEQOn.Size = new System.Drawing.Size(107, 17);
             this.chkboxEQOn.TabIndex = 13;
@@ -531,7 +532,7 @@
             // chkboxNormal
             // 
             this.chkboxNormal.AutoSize = true;
-            this.chkboxNormal.Location = new System.Drawing.Point(200, 376);
+            this.chkboxNormal.Location = new System.Drawing.Point(203, 397);
             this.chkboxNormal.Name = "chkboxNormal";
             this.chkboxNormal.Size = new System.Drawing.Size(104, 17);
             this.chkboxNormal.TabIndex = 13;
@@ -542,7 +543,7 @@
             // progPlayback
             // 
             this.progPlayback.ForeColor = System.Drawing.Color.Red;
-            this.progPlayback.Location = new System.Drawing.Point(16, 72);
+            this.progPlayback.Location = new System.Drawing.Point(19, 93);
             this.progPlayback.Name = "progPlayback";
             this.progPlayback.Size = new System.Drawing.Size(531, 10);
             this.progPlayback.Step = 1;
@@ -556,7 +557,7 @@
             // lblDuration
             // 
             this.lblDuration.AutoSize = true;
-            this.lblDuration.Location = new System.Drawing.Point(16, 53);
+            this.lblDuration.Location = new System.Drawing.Point(19, 74);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(50, 13);
             this.lblDuration.TabIndex = 15;
@@ -565,7 +566,7 @@
             // lblPosition
             // 
             this.lblPosition.AutoSize = true;
-            this.lblPosition.Location = new System.Drawing.Point(159, 53);
+            this.lblPosition.Location = new System.Drawing.Point(162, 74);
             this.lblPosition.Name = "lblPosition";
             this.lblPosition.Size = new System.Drawing.Size(47, 13);
             this.lblPosition.TabIndex = 16;
@@ -574,16 +575,25 @@
             // lblSpectrum
             // 
             this.lblSpectrum.BackColor = System.Drawing.Color.Black;
-            this.lblSpectrum.Location = new System.Drawing.Point(401, 331);
+            this.lblSpectrum.Location = new System.Drawing.Point(404, 352);
             this.lblSpectrum.Name = "lblSpectrum";
             this.lblSpectrum.Size = new System.Drawing.Size(189, 69);
             this.lblSpectrum.TabIndex = 17;
+            // 
+            // lblOscilloscope
+            // 
+            this.lblOscilloscope.BackColor = System.Drawing.Color.Black;
+            this.lblOscilloscope.Location = new System.Drawing.Point(416, 9);
+            this.lblOscilloscope.Name = "lblOscilloscope";
+            this.lblOscilloscope.Size = new System.Drawing.Size(189, 69);
+            this.lblOscilloscope.TabIndex = 17;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 420);
+            this.ClientSize = new System.Drawing.Size(693, 463);
+            this.Controls.Add(this.lblOscilloscope);
             this.Controls.Add(this.lblSpectrum);
             this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.lblDuration);
@@ -698,6 +708,7 @@
         private System.Windows.Forms.Label lblDuration;
         private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.Label lblSpectrum;
+        private System.Windows.Forms.Label lblOscilloscope;
     }
 }
 
