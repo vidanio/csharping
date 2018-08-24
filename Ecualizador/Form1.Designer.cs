@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.audioDjStudio1 = new AudioDjStudio.AudioDjStudio();
             this.lblMeterLeft = new System.Windows.Forms.Label();
             this.lblMeterRight = new System.Windows.Forms.Label();
@@ -70,6 +71,10 @@
             this.chkboxEQOn = new System.Windows.Forms.CheckBox();
             this.chkboxNormal = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.progPlayback = new System.Windows.Forms.ProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblDuration = new System.Windows.Forms.Label();
+            this.lblPosition = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -87,17 +92,18 @@
             // 
             this.audioDjStudio1.FaderSettings = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
             this.audioDjStudio1.LastError = AudioDjStudio.enumErrorCodes.ERR_NOERROR;
-            this.audioDjStudio1.Location = new System.Drawing.Point(608, 12);
+            this.audioDjStudio1.Location = new System.Drawing.Point(609, 72);
             this.audioDjStudio1.Name = "audioDjStudio1";
             this.audioDjStudio1.Size = new System.Drawing.Size(48, 48);
             this.audioDjStudio1.TabIndex = 0;
+            this.audioDjStudio1.SoundDone += new AudioDjStudio.AudioDjStudio.PlayerEventHandler(this.audioDjStudio1_SoundDone);
             this.audioDjStudio1.VUMeterValueChange += new AudioDjStudio.AudioDjStudio.VUMeterValueChangeEventHandler(this.audioDjStudio1_VUMeterValueChange);
             this.audioDjStudio1.EqualizerLoaded += new AudioDjStudio.AudioDjStudio.PlayerEventHandler(this.audioDjStudio1_EqualizerLoaded);
             // 
             // lblMeterLeft
             // 
             this.lblMeterLeft.BackColor = System.Drawing.Color.Black;
-            this.lblMeterLeft.Location = new System.Drawing.Point(80, 84);
+            this.lblMeterLeft.Location = new System.Drawing.Point(81, 144);
             this.lblMeterLeft.Name = "lblMeterLeft";
             this.lblMeterLeft.Size = new System.Drawing.Size(12, 140);
             this.lblMeterLeft.TabIndex = 1;
@@ -105,14 +111,14 @@
             // lblMeterRight
             // 
             this.lblMeterRight.BackColor = System.Drawing.Color.Black;
-            this.lblMeterRight.Location = new System.Drawing.Point(92, 84);
+            this.lblMeterRight.Location = new System.Drawing.Point(93, 144);
             this.lblMeterRight.Name = "lblMeterRight";
             this.lblMeterRight.Size = new System.Drawing.Size(12, 140);
             this.lblMeterRight.TabIndex = 1;
             // 
             // tbarVolumen
             // 
-            this.tbarVolumen.Location = new System.Drawing.Point(12, 100);
+            this.tbarVolumen.Location = new System.Drawing.Point(13, 160);
             this.tbarVolumen.Maximum = 100;
             this.tbarVolumen.Name = "tbarVolumen";
             this.tbarVolumen.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -126,7 +132,7 @@
             // lblVolume
             // 
             this.lblVolume.AutoSize = true;
-            this.lblVolume.Location = new System.Drawing.Point(12, 84);
+            this.lblVolume.Location = new System.Drawing.Point(13, 144);
             this.lblVolume.Name = "lblVolume";
             this.lblVolume.Size = new System.Drawing.Size(48, 13);
             this.lblVolume.TabIndex = 3;
@@ -134,7 +140,7 @@
             // 
             // tbar80
             // 
-            this.tbar80.Location = new System.Drawing.Point(148, 100);
+            this.tbar80.Location = new System.Drawing.Point(149, 160);
             this.tbar80.Maximum = 1500;
             this.tbar80.Minimum = -1500;
             this.tbar80.Name = "tbar80";
@@ -148,7 +154,7 @@
             // lbl80
             // 
             this.lbl80.AutoSize = true;
-            this.lbl80.Location = new System.Drawing.Point(155, 84);
+            this.lbl80.Location = new System.Drawing.Point(156, 144);
             this.lbl80.Name = "lbl80";
             this.lbl80.Size = new System.Drawing.Size(38, 13);
             this.lbl80.TabIndex = 5;
@@ -156,7 +162,7 @@
             // 
             // tbar170
             // 
-            this.tbar170.Location = new System.Drawing.Point(199, 100);
+            this.tbar170.Location = new System.Drawing.Point(200, 160);
             this.tbar170.Maximum = 1500;
             this.tbar170.Minimum = -1500;
             this.tbar170.Name = "tbar170";
@@ -170,7 +176,7 @@
             // lbl170
             // 
             this.lbl170.AutoSize = true;
-            this.lbl170.Location = new System.Drawing.Point(203, 84);
+            this.lbl170.Location = new System.Drawing.Point(204, 144);
             this.lbl170.Name = "lbl170";
             this.lbl170.Size = new System.Drawing.Size(41, 13);
             this.lbl170.TabIndex = 5;
@@ -178,7 +184,7 @@
             // 
             // tbar310
             // 
-            this.tbar310.Location = new System.Drawing.Point(250, 100);
+            this.tbar310.Location = new System.Drawing.Point(251, 160);
             this.tbar310.Maximum = 1500;
             this.tbar310.Minimum = -1500;
             this.tbar310.Name = "tbar310";
@@ -192,7 +198,7 @@
             // lbl310
             // 
             this.lbl310.AutoSize = true;
-            this.lbl310.Location = new System.Drawing.Point(251, 84);
+            this.lbl310.Location = new System.Drawing.Point(252, 144);
             this.lbl310.Name = "lbl310";
             this.lbl310.Size = new System.Drawing.Size(44, 13);
             this.lbl310.TabIndex = 5;
@@ -200,7 +206,7 @@
             // 
             // tbar600
             // 
-            this.tbar600.Location = new System.Drawing.Point(301, 100);
+            this.tbar600.Location = new System.Drawing.Point(302, 160);
             this.tbar600.Maximum = 1500;
             this.tbar600.Minimum = -1500;
             this.tbar600.Name = "tbar600";
@@ -214,7 +220,7 @@
             // lbl600
             // 
             this.lbl600.AutoSize = true;
-            this.lbl600.Location = new System.Drawing.Point(305, 84);
+            this.lbl600.Location = new System.Drawing.Point(306, 144);
             this.lbl600.Name = "lbl600";
             this.lbl600.Size = new System.Drawing.Size(41, 13);
             this.lbl600.TabIndex = 5;
@@ -222,7 +228,7 @@
             // 
             // tbar1k
             // 
-            this.tbar1k.Location = new System.Drawing.Point(352, 100);
+            this.tbar1k.Location = new System.Drawing.Point(353, 160);
             this.tbar1k.Maximum = 1500;
             this.tbar1k.Minimum = -1500;
             this.tbar1k.Name = "tbar1k";
@@ -236,7 +242,7 @@
             // lbl1k
             // 
             this.lbl1k.AutoSize = true;
-            this.lbl1k.Location = new System.Drawing.Point(352, 84);
+            this.lbl1k.Location = new System.Drawing.Point(353, 144);
             this.lbl1k.Name = "lbl1k";
             this.lbl1k.Size = new System.Drawing.Size(35, 13);
             this.lbl1k.TabIndex = 5;
@@ -244,7 +250,7 @@
             // 
             // tbar3k
             // 
-            this.tbar3k.Location = new System.Drawing.Point(403, 100);
+            this.tbar3k.Location = new System.Drawing.Point(404, 160);
             this.tbar3k.Maximum = 1500;
             this.tbar3k.Minimum = -1500;
             this.tbar3k.Name = "tbar3k";
@@ -258,7 +264,7 @@
             // lbl3k
             // 
             this.lbl3k.AutoSize = true;
-            this.lbl3k.Location = new System.Drawing.Point(400, 84);
+            this.lbl3k.Location = new System.Drawing.Point(401, 144);
             this.lbl3k.Name = "lbl3k";
             this.lbl3k.Size = new System.Drawing.Size(35, 13);
             this.lbl3k.TabIndex = 5;
@@ -266,7 +272,7 @@
             // 
             // tbar6k
             // 
-            this.tbar6k.Location = new System.Drawing.Point(454, 100);
+            this.tbar6k.Location = new System.Drawing.Point(455, 160);
             this.tbar6k.Maximum = 1500;
             this.tbar6k.Minimum = -1500;
             this.tbar6k.Name = "tbar6k";
@@ -280,7 +286,7 @@
             // lbl6k
             // 
             this.lbl6k.AutoSize = true;
-            this.lbl6k.Location = new System.Drawing.Point(451, 84);
+            this.lbl6k.Location = new System.Drawing.Point(452, 144);
             this.lbl6k.Name = "lbl6k";
             this.lbl6k.Size = new System.Drawing.Size(35, 13);
             this.lbl6k.TabIndex = 5;
@@ -288,7 +294,7 @@
             // 
             // tbar12k
             // 
-            this.tbar12k.Location = new System.Drawing.Point(505, 100);
+            this.tbar12k.Location = new System.Drawing.Point(506, 160);
             this.tbar12k.Maximum = 1500;
             this.tbar12k.Minimum = -1500;
             this.tbar12k.Name = "tbar12k";
@@ -302,7 +308,7 @@
             // lbl12k
             // 
             this.lbl12k.AutoSize = true;
-            this.lbl12k.Location = new System.Drawing.Point(502, 84);
+            this.lbl12k.Location = new System.Drawing.Point(503, 144);
             this.lbl12k.Name = "lbl12k";
             this.lbl12k.Size = new System.Drawing.Size(41, 13);
             this.lbl12k.TabIndex = 5;
@@ -310,7 +316,7 @@
             // 
             // tbar14k
             // 
-            this.tbar14k.Location = new System.Drawing.Point(556, 100);
+            this.tbar14k.Location = new System.Drawing.Point(557, 160);
             this.tbar14k.Maximum = 1500;
             this.tbar14k.Minimum = -1500;
             this.tbar14k.Name = "tbar14k";
@@ -324,7 +330,7 @@
             // lbl14k
             // 
             this.lbl14k.AutoSize = true;
-            this.lbl14k.Location = new System.Drawing.Point(553, 84);
+            this.lbl14k.Location = new System.Drawing.Point(554, 144);
             this.lbl14k.Name = "lbl14k";
             this.lbl14k.Size = new System.Drawing.Size(41, 13);
             this.lbl14k.TabIndex = 5;
@@ -332,7 +338,7 @@
             // 
             // tbar16k
             // 
-            this.tbar16k.Location = new System.Drawing.Point(607, 100);
+            this.tbar16k.Location = new System.Drawing.Point(608, 160);
             this.tbar16k.Maximum = 1500;
             this.tbar16k.Minimum = -1500;
             this.tbar16k.Name = "tbar16k";
@@ -346,7 +352,7 @@
             // lbl16k
             // 
             this.lbl16k.AutoSize = true;
-            this.lbl16k.Location = new System.Drawing.Point(605, 84);
+            this.lbl16k.Location = new System.Drawing.Point(606, 144);
             this.lbl16k.Name = "lbl16k";
             this.lbl16k.Size = new System.Drawing.Size(41, 13);
             this.lbl16k.TabIndex = 5;
@@ -355,7 +361,7 @@
             // lblMas
             // 
             this.lblMas.AutoSize = true;
-            this.lblMas.Location = new System.Drawing.Point(129, 100);
+            this.lblMas.Location = new System.Drawing.Point(130, 160);
             this.lblMas.Name = "lblMas";
             this.lblMas.Size = new System.Drawing.Size(13, 13);
             this.lblMas.TabIndex = 6;
@@ -364,7 +370,7 @@
             // lblMenos
             // 
             this.lblMenos.AutoSize = true;
-            this.lblMenos.Location = new System.Drawing.Point(129, 211);
+            this.lblMenos.Location = new System.Drawing.Point(130, 271);
             this.lblMenos.Name = "lblMenos";
             this.lblMenos.Size = new System.Drawing.Size(13, 13);
             this.lblMenos.TabIndex = 6;
@@ -392,7 +398,7 @@
             "Soft",
             "Soft Rock",
             "Techno"});
-            this.cboxWinampPresets.Location = new System.Drawing.Point(15, 285);
+            this.cboxWinampPresets.Location = new System.Drawing.Point(16, 345);
             this.cboxWinampPresets.Name = "cboxWinampPresets";
             this.cboxWinampPresets.Size = new System.Drawing.Size(160, 21);
             this.cboxWinampPresets.TabIndex = 7;
@@ -401,7 +407,7 @@
             // lblWinampPresets
             // 
             this.lblWinampPresets.AutoSize = true;
-            this.lblWinampPresets.Location = new System.Drawing.Point(40, 269);
+            this.lblWinampPresets.Location = new System.Drawing.Point(41, 329);
             this.lblWinampPresets.Name = "lblWinampPresets";
             this.lblWinampPresets.Size = new System.Drawing.Size(112, 13);
             this.lblWinampPresets.TabIndex = 8;
@@ -409,7 +415,7 @@
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(15, 36);
+            this.btnLoad.Location = new System.Drawing.Point(16, 96);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(75, 23);
             this.btnLoad.TabIndex = 9;
@@ -419,7 +425,7 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(100, 36);
+            this.btnPlay.Location = new System.Drawing.Point(101, 96);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(75, 23);
             this.btnPlay.TabIndex = 9;
@@ -429,7 +435,7 @@
             // 
             // btnPause
             // 
-            this.btnPause.Location = new System.Drawing.Point(181, 36);
+            this.btnPause.Location = new System.Drawing.Point(182, 96);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(75, 23);
             this.btnPause.TabIndex = 9;
@@ -439,7 +445,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(262, 36);
+            this.btnStop.Location = new System.Drawing.Point(263, 96);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 9;
@@ -450,7 +456,7 @@
             // lblSampleRate
             // 
             this.lblSampleRate.AutoSize = true;
-            this.lblSampleRate.Location = new System.Drawing.Point(352, 41);
+            this.lblSampleRate.Location = new System.Drawing.Point(353, 101);
             this.lblSampleRate.Name = "lblSampleRate";
             this.lblSampleRate.Size = new System.Drawing.Size(71, 13);
             this.lblSampleRate.TabIndex = 10;
@@ -459,7 +465,7 @@
             // lblSong
             // 
             this.lblSong.AutoSize = true;
-            this.lblSong.Location = new System.Drawing.Point(12, 17);
+            this.lblSong.Location = new System.Drawing.Point(16, 27);
             this.lblSong.Name = "lblSong";
             this.lblSong.Size = new System.Drawing.Size(37, 13);
             this.lblSong.TabIndex = 11;
@@ -467,7 +473,7 @@
             // 
             // btnLoadEDJ
             // 
-            this.btnLoadEDJ.Location = new System.Drawing.Point(199, 240);
+            this.btnLoadEDJ.Location = new System.Drawing.Point(200, 300);
             this.btnLoadEDJ.Name = "btnLoadEDJ";
             this.btnLoadEDJ.Size = new System.Drawing.Size(131, 23);
             this.btnLoadEDJ.TabIndex = 12;
@@ -477,7 +483,7 @@
             // 
             // btnSaveEQSettings
             // 
-            this.btnSaveEQSettings.Location = new System.Drawing.Point(355, 240);
+            this.btnSaveEQSettings.Location = new System.Drawing.Point(356, 300);
             this.btnSaveEQSettings.Name = "btnSaveEQSettings";
             this.btnSaveEQSettings.Size = new System.Drawing.Size(131, 23);
             this.btnSaveEQSettings.TabIndex = 12;
@@ -487,7 +493,7 @@
             // 
             // btnResetEQ
             // 
-            this.btnResetEQ.Location = new System.Drawing.Point(515, 240);
+            this.btnResetEQ.Location = new System.Drawing.Point(516, 300);
             this.btnResetEQ.Name = "btnResetEQ";
             this.btnResetEQ.Size = new System.Drawing.Size(131, 23);
             this.btnResetEQ.TabIndex = 12;
@@ -500,7 +506,7 @@
             this.chkboxAutoEQ.AutoSize = true;
             this.chkboxAutoEQ.Checked = true;
             this.chkboxAutoEQ.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkboxAutoEQ.Location = new System.Drawing.Point(199, 270);
+            this.chkboxAutoEQ.Location = new System.Drawing.Point(200, 330);
             this.chkboxAutoEQ.Name = "chkboxAutoEQ";
             this.chkboxAutoEQ.Size = new System.Drawing.Size(144, 17);
             this.chkboxAutoEQ.TabIndex = 13;
@@ -513,7 +519,7 @@
             this.chkboxEQOn.AutoSize = true;
             this.chkboxEQOn.Checked = true;
             this.chkboxEQOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkboxEQOn.Location = new System.Drawing.Point(199, 293);
+            this.chkboxEQOn.Location = new System.Drawing.Point(200, 353);
             this.chkboxEQOn.Name = "chkboxEQOn";
             this.chkboxEQOn.Size = new System.Drawing.Size(107, 17);
             this.chkboxEQOn.TabIndex = 13;
@@ -524,7 +530,7 @@
             // chkboxNormal
             // 
             this.chkboxNormal.AutoSize = true;
-            this.chkboxNormal.Location = new System.Drawing.Point(199, 316);
+            this.chkboxNormal.Location = new System.Drawing.Point(200, 376);
             this.chkboxNormal.Name = "chkboxNormal";
             this.chkboxNormal.Size = new System.Drawing.Size(104, 17);
             this.chkboxNormal.TabIndex = 13;
@@ -532,11 +538,46 @@
             this.chkboxNormal.UseVisualStyleBackColor = true;
             this.chkboxNormal.CheckedChanged += new System.EventHandler(this.chkboxNormal_CheckedChanged);
             // 
+            // progPlayback
+            // 
+            this.progPlayback.ForeColor = System.Drawing.Color.Red;
+            this.progPlayback.Location = new System.Drawing.Point(16, 72);
+            this.progPlayback.Name = "progPlayback";
+            this.progPlayback.Size = new System.Drawing.Size(531, 10);
+            this.progPlayback.Step = 1;
+            this.progPlayback.TabIndex = 14;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lblDuration
+            // 
+            this.lblDuration.AutoSize = true;
+            this.lblDuration.Location = new System.Drawing.Point(16, 53);
+            this.lblDuration.Name = "lblDuration";
+            this.lblDuration.Size = new System.Drawing.Size(50, 13);
+            this.lblDuration.TabIndex = 15;
+            this.lblDuration.Text = "Duration:";
+            // 
+            // lblPosition
+            // 
+            this.lblPosition.AutoSize = true;
+            this.lblPosition.Location = new System.Drawing.Point(159, 53);
+            this.lblPosition.Name = "lblPosition";
+            this.lblPosition.Size = new System.Drawing.Size(47, 13);
+            this.lblPosition.TabIndex = 16;
+            this.lblPosition.Text = "Position:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 352);
+            this.ClientSize = new System.Drawing.Size(706, 520);
+            this.Controls.Add(this.lblPosition);
+            this.Controls.Add(this.lblDuration);
+            this.Controls.Add(this.progPlayback);
             this.Controls.Add(this.chkboxNormal);
             this.Controls.Add(this.chkboxEQOn);
             this.Controls.Add(this.chkboxAutoEQ);
@@ -642,6 +683,10 @@
         private System.Windows.Forms.CheckBox chkboxEQOn;
         private System.Windows.Forms.CheckBox chkboxNormal;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ProgressBar progPlayback;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblDuration;
+        private System.Windows.Forms.Label lblPosition;
     }
 }
 

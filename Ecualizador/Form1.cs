@@ -16,6 +16,9 @@ namespace Ecualizador
         private IntPtr m_hWndVuMeterLeft;
         private IntPtr m_hWndVuMeterRight;
         private string m_strLoadedSongPathname = "";
+        private double songduration = 0;
+        byte[] m_byteBuffer = null;
+        private const byte KEYCODE = 0x45;
 
         public MainForm()
         {
@@ -172,11 +175,11 @@ namespace Ecualizador
                 "Supported Sounds (*.mp3;*.mp2;*.wav;*.ogg;*.aiff;*.wma;*.wmv;*.asx;*.asf;" +
                 "*.m4a;*.mp4;*.flac;*.aac;*.ac3;*.wv;" +
                 "*.au;*.aif;*.w64;*.voc;*.sf;*.paf;*.pvf;*.caf;*.svx ;" +
-                "*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3;*.cda)|" +
+                "*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3;*.cda;*.xxx)|" +
                 "*.mp3;*.mp2;*.wav;*.ogg;*.aiff;*.wma;*.wmv;*.asx;*.asf;" +
                 "*.m4a;*.mp4;*.flac;*.aac;*.ac3;*.wv;" +
                 "*.au;*.aif;*.w64;*.voc;*.sf;*.paf;*.pvf;*.caf;*.svx ;" +
-                "*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3;*.cda|" +
+                "*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3;*.cda;*.xxx|" +
                 "MP3 and MP2 sounds (*.mp3;*.mp2)|*.mp3;*.mp2|" +
                 "AAC and MP4 sounds (*.aac;*.mp4)|*.aac;*.mp4|" +
                 "WAV sounds (*.wav)|*.wav|" +
@@ -190,17 +193,44 @@ namespace Ecualizador
                 "MOD music (*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3)|*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3|" +
                 "CD tracks (*.cda)|*.cda|" +
                 "All files (*.*)|*.*";
+            // stop and close any loaded sound
+            audioDjStudio1.StopSound(0);
+            audioDjStudio1.CloseSound(0);
+
             openFileDialog1.FileName = "";
             openFileDialog1.InitialDirectory = audioDjStudio1.SoundsDirectory;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if (audioDjStudio1.LoadSound(0, openFileDialog1.FileName) == enumErrorCodes.NOERROR) // carga en fichero en el player 0
+                // vemos si el fichero esta cifrado *.xxx
+                bool cifrado = false;
+
+                if (Path.GetExtension(openFileDialog1.FileName) == ".xxx") cifrado = true;
+                FileStream streamFile = new FileStream(openFileDialog1.FileName, FileMode.Open);
+                BinaryReader binReader = new BinaryReader(streamFile);
+
+                m_byteBuffer = new byte[streamFile.Length];
+                int read = binReader.Read(m_byteBuffer, 0, (int)streamFile.Length);
+
+                if (cifrado)
+                {
+                    lblSong.Text = "Descifrando";
+                    for (int i= 0; i < read; i++)
+                    {
+                        m_byteBuffer[i] ^= KEYCODE;
+                    }
+                    lblSong.Text = "Descifrado acabado";
+                }
+
+                if (audioDjStudio1.LoadSoundFromMemory(0, m_byteBuffer, (Int32)streamFile.Length) == enumErrorCodes.NOERROR) // carga en fichero en el player 0
                 {
                     m_strLoadedSongPathname = openFileDialog1.FileName;
                     lblSong.Text = Path.GetFileName(m_strLoadedSongPathname);
 
                     // resetea las bandas del ecualizador
                     CreateEqualizerBands(true);
+                    // recoge la duración de la canción cargada
+                    audioDjStudio1.SoundDurationGet(0, ref songduration, false); // millisecs
+                    lblDuration.Text = "Duration: " + convertMillisecsToString(songduration);
                 }
                 else
                 {
@@ -209,9 +239,17 @@ namespace Ecualizador
             }
         }
 
+        private string convertMillisecsToString(double millisecs)
+        {
+            TimeSpan t = TimeSpan.FromMilliseconds(millisecs);
+
+            return string.Format("{0:D2}:{1:D2}.{2:D3}", t.Minutes, t.Seconds, t.Milliseconds);
+        }
+
         private void btnPlay_Click(object sender, EventArgs e)
         {
             audioDjStudio1.PlaySound(0); // reproduce lo que hay cargado en el Player 0
+            timer1.Start();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -235,6 +273,9 @@ namespace Ecualizador
         private void btnStop_Click(object sender, EventArgs e)
         {
             audioDjStudio1.StopSound(0); // parar el player 0
+            timer1.Stop();
+            progPlayback.Value = 0;
+            lblPosition.Text = "Position: ";
         }
 
         private void tbarVolumen_Scroll(object sender, EventArgs e)
@@ -351,6 +392,25 @@ namespace Ecualizador
         private void chkboxNormal_CheckedChanged(object sender, EventArgs e)
         {
             audioDjStudio1.Effects.NormalizationEnable(0, chkboxNormal.Checked, 100, 100, 100);
+        }
+
+        // evento cuando se acaba una canción
+        private void audioDjStudio1_SoundDone(object sender, PlayerEventArgs e)
+        {
+            lblSong.Text = "(none)";
+            progPlayback.Value = 0;
+            lblPosition.Text = "Position: ";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            double position = 0;
+            audioDjStudio1.SoundPositionGet(0, ref position, false);
+            lblPosition.Text = "Position: " + convertMillisecsToString(position);
+
+            double percentage = 0;
+            percentage = position / songduration * 100.00;
+            progPlayback.Value = (int)percentage;
         }
     }
 }
