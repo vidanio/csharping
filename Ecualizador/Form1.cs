@@ -25,26 +25,6 @@ namespace Ecualizador
             InitializeComponent();
         }
 
-        private IntPtr CreateVuMeter(Label ctrlPosition, enumGraphicBarOrientations nOrientation)
-        {
-            // crear una barra gráfica
-            IntPtr hWnd = audioDjStudio1.GraphicBarsManager.Create(this.Handle, ctrlPosition.Left, ctrlPosition.Top, ctrlPosition.Width, ctrlPosition.Height);
-
-            // pone el rango de la barra gráfica
-            audioDjStudio1.GraphicBarsManager.SetRange(hWnd, 0, 32767);
-            // necesario para usar Filtros y Normalizador
-            audioDjStudio1.CustomDSP.UseFloatSamples(true);
-
-            // ajusta el resto de settings de las barras gráficas
-            GRAPHIC_BAR_SETTINGS settings = new GRAPHIC_BAR_SETTINGS();
-            audioDjStudio1.GraphicBarsManager.GetGraphicalSettings(hWnd, ref settings);
-            settings.bAutomaticDrop = true;
-            settings.nOrientation = nOrientation;
-            audioDjStudio1.GraphicBarsManager.SetGraphicalSettings(hWnd, settings);
-
-            return hWnd;
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Verifica la presencia de tarjetas de audio
@@ -58,19 +38,15 @@ namespace Ecualizador
             // Iniciamos el sistema de audio
             audioDjStudio1.InitSoundSystem(1, 0, 0, 0, 0, -1);
 
-            // creamos y mostramos el VUMeter para Player 0
-            audioDjStudio1.DisplayVUMeter.Create(0, IntPtr.Zero); // puntero handler Wnd inicializado
+            // vumeter integrado
+            audioDjStudio1.DisplayVUMeter.Create(0, lblVumeter.Handle);
             audioDjStudio1.DisplayVUMeter.Show(0, true);
-            // VUMeter izqdo
-            m_hWndVuMeterLeft = CreateVuMeter(lblMeterLeft, enumGraphicBarOrientations.GRAPHIC_BAR_ORIENT_VERTICAL);
-            // VUMeter drcho
-            m_hWndVuMeterRight = CreateVuMeter(lblMeterRight, enumGraphicBarOrientations.GRAPHIC_BAR_ORIENT_VERTICAL);
 
-            // spectrum
+            // spectrum integrado
             audioDjStudio1.DisplaySpectrum.Create(0, lblSpectrum.Handle);
             audioDjStudio1.DisplaySpectrum.Show(0, true);
 
-            // osciloscopio
+            // osciloscopio integrado
             audioDjStudio1.DisplayOscilloscope.Create(0, lblOscilloscope.Handle);
             audioDjStudio1.DisplayOscilloscope.set_ColorLine(0, Color.Red);
             audioDjStudio1.DisplayOscilloscope.Show(0, true);
@@ -162,13 +138,6 @@ namespace Ecualizador
                     case 9: tbar16k.Value = (Int16)fGain * 100; break;
                 }
             }
-        }
-
-        // evento de cambio de valor en VUMeter
-        private void audioDjStudio1_VUMeterValueChange(object sender, VUMeterValueChangeEventArgs e)
-        {
-            audioDjStudio1.GraphicBarsManager.SetValue(m_hWndVuMeterLeft, e.nPeakLeft); // dibuja valor en las barras graficas
-            audioDjStudio1.GraphicBarsManager.SetValue(m_hWndVuMeterRight, e.nPeakRight);
         }
 
         // evento de carga de ecualizador

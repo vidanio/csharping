@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.audioDjStudio1 = new AudioDjStudio.AudioDjStudio();
-            this.lblMeterLeft = new System.Windows.Forms.Label();
-            this.lblMeterRight = new System.Windows.Forms.Label();
             this.tbarVolumen = new System.Windows.Forms.TrackBar();
             this.lblVolume = new System.Windows.Forms.Label();
             this.tbar80 = new System.Windows.Forms.TrackBar();
@@ -77,6 +75,7 @@
             this.lblPosition = new System.Windows.Forms.Label();
             this.lblSpectrum = new System.Windows.Forms.Label();
             this.lblOscilloscope = new System.Windows.Forms.Label();
+            this.lblVumeter = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -99,24 +98,7 @@
             this.audioDjStudio1.Size = new System.Drawing.Size(48, 48);
             this.audioDjStudio1.TabIndex = 0;
             this.audioDjStudio1.SoundDone += new AudioDjStudio.AudioDjStudio.PlayerEventHandler(this.audioDjStudio1_SoundDone);
-            this.audioDjStudio1.VUMeterValueChange += new AudioDjStudio.AudioDjStudio.VUMeterValueChangeEventHandler(this.audioDjStudio1_VUMeterValueChange);
             this.audioDjStudio1.EqualizerLoaded += new AudioDjStudio.AudioDjStudio.PlayerEventHandler(this.audioDjStudio1_EqualizerLoaded);
-            // 
-            // lblMeterLeft
-            // 
-            this.lblMeterLeft.BackColor = System.Drawing.Color.Black;
-            this.lblMeterLeft.Location = new System.Drawing.Point(84, 165);
-            this.lblMeterLeft.Name = "lblMeterLeft";
-            this.lblMeterLeft.Size = new System.Drawing.Size(12, 140);
-            this.lblMeterLeft.TabIndex = 1;
-            // 
-            // lblMeterRight
-            // 
-            this.lblMeterRight.BackColor = System.Drawing.Color.Black;
-            this.lblMeterRight.Location = new System.Drawing.Point(96, 165);
-            this.lblMeterRight.Name = "lblMeterRight";
-            this.lblMeterRight.Size = new System.Drawing.Size(12, 140);
-            this.lblMeterRight.TabIndex = 1;
             // 
             // tbarVolumen
             // 
@@ -588,11 +570,20 @@
             this.lblOscilloscope.Size = new System.Drawing.Size(189, 69);
             this.lblOscilloscope.TabIndex = 17;
             // 
+            // lblVumeter
+            // 
+            this.lblVumeter.BackColor = System.Drawing.Color.Black;
+            this.lblVumeter.Location = new System.Drawing.Point(85, 174);
+            this.lblVumeter.Name = "lblVumeter";
+            this.lblVumeter.Size = new System.Drawing.Size(24, 140);
+            this.lblVumeter.TabIndex = 18;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 463);
+            this.Controls.Add(this.lblVumeter);
             this.Controls.Add(this.lblOscilloscope);
             this.Controls.Add(this.lblSpectrum);
             this.Controls.Add(this.lblPosition);
@@ -636,8 +627,6 @@
             this.Controls.Add(this.tbar80);
             this.Controls.Add(this.lblVolume);
             this.Controls.Add(this.tbarVolumen);
-            this.Controls.Add(this.lblMeterRight);
-            this.Controls.Add(this.lblMeterLeft);
             this.Controls.Add(this.audioDjStudio1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -662,8 +651,6 @@
         #endregion
 
         private AudioDjStudio.AudioDjStudio audioDjStudio1;
-        private System.Windows.Forms.Label lblMeterLeft;
-        private System.Windows.Forms.Label lblMeterRight;
         private System.Windows.Forms.TrackBar tbarVolumen;
         private System.Windows.Forms.Label lblVolume;
         private System.Windows.Forms.TrackBar tbar80;
@@ -709,6 +696,7 @@
         private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.Label lblSpectrum;
         private System.Windows.Forms.Label lblOscilloscope;
+        private System.Windows.Forms.Label lblVumeter;
     }
 }
 
