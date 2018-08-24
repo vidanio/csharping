@@ -707,8 +707,8 @@
             this.Controls.Add(this.lblVolume);
             this.Controls.Add(this.tbarVolumen);
             this.Controls.Add(this.audioDjStudio1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(709, 574);
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(709, 574);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
