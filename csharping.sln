@@ -63,7 +63,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dibujar", "Dibujar\Dibujar.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EQF2EDJ", "EQF2EDJ\EQF2EDJ.csproj", "{60841878-6679-4647-B5F5-9AB118C7F54E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecualizador", "..\Ecualizador\Ecualizador.csproj", "{6A8D944D-61F7-4C99-9F46-A76AAE81006F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecualizador", "Ecualizador\Ecualizador.csproj", "{6A8D944D-61F7-4C99-9F46-A76AAE81006F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

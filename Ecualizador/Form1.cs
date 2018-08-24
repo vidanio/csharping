@@ -29,6 +29,8 @@ namespace Ecualizador
 
             // pone el rango de la barra gráfica
             audioDjStudio1.GraphicBarsManager.SetRange(hWnd, 0, 32767);
+            // necesario para usar Filtros y Normalizador
+            audioDjStudio1.CustomDSP.UseFloatSamples(true);
 
             // ajusta el resto de settings de las barras gráficas
             GRAPHIC_BAR_SETTINGS settings = new GRAPHIC_BAR_SETTINGS();
@@ -286,19 +288,6 @@ namespace Ecualizador
             chkboxEQOn.Checked = true;
         }
 
-        private void chkboxEQOn_CheckedChanged(object sender, EventArgs e)
-        {
-            audioDjStudio1.Effects.EqualizerEnable(0, chkboxEQOn.Checked);
-        }
-
-        private void chkboxAutoEQ_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkboxAutoEQ.Checked)
-                audioDjStudio1.EnableAutoEqualiz = true;
-            else
-                audioDjStudio1.EnableAutoEqualiz = false;
-        }
-
         private void tbar80_Scroll(object sender, EventArgs e)
         {
             audioDjStudio1.Effects.EqualizerBandGainSet(0, 80, ((float)tbar80.Value / 100.0f));
@@ -347,6 +336,21 @@ namespace Ecualizador
         private void tbar16k_Scroll(object sender, EventArgs e)
         {
             audioDjStudio1.Effects.EqualizerBandGainSet(0, 16000, ((float)tbar16k.Value / 100.0f));
+        }
+
+        private void chkboxEQOn_CheckedChanged(object sender, EventArgs e)
+        {
+            audioDjStudio1.Effects.EqualizerEnable(0, chkboxEQOn.Checked);
+        }
+
+        private void chkboxAutoEQ_CheckedChanged(object sender, EventArgs e)
+        {
+            audioDjStudio1.EnableAutoEqualiz = chkboxAutoEQ.Checked;
+        }
+
+        private void chkboxNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            audioDjStudio1.Effects.NormalizationEnable(0, chkboxNormal.Checked, 100, 100, 100);
         }
     }
 }

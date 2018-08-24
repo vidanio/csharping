@@ -530,6 +530,7 @@
             this.chkboxNormal.TabIndex = 13;
             this.chkboxNormal.Text = "Normalize sound";
             this.chkboxNormal.UseVisualStyleBackColor = true;
+            this.chkboxNormal.CheckedChanged += new System.EventHandler(this.chkboxNormal_CheckedChanged);
             // 
             // MainForm
             // 
