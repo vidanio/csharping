@@ -49,6 +49,11 @@ namespace Ecualizador
             audioDjStudio1.DisplayOscilloscope.set_ColorLine(0, Color.Red);
             audioDjStudio1.DisplayOscilloscope.Show(0, true);
 
+            // waveform
+            audioDjStudio1.DisplayWaveform.Create(0, lblWaveform.Handle);
+            audioDjStudio1.DisplayWaveform.set_ColorLine(0, Color.Red);
+            audioDjStudio1.DisplayWaveform.Show(0, true);
+
             cboxWinampPresets.SelectedIndex = 0;
             audioDjStudio1.EnableAutoEqualiz = true;
 
@@ -389,6 +394,7 @@ namespace Ecualizador
             double percentage = 0;
             percentage = position / songduration * 100.00;
             progPlayback.Value = (int)percentage;
+            lblPercent.Text = string.Format("{0} %", (int)percentage);
         }
 
         private void resetInfo()
@@ -397,6 +403,7 @@ namespace Ecualizador
             lblPosition.Text = "Position: ";
             lblArtist.Text = "Artist: ";
             lblTitle.Text = "Title: ";
+            lblPercent.Text = "0 %";
         }
     }
 }

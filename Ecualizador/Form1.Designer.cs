@@ -78,6 +78,11 @@
             this.lblVumeter = new System.Windows.Forms.Label();
             this.lblArtist = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.lblWaveform = new System.Windows.Forms.Label();
+            this.lbltxtOscilloscope = new System.Windows.Forms.Label();
+            this.lbltxtSpectrum = new System.Windows.Forms.Label();
+            this.lbltxtWaveform = new System.Windows.Forms.Label();
+            this.lblPercent = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -95,7 +100,7 @@
             // 
             this.audioDjStudio1.FaderSettings = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
             this.audioDjStudio1.LastError = AudioDjStudio.enumErrorCodes.ERR_NOERROR;
-            this.audioDjStudio1.Location = new System.Drawing.Point(612, 93);
+            this.audioDjStudio1.Location = new System.Drawing.Point(611, 15);
             this.audioDjStudio1.Name = "audioDjStudio1";
             this.audioDjStudio1.Size = new System.Drawing.Size(48, 48);
             this.audioDjStudio1.TabIndex = 0;
@@ -492,7 +497,7 @@
             this.chkboxAutoEQ.AutoSize = true;
             this.chkboxAutoEQ.Checked = true;
             this.chkboxAutoEQ.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkboxAutoEQ.Location = new System.Drawing.Point(203, 351);
+            this.chkboxAutoEQ.Location = new System.Drawing.Point(359, 370);
             this.chkboxAutoEQ.Name = "chkboxAutoEQ";
             this.chkboxAutoEQ.Size = new System.Drawing.Size(144, 17);
             this.chkboxAutoEQ.TabIndex = 13;
@@ -505,7 +510,7 @@
             this.chkboxEQOn.AutoSize = true;
             this.chkboxEQOn.Checked = true;
             this.chkboxEQOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkboxEQOn.Location = new System.Drawing.Point(203, 374);
+            this.chkboxEQOn.Location = new System.Drawing.Point(227, 370);
             this.chkboxEQOn.Name = "chkboxEQOn";
             this.chkboxEQOn.Size = new System.Drawing.Size(107, 17);
             this.chkboxEQOn.TabIndex = 13;
@@ -516,7 +521,7 @@
             // chkboxNormal
             // 
             this.chkboxNormal.AutoSize = true;
-            this.chkboxNormal.Location = new System.Drawing.Point(203, 397);
+            this.chkboxNormal.Location = new System.Drawing.Point(525, 370);
             this.chkboxNormal.Name = "chkboxNormal";
             this.chkboxNormal.Size = new System.Drawing.Size(104, 17);
             this.chkboxNormal.TabIndex = 13;
@@ -529,7 +534,7 @@
             this.progPlayback.ForeColor = System.Drawing.Color.Red;
             this.progPlayback.Location = new System.Drawing.Point(19, 93);
             this.progPlayback.Name = "progPlayback";
-            this.progPlayback.Size = new System.Drawing.Size(531, 10);
+            this.progPlayback.Size = new System.Drawing.Size(632, 10);
             this.progPlayback.Step = 1;
             this.progPlayback.TabIndex = 14;
             // 
@@ -559,7 +564,7 @@
             // lblSpectrum
             // 
             this.lblSpectrum.BackColor = System.Drawing.Color.Black;
-            this.lblSpectrum.Location = new System.Drawing.Point(404, 352);
+            this.lblSpectrum.Location = new System.Drawing.Point(238, 436);
             this.lblSpectrum.Name = "lblSpectrum";
             this.lblSpectrum.Size = new System.Drawing.Size(189, 69);
             this.lblSpectrum.TabIndex = 17;
@@ -567,7 +572,7 @@
             // lblOscilloscope
             // 
             this.lblOscilloscope.BackColor = System.Drawing.Color.Black;
-            this.lblOscilloscope.Location = new System.Drawing.Point(416, 9);
+            this.lblOscilloscope.Location = new System.Drawing.Point(16, 436);
             this.lblOscilloscope.Name = "lblOscilloscope";
             this.lblOscilloscope.Size = new System.Drawing.Size(189, 69);
             this.lblOscilloscope.TabIndex = 17;
@@ -598,15 +603,67 @@
             this.lblTitle.TabIndex = 20;
             this.lblTitle.Text = "Title:";
             // 
+            // lblWaveform
+            // 
+            this.lblWaveform.BackColor = System.Drawing.Color.Black;
+            this.lblWaveform.Location = new System.Drawing.Point(461, 436);
+            this.lblWaveform.Name = "lblWaveform";
+            this.lblWaveform.Size = new System.Drawing.Size(189, 69);
+            this.lblWaveform.TabIndex = 17;
+            // 
+            // lbltxtOscilloscope
+            // 
+            this.lbltxtOscilloscope.AutoSize = true;
+            this.lbltxtOscilloscope.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltxtOscilloscope.Location = new System.Drawing.Point(67, 423);
+            this.lbltxtOscilloscope.Name = "lbltxtOscilloscope";
+            this.lbltxtOscilloscope.Size = new System.Drawing.Size(79, 13);
+            this.lbltxtOscilloscope.TabIndex = 21;
+            this.lbltxtOscilloscope.Text = "Oscilloscope";
+            // 
+            // lbltxtSpectrum
+            // 
+            this.lbltxtSpectrum.AutoSize = true;
+            this.lbltxtSpectrum.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltxtSpectrum.Location = new System.Drawing.Point(302, 423);
+            this.lbltxtSpectrum.Name = "lbltxtSpectrum";
+            this.lbltxtSpectrum.Size = new System.Drawing.Size(60, 13);
+            this.lbltxtSpectrum.TabIndex = 21;
+            this.lbltxtSpectrum.Text = "Spectrum";
+            // 
+            // lbltxtWaveform
+            // 
+            this.lbltxtWaveform.AutoSize = true;
+            this.lbltxtWaveform.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltxtWaveform.Location = new System.Drawing.Point(527, 423);
+            this.lbltxtWaveform.Name = "lbltxtWaveform";
+            this.lbltxtWaveform.Size = new System.Drawing.Size(64, 13);
+            this.lbltxtWaveform.TabIndex = 21;
+            this.lbltxtWaveform.Text = "Waveform";
+            // 
+            // lblPercent
+            // 
+            this.lblPercent.AutoSize = true;
+            this.lblPercent.Location = new System.Drawing.Point(356, 74);
+            this.lblPercent.Name = "lblPercent";
+            this.lblPercent.Size = new System.Drawing.Size(24, 13);
+            this.lblPercent.TabIndex = 22;
+            this.lblPercent.Text = "0 %";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 463);
+            this.ClientSize = new System.Drawing.Size(693, 535);
+            this.Controls.Add(this.lblPercent);
+            this.Controls.Add(this.lbltxtWaveform);
+            this.Controls.Add(this.lbltxtSpectrum);
+            this.Controls.Add(this.lbltxtOscilloscope);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblArtist);
             this.Controls.Add(this.lblVumeter);
             this.Controls.Add(this.lblOscilloscope);
+            this.Controls.Add(this.lblWaveform);
             this.Controls.Add(this.lblSpectrum);
             this.Controls.Add(this.lblPosition);
             this.Controls.Add(this.lblDuration);
@@ -650,6 +707,9 @@
             this.Controls.Add(this.lblVolume);
             this.Controls.Add(this.tbarVolumen);
             this.Controls.Add(this.audioDjStudio1);
+            this.MaximumSize = new System.Drawing.Size(709, 574);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(709, 574);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ecualizador";
@@ -721,6 +781,11 @@
         private System.Windows.Forms.Label lblVumeter;
         private System.Windows.Forms.Label lblArtist;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblWaveform;
+        private System.Windows.Forms.Label lbltxtOscilloscope;
+        private System.Windows.Forms.Label lbltxtSpectrum;
+        private System.Windows.Forms.Label lbltxtWaveform;
+        private System.Windows.Forms.Label lblPercent;
     }
 }
 
