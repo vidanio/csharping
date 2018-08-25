@@ -445,5 +445,32 @@ namespace Ecualizador
             timer1.Stop();
             timer1.Dispose();
         }
+
+        private void btnResetVal_Click(object sender, EventArgs e)
+        {
+            numGain.Value = 0;
+            numThresold.Value = -15;
+            numRatio.Value = 3;
+            numAttack.Value = 10;
+            numRelease.Value = 200;
+        }
+
+        private void btnLoadValues_Click(object sender, EventArgs e)
+        {
+            audioDjStudio1.Effects.CompressorReset(0);
+            audioDjStudio1.Effects.CompressorApply(0, enumChannelMasks.CHANNEL_MASK_ALL, (float)numGain.Value, (float)numThresold.Value, (float)numRatio.Value, (float)numAttack.Value, (float)numRelease.Value, 1);
+        }
+
+        private void chkCompressor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkCompressor.Checked)
+            {
+                audioDjStudio1.Effects.CompressorApply(0, enumChannelMasks.CHANNEL_MASK_ALL, (float)numGain.Value, (float)numThresold.Value, (float)numRatio.Value, (float)numAttack.Value, (float)numRelease.Value, 1);
+            }
+            else
+            {
+                audioDjStudio1.Effects.CompressorReset(0);
+            }
+        }
     }
 }

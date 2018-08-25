@@ -84,6 +84,20 @@
             this.lbltxtWaveform = new System.Windows.Forms.Label();
             this.lblPercent = new System.Windows.Forms.Label();
             this.PictureSpectrum = new System.Windows.Forms.PictureBox();
+            this.numThresold = new System.Windows.Forms.NumericUpDown();
+            this.numRelease = new System.Windows.Forms.NumericUpDown();
+            this.numAttack = new System.Windows.Forms.NumericUpDown();
+            this.numRatio = new System.Windows.Forms.NumericUpDown();
+            this.grpCompress = new System.Windows.Forms.GroupBox();
+            this.chkCompressor = new System.Windows.Forms.CheckBox();
+            this.numGain = new System.Windows.Forms.NumericUpDown();
+            this.lbltxtGain = new System.Windows.Forms.Label();
+            this.lbltxtThresold = new System.Windows.Forms.Label();
+            this.lbltxtRatio = new System.Windows.Forms.Label();
+            this.lbltxtAttack = new System.Windows.Forms.Label();
+            this.lbltxtRelease = new System.Windows.Forms.Label();
+            this.btnResetVal = new System.Windows.Forms.Button();
+            this.btnLoadValues = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -96,6 +110,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbar14k)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar16k)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureSpectrum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numThresold)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRelease)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAttack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatio)).BeginInit();
+            this.grpCompress.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numGain)).BeginInit();
             this.SuspendLayout();
             // 
             // audioDjStudio1
@@ -566,7 +586,7 @@
             // lblSpectrum
             // 
             this.lblSpectrum.BackColor = System.Drawing.Color.Black;
-            this.lblSpectrum.Location = new System.Drawing.Point(238, 436);
+            this.lblSpectrum.Location = new System.Drawing.Point(238, 499);
             this.lblSpectrum.Name = "lblSpectrum";
             this.lblSpectrum.Size = new System.Drawing.Size(189, 69);
             this.lblSpectrum.TabIndex = 17;
@@ -574,7 +594,7 @@
             // lblOscilloscope
             // 
             this.lblOscilloscope.BackColor = System.Drawing.Color.Black;
-            this.lblOscilloscope.Location = new System.Drawing.Point(16, 436);
+            this.lblOscilloscope.Location = new System.Drawing.Point(16, 499);
             this.lblOscilloscope.Name = "lblOscilloscope";
             this.lblOscilloscope.Size = new System.Drawing.Size(189, 69);
             this.lblOscilloscope.TabIndex = 17;
@@ -608,7 +628,7 @@
             // lblWaveform
             // 
             this.lblWaveform.BackColor = System.Drawing.Color.Black;
-            this.lblWaveform.Location = new System.Drawing.Point(461, 436);
+            this.lblWaveform.Location = new System.Drawing.Point(461, 499);
             this.lblWaveform.Name = "lblWaveform";
             this.lblWaveform.Size = new System.Drawing.Size(189, 69);
             this.lblWaveform.TabIndex = 17;
@@ -617,7 +637,7 @@
             // 
             this.lbltxtOscilloscope.AutoSize = true;
             this.lbltxtOscilloscope.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltxtOscilloscope.Location = new System.Drawing.Point(67, 423);
+            this.lbltxtOscilloscope.Location = new System.Drawing.Point(67, 486);
             this.lbltxtOscilloscope.Name = "lbltxtOscilloscope";
             this.lbltxtOscilloscope.Size = new System.Drawing.Size(79, 13);
             this.lbltxtOscilloscope.TabIndex = 21;
@@ -627,7 +647,7 @@
             // 
             this.lbltxtSpectrum.AutoSize = true;
             this.lbltxtSpectrum.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltxtSpectrum.Location = new System.Drawing.Point(302, 423);
+            this.lbltxtSpectrum.Location = new System.Drawing.Point(302, 486);
             this.lbltxtSpectrum.Name = "lbltxtSpectrum";
             this.lbltxtSpectrum.Size = new System.Drawing.Size(60, 13);
             this.lbltxtSpectrum.TabIndex = 21;
@@ -637,7 +657,7 @@
             // 
             this.lbltxtWaveform.AutoSize = true;
             this.lbltxtWaveform.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbltxtWaveform.Location = new System.Drawing.Point(527, 423);
+            this.lbltxtWaveform.Location = new System.Drawing.Point(527, 486);
             this.lbltxtWaveform.Name = "lbltxtWaveform";
             this.lbltxtWaveform.Size = new System.Drawing.Size(64, 13);
             this.lbltxtWaveform.TabIndex = 21;
@@ -654,17 +674,222 @@
             // 
             // PictureSpectrum
             // 
-            this.PictureSpectrum.Location = new System.Drawing.Point(16, 522);
+            this.PictureSpectrum.Location = new System.Drawing.Point(16, 585);
             this.PictureSpectrum.Name = "PictureSpectrum";
             this.PictureSpectrum.Size = new System.Drawing.Size(634, 164);
             this.PictureSpectrum.TabIndex = 23;
             this.PictureSpectrum.TabStop = false;
             // 
+            // numThresold
+            // 
+            this.numThresold.Location = new System.Drawing.Point(226, 18);
+            this.numThresold.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numThresold.Minimum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            -2147483648});
+            this.numThresold.Name = "numThresold";
+            this.numThresold.Size = new System.Drawing.Size(57, 20);
+            this.numThresold.TabIndex = 24;
+            this.numThresold.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            -2147483648});
+            // 
+            // numRelease
+            // 
+            this.numRelease.Location = new System.Drawing.Point(387, 51);
+            this.numRelease.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.numRelease.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numRelease.Name = "numRelease";
+            this.numRelease.Size = new System.Drawing.Size(76, 20);
+            this.numRelease.TabIndex = 24;
+            this.numRelease.Value = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            // 
+            // numAttack
+            // 
+            this.numAttack.Location = new System.Drawing.Point(387, 18);
+            this.numAttack.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numAttack.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numAttack.Name = "numAttack";
+            this.numAttack.Size = new System.Drawing.Size(76, 20);
+            this.numAttack.TabIndex = 24;
+            this.numAttack.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            // 
+            // numRatio
+            // 
+            this.numRatio.Location = new System.Drawing.Point(225, 51);
+            this.numRatio.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numRatio.Name = "numRatio";
+            this.numRatio.Size = new System.Drawing.Size(58, 20);
+            this.numRatio.TabIndex = 24;
+            this.numRatio.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // grpCompress
+            // 
+            this.grpCompress.Controls.Add(this.btnLoadValues);
+            this.grpCompress.Controls.Add(this.btnResetVal);
+            this.grpCompress.Controls.Add(this.lbltxtRatio);
+            this.grpCompress.Controls.Add(this.lbltxtRelease);
+            this.grpCompress.Controls.Add(this.lbltxtAttack);
+            this.grpCompress.Controls.Add(this.lbltxtThresold);
+            this.grpCompress.Controls.Add(this.lbltxtGain);
+            this.grpCompress.Controls.Add(this.numAttack);
+            this.grpCompress.Controls.Add(this.numRatio);
+            this.grpCompress.Controls.Add(this.numThresold);
+            this.grpCompress.Controls.Add(this.numGain);
+            this.grpCompress.Controls.Add(this.numRelease);
+            this.grpCompress.Controls.Add(this.chkCompressor);
+            this.grpCompress.Location = new System.Drawing.Point(16, 393);
+            this.grpCompress.Name = "grpCompress";
+            this.grpCompress.Size = new System.Drawing.Size(635, 90);
+            this.grpCompress.TabIndex = 25;
+            this.grpCompress.TabStop = false;
+            this.grpCompress.Text = "Compressor";
+            // 
+            // chkCompressor
+            // 
+            this.chkCompressor.AutoSize = true;
+            this.chkCompressor.Location = new System.Drawing.Point(8, 19);
+            this.chkCompressor.Name = "chkCompressor";
+            this.chkCompressor.Size = new System.Drawing.Size(117, 17);
+            this.chkCompressor.TabIndex = 13;
+            this.chkCompressor.Text = "Enable Compressor";
+            this.chkCompressor.UseVisualStyleBackColor = true;
+            this.chkCompressor.CheckedChanged += new System.EventHandler(this.chkCompressor_CheckedChanged);
+            // 
+            // numGain
+            // 
+            this.numGain.Location = new System.Drawing.Point(66, 50);
+            this.numGain.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numGain.Minimum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            -2147483648});
+            this.numGain.Name = "numGain";
+            this.numGain.Size = new System.Drawing.Size(57, 20);
+            this.numGain.TabIndex = 24;
+            // 
+            // lbltxtGain
+            // 
+            this.lbltxtGain.AutoSize = true;
+            this.lbltxtGain.Location = new System.Drawing.Point(6, 52);
+            this.lbltxtGain.Name = "lbltxtGain";
+            this.lbltxtGain.Size = new System.Drawing.Size(54, 13);
+            this.lbltxtGain.TabIndex = 25;
+            this.lbltxtGain.Text = "Gain (dB):";
+            // 
+            // lbltxtThresold
+            // 
+            this.lbltxtThresold.AutoSize = true;
+            this.lbltxtThresold.Location = new System.Drawing.Point(147, 20);
+            this.lbltxtThresold.Name = "lbltxtThresold";
+            this.lbltxtThresold.Size = new System.Drawing.Size(73, 13);
+            this.lbltxtThresold.TabIndex = 26;
+            this.lbltxtThresold.Text = "Thresold (dB):";
+            // 
+            // lbltxtRatio
+            // 
+            this.lbltxtRatio.AutoSize = true;
+            this.lbltxtRatio.Location = new System.Drawing.Point(147, 52);
+            this.lbltxtRatio.Name = "lbltxtRatio";
+            this.lbltxtRatio.Size = new System.Drawing.Size(35, 13);
+            this.lbltxtRatio.TabIndex = 26;
+            this.lbltxtRatio.Text = "Ratio:";
+            // 
+            // lbltxtAttack
+            // 
+            this.lbltxtAttack.AutoSize = true;
+            this.lbltxtAttack.Location = new System.Drawing.Point(310, 23);
+            this.lbltxtAttack.Name = "lbltxtAttack";
+            this.lbltxtAttack.Size = new System.Drawing.Size(63, 13);
+            this.lbltxtAttack.TabIndex = 26;
+            this.lbltxtAttack.Text = "Attack (ms):";
+            // 
+            // lbltxtRelease
+            // 
+            this.lbltxtRelease.AutoSize = true;
+            this.lbltxtRelease.Location = new System.Drawing.Point(310, 53);
+            this.lbltxtRelease.Name = "lbltxtRelease";
+            this.lbltxtRelease.Size = new System.Drawing.Size(71, 13);
+            this.lbltxtRelease.TabIndex = 26;
+            this.lbltxtRelease.Text = "Release (ms):";
+            // 
+            // btnResetVal
+            // 
+            this.btnResetVal.BackColor = System.Drawing.Color.Blue;
+            this.btnResetVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetVal.ForeColor = System.Drawing.Color.White;
+            this.btnResetVal.Location = new System.Drawing.Point(503, 12);
+            this.btnResetVal.Name = "btnResetVal";
+            this.btnResetVal.Size = new System.Drawing.Size(110, 29);
+            this.btnResetVal.TabIndex = 27;
+            this.btnResetVal.Text = "Reset Values";
+            this.btnResetVal.UseVisualStyleBackColor = false;
+            this.btnResetVal.Click += new System.EventHandler(this.btnResetVal_Click);
+            // 
+            // btnLoadValues
+            // 
+            this.btnLoadValues.BackColor = System.Drawing.Color.Blue;
+            this.btnLoadValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadValues.ForeColor = System.Drawing.Color.White;
+            this.btnLoadValues.Location = new System.Drawing.Point(503, 45);
+            this.btnLoadValues.Name = "btnLoadValues";
+            this.btnLoadValues.Size = new System.Drawing.Size(110, 29);
+            this.btnLoadValues.TabIndex = 27;
+            this.btnLoadValues.Text = "Load Values";
+            this.btnLoadValues.UseVisualStyleBackColor = false;
+            this.btnLoadValues.Click += new System.EventHandler(this.btnLoadValues_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 698);
+            this.ClientSize = new System.Drawing.Size(674, 761);
+            this.Controls.Add(this.grpCompress);
             this.Controls.Add(this.PictureSpectrum);
             this.Controls.Add(this.lblPercent);
             this.Controls.Add(this.lbltxtWaveform);
@@ -719,7 +944,7 @@
             this.Controls.Add(this.tbarVolumen);
             this.Controls.Add(this.audioDjStudio1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(690, 737);
+            this.MaximumSize = new System.Drawing.Size(690, 800);
             this.MinimumSize = new System.Drawing.Size(690, 737);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -738,6 +963,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbar14k)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar16k)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureSpectrum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numThresold)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRelease)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAttack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRatio)).EndInit();
+            this.grpCompress.ResumeLayout(false);
+            this.grpCompress.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numGain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -800,6 +1032,20 @@
         private System.Windows.Forms.Label lbltxtWaveform;
         private System.Windows.Forms.Label lblPercent;
         private System.Windows.Forms.PictureBox PictureSpectrum;
+        private System.Windows.Forms.NumericUpDown numThresold;
+        private System.Windows.Forms.NumericUpDown numRelease;
+        private System.Windows.Forms.NumericUpDown numAttack;
+        private System.Windows.Forms.NumericUpDown numRatio;
+        private System.Windows.Forms.GroupBox grpCompress;
+        private System.Windows.Forms.Label lbltxtRatio;
+        private System.Windows.Forms.Label lbltxtThresold;
+        private System.Windows.Forms.Label lbltxtGain;
+        private System.Windows.Forms.NumericUpDown numGain;
+        private System.Windows.Forms.CheckBox chkCompressor;
+        private System.Windows.Forms.Label lbltxtAttack;
+        private System.Windows.Forms.Label lbltxtRelease;
+        private System.Windows.Forms.Button btnLoadValues;
+        private System.Windows.Forms.Button btnResetVal;
     }
 }
 
