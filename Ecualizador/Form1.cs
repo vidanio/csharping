@@ -55,6 +55,7 @@ namespace Ecualizador
 
             cboxWinampPresets.SelectedIndex = 0;
             audioDjStudio1.EnableAutoEqualiz = true;
+            audioDjStudio1.CustomDSP.UseFloatSamples(true); // necesario para normalizar
 
             CreateEqualizerBands(false);
         }
@@ -185,6 +186,14 @@ namespace Ecualizador
                 {
                     if (Path.GetExtension(openFileDialog1.FileName) == ".xxx") cifrado = true;
                     bytes = File.ReadAllBytes(openFileDialog1.FileName);
+                    // autoEQ manual ya que solo funciona automatico con LoadSound()
+                    if (audioDjStudio1.EnableAutoEqualiz)
+                    {
+                        if (File.Exists(openFileDialog1.FileName + ".edj"))
+                        {
+                            audioDjStudio1.Effects.EqualizerLoadFromFile(0, openFileDialog1.FileName + ".edj");
+                        }
+                    }
                 }
                 catch
                 {
