@@ -193,6 +193,13 @@ namespace Ecualizador
                         {
                             audioDjStudio1.Effects.EqualizerLoadFromFile(0, openFileDialog1.FileName + ".edj");
                         }
+                        else
+                        {
+                            if (cboxWinampPresets.SelectedIndex == 0)
+                                btnResetEQ_Click(sender, e);
+                            else
+                                audioDjStudio1.Effects.EqualizerLoadPresets(0, (enumEqualizerPresets)cboxWinampPresets.SelectedIndex - 1);
+                        }
                     }
                 }
                 catch
