@@ -201,7 +201,7 @@ namespace Ecualizador
                 // descifrado en RAM, si cifrado = true
                 if (cifrado) for (int i= 0; i < bytes.Length; i++) bytes[i] ^= KeyCode[i % 8];
 
-                if (audioDjStudio1.LoadSoundFromMemory(0, bytes, (Int32)bytes.Length) == enumErrorCodes.NOERROR) // carga en fichero en el player 0
+                if (audioDjStudio1.LoadSoundFromMemory(0, bytes, bytes.Length) == enumErrorCodes.NOERROR) // carga en fichero en el player 0
                 {
                     m_strLoadedSongPathname = openFileDialog1.FileName;
                     lblSong.Text = Path.GetFileName(m_strLoadedSongPathname);
@@ -274,7 +274,7 @@ namespace Ecualizador
         private void tbarVolumen_Scroll(object sender, EventArgs e)
         {
             // ajustamos volumen del player 0
-            audioDjStudio1.StreamVolumeLevelSet(0, (Int16)tbarVolumen.Value, enumVolumeScales.SCALE_LINEAR);
+            audioDjStudio1.StreamVolumeLevelSet(0, (float)tbarVolumen.Value, enumVolumeScales.SCALE_LINEAR);
         }
 
         private void btnLoadEDJ_Click(object sender, EventArgs e)
@@ -310,7 +310,7 @@ namespace Ecualizador
         {
             if (cboxWinampPresets.SelectedIndex == 0)
             {
-                // resetear EQ 
+                // resetear EQ y salir
                 btnResetEQ_Click(sender, e);
                 return;
             }
