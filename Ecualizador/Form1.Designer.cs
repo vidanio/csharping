@@ -83,6 +83,7 @@
             this.lbltxtSpectrum = new System.Windows.Forms.Label();
             this.lbltxtWaveform = new System.Windows.Forms.Label();
             this.lblPercent = new System.Windows.Forms.Label();
+            this.PictureSpectrum = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -94,6 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbar12k)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar14k)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar16k)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureSpectrum)).BeginInit();
             this.SuspendLayout();
             // 
             // audioDjStudio1
@@ -650,11 +652,20 @@
             this.lblPercent.TabIndex = 22;
             this.lblPercent.Text = "0 %";
             // 
+            // PictureSpectrum
+            // 
+            this.PictureSpectrum.Location = new System.Drawing.Point(16, 522);
+            this.PictureSpectrum.Name = "PictureSpectrum";
+            this.PictureSpectrum.Size = new System.Drawing.Size(634, 164);
+            this.PictureSpectrum.TabIndex = 23;
+            this.PictureSpectrum.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 535);
+            this.ClientSize = new System.Drawing.Size(693, 698);
+            this.Controls.Add(this.PictureSpectrum);
             this.Controls.Add(this.lblPercent);
             this.Controls.Add(this.lbltxtWaveform);
             this.Controls.Add(this.lbltxtSpectrum);
@@ -708,7 +719,7 @@
             this.Controls.Add(this.tbarVolumen);
             this.Controls.Add(this.audioDjStudio1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(709, 574);
+            this.MaximumSize = new System.Drawing.Size(709, 800);
             this.MinimumSize = new System.Drawing.Size(709, 574);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -726,6 +737,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbar12k)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar14k)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar16k)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureSpectrum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,6 +799,7 @@
         private System.Windows.Forms.Label lbltxtSpectrum;
         private System.Windows.Forms.Label lbltxtWaveform;
         private System.Windows.Forms.Label lblPercent;
+        private System.Windows.Forms.PictureBox PictureSpectrum;
     }
 }
 

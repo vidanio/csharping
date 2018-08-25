@@ -53,6 +53,16 @@ namespace Ecualizador
             audioDjStudio1.DisplayWaveform.set_ColorLine(0, Color.Red);
             audioDjStudio1.DisplayWaveform.Show(0, true);
 
+            // FFT enhanced spectrum
+            audioDjStudio1.DisplaySpectrumEnh.Create(0, PictureSpectrum.Handle);
+            audioDjStudio1.DisplaySpectrumEnh.Show(0, true);
+            SPECTR_ENH_GENERAL_SETTINGS descSpectrumEnhGeneral = new SPECTR_ENH_GENERAL_SETTINGS();
+            audioDjStudio1.DisplaySpectrumEnh.SettingsGeneralGet(0, ref descSpectrumEnhGeneral);
+            descSpectrumEnhGeneral.nGraphType = enumSpectrumEnhTypes.SPECTR_ENH_AREA_LEFT_TOP;
+            descSpectrumEnhGeneral.bBackBitmapVisible = false;
+            descSpectrumEnhGeneral.nResolution = 8192;
+            audioDjStudio1.DisplaySpectrumEnh.SettingsGeneralSet(0, descSpectrumEnhGeneral);
+
             cboxWinampPresets.SelectedIndex = 0;
             audioDjStudio1.EnableAutoEqualiz = true;
             audioDjStudio1.CustomDSP.UseFloatSamples(true); // necesario para normalizar
@@ -266,11 +276,13 @@ namespace Ecualizador
                 {
                     audioDjStudio1.ResumeSound(0); // resume
                     btnPause.Text = "Pause";
+                    timer1.Start();
                 }
                 else
                 {
                     audioDjStudio1.PauseSound(0); // pause
                     btnPause.Text = "Resume";
+                    timer1.Stop();
                 }
             }
         }
