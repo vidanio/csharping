@@ -18,6 +18,7 @@ namespace crypto
         private List<string> inputfiles; // real audio files
         private const byte KEYCODE = 0x45;
         private int num_crypted = 0;
+        private byte[] KeyCode = new byte[] { 11, 22, 33, 44, 55, 66, 77, 88 }; // Isaac decription keys
 
         public MainForm()
         {
@@ -52,7 +53,8 @@ namespace crypto
                             var bytes = File.ReadAllBytes(file);
                             for (int i=0; i < bytes.Length; i++)
                             {
-                                bytes[i] ^= KEYCODE;
+                                //bytes[i] ^= KEYCODE;
+                                bytes[i] ^= KeyCode[i % 8];
                             }
                             File.WriteAllBytes(folderOut + @"\" + Path.GetFileName(file) + ".xxx", bytes);
                             txtListOut.AppendText(string.Format("[OK] {0}\r\n", Path.GetFileName(file)));
@@ -73,7 +75,8 @@ namespace crypto
                             var bytes = File.ReadAllBytes(file);
                             for (int i = 0; i < bytes.Length; i++)
                             {
-                                bytes[i] ^= KEYCODE;
+                                //bytes[i] ^= KEYCODE;
+                                bytes[i] ^= KeyCode[i % 8];
                             }
                             File.WriteAllBytes(folderOut + @"\" + Path.GetFileNameWithoutExtension(file), bytes);
                             txtListOut.AppendText(string.Format("[OK] {0}\r\n", Path.GetFileName(file)));
