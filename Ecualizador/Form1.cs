@@ -15,9 +15,8 @@ namespace Ecualizador
     {
         private string m_strLoadedSongPathname = "";
         private double songduration = 0;
-        byte[] m_byteBuffer = null;
-        private const byte KEYCODE = 0x45; // decryption key
         private byte[] KeyCode = new byte[] { 11, 22, 33, 44, 55, 66, 77, 88 }; // Isaac decription keys
+        private bool songloaded = false;
 
         public MainForm()
         {
@@ -180,31 +179,26 @@ namespace Ecualizador
             audioDjStudio1.CloseSound(0);
 
             openFileDialog1.FileName = "";
-            openFileDialog1.InitialDirectory = audioDjStudio1.SoundsDirectory;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 // vemos si el fichero esta cifrado *.xxx
                 bool cifrado = false;
+                byte[] bytes = null;
 
-                if (Path.GetExtension(openFileDialog1.FileName) == ".xxx") cifrado = true;
-                FileStream streamFile = new FileStream(openFileDialog1.FileName, FileMode.Open);
-                BinaryReader binReader = new BinaryReader(streamFile);
-
-                m_byteBuffer = new byte[streamFile.Length];
-                int read = binReader.Read(m_byteBuffer, 0, (int)streamFile.Length);
-
-                if (cifrado)
+                try
                 {
-                    lblSong.Text = "Descifrando";
-                    for (int i= 0; i < read; i++)
-                    {
-                        // m_byteBuffer[i] ^= KEYCODE;
-                        m_byteBuffer[i] ^= KeyCode[i%8];
-                    }
-                    lblSong.Text = "Descifrado acabado";
+                    if (Path.GetExtension(openFileDialog1.FileName) == ".xxx") cifrado = true;
+                    bytes = File.ReadAllBytes(openFileDialog1.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("No puedo leer el fichero " + openFileDialog1.FileName, "Error Grave", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                if (audioDjStudio1.LoadSoundFromMemory(0, m_byteBuffer, (Int32)streamFile.Length) == enumErrorCodes.NOERROR) // carga en fichero en el player 0
+                // descifrado en RAM, si cifrado = true
+                if (cifrado) for (int i= 0; i < bytes.Length; i++) bytes[i] ^= KeyCode[i % 8];
+
+                if (audioDjStudio1.LoadSoundFromMemory(0, bytes, (Int32)bytes.Length) == enumErrorCodes.NOERROR) // carga en fichero en el player 0
                 {
                     m_strLoadedSongPathname = openFileDialog1.FileName;
                     lblSong.Text = Path.GetFileName(m_strLoadedSongPathname);
@@ -219,10 +213,11 @@ namespace Ecualizador
                     // recoge la duración de la canción cargada
                     audioDjStudio1.SoundDurationGet(0, ref songduration, false); // millisecs
                     lblDuration.Text = "Duration: " + convertMillisecsToString(songduration);
+                    songloaded = true;
                 }
                 else
                 {
-                    MessageBox.Show("No puedo cargar le fichero " + openFileDialog1.FileName, "Error Grave");
+                    MessageBox.Show("No puedo cargar el fichero " + openFileDialog1.FileName, "Error Grave", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -236,8 +231,14 @@ namespace Ecualizador
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            audioDjStudio1.PlaySound(0); // reproduce lo que hay cargado en el Player 0
-            timer1.Start();
+            if (!songloaded) return;
+
+            enumPlayerStatus nStatus = audioDjStudio1.GetPlayerStatus(0); // recogemos el estado del player 0
+            if (nStatus != enumPlayerStatus.SOUND_PAUSED) // evitamos dejar el boton pause/resume sin sentido
+            {
+                audioDjStudio1.PlaySound(0); // reproduce lo que hay cargado en el Player 0
+                timer1.Start();
+            }
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -260,6 +261,11 @@ namespace Ecualizador
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+            enumPlayerStatus nStatus = audioDjStudio1.GetPlayerStatus(0); // recogemos el estado del player 0
+            if (nStatus == enumPlayerStatus.SOUND_PAUSED) // evitamos dejar el boton pause/resume sin sentido
+            {
+                btnPause.Text = "Pause";
+            }
             audioDjStudio1.StopSound(0); // parar el player 0
             timer1.Stop();
             resetInfo();
@@ -403,8 +409,6 @@ namespace Ecualizador
         {
             progPlayback.Value = 0;
             lblPosition.Text = "Position: ";
-            lblArtist.Text = "Artist: ";
-            lblTitle.Text = "Title: ";
             lblPercent.Text = "0 %";
         }
 
