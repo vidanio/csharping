@@ -664,7 +664,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 698);
+            this.ClientSize = new System.Drawing.Size(674, 698);
             this.Controls.Add(this.PictureSpectrum);
             this.Controls.Add(this.lblPercent);
             this.Controls.Add(this.lbltxtWaveform);
@@ -719,8 +719,8 @@
             this.Controls.Add(this.tbarVolumen);
             this.Controls.Add(this.audioDjStudio1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(709, 800);
-            this.MinimumSize = new System.Drawing.Size(709, 574);
+            this.MaximumSize = new System.Drawing.Size(690, 737);
+            this.MinimumSize = new System.Drawing.Size(690, 737);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ecualizador";
