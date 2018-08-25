@@ -16,7 +16,6 @@ namespace Ecualizador
         private string m_strLoadedSongPathname = "";
         private double songduration = 0;
         private byte[] KeyCode = new byte[] { 11, 22, 33, 44, 55, 66, 77, 88 }; // Isaac decription keys
-        private bool songloaded = false;
 
         public MainForm()
         {
@@ -174,9 +173,6 @@ namespace Ecualizador
                 "MOD music (*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3)|*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3|" +
                 "CD tracks (*.cda)|*.cda|" +
                 "All files (*.*)|*.*";
-            // stop and close any loaded sound
-            audioDjStudio1.StopSound(0);
-            audioDjStudio1.CloseSound(0);
 
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -193,7 +189,14 @@ namespace Ecualizador
                 catch
                 {
                     MessageBox.Show("No puedo leer el fichero " + openFileDialog1.FileName, "Error Grave", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
+
+                // stop and close any loaded sound
+                audioDjStudio1.StopSound(0);
+                audioDjStudio1.CloseSound(0);
+                resetInfo();
+                lblSong.Text = "";
 
                 // descifrado en RAM, si cifrado = true
                 if (cifrado) for (int i= 0; i < bytes.Length; i++) bytes[i] ^= KeyCode[i % 8];
@@ -213,7 +216,6 @@ namespace Ecualizador
                     // recoge la duración de la canción cargada
                     audioDjStudio1.SoundDurationGet(0, ref songduration, false); // millisecs
                     lblDuration.Text = "Duration: " + convertMillisecsToString(songduration);
-                    songloaded = true;
                 }
                 else
                 {
@@ -231,10 +233,8 @@ namespace Ecualizador
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            if (!songloaded) return;
-
             enumPlayerStatus nStatus = audioDjStudio1.GetPlayerStatus(0); // recogemos el estado del player 0
-            if (nStatus != enumPlayerStatus.SOUND_PAUSED) // evitamos dejar el boton pause/resume sin sentido
+            if ((nStatus != enumPlayerStatus.SOUND_PAUSED) && (nStatus != enumPlayerStatus.SOUND_NONE)) // evitamos dejar el boton pause/resume sin sentido
             {
                 audioDjStudio1.PlaySound(0); // reproduce lo que hay cargado en el Player 0
                 timer1.Start();
