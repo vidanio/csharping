@@ -472,5 +472,10 @@ namespace Ecualizador
                 audioDjStudio1.Effects.CompressorReset(0);
             }
         }
+
+        private void chkDCOffset_CheckedChanged(object sender, EventArgs e)
+        {
+            audioDjStudio1.Effects.DcOffsetRemovalEnable(0, chkDCOffset.Checked);
+        }
     }
 }

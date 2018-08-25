@@ -98,6 +98,7 @@
             this.lbltxtRelease = new System.Windows.Forms.Label();
             this.btnResetVal = new System.Windows.Forms.Button();
             this.btnLoadValues = new System.Windows.Forms.Button();
+            this.chkDCOffset = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar170)).BeginInit();
@@ -884,11 +885,23 @@
             this.btnLoadValues.UseVisualStyleBackColor = false;
             this.btnLoadValues.Click += new System.EventHandler(this.btnLoadValues_Click);
             // 
+            // chkDCOffset
+            // 
+            this.chkDCOffset.AutoSize = true;
+            this.chkDCOffset.Location = new System.Drawing.Point(534, 121);
+            this.chkDCOffset.Name = "chkDCOffset";
+            this.chkDCOffset.Size = new System.Drawing.Size(117, 17);
+            this.chkDCOffset.TabIndex = 26;
+            this.chkDCOffset.Text = "DC Offset Removal";
+            this.chkDCOffset.UseVisualStyleBackColor = true;
+            this.chkDCOffset.CheckedChanged += new System.EventHandler(this.chkDCOffset_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(674, 761);
+            this.Controls.Add(this.chkDCOffset);
             this.Controls.Add(this.grpCompress);
             this.Controls.Add(this.PictureSpectrum);
             this.Controls.Add(this.lblPercent);
@@ -1046,6 +1059,7 @@
         private System.Windows.Forms.Label lbltxtRelease;
         private System.Windows.Forms.Button btnLoadValues;
         private System.Windows.Forms.Button btnResetVal;
+        private System.Windows.Forms.CheckBox chkDCOffset;
     }
 }
 
