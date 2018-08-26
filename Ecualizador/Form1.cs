@@ -182,8 +182,7 @@ namespace Ecualizador
                 "FLAC sounds (*.flac)|*.flac;|" +
                 "WavPack sounds (*.wv)|*.wv;|" +
                 "MOD music (*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3)|*.it;*.xm;*.s3m;*.mod;*.mtm;*.mo3|" +
-                "CD tracks (*.cda)|*.cda|" +
-                "All files (*.*)|*.*";
+                "CD tracks (*.cda)|*.cda";
 
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -307,9 +306,7 @@ namespace Ecualizador
 
         private void btnLoadEDJ_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter =
-                "Equalizer files (*.edj)|*.edj;|" +
-                "All files (*.*)|*.*";
+            openFileDialog1.Filter = "Equalizer files (*.edj)|*.edj";
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
