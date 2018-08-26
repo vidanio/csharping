@@ -89,15 +89,15 @@
             this.numAttack = new System.Windows.Forms.NumericUpDown();
             this.numRatio = new System.Windows.Forms.NumericUpDown();
             this.grpCompress = new System.Windows.Forms.GroupBox();
-            this.chkCompressor = new System.Windows.Forms.CheckBox();
-            this.numGain = new System.Windows.Forms.NumericUpDown();
-            this.lbltxtGain = new System.Windows.Forms.Label();
-            this.lbltxtThresold = new System.Windows.Forms.Label();
-            this.lbltxtRatio = new System.Windows.Forms.Label();
-            this.lbltxtAttack = new System.Windows.Forms.Label();
-            this.lbltxtRelease = new System.Windows.Forms.Label();
-            this.btnResetVal = new System.Windows.Forms.Button();
             this.btnLoadValues = new System.Windows.Forms.Button();
+            this.btnResetVal = new System.Windows.Forms.Button();
+            this.lbltxtRatio = new System.Windows.Forms.Label();
+            this.lbltxtRelease = new System.Windows.Forms.Label();
+            this.lbltxtAttack = new System.Windows.Forms.Label();
+            this.lbltxtThresold = new System.Windows.Forms.Label();
+            this.lbltxtGain = new System.Windows.Forms.Label();
+            this.numGain = new System.Windows.Forms.NumericUpDown();
+            this.chkCompressor = new System.Windows.Forms.CheckBox();
             this.chkDCOffset = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbarVolumen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbar80)).BeginInit();
@@ -786,16 +786,76 @@
             this.grpCompress.TabStop = false;
             this.grpCompress.Text = "Compressor";
             // 
-            // chkCompressor
+            // btnLoadValues
             // 
-            this.chkCompressor.AutoSize = true;
-            this.chkCompressor.Location = new System.Drawing.Point(8, 19);
-            this.chkCompressor.Name = "chkCompressor";
-            this.chkCompressor.Size = new System.Drawing.Size(117, 17);
-            this.chkCompressor.TabIndex = 13;
-            this.chkCompressor.Text = "Enable Compressor";
-            this.chkCompressor.UseVisualStyleBackColor = true;
-            this.chkCompressor.CheckedChanged += new System.EventHandler(this.chkCompressor_CheckedChanged);
+            this.btnLoadValues.BackColor = System.Drawing.Color.Blue;
+            this.btnLoadValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadValues.ForeColor = System.Drawing.Color.White;
+            this.btnLoadValues.Location = new System.Drawing.Point(503, 45);
+            this.btnLoadValues.Name = "btnLoadValues";
+            this.btnLoadValues.Size = new System.Drawing.Size(110, 29);
+            this.btnLoadValues.TabIndex = 27;
+            this.btnLoadValues.Text = "Load Values";
+            this.btnLoadValues.UseVisualStyleBackColor = false;
+            this.btnLoadValues.Click += new System.EventHandler(this.btnLoadValues_Click);
+            // 
+            // btnResetVal
+            // 
+            this.btnResetVal.BackColor = System.Drawing.Color.Blue;
+            this.btnResetVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetVal.ForeColor = System.Drawing.Color.White;
+            this.btnResetVal.Location = new System.Drawing.Point(503, 12);
+            this.btnResetVal.Name = "btnResetVal";
+            this.btnResetVal.Size = new System.Drawing.Size(110, 29);
+            this.btnResetVal.TabIndex = 27;
+            this.btnResetVal.Text = "Reset Values";
+            this.btnResetVal.UseVisualStyleBackColor = false;
+            this.btnResetVal.Click += new System.EventHandler(this.btnResetVal_Click);
+            // 
+            // lbltxtRatio
+            // 
+            this.lbltxtRatio.AutoSize = true;
+            this.lbltxtRatio.Location = new System.Drawing.Point(147, 52);
+            this.lbltxtRatio.Name = "lbltxtRatio";
+            this.lbltxtRatio.Size = new System.Drawing.Size(35, 13);
+            this.lbltxtRatio.TabIndex = 26;
+            this.lbltxtRatio.Text = "Ratio:";
+            // 
+            // lbltxtRelease
+            // 
+            this.lbltxtRelease.AutoSize = true;
+            this.lbltxtRelease.Location = new System.Drawing.Point(310, 53);
+            this.lbltxtRelease.Name = "lbltxtRelease";
+            this.lbltxtRelease.Size = new System.Drawing.Size(71, 13);
+            this.lbltxtRelease.TabIndex = 26;
+            this.lbltxtRelease.Text = "Release (ms):";
+            // 
+            // lbltxtAttack
+            // 
+            this.lbltxtAttack.AutoSize = true;
+            this.lbltxtAttack.Location = new System.Drawing.Point(310, 23);
+            this.lbltxtAttack.Name = "lbltxtAttack";
+            this.lbltxtAttack.Size = new System.Drawing.Size(63, 13);
+            this.lbltxtAttack.TabIndex = 26;
+            this.lbltxtAttack.Text = "Attack (ms):";
+            // 
+            // lbltxtThresold
+            // 
+            this.lbltxtThresold.AutoSize = true;
+            this.lbltxtThresold.Location = new System.Drawing.Point(147, 20);
+            this.lbltxtThresold.Name = "lbltxtThresold";
+            this.lbltxtThresold.Size = new System.Drawing.Size(73, 13);
+            this.lbltxtThresold.TabIndex = 26;
+            this.lbltxtThresold.Text = "Thresold (dB):";
+            // 
+            // lbltxtGain
+            // 
+            this.lbltxtGain.AutoSize = true;
+            this.lbltxtGain.Location = new System.Drawing.Point(6, 52);
+            this.lbltxtGain.Name = "lbltxtGain";
+            this.lbltxtGain.Size = new System.Drawing.Size(54, 13);
+            this.lbltxtGain.TabIndex = 25;
+            this.lbltxtGain.Text = "Gain (dB):";
             // 
             // numGain
             // 
@@ -814,76 +874,16 @@
             this.numGain.Size = new System.Drawing.Size(57, 20);
             this.numGain.TabIndex = 24;
             // 
-            // lbltxtGain
+            // chkCompressor
             // 
-            this.lbltxtGain.AutoSize = true;
-            this.lbltxtGain.Location = new System.Drawing.Point(6, 52);
-            this.lbltxtGain.Name = "lbltxtGain";
-            this.lbltxtGain.Size = new System.Drawing.Size(54, 13);
-            this.lbltxtGain.TabIndex = 25;
-            this.lbltxtGain.Text = "Gain (dB):";
-            // 
-            // lbltxtThresold
-            // 
-            this.lbltxtThresold.AutoSize = true;
-            this.lbltxtThresold.Location = new System.Drawing.Point(147, 20);
-            this.lbltxtThresold.Name = "lbltxtThresold";
-            this.lbltxtThresold.Size = new System.Drawing.Size(73, 13);
-            this.lbltxtThresold.TabIndex = 26;
-            this.lbltxtThresold.Text = "Thresold (dB):";
-            // 
-            // lbltxtRatio
-            // 
-            this.lbltxtRatio.AutoSize = true;
-            this.lbltxtRatio.Location = new System.Drawing.Point(147, 52);
-            this.lbltxtRatio.Name = "lbltxtRatio";
-            this.lbltxtRatio.Size = new System.Drawing.Size(35, 13);
-            this.lbltxtRatio.TabIndex = 26;
-            this.lbltxtRatio.Text = "Ratio:";
-            // 
-            // lbltxtAttack
-            // 
-            this.lbltxtAttack.AutoSize = true;
-            this.lbltxtAttack.Location = new System.Drawing.Point(310, 23);
-            this.lbltxtAttack.Name = "lbltxtAttack";
-            this.lbltxtAttack.Size = new System.Drawing.Size(63, 13);
-            this.lbltxtAttack.TabIndex = 26;
-            this.lbltxtAttack.Text = "Attack (ms):";
-            // 
-            // lbltxtRelease
-            // 
-            this.lbltxtRelease.AutoSize = true;
-            this.lbltxtRelease.Location = new System.Drawing.Point(310, 53);
-            this.lbltxtRelease.Name = "lbltxtRelease";
-            this.lbltxtRelease.Size = new System.Drawing.Size(71, 13);
-            this.lbltxtRelease.TabIndex = 26;
-            this.lbltxtRelease.Text = "Release (ms):";
-            // 
-            // btnResetVal
-            // 
-            this.btnResetVal.BackColor = System.Drawing.Color.Blue;
-            this.btnResetVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetVal.ForeColor = System.Drawing.Color.White;
-            this.btnResetVal.Location = new System.Drawing.Point(503, 12);
-            this.btnResetVal.Name = "btnResetVal";
-            this.btnResetVal.Size = new System.Drawing.Size(110, 29);
-            this.btnResetVal.TabIndex = 27;
-            this.btnResetVal.Text = "Reset Values";
-            this.btnResetVal.UseVisualStyleBackColor = false;
-            this.btnResetVal.Click += new System.EventHandler(this.btnResetVal_Click);
-            // 
-            // btnLoadValues
-            // 
-            this.btnLoadValues.BackColor = System.Drawing.Color.Blue;
-            this.btnLoadValues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadValues.ForeColor = System.Drawing.Color.White;
-            this.btnLoadValues.Location = new System.Drawing.Point(503, 45);
-            this.btnLoadValues.Name = "btnLoadValues";
-            this.btnLoadValues.Size = new System.Drawing.Size(110, 29);
-            this.btnLoadValues.TabIndex = 27;
-            this.btnLoadValues.Text = "Load Values";
-            this.btnLoadValues.UseVisualStyleBackColor = false;
-            this.btnLoadValues.Click += new System.EventHandler(this.btnLoadValues_Click);
+            this.chkCompressor.AutoSize = true;
+            this.chkCompressor.Location = new System.Drawing.Point(8, 19);
+            this.chkCompressor.Name = "chkCompressor";
+            this.chkCompressor.Size = new System.Drawing.Size(117, 17);
+            this.chkCompressor.TabIndex = 13;
+            this.chkCompressor.Text = "Enable Compressor";
+            this.chkCompressor.UseVisualStyleBackColor = true;
+            this.chkCompressor.CheckedChanged += new System.EventHandler(this.chkCompressor_CheckedChanged);
             // 
             // chkDCOffset
             // 
@@ -958,7 +958,7 @@
             this.Controls.Add(this.audioDjStudio1);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(690, 800);
-            this.MinimumSize = new System.Drawing.Size(690, 737);
+            this.MinimumSize = new System.Drawing.Size(690, 800);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ecualizador";
