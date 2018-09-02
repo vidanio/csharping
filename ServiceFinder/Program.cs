@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Tmds.MDns;
 
 namespace ServiceFinder
@@ -7,19 +8,17 @@ namespace ServiceFinder
     {
         static void Main(string[] args)
         {
-            string serviceType = "_https._tcp";
-            if (args.Length >= 1)
-            {
-                serviceType = args[0];
-            }
+            List<string> serviceTypes = new List<string>();
+            serviceTypes.Add("_https._tcp");
+            serviceTypes.Add("_ftp._tcp");
 
             ServiceBrowser serviceBrowser = new ServiceBrowser();
             serviceBrowser.ServiceAdded += onServiceAdded;
             serviceBrowser.ServiceRemoved += onServiceRemoved;
             serviceBrowser.ServiceChanged += onServiceChanged;
 
-            Console.WriteLine("Browsing for type: {0}", serviceType);
-            serviceBrowser.StartBrowse(serviceType);
+            Console.WriteLine("Browsing for types: ");
+            serviceBrowser.StartBrowse(serviceTypes);
             Console.ReadLine();
         }
 
@@ -40,6 +39,7 @@ namespace ServiceFinder
 
         static void printService(char startChar, ServiceAnnouncement service)
         {
+            Console.WriteLine("Browsing for type {0}", service.Type);
             Console.WriteLine("{0} '{1}' on {2}", startChar, service.Instance, service.NetworkInterface.Name);
             Console.WriteLine("\tHost: {0} ({1})", service.Hostname, string.Join(", ", service.Addresses));
             Console.WriteLine("\tPort: {0}", service.Port);
