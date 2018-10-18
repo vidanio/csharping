@@ -200,6 +200,7 @@
             this.label39 = new System.Windows.Forms.Label();
             this.pictureBox99 = new System.Windows.Forms.PictureBox();
             this.label40 = new System.Windows.Forms.Label();
+            this.pictureBox103 = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
             this.panelRoot.SuspendLayout();
             this.panelListAdmins.SuspendLayout();
@@ -314,6 +315,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox102)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox99)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox103)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -1113,6 +1115,7 @@
             this.panelListUsers.Controls.Add(this.pictureBox50);
             this.panelListUsers.Controls.Add(this.pictureBox51);
             this.panelListUsers.Controls.Add(this.pictureBox52);
+            this.panelListUsers.Controls.Add(this.pictureBox103);
             this.panelListUsers.Controls.Add(this.pictureBox53);
             this.panelListUsers.Controls.Add(this.pictureBox54);
             this.panelListUsers.Controls.Add(this.pictureBox55);
@@ -2121,6 +2124,16 @@
             this.label40.TabIndex = 7;
             this.label40.Text = "Logged in as root";
             // 
+            // pictureBox103
+            // 
+            this.pictureBox103.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox103.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox103.Image")));
+            this.pictureBox103.Location = new System.Drawing.Point(186, 7);
+            this.pictureBox103.Name = "pictureBox103";
+            this.pictureBox103.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox103.TabIndex = 2;
+            this.pictureBox103.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2253,6 +2266,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox101)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox102)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox99)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox103)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2430,6 +2444,7 @@
         private System.Windows.Forms.PictureBox pictureBox96;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.PictureBox pictureBox99;
+        private System.Windows.Forms.PictureBox pictureBox103;
     }
 }
 
