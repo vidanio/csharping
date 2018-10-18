@@ -44,7 +44,7 @@
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(56, 17);
             this.chkActive.TabIndex = 0;
-            this.chkActive.Text = "Active";
+            this.chkActive.Text = "Activo";
             this.chkActive.UseVisualStyleBackColor = true;
             // 
             // lblName
