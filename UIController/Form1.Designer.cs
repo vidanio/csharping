@@ -179,7 +179,6 @@
             this.cboxMonth = new System.Windows.Forms.ComboBox();
             this.pbAddAdmin = new System.Windows.Forms.PictureBox();
             this.pbAddUser = new System.Windows.Forms.PictureBox();
-            this.lblLogged = new System.Windows.Forms.Label();
             this.panelDevices = new System.Windows.Forms.Panel();
             this.lblTitleDevices = new System.Windows.Forms.Label();
             this.pbAddDevice = new System.Windows.Forms.PictureBox();
@@ -199,6 +198,8 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
+            this.pictureBox99 = new System.Windows.Forms.PictureBox();
+            this.label40 = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.panelRoot.SuspendLayout();
             this.panelListAdmins.SuspendLayout();
@@ -312,6 +313,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox100)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox102)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox99)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -368,10 +370,11 @@
             // 
             // panelRoot
             // 
+            this.panelRoot.Controls.Add(this.label40);
             this.panelRoot.Controls.Add(this.panelDevices);
-            this.panelRoot.Controls.Add(this.lblLogged);
             this.panelRoot.Controls.Add(this.pbAddDevice);
             this.panelRoot.Controls.Add(this.pbAddUser);
+            this.panelRoot.Controls.Add(this.pictureBox99);
             this.panelRoot.Controls.Add(this.pbAddAdmin);
             this.panelRoot.Controls.Add(this.cboxMonth);
             this.panelRoot.Controls.Add(this.cboxYear);
@@ -1889,18 +1892,6 @@
             this.pbAddUser.TabStop = false;
             this.toolTip.SetToolTip(this.pbAddUser, "Añade un Nuevo Usuario");
             // 
-            // lblLogged
-            // 
-            this.lblLogged.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogged.Image = ((System.Drawing.Image)(resources.GetObject("lblLogged.Image")));
-            this.lblLogged.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblLogged.Location = new System.Drawing.Point(12, 9);
-            this.lblLogged.Name = "lblLogged";
-            this.lblLogged.Size = new System.Drawing.Size(132, 23);
-            this.lblLogged.TabIndex = 5;
-            this.lblLogged.Text = "Logged in as root";
-            this.lblLogged.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // panelDevices
             // 
             this.panelDevices.AutoScroll = true;
@@ -2110,6 +2101,26 @@
             this.label39.Text = "23658 kbps";
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureBox99
+            // 
+            this.pictureBox99.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox99.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox99.Image")));
+            this.pictureBox99.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox99.Name = "pictureBox99";
+            this.pictureBox99.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox99.TabIndex = 4;
+            this.pictureBox99.TabStop = false;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(25, 10);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(106, 13);
+            this.label40.TabIndex = 7;
+            this.label40.Text = "Logged in as root";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2241,6 +2252,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox100)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox101)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox102)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox99)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2397,7 +2409,6 @@
         private System.Windows.Forms.ComboBox cboxYear;
         private System.Windows.Forms.PictureBox pbAddUser;
         private System.Windows.Forms.PictureBox pbAddAdmin;
-        private System.Windows.Forms.Label lblLogged;
         private System.Windows.Forms.Panel panelDevices;
         private System.Windows.Forms.PictureBox pbAddDevice;
         private System.Windows.Forms.Label lblTitleDevices;
@@ -2417,6 +2428,8 @@
         private System.Windows.Forms.PictureBox pictureBox95;
         private System.Windows.Forms.PictureBox pictureBox98;
         private System.Windows.Forms.PictureBox pictureBox96;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.PictureBox pictureBox99;
     }
 }
 
