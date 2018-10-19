@@ -504,7 +504,7 @@
             // pictureBox102
             // 
             this.pictureBox102.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox102.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox102.Image")));
+            this.pictureBox102.Image = global::UIController.Properties.Resources.cancel;
             this.pictureBox102.Location = new System.Drawing.Point(363, 29);
             this.pictureBox102.Name = "pictureBox102";
             this.pictureBox102.Size = new System.Drawing.Size(20, 20);
@@ -535,7 +535,7 @@
             // pictureBox97
             // 
             this.pictureBox97.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox97.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox97.Image")));
+            this.pictureBox97.Image = global::UIController.Properties.Resources.ok;
             this.pictureBox97.Location = new System.Drawing.Point(363, 6);
             this.pictureBox97.Name = "pictureBox97";
             this.pictureBox97.Size = new System.Drawing.Size(20, 20);
@@ -585,7 +585,7 @@
             // pictureBox96
             // 
             this.pictureBox96.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox96.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox96.Image")));
+            this.pictureBox96.Image = global::UIController.Properties.Resources.add2_20x20;
             this.pictureBox96.Location = new System.Drawing.Point(467, 6);
             this.pictureBox96.Name = "pictureBox96";
             this.pictureBox96.Size = new System.Drawing.Size(20, 20);
@@ -637,10 +637,10 @@
             // pbAddAdmin
             // 
             this.pbAddAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbAddAdmin.Image = ((System.Drawing.Image)(resources.GetObject("pbAddAdmin.Image")));
-            this.pbAddAdmin.Location = new System.Drawing.Point(234, 33);
+            this.pbAddAdmin.Image = global::UIController.Properties.Resources.add_20x20;
+            this.pbAddAdmin.Location = new System.Drawing.Point(238, 37);
             this.pbAddAdmin.Name = "pbAddAdmin";
-            this.pbAddAdmin.Size = new System.Drawing.Size(24, 24);
+            this.pbAddAdmin.Size = new System.Drawing.Size(20, 20);
             this.pbAddAdmin.TabIndex = 4;
             this.pbAddAdmin.TabStop = false;
             this.toolTip.SetToolTip(this.pbAddAdmin, "Añadir Nuevo Administrador");
@@ -1646,7 +1646,7 @@
             // pbEdit_1
             // 
             this.pbEdit_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbEdit_1.Image = ((System.Drawing.Image)(resources.GetObject("pbEdit_1.Image")));
+            this.pbEdit_1.Image = global::UIController.Properties.Resources.edit_20x20;
             this.pbEdit_1.Location = new System.Drawing.Point(186, 7);
             this.pbEdit_1.Name = "pbEdit_1";
             this.pbEdit_1.Size = new System.Drawing.Size(20, 20);
@@ -1807,7 +1807,7 @@
             // pbActive_1
             // 
             this.pbActive_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbActive_1.Image = ((System.Drawing.Image)(resources.GetObject("pbActive_1.Image")));
+            this.pbActive_1.Image = global::UIController.Properties.Resources.on_20x20;
             this.pbActive_1.Location = new System.Drawing.Point(134, 7);
             this.pbActive_1.Name = "pbActive_1";
             this.pbActive_1.Size = new System.Drawing.Size(20, 20);
@@ -1968,7 +1968,7 @@
             // pbDelete_1
             // 
             this.pbDelete_1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbDelete_1.Image = ((System.Drawing.Image)(resources.GetObject("pbDelete_1.Image")));
+            this.pbDelete_1.Image = global::UIController.Properties.Resources.delete_20x20;
             this.pbDelete_1.Location = new System.Drawing.Point(160, 7);
             this.pbDelete_1.Name = "pbDelete_1";
             this.pbDelete_1.Size = new System.Drawing.Size(20, 20);

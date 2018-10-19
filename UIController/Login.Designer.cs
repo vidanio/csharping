@@ -44,7 +44,7 @@
             // lblNumServer
             // 
             this.lblNumServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumServer.Image = ((System.Drawing.Image)(resources.GetObject("lblNumServer.Image")));
+            this.lblNumServer.Image = global::UIController.Properties.Resources.server20x20;
             this.lblNumServer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblNumServer.Location = new System.Drawing.Point(16, 59);
             this.lblNumServer.Name = "lblNumServer";
@@ -79,7 +79,7 @@
             // lblMail
             // 
             this.lblMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMail.Image = ((System.Drawing.Image)(resources.GetObject("lblMail.Image")));
+            this.lblMail.Image = global::UIController.Properties.Resources.mail20x20;
             this.lblMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblMail.Location = new System.Drawing.Point(16, 83);
             this.lblMail.Name = "lblMail";
@@ -99,7 +99,7 @@
             // lblPass
             // 
             this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPass.Image = ((System.Drawing.Image)(resources.GetObject("lblPass.Image")));
+            this.lblPass.Image = global::UIController.Properties.Resources.pass22x22;
             this.lblPass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblPass.Location = new System.Drawing.Point(16, 112);
             this.lblPass.Name = "lblPass";
@@ -121,7 +121,7 @@
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Image")));
+            this.btnOK.Image = global::UIController.Properties.Resources.ok;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOK.Location = new System.Drawing.Point(168, 155);
             this.btnOK.Name = "btnOK";
@@ -134,7 +134,7 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Image = global::UIController.Properties.Resources.cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.Location = new System.Drawing.Point(254, 155);
             this.btnCancel.Name = "btnCancel";

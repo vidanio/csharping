@@ -49,7 +49,7 @@
             // 
             // lblName
             // 
-            this.lblName.Image = ((System.Drawing.Image)(resources.GetObject("lblName.Image")));
+            this.lblName.Image = global::UIController.Properties.Resources.device20x20;
             this.lblName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblName.Location = new System.Drawing.Point(34, 52);
             this.lblName.Name = "lblName";
@@ -78,7 +78,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Image")));
+            this.btnOK.Image = global::UIController.Properties.Resources.ok;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOK.Location = new System.Drawing.Point(130, 117);
             this.btnOK.Name = "btnOK";
@@ -89,7 +89,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Image = global::UIController.Properties.Resources.cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.Location = new System.Drawing.Point(211, 117);
             this.btnCancel.Name = "btnCancel";
@@ -110,6 +110,7 @@
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.chkActive);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(351, 205);
             this.MinimizeBox = false;

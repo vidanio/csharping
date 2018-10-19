@@ -51,7 +51,7 @@
             // 
             // lblMail
             // 
-            this.lblMail.Image = ((System.Drawing.Image)(resources.GetObject("lblMail.Image")));
+            this.lblMail.Image = global::UIController.Properties.Resources.mail20x20;
             this.lblMail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblMail.Location = new System.Drawing.Point(12, 49);
             this.lblMail.Name = "lblMail";
@@ -62,7 +62,7 @@
             // 
             // lblPass
             // 
-            this.lblPass.Image = ((System.Drawing.Image)(resources.GetObject("lblPass.Image")));
+            this.lblPass.Image = global::UIController.Properties.Resources.pass20x20;
             this.lblPass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblPass.Location = new System.Drawing.Point(12, 75);
             this.lblPass.Name = "lblPass";
@@ -73,7 +73,7 @@
             // 
             // lblName
             // 
-            this.lblName.Image = ((System.Drawing.Image)(resources.GetObject("lblName.Image")));
+            this.lblName.Image = global::UIController.Properties.Resources.user20x20;
             this.lblName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblName.Location = new System.Drawing.Point(12, 106);
             this.lblName.Name = "lblName";
@@ -122,7 +122,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Image")));
+            this.btnOK.Image = global::UIController.Properties.Resources.ok;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOK.Location = new System.Drawing.Point(153, 183);
             this.btnOK.Name = "btnOK";
@@ -133,7 +133,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Image = global::UIController.Properties.Resources.cancel;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.Location = new System.Drawing.Point(234, 183);
             this.btnCancel.Name = "btnCancel";

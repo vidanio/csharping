@@ -106,5 +106,104 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\calendar.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\device.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\login.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\stats.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\users.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\add_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\add2_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\calendar_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\calendar_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\date_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\date_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\delete_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\delete2_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\device20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\edit_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\edit2_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\mail3D22x22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\mail20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\off_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\on_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\pass3D22x22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\pass20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\pass22x22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\server20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\server21x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\stats_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\stats_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\time_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\user20x20.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
