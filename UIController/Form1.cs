@@ -14,6 +14,23 @@ namespace UIController
         public MainForm()
         {
             InitializeComponent();
+            
+            Label mylabel = (Label)this.GetControlByName(panelDevices, "label37");
+            mylabel.Text = "8000 ms";
+        }
+
+        public Control GetControlByName(Control ParentCntl, string NameToSearch)
+        {
+            if (ParentCntl.Name == NameToSearch)
+                return ParentCntl;
+
+            foreach (Control ChildCntl in ParentCntl.Controls)
+            {
+                Control ResultCntl = GetControlByName(ChildCntl, NameToSearch);
+                if (ResultCntl != null)
+                    return ResultCntl;
+            }
+            return null;
         }
     }
 }
