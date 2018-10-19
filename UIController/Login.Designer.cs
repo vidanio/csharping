@@ -91,6 +91,7 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(136, 87);
+            this.txtMail.MaxLength = 30;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(198, 20);
             this.txtMail.TabIndex = 2;
@@ -110,6 +111,7 @@
             // txtPass
             // 
             this.txtPass.Location = new System.Drawing.Point(136, 118);
+            this.txtPass.MaxLength = 20;
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(198, 20);
