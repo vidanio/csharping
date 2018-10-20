@@ -64,6 +64,9 @@
             this.cboxMonth = new System.Windows.Forms.ComboBox();
             this.cboxYear = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GBytes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Hours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTitleUsers = new System.Windows.Forms.Label();
             this.panelListUsers = new System.Windows.Forms.Panel();
             this.pictureBox46 = new System.Windows.Forms.PictureBox();
@@ -198,9 +201,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lblName_1 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GBytes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Hours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip.SuspendLayout();
             this.panelRoot.SuspendLayout();
             this.panelDevices.SuspendLayout();
@@ -692,6 +692,31 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(376, 243);
             this.dataGridView1.TabIndex = 2;
+            // 
+            // Username
+            // 
+            this.Username.HeaderText = "Usuario";
+            this.Username.MaxInputLength = 20;
+            this.Username.MinimumWidth = 156;
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            this.Username.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // GBytes
+            // 
+            this.GBytes.HeaderText = "GBytes";
+            this.GBytes.MinimumWidth = 78;
+            this.GBytes.Name = "GBytes";
+            this.GBytes.ReadOnly = true;
+            this.GBytes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Hours
+            // 
+            this.Hours.HeaderText = "Horas";
+            this.Hours.MinimumWidth = 78;
+            this.Hours.Name = "Hours";
+            this.Hours.ReadOnly = true;
+            this.Hours.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // lblTitleUsers
             // 
@@ -2119,31 +2144,6 @@
             this.lblName_1.TabIndex = 0;
             this.lblName_1.Text = "TodoStreaming Debian";
             this.lblName_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Username
-            // 
-            this.Username.HeaderText = "Usuario";
-            this.Username.MaxInputLength = 20;
-            this.Username.MinimumWidth = 156;
-            this.Username.Name = "Username";
-            this.Username.ReadOnly = true;
-            this.Username.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // GBytes
-            // 
-            this.GBytes.HeaderText = "GBytes";
-            this.GBytes.MinimumWidth = 78;
-            this.GBytes.Name = "GBytes";
-            this.GBytes.ReadOnly = true;
-            this.GBytes.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Hours
-            // 
-            this.Hours.HeaderText = "Horas";
-            this.Hours.MinimumWidth = 78;
-            this.Hours.Name = "Hours";
-            this.Hours.ReadOnly = true;
-            this.Hours.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // MainForm
             // 

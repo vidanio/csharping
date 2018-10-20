@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace UIController
 {
@@ -14,21 +15,18 @@ namespace UIController
         public MainForm()
         {
             InitializeComponent();
-            
-            Label mylabel = (Label)this.GetControlByName(panelDevices, "label37");
-            mylabel.Text = "8000 ms";
+
+            Label mylabel = (Label)this.GetControlByName(panelListAdmins, "label4");
+            mylabel.Text = "VidaRTV";
+            mylabel = (Label)this.GetControlByName(panelListAdmins, "label12");
+            mylabel.Text = "Ondaluz";
         }
 
         public Control GetControlByName(Control ParentCntl, string NameToSearch)
         {
-            if (ParentCntl.Name == NameToSearch)
-                return ParentCntl;
-
             foreach (Control ChildCntl in ParentCntl.Controls)
             {
-                Control ResultCntl = GetControlByName(ChildCntl, NameToSearch);
-                if (ResultCntl != null)
-                    return ResultCntl;
+                if (ChildCntl.Name == NameToSearch) return ChildCntl;
             }
             return null;
         }
