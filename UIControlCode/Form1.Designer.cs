@@ -39,6 +39,7 @@
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtDebug.Size = new System.Drawing.Size(920, 216);
             this.txtDebug.TabIndex = 0;
+            this.txtDebug.TextChanged += new System.EventHandler(this.txtDebug_TextChanged);
             // 
             // MainForm
             // 

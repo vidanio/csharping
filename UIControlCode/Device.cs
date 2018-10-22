@@ -18,6 +18,31 @@ namespace UIControlCode
         public bool Active { get; set; }
         public string Random { get; set; }
 
+        public string Time
+        {
+            get
+            {
+                string time;
+                TimeSpan ts = new TimeSpan(this.Seconds * 10000000L); // ticks
+                if (Seconds < 86400)
+                {
+                    if (Seconds < 3600)
+                    {
+                        if (Seconds < 60)
+                            time = String.Format("{0}s", ts.Seconds);
+                        else
+                            time = String.Format("{0}m:{1:00}s", ts.Minutes, ts.Seconds);
+                    }
+                    else
+                        time = String.Format("{0}h:{1:00}m:{2:00}s", ts.Hours, ts.Minutes, ts.Seconds);
+                }
+                else
+                    time = String.Format("{0}d:{1:00}h:{2:00}m:{3:00}s", ts.Days, ts.Hours, ts.Minutes, ts.Seconds);
+                 
+                return time;
+            }
+        }
+
         public Device(string csv)
         {
             var words = csv.Split(';');
@@ -33,7 +58,7 @@ namespace UIControlCode
 
         public string Print()
         {
-            return String.Format("{0} {1} {2}ms {3}s {4}kbps {5} {6} {7}", Type, Name, Delay, Seconds, Kbps, Working, Active, Random);
+            return String.Format("{0} {1} {2}ms {3}s {4}kbps {5} {6} {7} {8}", Type, Name, Delay, Seconds, Kbps, Working, Active, Random, Time);
         }
     }
 }

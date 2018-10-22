@@ -13,7 +13,7 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
-        private string test = "E;Encoder11;0;0;0;false;true;VRbybdDBvtEsdVol\r\nD;Linux82;0;0;0;false;true;WRCQGpzkmhkuGSAb\r\n";
+        private string test = "E;Encoder11;0;99652;0;false;true;VRbybdDBvtEsdVol\r\nD;Linux82;0;9000;0;false;true;WRCQGpzkmhkuGSAb\r\n";
         //private string test = "";
 
         public MainForm()
@@ -74,6 +74,14 @@ namespace UIControlCode
                 {
                     break;
                 }
+            }
+        }
+
+        private void txtDebug_TextChanged(object sender, EventArgs e)
+        {
+            if (sender.GetType() == typeof(TextBox))
+            {
+
             }
         }
     }
