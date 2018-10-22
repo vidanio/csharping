@@ -28,21 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.txtDebug = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
+            // 
+            // txtDebug
+            // 
+            this.txtDebug.Location = new System.Drawing.Point(40, 398);
+            this.txtDebug.Multiline = true;
+            this.txtDebug.Name = "txtDebug";
+            this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtDebug.Size = new System.Drawing.Size(920, 216);
+            this.txtDebug.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 641);
+            this.Controls.Add(this.txtDebug);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UI Control Codes";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox txtDebug;
     }
 }
 

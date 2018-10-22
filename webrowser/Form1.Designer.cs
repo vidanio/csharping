@@ -44,7 +44,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1203, 44);
+            this.panel1.Size = new System.Drawing.Size(984, 44);
             this.panel1.TabIndex = 0;
             // 
             // btnGo
@@ -79,14 +79,14 @@
             this.webContent.Location = new System.Drawing.Point(0, 44);
             this.webContent.MinimumSize = new System.Drawing.Size(20, 20);
             this.webContent.Name = "webContent";
-            this.webContent.Size = new System.Drawing.Size(1203, 625);
+            this.webContent.Size = new System.Drawing.Size(984, 597);
             this.webContent.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1203, 669);
+            this.ClientSize = new System.Drawing.Size(984, 641);
             this.Controls.Add(this.webContent);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
