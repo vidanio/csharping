@@ -25,6 +25,9 @@ namespace UIControlCode
         {
             int y = 5, vstep = 23;
 
+            // clear all the old controls
+            panel.Controls.Clear();
+
             foreach (User user in users)
             {
                 // label for user name

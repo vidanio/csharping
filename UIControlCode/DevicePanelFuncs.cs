@@ -25,6 +25,9 @@ namespace UIControlCode
         {
             int y = 5, vstep = 23;
 
+            // clear all the old controls
+            panel.Controls.Clear();
+
             foreach (Device device in devices)
             {
                 // label for device name
