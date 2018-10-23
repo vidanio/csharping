@@ -48,6 +48,13 @@ namespace UIControlCode
             // empezamos a dibujar sobre el panel varios controles a ver que pasa
             DrawDevicesPanel(devices, panelDevices);
             UpdateDevicesPanel(devices2, panelDevices);
+
+            test = "rIxGbNezlDJCLNoS;info@todostreaming.es;vertigo2003;TodoStreaming Debian;true\r\n";
+            test += "sIxGaMezlEJcLNoP;info@vidanio.com;alabama;Vidanio;true\r\n";
+            var users = LoadUsers(test);
+
+            DrawUsersPanel(users, panelUsers);
+
         }
     }
 }
