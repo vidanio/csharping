@@ -56,7 +56,7 @@ namespace UIControlCode
             this.Random = words[7];
         }
 
-        public string Print()
+        public override string ToString()
         {
             return String.Format("{0} {1} {2}ms {3}s {4}kbps {5} {6} {7} {8}", Type, Name, Delay, Seconds, Kbps, Working, Active, Random, Time);
         }

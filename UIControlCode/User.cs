@@ -27,7 +27,7 @@ namespace UIControlCode
             this.Active = (words[4] == "true")? true: false;
         }
 
-        public string Print()
+        public override string ToString()
         {
             return String.Format("{0} {1} {2} {3} {4}", Type, Mail, Pass, Random, Active);
         }

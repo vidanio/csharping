@@ -13,75 +13,67 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
-        private string test = "E;Encoder11;0;99652;0;false;true;VRbybdDBvtEsdVol\r\nD;Linux82;0;9000;0;false;true;WRCQGpzkmhkuGSAb\r\n";
-        //private string test = "";
-
         public MainForm()
         {
             InitializeComponent();
 
-            ParseDevices(test);
-        }
+            string test = "";
+            test += "E;Encoder11;0;99652;0;false;true;VRbybdDBvtEsdVol\r\n";
+            test += "D;Linux82;0;9000;0;false;true;WRCQGpzkmhkuGSAb\r\n";
+            test += "D;Linux83;0;0;0;false;true;pTrRazSyhCEPRoPJ\r\n";
+            test += "D;Linux88;0;0;0;false;true;dFqHwyPSPGPHSlZl\r\n";
+            var devices = LoadDevices(test);
 
-        private void ParseAdmins(string csv)
-        {
-            StringReader strReader = new StringReader(csv);
-
-            while (true)
+            foreach (Device dev in devices)
             {
-                string line = strReader.ReadLine();
-                if (line != null)
-                {
-                    txtDebug.AppendText(new User(0, line).Print() + "\r\n");
-                }
-                else
-                {
-                    break;
-                }
+                txtDebug.AppendText(dev.ToString() + "\r\n");
             }
-        }
 
-        private void ParseUsers(string csv)
-        {
-            StringReader strReader = new StringReader(csv);
-
-            while (true)
+            string test2 = "";
+            test2 += "E;Encoder11;0;99652;0;false;true;VRbybdDBvtEsdVol\r\n";
+            test2 += "D;Linux82;0;9000;0;false;true;WRCQGpzkmhkuGSAb\r\n";
+            test2 += "D;Linux83;0;0;0;false;true;pTrRazSyhCEPRoPJ\r\n";
+            test2 += "D;Linux88;0;0;0;false;true;dFqHwyPSPGPHSlZl\r\n";
+            var devices2 = LoadDevices(test2);
+            if (CompareListOfDevices(devices, devices2))
             {
-                string line = strReader.ReadLine();
-                if (line != null)
-                {
-                    txtDebug.AppendText(new User(1, line).Print() + "\r\n");
-                }
-                else
-                {
-                    break;
-                }
+                txtDebug.AppendText("\r\nEQUAL !!!\r\n\r\n");
             }
-        }
-
-        private void ParseDevices(string csv)
-        {
-            StringReader strReader = new StringReader(csv);
-
-            while (true)
+            else
             {
-                string line = strReader.ReadLine();
-                if (line != null)
-                {
-                    txtDebug.AppendText(new Device(line).Print() + "\r\n");
-                }
-                else
-                {
-                    break;
-                }
+                txtDebug.AppendText("\r\nDIFFER !!!\r\n\r\n");
             }
+
+            // empezamos a dibujar sobre el panel varios controles a ver que pasa
+            // 1.- Un boton
+            Button boton = new Button();
+            boton.Height = 24;
+            boton.Width = 200;
+            boton.Location = new Point(5, 5);
+            boton.Name = "btnTest1_dFqHwyPSPGPHSlZl";
+            boton.Text = "Test1";
+            boton.Click += new EventHandler(handlerDevices_Click);
+            panelDevices.Controls.Add(boton);
+            // 2.- Un label
+            Label label = new Label();
+            label.Location = new Point(5, 35);
+            label.Name = "lblTest2_pTrRazSyhCEPRoPJ";
+            label.Text = "Label Test2";
+            label.Click += new EventHandler(handlerDevices_Click);
+            panelDevices.Controls.Add(label);
+
         }
 
-        private void txtDebug_TextChanged(object sender, EventArgs e)
+        private void handlerDevices_Click(object sender, EventArgs e)
         {
-            if (sender.GetType() == typeof(TextBox))
+            if (sender.GetType() == typeof(Button))
             {
-
+                ((Button)sender).Text = "OK";
+            }
+            else if (sender.GetType() == typeof(Label))
+            {
+                
+                txtDebug.AppendText(((Label)sender).Name + " clicked\r\n");
             }
         }
     }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.txtDebug = new System.Windows.Forms.TextBox();
+            this.panelDevices = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // txtDebug
@@ -39,13 +40,21 @@
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtDebug.Size = new System.Drawing.Size(920, 216);
             this.txtDebug.TabIndex = 0;
-            this.txtDebug.TextChanged += new System.EventHandler(this.txtDebug_TextChanged);
+            // 
+            // panelDevices
+            // 
+            this.panelDevices.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDevices.Location = new System.Drawing.Point(67, 72);
+            this.panelDevices.Name = "panelDevices";
+            this.panelDevices.Size = new System.Drawing.Size(527, 208);
+            this.panelDevices.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 641);
+            this.Controls.Add(this.panelDevices);
             this.Controls.Add(this.txtDebug);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -58,6 +67,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtDebug;
+        private System.Windows.Forms.Panel panelDevices;
     }
 }
 
