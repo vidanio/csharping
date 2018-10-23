@@ -30,31 +30,42 @@
         {
             this.txtDebug = new System.Windows.Forms.TextBox();
             this.panelDevices = new System.Windows.Forms.Panel();
+            this.panelUsers = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // txtDebug
             // 
-            this.txtDebug.Location = new System.Drawing.Point(40, 398);
+            this.txtDebug.Location = new System.Drawing.Point(12, 398);
             this.txtDebug.Multiline = true;
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDebug.Size = new System.Drawing.Size(920, 216);
+            this.txtDebug.Size = new System.Drawing.Size(948, 216);
             this.txtDebug.TabIndex = 0;
             // 
             // panelDevices
             // 
             this.panelDevices.AutoScroll = true;
             this.panelDevices.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelDevices.Location = new System.Drawing.Point(67, 72);
+            this.panelDevices.Location = new System.Drawing.Point(12, 12);
             this.panelDevices.Name = "panelDevices";
             this.panelDevices.Size = new System.Drawing.Size(527, 208);
             this.panelDevices.TabIndex = 1;
+            // 
+            // panelUsers
+            // 
+            this.panelUsers.AutoScroll = true;
+            this.panelUsers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelUsers.Location = new System.Drawing.Point(601, 12);
+            this.panelUsers.Name = "panelUsers";
+            this.panelUsers.Size = new System.Drawing.Size(243, 208);
+            this.panelUsers.TabIndex = 2;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 641);
+            this.Controls.Add(this.panelUsers);
             this.Controls.Add(this.panelDevices);
             this.Controls.Add(this.txtDebug);
             this.Name = "MainForm";
@@ -69,6 +80,7 @@
 
         private System.Windows.Forms.TextBox txtDebug;
         private System.Windows.Forms.Panel panelDevices;
+        private System.Windows.Forms.Panel panelUsers;
     }
 }
 

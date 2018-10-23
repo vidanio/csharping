@@ -136,13 +136,13 @@ namespace UIControlCode
                             crtl.Text = device.Name;
                             break;
                         case "Delay":
-                            crtl.Text = device.Delay.ToString();
+                            crtl.Text = device.Delay.ToString() + " ms";
                             break;
                         case "Time":
                             crtl.Text = device.Time;
                             break;
                         case "Bitrate":
-                            crtl.Text = device.Kbps.ToString();
+                            crtl.Text = device.Kbps.ToString() + " kbps";
                             break;
                     }
                 }
@@ -156,6 +156,7 @@ namespace UIControlCode
                         case "Inactive":
                         case "Active":
                             crtl.Image = (device.Active) ? Properties.Resources.ok : Properties.Resources.cancel;
+                            crtl.Name = (device.Active) ? "Inactive_" + device.Random : "Active_" + device.Random;
                             break;
                         case "Working":
                             crtl.Image = (device.Working) ? Properties.Resources.on_20x20 : Properties.Resources.off_20x20;
