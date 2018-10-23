@@ -35,6 +35,7 @@ namespace UIControlCode
             test2 += "D;Linux83;0;0;0;false;true;pTrRazSyhCEPRoPJ\r\n";
             test2 += "D;Linux88;0;0;0;false;true;dFqHwyPSPGPHSlZl\r\n";
             var devices2 = LoadDevices(test2);
+
             if (CompareListOfDevices(devices, devices2))
             {
                 txtDebug.AppendText("\r\nEQUAL !!!\r\n\r\n");
@@ -46,9 +47,8 @@ namespace UIControlCode
 
             // empezamos a dibujar sobre el panel varios controles a ver que pasa
             DrawDevicesPanel(devices, panelDevices);
-
+            UpdateDevicesPanel(devices2, panelDevices);
         }
-    
     }
 }
 

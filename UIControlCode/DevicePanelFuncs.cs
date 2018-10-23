@@ -14,7 +14,7 @@ namespace UIControlCode
             {
                 txtDebug.AppendText(((PictureBox)sender).Name + " clicked\r\n");
             }
-            else if (sender.GetType() == typeof(Label))
+            else // Label
             {
                 txtDebug.AppendText(((Label)sender).Name + " clicked\r\n");
             }
@@ -119,5 +119,51 @@ namespace UIControlCode
                 y += vstep;
             }
         }
+
+        // update controls that changed at devices panel
+        private void UpdateDevicesPanel(List<Device> devices, Panel panel)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                if (control.GetType() == typeof(Label))
+                {
+                    Label crtl = (Label)control;
+                    var words = crtl.Name.Split('_');
+                    var device = devices.Find(x => x.Random == words[1]); // recojo el device al que pertenece este control
+                    switch (words[0])
+                    {
+                        case "Name":
+                            crtl.Text = device.Name;
+                            break;
+                        case "Delay":
+                            crtl.Text = device.Delay.ToString();
+                            break;
+                        case "Time":
+                            crtl.Text = device.Time;
+                            break;
+                        case "Bitrate":
+                            crtl.Text = device.Kbps.ToString();
+                            break;
+                    }
+                }
+                else // PictureBox
+                {
+                    PictureBox crtl = (PictureBox)control;
+                    var words = crtl.Name.Split('_');
+                    var device = devices.Find(x => x.Random == words[1]); // recojo el device al que pertenece este control
+                    switch (words[0])
+                    {
+                        case "Inactive":
+                        case "Active":
+                            crtl.Image = (device.Active) ? Properties.Resources.ok : Properties.Resources.cancel;
+                            break;
+                        case "Working":
+                            crtl.Image = (device.Working) ? Properties.Resources.on_20x20 : Properties.Resources.off_20x20;
+                            break;
+                    }
+                }
+            }
+        }
+
     }
 }
