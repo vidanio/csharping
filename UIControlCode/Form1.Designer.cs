@@ -43,6 +43,7 @@
             // 
             // panelDevices
             // 
+            this.panelDevices.AutoScroll = true;
             this.panelDevices.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDevices.Location = new System.Drawing.Point(67, 72);
             this.panelDevices.Name = "panelDevices";

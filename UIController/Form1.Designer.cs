@@ -514,6 +514,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
+            this.label32.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label32.ForeColor = System.Drawing.Color.Red;
             this.label32.Location = new System.Drawing.Point(9, 9);
             this.label32.Name = "label32";
