@@ -35,11 +35,11 @@
             // 
             // txtDebug
             // 
-            this.txtDebug.Location = new System.Drawing.Point(12, 398);
+            this.txtDebug.Location = new System.Drawing.Point(12, 288);
             this.txtDebug.Multiline = true;
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDebug.Size = new System.Drawing.Size(948, 216);
+            this.txtDebug.Size = new System.Drawing.Size(566, 326);
             this.txtDebug.TabIndex = 0;
             // 
             // panelDevices

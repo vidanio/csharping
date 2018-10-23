@@ -60,6 +60,17 @@ namespace UIControlCode
 }
 
 /*
+ *          
+ *          this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Username,
+            this.GBytes,
+            this.Hours});
+            this.dataGridView1.Location = new System.Drawing.Point(596, 242);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(376, 243);
+
  * random, mail, pass, name, active
 rIxGbNezlDJCLNoS;info@todostreaming.es;vertigo2003;TodoStreaming;true
 sIxGaMezlEJcLNoP;info@vidanio.com;alabama;Vidanio;true
@@ -76,4 +87,12 @@ D;Linux86;0;0;0;false;true;ECjswsyYrbGPYeTq
 D;Linux87;0;0;0;false;true;REIWNXOpZcshEBFP
 D;Linux89;0;0;0;false;true;pYtmXPjjQtInQpqF
 D;Linux90;0;0;0;false;true;JjHrtBhnhAKuUCsi 
-     */
+
+day:  name;date;mbytes;minutes
+TodoStreaming;2018-10-09;254256;954220
+TodoStreaming;2018-10-10;256001;564489
+TodoStreaming;2018-10-22;1384;219
+
+mon:  name;date;gbytes;hours
+TodoStreaming;2018-10-09;512;25316
+*/
