@@ -690,6 +690,7 @@
             this.cboxYear.Size = new System.Drawing.Size(121, 21);
             this.cboxYear.TabIndex = 3;
             this.cboxYear.Text = "Year";
+            this.cboxYear.SelectedIndexChanged += new System.EventHandler(this.cboxYear_SelectedIndexChanged);
             // 
             // dataGridView1
             // 

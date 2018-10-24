@@ -24,6 +24,11 @@ namespace UIControlCode
         Panel panelListDevices = new Panel();
         Label lblTitleDevices = new Label();
         PictureBox addDevice = new PictureBox();
+        // Combos
+        ComboBox cboxMonth_mon = new ComboBox();
+        ComboBox cboxYear_mon = new ComboBox();
+        ComboBox cboxMonth_day = new ComboBox();
+        ComboBox cboxYear_day = new ComboBox();
 
         private void DrawLoggingBlock(int x, int y)
         {
@@ -141,6 +146,42 @@ namespace UIControlCode
             DataGridView dgv = DrawDataGridView(Headers, new Size(sizex, sizey), new Point(x, y), "dgv_" + sum);
             LoadStatsOnDGV(dgv, csv, sum);
             panel.Controls.Add(dgv);
+
+            if (sum != "user_now")
+            {
+                ComboBox cboxMonth = (sum == "user_day") ? cboxMonth_day : cboxMonth_mon;
+                ComboBox cboxYear = (sum == "user_day") ? cboxYear_day : cboxYear_mon;
+                object[] months = new object[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+                cboxMonth = CreateComboBox("Mes", months, x + sizex - 121, y - 24, 121, 21, "Month_" + sum);
+                object[] years = new object[] { "2016", "2017", "2018" };
+                cboxYear = CreateComboBox("Año", years, x + sizex - 245, y - 24, 121, 21, "Year_" + sum);
+                panel.Controls.Add(cboxMonth);
+                panel.Controls.Add(cboxYear);
+            }
+        }
+
+        private ComboBox CreateComboBox(string title, object[] options, int x, int y, int sizex, int sizey, string sum)
+        {
+            ComboBox cbox = new ComboBox();
+            cbox.Items.AddRange(options);
+            cbox.Text = title;
+            cbox.Name = "cbox_" + sum;
+            cbox.FormattingEnabled = true;
+            cbox.Location = new Point(x, y);
+            cbox.Size = new Size(sizex, sizey);
+            cbox.SelectedIndexChanged += new EventHandler(handlerCombos_SelectedIndexChanged);
+
+            return cbox;
+        }
+
+        // select index changed event handler for all comboboxes in the window
+        private void handlerCombos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cbox = (ComboBox)sender;
+            if (cbox.SelectedIndex != -1)
+            {
+                txtDebug.AppendText(String.Format("{0} selected [{1}] = {2}\r\n", cbox.Name, cbox.SelectedIndex.ToString(), cbox.Items[cbox.SelectedIndex].ToString()));
+            }
         }
     }
 }

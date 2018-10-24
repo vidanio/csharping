@@ -30,5 +30,10 @@ namespace UIController
             }
             return null;
         }
+
+        private void cboxYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
