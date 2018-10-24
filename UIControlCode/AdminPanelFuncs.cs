@@ -12,11 +12,11 @@ namespace UIControlCode
         {
             if (sender.GetType() == typeof(PictureBox))
             {
-                txtDebug.AppendText(((PictureBox)sender).Name + " clicked\r\n");
+                txtDebug.AppendText(((PictureBox)sender).Name + " clicked[Admin handler]\r\n");
             }
             else // Label
             {
-                txtDebug.AppendText(((Label)sender).Name + " clicked\r\n");
+                txtDebug.AppendText(((Label)sender).Name + " clicked[Admin handler]\r\n");
             }
         }
 
