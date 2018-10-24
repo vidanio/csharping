@@ -55,6 +55,10 @@ namespace UIControlCode
 
             DrawUsersPanel(users, panelUsers);
 
+            // stats INFO sum = day
+            test = "TodoStreaming;2018-10-09;254256;954220\r\n";
+            test += "TodoStreaming;2018-10-10;256001;564489\r\n";
+            test += "TodoStreaming;2018-10-22;1384;219\r\n";
             // DGV draw
             string[] colheaders = new string[] { "Usuario", "GBytes", "Horas" };
             DataGridView dgv1 = DrawDataGridView(colheaders, new Size(376, 243), new Point(596, 242), "dgv1");
@@ -62,23 +66,6 @@ namespace UIControlCode
 
         }
 
-        private DataGridView DrawDataGridView(string[] colheaders, Size size, Point location, string name)
-        {
-            DataGridView dgv = new DataGridView();
-
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            foreach (string col in colheaders)
-            {
-                dgv.Columns.Add(col, col);
-            }
-            dgv.Location = location;
-            dgv.Size = size;
-            dgv.Name = name;
-            dgv.ReadOnly = true;
-
-            return dgv;
-        }
     }
 }
 
