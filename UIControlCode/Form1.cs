@@ -55,45 +55,17 @@ namespace UIControlCode
 
             DrawUsersPanel(users, panelUsers);
 
-            // stats INFO sum = day
+            // stats INFO sum = user_day (Day ; MBytes ; Minutes)
             test = "TodoStreaming;2018-10-09;254256;954220\r\n";
             test += "TodoStreaming;2018-10-10;256001;564489\r\n";
             test += "TodoStreaming;2018-10-22;1384;219\r\n";
             // DGV draw
-            string[] colheaders = new string[] { "Usuario", "GBytes", "Horas" };
+            string[] colheaders = new string[] { "Día", "MBytes", "Minutos" };
             DataGridView dgv1 = DrawDataGridView(colheaders, new Size(376, 243), new Point(596, 242), "dgv1");
+            LoadStatsOnDGV(dgv1, test, "user_day");
             Controls.Add(dgv1);
 
         }
 
     }
 }
-
-/*
- *          
-
- * random, mail, pass, name, active
-rIxGbNezlDJCLNoS;info@todostreaming.es;vertigo2003;TodoStreaming;true
-sIxGaMezlEJcLNoP;info@vidanio.com;alabama;Vidanio;true
-
-    tipo, nombre, delay, seconds, kbps, working, active, random
-E;Encoder11;0;0;0;false;true;VRbybdDBvtEsdVol
-D;Linux82;0;0;0;false;true;WRCQGpzkmhkuGSAb
-D;Linux83;0;0;0;false;true;pTrRazSyhCEPRoPJ
-D;Linux85;0;0;0;false;true;RmsLUOjJXgcKYgiS
-D;Linux88;0;0;0;false;true;dFqHwyPSPGPHSlZl
-D;Linux81;0;0;0;false;true;YSZWtRcJpmrMZqpi
-D;Linux84;0;0;0;false;true;jBzWJBIpQoGPtfer
-D;Linux86;0;0;0;false;true;ECjswsyYrbGPYeTq
-D;Linux87;0;0;0;false;true;REIWNXOpZcshEBFP
-D;Linux89;0;0;0;false;true;pYtmXPjjQtInQpqF
-D;Linux90;0;0;0;false;true;JjHrtBhnhAKuUCsi 
-
-day:  name;date;mbytes;minutes
-TodoStreaming;2018-10-09;254256;954220
-TodoStreaming;2018-10-10;256001;564489
-TodoStreaming;2018-10-22;1384;219
-
-mon:  name;date;gbytes;hours
-TodoStreaming;2018-10-09;512;25316
-*/

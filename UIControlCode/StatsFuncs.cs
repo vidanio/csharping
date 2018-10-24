@@ -38,28 +38,42 @@ namespace UIControlCode
                 if (line != null)
                 {
                     var words = line.Split(';');
+                    int n = dgv.Rows.Add(); // add a row for this line
+
                     if (sum == "admin_mon")
                     {
                         // on line: TodoStreaming;2018-10-09;512;25316
                         // on grid: User ; GBytes ; Hours
-
+                        dgv.Rows[n].Cells[0].Value = words[0];
+                        dgv.Rows[n].Cells[1].Value = words[2];
+                        dgv.Rows[n].Cells[2].Value = words[3];
                     }
                     else if (sum == "user_mon")
                     {
                         // on line: TodoStreaming;2018-10-09;512;25316
                         // on grid: Month ; GBytes ; Hours
-
+                        var items = words[1].Split('-');
+                        dgv.Rows[n].Cells[0].Value = items[1]; // month number
+                        dgv.Rows[n].Cells[1].Value = words[2];
+                        dgv.Rows[n].Cells[2].Value = words[3];
                     }
                     else if (sum == "user_day")
                     {
                         // on line: TodoStreaming;2018-10-09;254256;954220
                         // on grid: Day ; MBytes ; Minutes
-
+                        var items = words[1].Split('-');
+                        dgv.Rows[n].Cells[0].Value = items[2]; // day number (01-31)
+                        dgv.Rows[n].Cells[1].Value = words[2];
+                        dgv.Rows[n].Cells[2].Value = words[3];
                     }
                     else // user_now
                     {
                         // on line: Linux89;8500;95;2;1 
                         // on grid: Decoder ; Kbps ; Minutes ; Mbytes
+                        dgv.Rows[n].Cells[0].Value = words[0];
+                        dgv.Rows[n].Cells[1].Value = words[1];
+                        dgv.Rows[n].Cells[2].Value = words[2];
+                        dgv.Rows[n].Cells[3].Value = words[3];
                     }
 
                 }
@@ -69,11 +83,3 @@ namespace UIControlCode
         }
     }
 }
-/*
- * TodoStreaming;2018-10-09;512;25316
-   Vidanio;2018-10-10;401;3704
- * 
-            test = "TodoStreaming;2018-10-09;254256;954220\r\n";
-            test += "TodoStreaming;2018-10-10;256001;564489\r\n";
-            test += "TodoStreaming;2018-10-22;1384;219\r\n";
- *  */
