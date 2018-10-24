@@ -55,21 +55,35 @@ namespace UIControlCode
 
             DrawUsersPanel(users, panelUsers);
 
+            // DGV draw
+            string[] colheaders = new string[] { "Usuario", "GBytes", "Horas" };
+            DataGridView dgv1 = DrawDataGridView(colheaders, new Size(376, 243), new Point(596, 242), "dgv1");
+            Controls.Add(dgv1);
+
+        }
+
+        private DataGridView DrawDataGridView(string[] colheaders, Size size, Point location, string name)
+        {
+            DataGridView dgv = new DataGridView();
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            foreach (string col in colheaders)
+            {
+                dgv.Columns.Add(col, col);
+            }
+            dgv.Location = location;
+            dgv.Size = size;
+            dgv.Name = name;
+            dgv.ReadOnly = true;
+
+            return dgv;
         }
     }
 }
 
 /*
  *          
- *          this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Username,
-            this.GBytes,
-            this.Hours});
-            this.dataGridView1.Location = new System.Drawing.Point(596, 242);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(376, 243);
 
  * random, mail, pass, name, active
 rIxGbNezlDJCLNoS;info@todostreaming.es;vertigo2003;TodoStreaming;true

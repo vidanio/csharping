@@ -98,5 +98,15 @@ namespace UIControlCode
 
             return true;
         }
+
+        // return a Control whose parent and name are known
+        public Control GetControlByName(Control ParentCntl, string NameToSearch)
+        {
+            foreach (Control ChildCntl in ParentCntl.Controls)
+            {
+                if (ChildCntl.Name == NameToSearch) return ChildCntl;
+            }
+            return null;
+        }
     }
 }
