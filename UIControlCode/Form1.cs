@@ -27,8 +27,11 @@ namespace UIControlCode
             DrawAdminsPanelBlock(15, 37, 243, 243);
             DrawUsersPanelBlock(296, 37, 243, 243);
             DrawDevicesPanelBlock(15, 344, 527, 208);
-            DrawStatsTableBlock(577, 60, 376, 243, "", "admin_mon");
-            DrawStatsTableBlock(577, 367, 376, 208, "", "user_day");
+            DrawStatsTableBlock(577, 60, 376, 243, "", "admin_mon"); // returns dgv object to change contents in the future with LoadStatsOnDGV()
+            string test = "TodoStreaming;2018-10-09;254256;954220\r\n";
+            test += "TodoStreaming;2018-10-10;256001;564489\r\n";
+            test += "TodoStreaming;2018-10-22;1384;219\r\n";
+            DrawStatsTableBlock(577, 367, 376, 208, test, "user_day");
         }
 
         private void PaintAdminBoard()

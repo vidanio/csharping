@@ -141,7 +141,7 @@ namespace UIControlCode
             panel.Controls.Add(addDevice);
         }
 
-        private void DrawStatsTableBlock(int x, int y, int sizex, int sizey, string csv, string sum)
+        private DataGridView DrawStatsTableBlock(int x, int y, int sizex, int sizey, string csv, string sum)
         {
             string[]  Headers = (sum == "admin_mon") ? AdminMonHeaders : (sum == "user_mon") ? UserMonHeaders : (sum == "user_day") ? UserDayHeaders : UserNowHeaders;
 
@@ -160,6 +160,8 @@ namespace UIControlCode
                 panel.Controls.Add(cboxMonth);
                 panel.Controls.Add(cboxYear);
             }
+
+            return dgv;
         }
 
         private ComboBox CreateComboBox(string title, object[] options, int x, int y, int sizex, int sizey, string suffix, int selected)
