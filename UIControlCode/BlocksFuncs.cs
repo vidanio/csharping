@@ -8,6 +8,8 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
+        object[] MonthNames = new object[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+
         ToolTip tooltip = new ToolTip(); // for all the controls in the window
         // Logging Block
         PictureBox loggingPicture = new PictureBox();
@@ -151,24 +153,28 @@ namespace UIControlCode
             {
                 ComboBox cboxMonth = (sum == "user_day") ? cboxMonth_day : cboxMonth_mon;
                 ComboBox cboxYear = (sum == "user_day") ? cboxYear_day : cboxYear_mon;
-                object[] months = new object[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
-                cboxMonth = CreateComboBox("Mes", months, x + sizex - 121, y - 24, 121, 21, "Month_" + sum);
-                object[] years = new object[] { "2016", "2017", "2018" };
-                cboxYear = CreateComboBox("Año", years, x + sizex - 245, y - 24, 121, 21, "Year_" + sum);
+                DateTime today = DateTime.Today;
+                cboxMonth = CreateComboBox("Mes", MonthNames, x + sizex - 90, y - 24, 90, 21, "Month_" + sum, today.Month - 1);
+                object[] years = new object[] { today.Year-2, today.Year-1 , today.Year };
+                cboxYear = CreateComboBox("Año", years, x + sizex - 153, y - 24, 60, 21, "Year_" + sum, 2);
                 panel.Controls.Add(cboxMonth);
                 panel.Controls.Add(cboxYear);
             }
         }
 
-        private ComboBox CreateComboBox(string title, object[] options, int x, int y, int sizex, int sizey, string sum)
+        private ComboBox CreateComboBox(string title, object[] options, int x, int y, int sizex, int sizey, string suffix, int selected)
         {
             ComboBox cbox = new ComboBox();
             cbox.Items.AddRange(options);
             cbox.Text = title;
-            cbox.Name = "cbox_" + sum;
+            cbox.Name = "cbox_" + suffix;
             cbox.FormattingEnabled = true;
             cbox.Location = new Point(x, y);
             cbox.Size = new Size(sizex, sizey);
+            if (selected < cbox.Items.Count)
+            {
+                cbox.SelectedIndex = selected;
+            }
             cbox.SelectedIndexChanged += new EventHandler(handlerCombos_SelectedIndexChanged);
 
             return cbox;
