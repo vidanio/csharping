@@ -35,11 +35,11 @@
             // 
             // txtDebug
             // 
-            this.txtDebug.Location = new System.Drawing.Point(12, 288);
+            this.txtDebug.Location = new System.Drawing.Point(1000, 12);
             this.txtDebug.Multiline = true;
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtDebug.Size = new System.Drawing.Size(566, 326);
+            this.txtDebug.Size = new System.Drawing.Size(392, 574);
             this.txtDebug.TabIndex = 0;
             // 
             // panelDevices
@@ -64,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 641);
+            this.ClientSize = new System.Drawing.Size(1404, 641);
             this.Controls.Add(this.panelUsers);
             this.Controls.Add(this.panelDevices);
             this.Controls.Add(this.txtDebug);
