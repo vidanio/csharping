@@ -17,6 +17,12 @@ namespace UIControlCode
         {
             InitializeComponent();
 
+            testall();
+        }
+
+        // this is sample test that shows how to use all funcs
+        private void testall()
+        {
             string test = "";
             test += "E;TodoStreaming Debian;5000;739600125;13500;false;true;VRbybdDBvtEsdVol\r\n";
             test += "D;Linux82;0;9000;1256;true;true;WRCQGpzkmhkuGSAb\r\n";
@@ -31,9 +37,9 @@ namespace UIControlCode
 
             string test2 = "";
             test2 += "E;Encoder11;0;99652;0;false;true;VRbybdDBvtEsdVol\r\n";
-            test2 += "D;Linux82;0;9000;0;false;true;WRCQGpzkmhkuGSAb\r\n";
-            test2 += "D;Linux83;0;0;0;false;true;pTrRazSyhCEPRoPJ\r\n";
             test2 += "D;Linux88;0;0;0;false;true;dFqHwyPSPGPHSlZl\r\n";
+            test2 += "D;Linux83;0;0;0;false;true;pTrRazSyhCEPRoPJ\r\n";
+            test2 += "D;Linux82;0;9000;0;false;true;WRCQGpzkmhkuGSAb\r\n";
             var devices2 = LoadDevices(test2);
 
             if (CompareListOfDevices(devices, devices2))
@@ -49,6 +55,16 @@ namespace UIControlCode
             DrawDevicesPanel(devices, panelDevices);
             UpdateDevicesPanel(devices2, panelDevices);
 
+            // copy Lists devices2 to devices
+            devices.Clear();
+            devices.AddRange(devices2);
+
+            foreach (Device dev in devices)
+            {
+                txtDebug.AppendText(dev.ToString() + "\r\n");
+            }
+
+            // users data
             test = "rIxGbNezlDJCLNoS;info@todostreaming.es;vertigo2003;TodoStreaming Debian;true\r\n";
             test += "sIxGaMezlEJcLNoP;info@vidanio.com;alabama;Vidanio;true\r\n";
             var users = LoadUsers(test);
@@ -64,7 +80,6 @@ namespace UIControlCode
             DataGridView dgv1 = DrawDataGridView(colheaders, new Size(376, 243), new Point(596, 242), "dgv1");
             LoadStatsOnDGV(dgv1, test, "user_day");
             Controls.Add(dgv1);
-
         }
 
     }
