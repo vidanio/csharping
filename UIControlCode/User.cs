@@ -33,8 +33,3 @@ namespace UIControlCode
         }
     }
 }
-/*
- * random, mail, pass, name, active
-rIxGbNezlDJCLNoS;info@todostreaming.es;vertigo2003;TodoStreaming;true
-sIxGaMezlEJcLNoP;info@vidanio.com;alabama;Vidanio;true
-*/
