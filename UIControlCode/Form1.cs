@@ -17,8 +17,8 @@ namespace UIControlCode
         {
             InitializeComponent();
 
-            //TestAll();
             PaintRootBoard();
+            TestAll();
         }
 
         private void PaintRootBoard()
@@ -73,8 +73,8 @@ namespace UIControlCode
             }
 
             // empezamos a dibujar sobre el panel varios controles a ver que pasa
-            //DrawDevicesPanel(devices, panelDevices); //===>
-            //UpdateDevicesPanel(devices2, panelDevices); //===>
+            DrawDevicesPanel(devices, panelListDevices); //===>
+            UpdateDevicesPanel(devices2, panelListDevices); //===>
 
             // copy Lists devices2 to devices
             devices.Clear();
@@ -90,16 +90,16 @@ namespace UIControlCode
             test += "sIxGaMezlEJcLNoP;info@vidanio.com;alabama;Vidanio;true\r\n";
             var users = LoadUsers(test);
 
-            //DrawUsersPanel(users, panelUsers); //===>
+            DrawUsersPanel(users, panelListUsers); //===>
 
             // stats INFO sum = user_day (Day ; MBytes ; Minutes)
             test = "TodoStreaming;2018-10-09;254256;954220\r\n";
             test += "TodoStreaming;2018-10-10;256001;564489\r\n";
             test += "TodoStreaming;2018-10-22;1384;219\r\n";
             // DGV draw
-            DataGridView dgv1 = DrawDataGridView(UserDayHeaders, new Size(376, 243), new Point(596, 242), "dgv1");
-            LoadStatsOnDGV(dgv1, test, "user_day");
-            Controls.Add(dgv1);
+            //DataGridView dgv1 = DrawDataGridView(UserDayHeaders, new Size(376, 243), new Point(596, 242), "dgv1");
+            //LoadStatsOnDGV(dgv1, test, "user_day");
+            //Controls.Add(dgv1);
         }
     }
 }
