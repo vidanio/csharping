@@ -49,6 +49,9 @@
     <Compile Include="AdminPanelFuncs.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BlocksFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Device.cs" />
     <Compile Include="DevicePanelFuncs.cs">
       <SubType>Form</SubType>

@@ -8,6 +8,12 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
+        // globals for DGV table's Headers
+        string[] AdminMonHeaders = new string[] { "Usuario", "GBytes", "Horas" }; //User ; GBytes ; Hours
+        string[] UserDayHeaders = new string[] { "Día", "MBytes", "Minutos" }; // Day ; MBytes ; Minutes
+        string[] UserMonHeaders = new string[] { "Mes", "GBytes", "Horas" }; // Month ; GBytes ; Hours
+        string[] UserNowHeaders = new string[] { "Decoder", "Kbps", "Minutos", "MBytes" }; // Decoder ; Kbps ; Minutes ; Mbytes
+
         // draws a datagridview empty table with headers titles
         private DataGridView DrawDataGridView(string[] colheaders, Size size, Point location, string name)
         {

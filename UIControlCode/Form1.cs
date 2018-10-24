@@ -17,11 +17,32 @@ namespace UIControlCode
         {
             InitializeComponent();
 
-            testall();
+            //TestAll();
+            PaintRootBoard();
+        }
+
+        private void PaintRootBoard()
+        {
+            DrawLoggingBlock(3, 3);
+            DrawAdminsPanelBlock(15, 37, 243, 243);
+            DrawUsersPanelBlock(296, 37, 243, 243);
+            DrawDevicesPanelBlock(15, 344, 527, 208);
+            DrawStatsTableBlock(577, 60, 376, 243, "", "admin_mon");
+            DrawStatsTableBlock(577, 367, 376, 208, "", "user_day");
+        }
+
+        private void PaintAdminBoard()
+        {
+
+        }
+
+        private void PaintUserBoard()
+        {
+
         }
 
         // this is sample test that shows how to use all funcs
-        private void testall()
+        private void TestAll()
         {
             string test = "";
             test += "E;TodoStreaming Debian;5000;739600125;13500;false;true;VRbybdDBvtEsdVol\r\n";
@@ -52,8 +73,8 @@ namespace UIControlCode
             }
 
             // empezamos a dibujar sobre el panel varios controles a ver que pasa
-            DrawDevicesPanel(devices, panelDevices);
-            UpdateDevicesPanel(devices2, panelDevices);
+            //DrawDevicesPanel(devices, panelDevices); //===>
+            //UpdateDevicesPanel(devices2, panelDevices); //===>
 
             // copy Lists devices2 to devices
             devices.Clear();
@@ -69,18 +90,16 @@ namespace UIControlCode
             test += "sIxGaMezlEJcLNoP;info@vidanio.com;alabama;Vidanio;true\r\n";
             var users = LoadUsers(test);
 
-            DrawUsersPanel(users, panelUsers);
+            //DrawUsersPanel(users, panelUsers); //===>
 
             // stats INFO sum = user_day (Day ; MBytes ; Minutes)
             test = "TodoStreaming;2018-10-09;254256;954220\r\n";
             test += "TodoStreaming;2018-10-10;256001;564489\r\n";
             test += "TodoStreaming;2018-10-22;1384;219\r\n";
             // DGV draw
-            string[] colheaders = new string[] { "Día", "MBytes", "Minutos" };
-            DataGridView dgv1 = DrawDataGridView(colheaders, new Size(376, 243), new Point(596, 242), "dgv1");
+            DataGridView dgv1 = DrawDataGridView(UserDayHeaders, new Size(376, 243), new Point(596, 242), "dgv1");
             LoadStatsOnDGV(dgv1, test, "user_day");
             Controls.Add(dgv1);
         }
-
     }
 }

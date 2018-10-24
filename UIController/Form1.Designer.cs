@@ -201,6 +201,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lblName_1 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.menuStrip.SuspendLayout();
             this.panelRoot.SuspendLayout();
             this.panelDevices.SuspendLayout();
@@ -316,6 +322,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDelete_1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -378,7 +385,10 @@
             this.panelRoot.Controls.Add(this.pbAddUser);
             this.panelRoot.Controls.Add(this.pictureBox99);
             this.panelRoot.Controls.Add(this.pbAddAdmin);
+            this.panelRoot.Controls.Add(this.comboBox2);
             this.panelRoot.Controls.Add(this.cboxMonth);
+            this.panelRoot.Controls.Add(this.comboBox1);
+            this.panelRoot.Controls.Add(this.dataGridView2);
             this.panelRoot.Controls.Add(this.cboxYear);
             this.panelRoot.Controls.Add(this.dataGridView1);
             this.panelRoot.Controls.Add(this.lblTitleUsers);
@@ -606,10 +616,10 @@
             // pbAddDevice
             // 
             this.pbAddDevice.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbAddDevice.Image = ((System.Drawing.Image)(resources.GetObject("pbAddDevice.Image")));
-            this.pbAddDevice.Location = new System.Drawing.Point(518, 340);
+            this.pbAddDevice.Image = global::UIController.Properties.Resources.add_20x20;
+            this.pbAddDevice.Location = new System.Drawing.Point(522, 344);
             this.pbAddDevice.Name = "pbAddDevice";
-            this.pbAddDevice.Size = new System.Drawing.Size(24, 24);
+            this.pbAddDevice.Size = new System.Drawing.Size(20, 20);
             this.pbAddDevice.TabIndex = 4;
             this.pbAddDevice.TabStop = false;
             this.toolTip.SetToolTip(this.pbAddDevice, "Añadir Nuevo Encoder");
@@ -617,10 +627,10 @@
             // pbAddUser
             // 
             this.pbAddUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbAddUser.Image = ((System.Drawing.Image)(resources.GetObject("pbAddUser.Image")));
-            this.pbAddUser.Location = new System.Drawing.Point(515, 33);
+            this.pbAddUser.Image = global::UIController.Properties.Resources.add_20x20;
+            this.pbAddUser.Location = new System.Drawing.Point(518, 37);
             this.pbAddUser.Name = "pbAddUser";
-            this.pbAddUser.Size = new System.Drawing.Size(24, 24);
+            this.pbAddUser.Size = new System.Drawing.Size(20, 20);
             this.pbAddUser.TabIndex = 4;
             this.pbAddUser.TabStop = false;
             this.toolTip.SetToolTip(this.pbAddUser, "Añade un Nuevo Usuario");
@@ -2146,6 +2156,79 @@
             this.lblName_1.Text = "TodoStreaming Debian";
             this.lblName_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3});
+            this.dataGridView2.Location = new System.Drawing.Point(577, 367);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(376, 208);
+            this.dataGridView2.TabIndex = 2;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Usuario";
+            this.dataGridViewTextBoxColumn1.MaxInputLength = 20;
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 156;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "GBytes";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 78;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Horas";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 78;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "2017",
+            "2018",
+            "2019"});
+            this.comboBox1.Location = new System.Drawing.Point(705, 340);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 3;
+            this.comboBox1.Text = "Year";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"});
+            this.comboBox2.Location = new System.Drawing.Point(832, 340);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 3;
+            this.comboBox2.Text = "Month";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2279,6 +2362,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDelete_1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2457,6 +2541,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewTextBoxColumn GBytes;
         private System.Windows.Forms.DataGridViewTextBoxColumn Hours;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }
 
