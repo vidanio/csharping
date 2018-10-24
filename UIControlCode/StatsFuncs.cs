@@ -36,9 +36,8 @@ namespace UIControlCode
         // sum (admin_mon, user_mon, user_day, user_now)
         private void LoadStatsOnDGV(DataGridView dgv, string csv, string sum)
         {
-            // 1st of all delete all rows and refresh the content
+            // 1st of all delete all rows
             dgv.Rows.Clear();
-            dgv.Refresh();
 
             StringReader strReader = new StringReader(csv);
 
@@ -89,7 +88,8 @@ namespace UIControlCode
                 }
                 else break;
             }
-
+            // refresh the content in the table
+            dgv.Refresh();
         }
     }
 }
