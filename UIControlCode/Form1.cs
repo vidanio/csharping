@@ -17,31 +17,39 @@ namespace UIControlCode
         {
             InitializeComponent();
 
-            PaintRootBoard();
-            TestAll();
+            //PaintRootBoard();
+            //TestAll();
+            //PaintAdminBoard();
+            PaintUserBoard();
         }
 
         private void PaintRootBoard()
         {
-            DrawLoggingBlock(3, 3);
+            DrawLoggingBlock(3, 3, "Logged as root");
             DrawAdminsPanelBlock(15, 37, 243, 243);
             DrawUsersPanelBlock(296, 37, 243, 243);
             DrawDevicesPanelBlock(15, 344, 527, 208);
             DrawStatsTableBlock(577, 60, 376, 243, "", "admin_mon"); // returns dgv object to change contents in the future with LoadStatsOnDGV()
-            string test = "TodoStreaming;2018-10-09;254256;954220\r\n";
-            test += "TodoStreaming;2018-10-10;256001;564489\r\n";
-            test += "TodoStreaming;2018-10-22;1384;219\r\n";
-            DrawStatsTableBlock(577, 367, 376, 208, test, "user_day");
+            DrawStatsTableBlock(577, 367, 376, 208, "", "user_day");
         }
 
         private void PaintAdminBoard()
         {
-
+            DrawLoggingBlock(3, 3, "Logged as TodoStreaming Services");
+            DrawUsersPanelBlock(75, 37, 243, 243);
+            DrawDevicesPanelBlock(398, 37, 527, 243);
+            DrawStatsTableBlock(25, 364, 310, 208, "", "admin_mon");
+            DrawStatsTableBlock(345, 364, 310, 208, "", "user_day");
+            DrawStatsTableBlock(665, 364, 310, 208, "", "user_now");
         }
 
         private void PaintUserBoard()
         {
-
+            DrawLoggingBlock(3, 3, "Logged as Televisión Andaluza");
+            DrawDevicesPanelBlock(25, 37, 527, 243);
+            DrawStatsTableBlock(599, 60, 376, 243, "", "user_now");
+            DrawStatsTableBlock(25, 364, 450, 208, "", "user_mon");
+            DrawStatsTableBlock(525, 364, 450, 208, "", "user_day");
         }
 
         // this is sample test that shows how to use all funcs

@@ -32,7 +32,7 @@ namespace UIControlCode
         ComboBox cboxMonth_day = new ComboBox();
         ComboBox cboxYear_day = new ComboBox();
 
-        private void DrawLoggingBlock(int x, int y)
+        private void DrawLoggingBlock(int x, int y, string text)
         {
             // Login picture
             loggingPicture.Location = new Point(x, y);
@@ -46,7 +46,7 @@ namespace UIControlCode
             loggingLabel.AutoSize = true;
             loggingLabel.TextAlign = ContentAlignment.MiddleCenter;
             loggingLabel.Name = "loggingLabel";
-            loggingLabel.Text = "Logged as root";
+            loggingLabel.Text = text;
             panel.Controls.Add(loggingLabel);
 
         }
