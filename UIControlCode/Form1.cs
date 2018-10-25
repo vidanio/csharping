@@ -17,10 +17,10 @@ namespace UIControlCode
         {
             InitializeComponent();
 
-            //PaintRootBoard();
-            //TestAll();
+            PaintRootBoard();
+            TestAll();
             //PaintAdminBoard();
-            PaintUserBoard();
+            //PaintUserBoard();
         }
 
         private void PaintRootBoard()
