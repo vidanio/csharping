@@ -80,7 +80,13 @@
     <Compile Include="FormUser.Designer.cs">
       <DependentUpon>FormUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Globals.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LoadFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaintBoards.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />

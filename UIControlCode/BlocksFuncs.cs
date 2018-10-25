@@ -8,30 +8,6 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
-        object[] MonthNames = new object[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
-
-        ToolTip tooltip = new ToolTip(); // for all the controls in the window
-        // Logging Block
-        PictureBox loggingPicture = new PictureBox();
-        Label loggingLabel = new Label();
-        // Admins Panel Block
-        Panel panelListAdmins = new Panel();
-        Label lblTitleAdmins = new Label();
-        PictureBox addAdmin = new PictureBox();
-        // Users Panel Block
-        Panel panelListUsers = new Panel();
-        Label lblTitleUsers = new Label();
-        PictureBox addUser = new PictureBox();
-        // Devices Panel Block
-        Panel panelListDevices = new Panel();
-        Label lblTitleDevices = new Label();
-        PictureBox addDevice = new PictureBox();
-        // Combos
-        ComboBox cboxMonth_mon = new ComboBox();
-        ComboBox cboxYear_mon = new ComboBox();
-        ComboBox cboxMonth_day = new ComboBox();
-        ComboBox cboxYear_day = new ComboBox();
-
         private void DrawLoggingBlock(int x, int y, string text)
         {
             // Login picture
