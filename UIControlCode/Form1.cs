@@ -13,6 +13,11 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
+        // instances of forms before using them
+        FormLogin formLogin = new FormLogin();
+        FormUser formUser = new FormUser();
+        FormDevice formDevice = new FormDevice();
+
         public MainForm()
         {
             InitializeComponent();
