@@ -62,8 +62,3 @@ namespace UIControlCode
         }
     }
 }
-/*
-    tipo, nombre, delay, seconds, kbps, working, active, random
-E;Encoder11;0;0;0;false;true;VRbybdDBvtEsdVol
-D;Linux82;0;0;0;false;true;WRCQGpzkmhkuGSAb
-*/

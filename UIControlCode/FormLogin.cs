@@ -15,7 +15,6 @@ namespace UIControlCode
         public string LoginMail { get; set; } = "";
         public string LoginPass { get; set; } = "";
 
-
         public FormLogin()
         {
             InitializeComponent();
