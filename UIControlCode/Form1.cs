@@ -17,6 +17,8 @@ namespace UIControlCode
         FormLogin formLogin = new FormLogin();
         FormUser formUser = new FormUser();
         FormDevice formDevice = new FormDevice();
+        // global declaration of all DGVs
+        DataGridView dgv_admin_mon, dgv_user_mon, dgv_user_day, dgv_user_now;
 
         public MainForm()
         {
@@ -34,8 +36,8 @@ namespace UIControlCode
             DrawAdminsPanelBlock(15, 37, 243, 243);
             DrawUsersPanelBlock(296, 37, 243, 243);
             DrawDevicesPanelBlock(15, 344, 527, 208);
-            DrawStatsTableBlock(577, 60, 376, 243, "", "admin_mon"); // returns dgv object to change contents in the future with LoadStatsOnDGV()
-            DrawStatsTableBlock(577, 367, 376, 208, "", "user_day");
+            dgv_admin_mon = DrawStatsTableBlock(577, 60, 376, 243, "", "admin_mon");
+            dgv_user_day = DrawStatsTableBlock(577, 367, 376, 208, "", "user_day");
         }
 
         private void PaintAdminBoard()
@@ -43,18 +45,18 @@ namespace UIControlCode
             DrawLoggingBlock(3, 3, "Logged as TodoStreaming Services");
             DrawUsersPanelBlock(75, 37, 243, 243);
             DrawDevicesPanelBlock(398, 37, 527, 243);
-            DrawStatsTableBlock(25, 364, 310, 208, "", "admin_mon");
-            DrawStatsTableBlock(345, 364, 310, 208, "", "user_day");
-            DrawStatsTableBlock(665, 364, 310, 208, "", "user_now");
+            dgv_admin_mon = DrawStatsTableBlock(25, 364, 310, 208, "", "admin_mon");
+            dgv_user_day = DrawStatsTableBlock(345, 364, 310, 208, "", "user_day");
+            dgv_user_now = DrawStatsTableBlock(665, 364, 310, 208, "", "user_now");
         }
 
         private void PaintUserBoard()
         {
             DrawLoggingBlock(3, 3, "Logged as Televisión Andaluza");
             DrawDevicesPanelBlock(25, 37, 527, 243);
-            DrawStatsTableBlock(599, 60, 376, 243, "", "user_now");
-            DrawStatsTableBlock(25, 364, 450, 208, "", "user_mon");
-            DrawStatsTableBlock(525, 364, 450, 208, "", "user_day");
+            dgv_user_now = DrawStatsTableBlock(599, 60, 376, 243, "", "user_now");
+            dgv_user_mon = DrawStatsTableBlock(25, 364, 450, 208, "", "user_mon");
+            dgv_user_day = DrawStatsTableBlock(525, 364, 450, 208, "", "user_day");
         }
 
         // this is sample test that shows how to use all funcs
