@@ -98,6 +98,9 @@
     <Compile Include="UserPanelFuncs.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="WebClientExtra.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
