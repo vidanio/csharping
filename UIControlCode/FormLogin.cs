@@ -12,6 +12,7 @@ namespace UIControlCode
 {
     public partial class FormLogin : Form
     {
+        public int LoginServer { get; set; } = 1;
         public string LoginMail { get; set; } = "";
         public string LoginPass { get; set; } = "";
 
@@ -27,6 +28,7 @@ namespace UIControlCode
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            LoginServer = (int)numServer.Value;
             LoginMail = txtMail.Text;
             LoginPass = txtPass.Text;
             this.Close();
@@ -34,6 +36,7 @@ namespace UIControlCode
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
+            numServer.Value = LoginServer;
             txtMail.Text = LoginMail;
             txtPass.Text = LoginPass;
         }

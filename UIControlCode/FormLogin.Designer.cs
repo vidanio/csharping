@@ -61,9 +61,24 @@
             // numServer
             // 
             this.numServer.Location = new System.Drawing.Point(136, 57);
+            this.numServer.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numServer.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numServer.Name = "numServer";
             this.numServer.Size = new System.Drawing.Size(61, 20);
             this.numServer.TabIndex = 2;
+            this.numServer.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // btnOK
             // 
