@@ -1,5 +1,6 @@
 ﻿// 24 global objects used in the Window
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace UIControlCode
 {
@@ -8,6 +9,9 @@ namespace UIControlCode
         // interface globals
         int board = 2; // (0 = root, 1 = admin, 2 = streamer)
         string rndlogin = "x", rndquery = "x"; // randoms of login and the streamer we query
+        List<User> adminsList = new List<User>();
+        List<User> usersList = new List<User>();
+        List<Device> devicesList = new List<Device>();
         // names of months
         object[] MonthNames = new object[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
         // instances of forms before using them
