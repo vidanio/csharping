@@ -5,6 +5,9 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
+        // interface globals
+        int board = 2; // (0 = root, 1 = admin, 2 = streamer)
+        string rndlogin="x", rndquery="x" // randoms of login and the streamer we query
         // names of months
         object[] MonthNames = new object[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
         // instances of forms before using them

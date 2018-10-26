@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtDebug = new System.Windows.Forms.TextBox();
             this.menu = new System.Windows.Forms.MenuStrip();
-            this.status = new System.Windows.Forms.StatusStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controlarEquipoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.status = new System.Windows.Forms.StatusStrip();
             this.panel = new System.Windows.Forms.Panel();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,14 +61,6 @@
             this.menu.TabIndex = 3;
             this.menu.Text = "menuStrip1";
             // 
-            // status
-            // 
-            this.status.Location = new System.Drawing.Point(0, 619);
-            this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(1404, 22);
-            this.status.TabIndex = 4;
-            this.status.Text = "statusStrip1";
-            // 
             // archivoToolStripMenuItem
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -81,25 +75,33 @@
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.logInToolStripMenuItem.Text = "Log In";
             // 
             // controlarEquipoToolStripMenuItem
             // 
             this.controlarEquipoToolStripMenuItem.Name = "controlarEquipoToolStripMenuItem";
-            this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.controlarEquipoToolStripMenuItem.Text = "Controlar Equipo";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.salirToolStripMenuItem.Text = "Salir";
+            // 
+            // status
+            // 
+            this.status.Location = new System.Drawing.Point(0, 619);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(1404, 22);
+            this.status.TabIndex = 4;
+            this.status.Text = "statusStrip1";
             // 
             // panel
             // 
@@ -108,6 +110,10 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(994, 595);
             this.panel.TabIndex = 5;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
             // 
             // MainForm
             // 
@@ -140,6 +146,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
