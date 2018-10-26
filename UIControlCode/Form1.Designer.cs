@@ -69,30 +69,30 @@
             this.toolStripMenuItem1,
             this.salirToolStripMenuItem});
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.archivoToolStripMenuItem.Text = "Archivo";
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.archivoToolStripMenuItem.Text = "Conectar";
             // 
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.logInToolStripMenuItem.Text = "Log In";
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logInToolStripMenuItem.Text = "Smart SRT Server";
             // 
             // controlarEquipoToolStripMenuItem
             // 
             this.controlarEquipoToolStripMenuItem.Name = "controlarEquipoToolStripMenuItem";
-            this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.controlarEquipoToolStripMenuItem.Text = "Controlar Equipo";
+            this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.controlarEquipoToolStripMenuItem.Text = "Dispostivos Locales";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(161, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             // 
             // status
