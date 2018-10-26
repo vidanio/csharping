@@ -12,6 +12,7 @@ namespace UIControlCode
         List<User> adminsList = new List<User>();
         List<User> usersList = new List<User>();
         List<Device> devicesList = new List<Device>();
+        WebClientExtra webClient = new WebClientExtra();
         // names of months
         object[] MonthNames = new object[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
         // instances of forms before using them
