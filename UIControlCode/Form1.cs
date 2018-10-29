@@ -208,22 +208,108 @@ namespace UIControlCode
             this.Close();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private async void timer_Tick(object sender, EventArgs e)
         {
+            timer.Stop();
             // very quick usage, or async thru await
             if (board == 0) // root
             {
-
+                List<User> admins = new List<User>();
+                List<User> users = new List<User>();
+                List<Device> devices = new List<Device>();
+                string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=11&rnd={1}&user={2}", ServerURL, rndlogin, rndquery)));
+                string[] words = csv.Split('*');
+                // actualizamos el Admins panel
+                admins = LoadAdmins(words[0]);
+                if (CompareListOfUsers(adminsList, admins)) // NO novedades
+                {
+                    UpdateAdminsPanel(admins, panel);
+                }
+                else // SI novedades
+                {
+                    adminsList.Clear();
+                    adminsList.AddRange(admins);
+                    DrawAdminsPanel(admins, panel);
+                }
+                // actualizamos el Users panel
+                users = LoadUsers(words[1]);
+                if (CompareListOfUsers(usersList, users)) // NO novedades
+                {
+                    UpdateUsersPanel(users, panel);
+                }
+                else // SI novedades
+                {
+                    usersList.Clear();
+                    usersList.AddRange(users);
+                    DrawUsersPanel(users, panel);
+                }
+                // actualizamos el Devices panel
+                devices = LoadDevices(words[2]);
+                if (CompareListOfDevices(devicesList, devices)) // NO novedades
+                {
+                    UpdateDevicesPanel(devices, panel);
+                }
+                else // SI novedades
+                {
+                    devicesList.Clear();
+                    devicesList.AddRange(devices);
+                    DrawDevicesPanel(devices, panel);
+                }
             }
             else if (board == 1) // admin
             {
-
+                List<User> users = new List<User>();
+                List<Device> devices = new List<Device>();
+                string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=12&rnd={1}&user={2}", ServerURL, rndlogin, rndquery)));
+                string[] words = csv.Split('*');
+                // actualizamos el Users panel
+                users = LoadUsers(words[0]);
+                if (CompareListOfUsers(usersList, users)) // NO novedades
+                {
+                    UpdateUsersPanel(users, panel);
+                }
+                else // SI novedades
+                {
+                    usersList.Clear();
+                    usersList.AddRange(users);
+                    DrawUsersPanel(users, panel);
+                }
+                // actualizamos el Devices panel
+                devices = LoadDevices(words[1]);
+                if (CompareListOfDevices(devicesList, devices)) // NO novedades
+                {
+                    UpdateDevicesPanel(devices, panel);
+                }
+                else // SI novedades
+                {
+                    devicesList.Clear();
+                    devicesList.AddRange(devices);
+                    DrawDevicesPanel(devices, panel);
+                }
+                // actualizamos stats now
+                LoadStatsOnDGV(dgv_user_now, words[2], "user_now");
             }
             else // user
             {
-
+                List<Device> devices = new List<Device>();
+                string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=10&rnd={1}", ServerURL, rndlogin)));
+                string[] words = csv.Split('*');
+                // actualizamos el Devices panel
+                devices = LoadDevices(words[0]);
+                if (CompareListOfDevices(devicesList, devices)) // NO novedades
+                {
+                    UpdateDevicesPanel(devices, panel);
+                }
+                else // SI novedades
+                {
+                    devicesList.Clear();
+                    devicesList.AddRange(devices);
+                    DrawDevicesPanel(devices, panel);
+                }
+                // actualizamos stats now
+                LoadStatsOnDGV(dgv_user_now, words[1], "user_now");
             }
-
+            timer.Start();
         }
     }
 }
