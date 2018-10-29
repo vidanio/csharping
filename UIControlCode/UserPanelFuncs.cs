@@ -8,7 +8,7 @@ namespace UIControlCode
     public partial class MainForm : Form
     {
         // click handler for all controls inside the users panel
-        private void handlerUsers_Click(object sender, EventArgs e)
+        private async void handlerUsers_Click(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(PictureBox))
             {
@@ -17,15 +17,116 @@ namespace UIControlCode
 
                 if (pic.Name == "addUser")
                 {
-
+                    formUser.Reset();
+                    if (formUser.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=2&rnd={1}&mail={2}&pass={3}&name={4}&active={5}",
+                                ServerURL, rndlogin, formUser.UserMail, formUser.UserPass, formUser.UserName, (formUser.UserActive) ? "1" : "0")));
+                        }
+                        catch
+                        {
+                            // error msg
+                        }
+                    }
 
                     return;
+                }
+
+                string[] words = pic.Name.Split('_');
+                if (words.Length != 2) return;
+                string action = words[0];
+                string random = words[1];
+
+                switch(action)
+                {
+                    case "Inactive":
+                        if (MessageBox.Show("Esta seguro de que quiere desactivar a este Usuario?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&user={2}&active=0", ServerURL, rndlogin, random)));
+                            }
+                            catch
+                            {
+                                // err msg
+                            }
+                        }
+                        break;
+                    case "Active":
+                        if (MessageBox.Show("Esta seguro de que quiere activar a este Usuario?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&user={2}&active=1", ServerURL, rndlogin, random)));
+                            }
+                            catch
+                            {
+                                // err msg
+                            }
+                        }
+                        break;
+                    case "Delete":
+                        if (MessageBox.Show("Esta seguro de que quiere borrar este Usuario?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=3&rnd={1}&user={2}", ServerURL, rndlogin, random)));
+                                if (selected == random) selected = "";
+                            }
+                            catch
+                            {
+                                // err msg
+                            }
+                        }
+                        break;
+                    case "Edit":
+                        User user = GetUserByRandom(random);
+                        formUser.LoadData(user.Mail, user.Pass, user.Name, user.Active);
+                        if (formUser.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&mail={2}&pass={3}&name={4}&active={5}&user={6}",
+                                    ServerURL, rndlogin, formUser.UserMail, formUser.UserPass, formUser.UserName, (formUser.UserActive) ? "1" : "0", random)));
+                            }
+                            catch
+                            {
+                                // error msg
+                            }
+                        }
+                        break;
                 }
             }
             else // Label
             {
                 Label lbl = (Label)sender;
                 txtDebug.AppendText(lbl.Name + " clicked[User handler]\r\n");
+
+                string[] words = lbl.Name.Split('_');
+                if (words.Length != 2) return;
+                string action = words[0];
+                string random = words[1];
+
+                if (action == "Name")
+                {
+                    selected = random;
+                    rndquery = random;
+                    // load stats
+                    try
+                    {
+                        DateTime today = DateTime.Today;
+                        string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=day",
+                                    ServerURL, rndquery, String.Format("{0}-{1}", today.Year, today.Month))));
+                        LoadStatsOnDGV(dgv_user_day, csv, "user_day");
+                    }
+                    catch
+                    {
+                        // error msg
+                        dgv_user_day.Rows.Clear();
+                    }
+                }
             }
         }
 
@@ -48,7 +149,7 @@ namespace UIControlCode
                 label0.Text = user.Name;
                 label0.Location = new Point(3, y);
                 label0.Cursor = Cursors.Hand;
-                label0.ForeColor = (user.Selected) ? Color.DarkGreen : Color.Black;
+                label0.ForeColor = (user.Selected) ? Color.Green : Color.Black;
                 tooltip.SetToolTip(label0, "Seleccionar Usuario");
                 label0.Click += new EventHandler(handlerUsers_Click);
                 panel.Controls.Add(label0);
@@ -100,6 +201,7 @@ namespace UIControlCode
                     {
                         case "Name":
                             crtl.Text = user.Name;
+                            crtl.ForeColor = (user.Selected) ? Color.Green : Color.Black;
                             break;
                     }
                 }

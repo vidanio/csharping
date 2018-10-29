@@ -26,6 +26,7 @@ namespace UIControlCode
             this.Pass = words[2];
             this.Name = words[3];
             this.Active = (words[4] == "true")? true: false;
+            this.Selected = (words[5] == "yes") ? true : false;
         }
 
         public override string ToString()

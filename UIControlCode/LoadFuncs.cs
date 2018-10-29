@@ -17,7 +17,7 @@ namespace UIControlCode
             {
                 string line = strReader.ReadLine();
                 if (line != null)
-                    admins.Add(new User(0, line));
+                    admins.Add(new User(0, line + ";no"));
                 else break;
             }
 
@@ -35,7 +35,14 @@ namespace UIControlCode
             {
                 string line = strReader.ReadLine();
                 if (line != null)
-                    users.Add(new User(1, line));
+                {
+                    string sel = "no";
+                    if (selected != "")
+                    {
+                        sel = (line.Contains(selected)) ? "yes" : "no";
+                    }
+                    users.Add(new User(1, line + ";" + sel));
+                }
                 else break;
             }
 
