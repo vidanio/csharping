@@ -106,6 +106,8 @@ namespace UIControlCode
                 bool success = false;
                 string result = "";
 
+                timer.Stop();
+                // ServerURL = String.Format("https://srt{0}.todostreaming.es/", formLogin.LoginServer); //===>
                 Uri url = new Uri(String.Format("{0}admin.cgi?cmd=0&mail={1}&pass={2}", ServerURL, formLogin.LoginMail, formLogin.LoginPass));
 
                 txtDebug.AppendText(String.Format("Login[{0}]: User={1} Pass={2}\r\n", formLogin.LoginServer, formLogin.LoginMail, formLogin.LoginPass));
@@ -130,6 +132,8 @@ namespace UIControlCode
 
                 if (success)
                 {
+                    DateTime today = DateTime.Today;
+                    string date = String.Format("{0}-{1}", today.Year, today.Month);
                     // Save settings
                     Properties.Settings.Default["LoginServer"] = formLogin.LoginServer;
                     Properties.Settings.Default["LoginMail"] = formLogin.LoginMail;
@@ -146,6 +150,15 @@ namespace UIControlCode
                     {
                         board = 0; // Root board
                         PaintRootBoard();
+                        try
+                        {
+                            string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=8&rnd={1}&date={2}", ServerURL, rndlogin, date)));
+                            LoadStatsOnDGV(dgv_admin_mon, csv, "admin_mon");
+                        }
+                        catch
+                        {
+                            // error msg
+                        }
                     }
                     else
                     {
@@ -153,13 +166,37 @@ namespace UIControlCode
                         {
                             board = 1; // Admin board
                             PaintAdminBoard(LoginName);
+                            try
+                            {
+                                string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=8&rnd={1}&date={2}", ServerURL, rndlogin, date)));
+                                LoadStatsOnDGV(dgv_admin_mon, csv, "admin_mon");
+                            }
+                            catch
+                            {
+                                // error msg
+                            }
                         }
                         else
                         {
                             board = 2; // User board
                             PaintUserBoard(LoginName);
+                            try
+                            {
+                                string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=mon", ServerURL, rndlogin, date)));
+                                LoadStatsOnDGV(dgv_user_mon, csv, "user_mon");
+                                csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=day", ServerURL, rndlogin, date)));
+                                LoadStatsOnDGV(dgv_user_day, csv, "user_day");
+                                csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=now", ServerURL, rndlogin, date)));
+                                LoadStatsOnDGV(dgv_user_now, csv, "user_now");
+                            }
+                            catch
+                            {
+                                // error msg
+                            }
                         }
                     }
+                    // start timer to update Lists every 1 sec
+                    timer.Start();
                 }
             }
         }
@@ -169,6 +206,24 @@ namespace UIControlCode
             timer.Stop();
             timer.Dispose();
             this.Close();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            // very quick usage, or async thru await
+            if (board == 0) // root
+            {
+
+            }
+            else if (board == 1) // admin
+            {
+
+            }
+            else // user
+            {
+
+            }
+
         }
     }
 }
