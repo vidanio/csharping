@@ -39,6 +39,8 @@ namespace UIControlCode
                 label0.Text = user.Name;
                 label0.Location = new Point(3, y);
                 label0.Cursor = Cursors.Hand;
+                label0.ForeColor = (user.Selected) ? Color.DarkGreen : Color.Black;
+                tooltip.SetToolTip(label0, "Seleccionar Usuario");
                 label0.Click += new EventHandler(handlerUsers_Click);
                 panel.Controls.Add(label0);
                 // picturebox for active
@@ -48,6 +50,7 @@ namespace UIControlCode
                 pic0.Location = new Point(134, y);
                 pic0.Size = new Size(20, 20);
                 pic0.Name = (user.Active) ? "Inactive_" + user.Random : "Active_" + user.Random;
+                tooltip.SetToolTip(pic0, (user.Active) ? "Desactivar usuario" : "Activar usuario");
                 pic0.Click += new EventHandler(handlerUsers_Click);
                 panel.Controls.Add(pic0);
                 // picturebox for delete
@@ -57,6 +60,7 @@ namespace UIControlCode
                 pic2.Location = new Point(160, y);
                 pic2.Size = new Size(20, 20);
                 pic2.Name = "Delete_" + user.Random;
+                tooltip.SetToolTip(pic2, "Borrar usuario");
                 pic2.Click += new EventHandler(handlerUsers_Click);
                 panel.Controls.Add(pic2);
                 // picturebox for edit
@@ -66,6 +70,7 @@ namespace UIControlCode
                 pic3.Location = new Point(186, y);
                 pic3.Size = new Size(20, 20);
                 pic3.Name = "Edit_" + user.Random;
+                tooltip.SetToolTip(pic3, "Editar usuario");
                 pic3.Click += new EventHandler(handlerUsers_Click);
                 panel.Controls.Add(pic3);
 

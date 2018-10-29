@@ -53,7 +53,7 @@ namespace UIControlCode
             addAdmin.Name = "addAdmin";
             addAdmin.Cursor = Cursors.Hand;
             addAdmin.Click += new EventHandler(handlerAdmins_Click);
-            tooltip.SetToolTip(addAdmin, "Añadir Nuevo Admin");
+            tooltip.SetToolTip(addAdmin, "Añadir un Nuevo Admin");
             panel.Controls.Add(addAdmin);
         }
 
@@ -83,7 +83,7 @@ namespace UIControlCode
             addUser.Name = "addUser";
             addUser.Cursor = Cursors.Hand;
             addUser.Click += new EventHandler(handlerUsers_Click);
-            tooltip.SetToolTip(addUser, "Añadir Nuevo Usuario");
+            tooltip.SetToolTip(addUser, "Añadir un Nuevo Usuario");
             panel.Controls.Add(addUser);
         }
 
@@ -113,7 +113,7 @@ namespace UIControlCode
             addDevice.Name = "addDevice";
             addDevice.Cursor = Cursors.Hand;
             addDevice.Click += new EventHandler(handlerDevices_Click);
-            tooltip.SetToolTip(addDevice, "Añadir Nuevo Encoder");
+            tooltip.SetToolTip(addDevice, "Añadir un Nuevo Encoder");
             panel.Controls.Add(addDevice);
         }
 

@@ -15,6 +15,7 @@ namespace UIControlCode
         public string Name { get; set; }
         public string Random { get; set; }
         public bool Active { get; set; }
+        public bool Selected { get; set; } = false; // selected in UI
 
         public User(int type, string csv)
         {

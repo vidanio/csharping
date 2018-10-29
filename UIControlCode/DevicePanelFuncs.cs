@@ -40,6 +40,7 @@ namespace UIControlCode
                 label0.Text = device.Name;
                 label0.Location = new Point(9, y);
                 label0.Cursor = Cursors.Hand;
+                tooltip.SetToolTip(label0, "Copiar smartkey");
                 label0.Click += new EventHandler(handlerDevices_Click);
                 panel.Controls.Add(label0);
                 // label for delay
@@ -79,6 +80,7 @@ namespace UIControlCode
                 pic0.Location = new Point(363, y);
                 pic0.Size = new Size(20, 20);
                 pic0.Name = (device.Active) ? "Inactive_" + device.Random: "Active_" + device.Random;
+                tooltip.SetToolTip(pic0, (device.Active) ? "Desactivar equipo" : "Activar equipo");
                 pic0.Click += new EventHandler(handlerDevices_Click);
                 panel.Controls.Add(pic0);
                 // picturebox for working
@@ -95,6 +97,7 @@ namespace UIControlCode
                 pic2.Location = new Point(409, y);
                 pic2.Size = new Size(20, 20);
                 pic2.Name = "Delete_" + device.Random;
+                tooltip.SetToolTip(pic2, "Borrar equipo");
                 pic2.Click += new EventHandler(handlerDevices_Click);
                 panel.Controls.Add(pic2);
                 // picturebox for edit
@@ -104,6 +107,7 @@ namespace UIControlCode
                 pic3.Location = new Point(432, y);
                 pic3.Size = new Size(20, 20);
                 pic3.Name = "Edit_" + device.Random;
+                tooltip.SetToolTip(pic3, "Editar equipo");
                 pic3.Click += new EventHandler(handlerDevices_Click);
                 panel.Controls.Add(pic3);
                 // picturebox to add decoders
@@ -115,6 +119,7 @@ namespace UIControlCode
                     pic4.Location = new Point(455, y);
                     pic4.Size = new Size(20, 20);
                     pic4.Name = "AddDeco_" + device.Random;
+                    tooltip.SetToolTip(pic4, "Añadir un Nuevo Decoder");
                     pic4.Click += new EventHandler(handlerDevices_Click);
                     panel.Controls.Add(pic4);
                 }

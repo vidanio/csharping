@@ -100,11 +100,59 @@ namespace UIControlCode
         }
 
         // return a Control whose parent and name are known
-        public Control GetControlByName(Control ParentCntl, string NameToSearch)
+        private Control GetControlByName(Control ParentCntl, string NameToSearch)
         {
             foreach (Control ChildCntl in ParentCntl.Controls)
             {
                 if (ChildCntl.Name == NameToSearch) return ChildCntl;
+            }
+            return null;
+        }
+
+        private User GetUserByRandom(string random)
+        {
+            foreach(User user in usersList)
+            {
+                if (user.Random == random)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+        private User GetSelectedUser()
+        {
+            foreach (User user in usersList)
+            {
+                if (user.Selected)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+        private User GetAdminByRandom(string random)
+        {
+            foreach (User user in adminsList)
+            {
+                if (user.Random == random)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+        private Device GetDeviceByRandom(string random)
+        {
+            foreach (Device device in devicesList)
+            {
+                if (device.Random == random)
+                {
+                    return device;
+                }
             }
             return null;
         }

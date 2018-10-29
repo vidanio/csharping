@@ -91,22 +91,21 @@ namespace UIControlCode
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private async void logInToolStripMenuItem_Click(object sender, EventArgs e)
-        {
             // Get settings saved
             formLogin.LoginServer = (int)Properties.Settings.Default["LoginServer"];
             formLogin.LoginMail = (string)Properties.Settings.Default["LoginMail"];
             formLogin.LoginPass = (string)Properties.Settings.Default["LoginPass"];
+        }
 
+        private async void logInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             if (formLogin.ShowDialog() == DialogResult.OK)
             {
                 bool success = false;
                 string result = "";
 
                 timer.Stop();
+                panel.Controls.Clear();
                 // ServerURL = String.Format("https://srt{0}.todostreaming.es/", formLogin.LoginServer); //===>
                 Uri url = new Uri(String.Format("{0}admin.cgi?cmd=0&mail={1}&pass={2}", ServerURL, formLogin.LoginMail, formLogin.LoginPass));
 
