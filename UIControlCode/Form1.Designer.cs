@@ -39,7 +39,9 @@
             this.status = new System.Windows.Forms.StatusStrip();
             this.panel = new System.Windows.Forms.Panel();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.statusLblMsg = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu.SuspendLayout();
+            this.status.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDebug
@@ -77,6 +79,7 @@
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
             this.logInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logInToolStripMenuItem.Text = "Smart SRT Server";
+            this.logInToolStripMenuItem.Click += new System.EventHandler(this.logInToolStripMenuItem_Click);
             // 
             // controlarEquipoToolStripMenuItem
             // 
@@ -94,9 +97,12 @@
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
             this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // status
             // 
+            this.status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLblMsg});
             this.status.Location = new System.Drawing.Point(0, 619);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(1404, 22);
@@ -115,6 +121,11 @@
             // 
             this.timer.Interval = 1000;
             // 
+            // statusLblMsg
+            // 
+            this.statusLblMsg.Name = "statusLblMsg";
+            this.statusLblMsg.Size = new System.Drawing.Size(0, 17);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -128,8 +139,11 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UI Control Codes";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.status.ResumeLayout(false);
+            this.status.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,6 +161,7 @@
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.ToolStripStatusLabel statusLblMsg;
     }
 }
 

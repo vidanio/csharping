@@ -57,7 +57,7 @@
             this.txtMail.MaxLength = 30;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(198, 20);
-            this.txtMail.TabIndex = 1;
+            this.txtMail.TabIndex = 0;
             // 
             // btnCancel
             // 
@@ -67,7 +67,7 @@
             this.btnCancel.Location = new System.Drawing.Point(234, 183);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 2;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@
             this.btnOK.Location = new System.Drawing.Point(153, 183);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 2;
+            this.btnOK.TabIndex = 4;
             this.btnOK.Text = "   OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -111,7 +111,7 @@
             this.txtName.MaxLength = 20;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(198, 20);
-            this.txtName.TabIndex = 1;
+            this.txtName.TabIndex = 2;
             // 
             // lblMail
             // 

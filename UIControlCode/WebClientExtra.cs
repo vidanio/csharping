@@ -12,8 +12,13 @@ namespace UIControlCode
         protected override WebRequest GetWebRequest(Uri address)
         {
             WebRequest wr = base.GetWebRequest(address);
-            wr.Timeout = 3000; // timeout in milliseconds (ms) - 3 seconds
+            wr.Timeout = 5000; // timeout in milliseconds (ms) - 5 seconds
             return wr;
+        }
+
+        public Task<string> GetHTTStringPTaskAsync(Uri uri)
+        {
+            return Task<string>.Run(() => DownloadString(uri));
         }
     }
 }

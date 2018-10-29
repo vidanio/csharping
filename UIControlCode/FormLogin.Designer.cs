@@ -55,8 +55,9 @@
             // 
             this.txtPass.Location = new System.Drawing.Point(136, 118);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(198, 20);
-            this.txtPass.TabIndex = 1;
+            this.txtPass.TabIndex = 2;
             // 
             // numServer
             // 
@@ -73,7 +74,7 @@
             0});
             this.numServer.Name = "numServer";
             this.numServer.Size = new System.Drawing.Size(61, 20);
-            this.numServer.TabIndex = 2;
+            this.numServer.TabIndex = 0;
             this.numServer.Value = new decimal(new int[] {
             1,
             0,
@@ -101,7 +102,7 @@
             this.btnCancel.Location = new System.Drawing.Point(254, 155);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(80, 23);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -111,7 +112,6 @@
             // 
             this.txtMail.Location = new System.Drawing.Point(136, 87);
             this.txtMail.Name = "txtMail";
-            this.txtMail.PasswordChar = '*';
             this.txtMail.Size = new System.Drawing.Size(198, 20);
             this.txtMail.TabIndex = 1;
             // 

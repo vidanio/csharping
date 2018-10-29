@@ -13,12 +13,17 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
+        // globales internas
+        private string ServerURL = "http://192.168.1.47/";
+        private string LoginName;
+
         public MainForm()
         {
             InitializeComponent();
+            webClient.Encoding = Encoding.UTF8;
 
-            PaintRootBoard();
-            TestAll();
+            //PaintRootBoard();
+            //TestAll();
             //PaintAdminBoard("TodoStreaming");
             //PaintUserBoard("Televisión Andaluza");
         }
@@ -82,6 +87,88 @@ namespace UIControlCode
             //DataGridView dgv1 = DrawDataGridView(UserDayHeaders, new Size(376, 243), new Point(596, 242), "dgv1");
             //LoadStatsOnDGV(dgv1, test, "user_day");
             //Controls.Add(dgv1);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void logInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Get settings saved
+            formLogin.LoginServer = (int)Properties.Settings.Default["LoginServer"];
+            formLogin.LoginMail = (string)Properties.Settings.Default["LoginMail"];
+            formLogin.LoginPass = (string)Properties.Settings.Default["LoginPass"];
+
+            if (formLogin.ShowDialog() == DialogResult.OK)
+            {
+                bool success = false;
+                string result = "";
+
+                Uri url = new Uri(String.Format("{0}admin.cgi?cmd=0&mail={1}&pass={2}", ServerURL, formLogin.LoginMail, formLogin.LoginPass));
+
+                txtDebug.AppendText(String.Format("Login[{0}]: User={1} Pass={2}\r\n", formLogin.LoginServer, formLogin.LoginMail, formLogin.LoginPass));
+                statusLblMsg.ForeColor = Color.Blue;
+                statusLblMsg.Text = String.Format("Intentando conectar con el Server {0} ...", formLogin.LoginServer);
+
+                try
+                {
+                    result = await webClient.GetHTTStringPTaskAsync(url);
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                    txtDebug.AppendText(String.Format("Error: {0}\r\n", ex.Message));
+                    statusLblMsg.ForeColor = Color.Red;
+                    statusLblMsg.Text = String.Format("Error al conectar al Server {0} ({1})", formLogin.LoginServer, ex.Message);
+                    formLogin.LoginServer = 1;
+                    formLogin.LoginMail = "";
+                    formLogin.LoginPass = "";
+                }
+
+                if (success)
+                {
+                    // Save settings
+                    Properties.Settings.Default["LoginServer"] = formLogin.LoginServer;
+                    Properties.Settings.Default["LoginMail"] = formLogin.LoginMail;
+                    Properties.Settings.Default["LoginPass"] = formLogin.LoginPass;
+                    Properties.Settings.Default.Save();
+
+                    txtDebug.AppendText(result + "\r\n");
+                    var words = result.Split('=');
+                    LoginName = words[2];
+                    rndlogin = words[1];
+                    statusLblMsg.ForeColor = Color.Green;
+                    statusLblMsg.Text = String.Format("Conectado al Server {0} como {1}", formLogin.LoginServer, LoginName);
+                    if (formLogin.LoginMail == "admin")
+                    {
+                        board = 0; // Root board
+                        PaintRootBoard();
+                    }
+                    else
+                    {
+                        if (words[0] == "0")
+                        {
+                            board = 1; // Admin board
+                            PaintAdminBoard(LoginName);
+                        }
+                        else
+                        {
+                            board = 2; // User board
+                            PaintUserBoard(LoginName);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer.Stop();
+            timer.Dispose();
+            this.Close();
         }
     }
 }
