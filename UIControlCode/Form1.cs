@@ -236,10 +236,10 @@ namespace UIControlCode
                 }
                 else // SI novedades
                 {
-                    adminsList.Clear();
-                    adminsList.AddRange(admins);
                     DrawAdminsPanel(admins, panelListAdmins);
                 }
+                adminsList.Clear();
+                adminsList.AddRange(admins);
                 // actualizamos el Users panel
                 users = LoadUsers(words[1]);
                 if (CompareListOfUsers(usersList, users)) // NO novedades
@@ -248,10 +248,10 @@ namespace UIControlCode
                 }
                 else // SI novedades
                 {
-                    usersList.Clear();
-                    usersList.AddRange(users);
                     DrawUsersPanel(users, panelListUsers);
                 }
+                usersList.Clear();
+                usersList.AddRange(users);
                 // actualizamos el Devices panel
                 devices = LoadDevices(words[2]);
                 if (CompareListOfDevices(devicesList, devices)) // NO novedades
@@ -260,10 +260,10 @@ namespace UIControlCode
                 }
                 else // SI novedades
                 {
-                    devicesList.Clear();
-                    devicesList.AddRange(devices);
                     DrawDevicesPanel(devices, panelListDevices);
                 }
+                devicesList.Clear();
+                devicesList.AddRange(devices);
             }
             else if (board == 1) // admin
             {
@@ -288,10 +288,10 @@ namespace UIControlCode
                 }
                 else // SI novedades
                 {
-                    usersList.Clear();
-                    usersList.AddRange(users);
                     DrawUsersPanel(users, panelListUsers);
                 }
+                usersList.Clear();
+                usersList.AddRange(users);
                 // actualizamos el Devices panel
                 devices = LoadDevices(words[1]);
                 if (CompareListOfDevices(devicesList, devices)) // NO novedades
@@ -300,10 +300,10 @@ namespace UIControlCode
                 }
                 else // SI novedades
                 {
-                    devicesList.Clear();
-                    devicesList.AddRange(devices);
                     DrawDevicesPanel(devices, panelListDevices);
                 }
+                devicesList.Clear();
+                devicesList.AddRange(devices);
                 // actualizamos stats now
                 LoadStatsOnDGV(dgv_user_now, words[2], "user_now");
             }
@@ -329,10 +329,10 @@ namespace UIControlCode
                 }
                 else // SI novedades
                 {
-                    devicesList.Clear();
-                    devicesList.AddRange(devices);
                     DrawDevicesPanel(devices, panelListDevices);
                 }
+                devicesList.Clear();
+                devicesList.AddRange(devices);
                 // actualizamos stats now
                 LoadStatsOnDGV(dgv_user_now, words[1], "user_now");
             }

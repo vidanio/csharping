@@ -12,11 +12,33 @@ namespace UIControlCode
         {
             if (sender.GetType() == typeof(PictureBox))
             {
-                txtDebug.AppendText(((PictureBox)sender).Name + " clicked[Device handler]\r\n");
+                PictureBox pic = (PictureBox)sender;
+                txtDebug.AppendText(pic.Name + " clicked[Device handler]\r\n");
+
+                if (pic.Name == "addDevice")
+                {
+                    if (board < 2) // admin or root
+                    {
+                        User user = GetSelectedUser();
+                        if (user != null)
+                        {
+                            // hay user seleccionado, le añadimos un encoder
+
+                        }
+                    }
+                    else // user streamer
+                    {
+                        // le añadimos un encoder al logged user
+
+                    }
+
+                    return;
+                }
             }
             else // Label
             {
-                txtDebug.AppendText(((Label)sender).Name + " clicked[Device handler]\r\n");
+                Label lbl = (Label)sender;
+                txtDebug.AppendText(lbl.Name + " clicked[Device handler]\r\n");
             }
         }
 

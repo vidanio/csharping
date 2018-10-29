@@ -12,11 +12,20 @@ namespace UIControlCode
         {
             if (sender.GetType() == typeof(PictureBox))
             {
-                txtDebug.AppendText(((PictureBox)sender).Name + " clicked[User handler]\r\n");
+                PictureBox pic = (PictureBox)sender;
+                txtDebug.AppendText(pic.Name + " clicked[User handler]\r\n");
+
+                if (pic.Name == "addUser")
+                {
+
+
+                    return;
+                }
             }
             else // Label
             {
-                txtDebug.AppendText(((Label)sender).Name + " clicked[User handler]\r\n");
+                Label lbl = (Label)sender;
+                txtDebug.AppendText(lbl.Name + " clicked[User handler]\r\n");
             }
         }
 

@@ -22,6 +22,22 @@ namespace UIControlCode
             InitializeComponent();
         }
 
+        public void Reset()
+        {
+            UserMail = "";
+            UserPass = "";
+            UserName = "";
+            UserActive = false;
+        }
+
+        public void LoadData(string mail, string pass, string name, bool active)
+        {
+            UserMail = mail;
+            UserPass = pass;
+            UserName = name;
+            UserActive = active;
+        }
+
         private void FormUser_Load(object sender, EventArgs e)
         {
             txtMail.Text = UserMail;
