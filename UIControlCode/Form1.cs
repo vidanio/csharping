@@ -15,7 +15,8 @@ namespace UIControlCode
     {
         // globales internas
         private string ServerURL = "http://192.168.1.47/";
-        private string LoginName;
+        private string LoginName, LoginMail, LoginPass;
+        private int LoginServer = 1;
 
         public MainForm()
         {
@@ -39,14 +40,16 @@ namespace UIControlCode
 
                 timer.Stop();
                 panel.Controls.Clear();
+                LoginMail = formLogin.LoginMail;
+                LoginPass = formLogin.LoginPass;
+                LoginServer = formLogin.LoginServer;
                 // ServerURL = String.Format("https://srt{0}.todostreaming.es/", formLogin.LoginServer); //===>
-                Uri url = new Uri(String.Format("{0}admin.cgi?cmd=0&mail={1}&pass={2}", ServerURL, formLogin.LoginMail, formLogin.LoginPass));
 
-                txtDebug.AppendText(String.Format("Login[{0}]: User={1} Pass={2}\r\n", formLogin.LoginServer, formLogin.LoginMail, formLogin.LoginPass));
+                txtDebug.AppendText(String.Format("Login[{0}]: User={1} Pass={2}\r\n", formLogin.LoginServer, LoginMail, LoginPass));
                 statusLblMsg.ForeColor = Color.Blue;
                 statusLblMsg.Text = String.Format("Intentando conectar con el Server {0} ...", formLogin.LoginServer);
 
-                result = await webClient.GetHTTPStringPTaskAsync(url);
+                result = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=0&mail={1}&pass={2}", ServerURL, LoginMail, LoginPass)));
                 if (result == null)
                 {
                     statusLblMsg.ForeColor = Color.Red;
@@ -120,6 +123,18 @@ namespace UIControlCode
         {
             timer.Stop();
             string csv = "";
+            string result = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=0&mail={1}&pass={2}", ServerURL, LoginMail, LoginPass)));
+            if (result == null)
+            {
+                statusLblMsg.ForeColor = Color.Red;
+                statusLblMsg.Text = String.Format("ERROR: Desconectado del Server {0}", LoginServer);
+                timer.Start();
+                return;
+            }
+            statusLblMsg.ForeColor = Color.Green;
+            statusLblMsg.Text = String.Format("Conectado al Server {0} como {1}", LoginServer, LoginName);
+
+
             // very quick usage, or async thru await
             if (board == 0) // root
             {
