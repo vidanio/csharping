@@ -20,15 +20,8 @@ namespace UIControlCode
                     formUser.Reset();
                     if (formUser.ShowDialog() == DialogResult.OK)
                     {
-                        try
-                        {
-                            await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=2&rnd={1}&mail={2}&pass={3}&name={4}&active={5}",
-                                ServerURL, rndlogin, formUser.UserMail, formUser.UserPass, formUser.UserName, (formUser.UserActive) ? "1" : "0")));
-                        }
-                        catch
-                        {
-                            // error msg
-                        }
+                        await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=2&rnd={1}&mail={2}&pass={3}&name={4}&active={5}",
+                            ServerURL, rndlogin, formUser.UserMail, formUser.UserPass, formUser.UserName, (formUser.UserActive) ? "1" : "0")));
                     }
 
                     return;
@@ -44,44 +37,23 @@ namespace UIControlCode
                     case "Inactive":
                         if (MessageBox.Show("Esta seguro de que quiere desactivar a este Usuario?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            try
-                            {
-                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&user={2}&active=0", ServerURL, rndlogin, random)));
-                            }
-                            catch
-                            {
-                                // err msg
-                            }
+                            await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&user={2}&active=0", ServerURL, rndlogin, random)));
                         }
                         break;
                     case "Active":
                         if (MessageBox.Show("Esta seguro de que quiere activar a este Usuario?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            try
-                            {
-                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&user={2}&active=1", ServerURL, rndlogin, random)));
-                            }
-                            catch
-                            {
-                                // err msg
-                            }
+                            await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&user={2}&active=1", ServerURL, rndlogin, random)));
                         }
                         break;
                     case "Delete":
                         if (MessageBox.Show("Esta seguro de que quiere borrar este Usuario?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            try
+                            await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=3&rnd={1}&user={2}", ServerURL, rndlogin, random)));
+                            if (selected == random)
                             {
-                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=3&rnd={1}&user={2}", ServerURL, rndlogin, random)));
-                                if (selected == random)
-                                {
-                                    selected = "";
-                                    rndquery = "x";
-                                }
-                            }
-                            catch
-                            {
-                                // err msg
+                                selected = "";
+                                rndquery = "x";
                             }
                         }
                         break;
@@ -90,15 +62,8 @@ namespace UIControlCode
                         formUser.LoadData(user.Mail, user.Pass, user.Name, user.Active);
                         if (formUser.ShowDialog() == DialogResult.OK)
                         {
-                            try
-                            {
-                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&mail={2}&pass={3}&name={4}&active={5}&user={6}",
-                                    ServerURL, rndlogin, formUser.UserMail, formUser.UserPass, formUser.UserName, (formUser.UserActive) ? "1" : "0", random)));
-                            }
-                            catch
-                            {
-                                // error msg
-                            }
+                            await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=4&rnd={1}&mail={2}&pass={3}&name={4}&active={5}&user={6}",
+                                ServerURL, rndlogin, formUser.UserMail, formUser.UserPass, formUser.UserName, (formUser.UserActive) ? "1" : "0", random)));
                         }
                         break;
                 }
@@ -121,9 +86,10 @@ namespace UIControlCode
                     try
                     {
                         DateTime today = DateTime.Today;
-                        string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=day",
+                        string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=day",
                                     ServerURL, rndquery, String.Format("{0}-{1}", today.Year, today.Month))));
-                        LoadStatsOnDGV(dgv_user_day, csv, "user_day");
+                        if (csv != null)
+                            LoadStatsOnDGV(dgv_user_day, csv, "user_day");
                     }
                     catch
                     {

@@ -24,12 +24,11 @@ namespace UIControlCode
             }
             catch
             {
-                // err
                 return null;
             }
         }
 
-        public Task<string> GetHTTStringPTaskAsync(Uri uri)
+        public Task<string> GetHTTPStringPTaskAsync(Uri uri)
         {
             return Task<string>.Run(() => GetHTTPString(uri));
         }

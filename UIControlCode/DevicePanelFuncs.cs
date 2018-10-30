@@ -26,15 +26,11 @@ namespace UIControlCode
                             formDevice.Reset();
                             if (formDevice.ShowDialog() == DialogResult.OK)
                             {
-                                try
+                                string enc = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=2&rnd={1}", ServerURL, rndquery)));
+                                if (enc != null)
                                 {
-                                    string enc = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=2&rnd={1}", ServerURL, rndquery)));
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}",
+                                    await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}",
                                         ServerURL, rndquery, enc, formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
-                                }
-                                catch
-                                {
-                                    // error msg
                                 }
                             }
                         }
@@ -46,15 +42,11 @@ namespace UIControlCode
                         formDevice.Reset();
                         if (formDevice.ShowDialog() == DialogResult.OK)
                         {
-                            try
+                            string enc = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=2&rnd={1}", ServerURL, rndlogin)));
+                            if (enc != null)
                             {
-                                string enc = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=2&rnd={1}", ServerURL, rndlogin)));
-                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}",
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}",
                                     ServerURL, rndlogin, enc, formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
-                            }
-                            catch
-                            {
-                                // error msg
                             }
                         }
                     }
@@ -84,15 +76,11 @@ namespace UIControlCode
                     formDevice.Reset();
                     if (formDevice.ShowDialog() == DialogResult.OK)
                     {
-                        try
+                        string enc = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=5&rnd={1}&enc={2}", ServerURL, rnd, random)));
+                        if (enc != null)
                         {
-                            string enc = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=5&rnd={1}&enc={2}", ServerURL, rnd, random)));
-                            await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&name={4}&active={5}",
+                            await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&name={4}&active={5}",
                                 ServerURL, rnd, random, enc, formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
-                        }
-                        catch
-                        {
-                            // error msg
                         }
                     }
                 }
@@ -104,40 +92,19 @@ namespace UIControlCode
                         case "Inactive":
                             if (MessageBox.Show("Esta seguro de que quiere desactivar a este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                try
-                                {
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&active=0", ServerURL, rnd, random)));
-                                }
-                                catch
-                                {
-                                    // err msg
-                                }
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&active=0", ServerURL, rnd, random)));
                             }
                             break;
                         case "Active":
                             if (MessageBox.Show("Esta seguro de que quiere activar a este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                try
-                                {
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&active=1", ServerURL, rnd, random)));
-                                }
-                                catch
-                                {
-                                    // err msg
-                                }
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&active=1", ServerURL, rnd, random)));
                             }
                             break;
                         case "Delete":
                             if (MessageBox.Show("Esta seguro de que quiere borrar este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                try
-                                {
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=3&rnd={1}&enc={2}", ServerURL, rnd, random)));
-                                }
-                                catch
-                                {
-                                    // err msg
-                                }
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=3&rnd={1}&enc={2}", ServerURL, rnd, random)));
                             }
                             break;
                         case "Edit":
@@ -145,15 +112,8 @@ namespace UIControlCode
                             formDevice.LoadData(device.Name, device.Active);
                             if (formDevice.ShowDialog() == DialogResult.OK)
                             {
-                                try
-                                {
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}", 
-                                        ServerURL, rnd, random, formDevice.DeviceName, (formDevice.DeviceActive) ? "1":"0")));
-                                }
-                                catch
-                                {
-                                    // error msg
-                                }
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}",
+                                    ServerURL, rnd, random, formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
                             }
                             break;
                     }
@@ -161,7 +121,8 @@ namespace UIControlCode
                 else // decoder
                 {
                     // rnd = (executor), dec = random, averiguar enc al q pertenece
-                    string enc = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=11&rnd={1}&dec={2}", ServerURL, rnd, random)));
+                    string enc = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=11&rnd={1}&dec={2}", ServerURL, rnd, random)));
+                    if (enc == null) return;
                     txtDebug.AppendText("Owns to : " + enc + "\r\n");
 
                     switch (action)
@@ -169,40 +130,19 @@ namespace UIControlCode
                         case "Inactive":
                             if (MessageBox.Show("Esta seguro de que quiere desactivar a este Decoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                try
-                                {
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&active=0", ServerURL, rnd, enc, random)));
-                                }
-                                catch
-                                {
-                                    // err msg
-                                }
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&active=0", ServerURL, rnd, enc, random)));
                             }
                             break;
                         case "Active":
                             if (MessageBox.Show("Esta seguro de que quiere activar a este Decoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                try
-                                {
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&active=1", ServerURL, rnd, enc, random)));
-                                }
-                                catch
-                                {
-                                    // err msg
-                                }
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&active=1", ServerURL, rnd, enc, random)));
                             }
                             break;
                         case "Delete":
                             if (MessageBox.Show("Esta seguro de que quiere borrar este Decoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                try
-                                {
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=6&rnd={1}&enc={2}&dec={3}", ServerURL, rnd, enc, random)));
-                                }
-                                catch
-                                {
-                                    // err msg
-                                }
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=6&rnd={1}&enc={2}&dec={3}", ServerURL, rnd, enc, random)));
                             }
                             break;
                         case "Edit":
@@ -210,15 +150,8 @@ namespace UIControlCode
                             formDevice.LoadData(device.Name, device.Active);
                             if (formDevice.ShowDialog() == DialogResult.OK)
                             {
-                                try
-                                {
-                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&name={4}&active={5}",
-                                        ServerURL, rnd, enc, random, formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
-                                }
-                                catch
-                                {
-                                    // error msg
-                                }
+                                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&name={4}&active={5}",
+                                    ServerURL, rnd, enc, random, formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
                             }
                             break;
                     }
