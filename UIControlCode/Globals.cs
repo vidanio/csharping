@@ -13,6 +13,10 @@ namespace UIControlCode
         List<User> usersList = new List<User>();
         List<Device> devicesList = new List<Device>();
         WebClientExtra webClient = new WebClientExtra();
+        // more globals
+        private string LoginName, LoginMail, LoginPass;
+        private int LoginServer = 1;
+        private string monYear, monMonth, dayYear, dayMonth;
         // names of months
         char[] EOL = { '\r', '\n' };
         object[] MonthNames = new object[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
