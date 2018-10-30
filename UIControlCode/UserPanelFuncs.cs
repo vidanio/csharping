@@ -73,7 +73,11 @@ namespace UIControlCode
                             try
                             {
                                 await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=3&rnd={1}&user={2}", ServerURL, rndlogin, random)));
-                                if (selected == random) selected = "";
+                                if (selected == random)
+                                {
+                                    selected = "";
+                                    rndquery = "x";
+                                }
                             }
                             catch
                             {

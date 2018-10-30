@@ -8,7 +8,7 @@ namespace UIControlCode
     public partial class MainForm : Form
     {
         // click handler for all controls inside the devices panel
-        private void handlerDevices_Click(object sender, EventArgs e)
+        private async void handlerDevices_Click(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(PictureBox))
             {
@@ -23,22 +23,107 @@ namespace UIControlCode
                         if (user != null)
                         {
                             // hay user seleccionado, le añadimos un encoder
-
+                            formDevice.Reset();
+                            if (formDevice.ShowDialog() == DialogResult.OK)
+                            {
+                                try
+                                {
+                                    string result = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=2&rnd={1}", ServerURL, rndquery)));
+                                    result.Trim(EOL);
+                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}",
+                                        ServerURL, rndquery, result.Trim(EOL), formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
+                                }
+                                catch
+                                {
+                                    // error msg
+                                }
+                            }
                         }
                     }
                     else // user streamer
                     {
                         // le añadimos un encoder al logged user
-
+                        // hay user seleccionado, le añadimos un encoder
+                        formDevice.Reset();
+                        if (formDevice.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                string result = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=2&rnd={1}", ServerURL, rndlogin)));
+                                result.Trim(EOL);
+                                await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}",
+                                    ServerURL, rndlogin, result.Trim(EOL), formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
+                            }
+                            catch
+                            {
+                                // error msg
+                            }
+                        }
                     }
 
                     return;
                 }
+
+                string[] words = pic.Name.Split('_');
+                if (words.Length != 3) return;
+                string action = words[0];
+                string random = words[1];
+                string type = words[2];
+
+                if (action == "AddDeco")
+                {
+                    string rnd;
+                    
+                    if (board < 2) // admin or root
+                        rnd = rndquery;
+                    else // user streamer
+                        rnd = rndlogin;
+
+                    formDevice.Reset();
+                    if (formDevice.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            string result = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=5&rnd={1}&enc={2}", ServerURL, rnd, random)));
+                            result.Trim(EOL);
+                            await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&name={4}&active={5}",
+                                ServerURL, rnd, random, result.Trim(EOL), formDevice.DeviceName, (formDevice.DeviceActive) ? "1" : "0")));
+                        }
+                        catch
+                        {
+                            // error msg
+                        }
+                    }
+                }
+
+                if (type == "E") // encoder
+                {
+                    switch (action)
+                    {
+
+                    }
+                }
+                else // decoder
+                {
+
+                }
+
             }
             else // Label
             {
                 Label lbl = (Label)sender;
                 txtDebug.AppendText(lbl.Name + " clicked[Device handler]\r\n");
+
+                string[] words = lbl.Name.Split('_');
+                if (words.Length != 3) return;
+                string action = words[0];
+                string random = words[1];
+                string type = words[2];
+
+                if (action == "Name")
+                {
+                    Clipboard.SetText(random);
+                }
             }
         }
 
@@ -58,7 +143,7 @@ namespace UIControlCode
                 label0.TextAlign = ContentAlignment.MiddleCenter;
                 label0.ForeColor = (device.Type == "E") ? Color.Red : Color.Blue;
                 label0.Size = new Size(116, 13);
-                label0.Name = "Name_" + device.Random;
+                label0.Name = "Name_" + device.Random + "_" + device.Type;
                 label0.Text = device.Name;
                 label0.Location = new Point(9, y);
                 label0.Cursor = Cursors.Hand;
@@ -71,7 +156,7 @@ namespace UIControlCode
                 label1.TextAlign = ContentAlignment.MiddleCenter;
                 label1.ForeColor = Color.Black;
                 label1.Size = new Size(47, 13);
-                label1.Name = "Delay_" + device.Random;
+                label1.Name = "Delay_" + device.Random + "_" + device.Type;
                 label1.Text = device.Delay.ToString() + " ms";
                 label1.Location = new Point(131, y);
                 panel.Controls.Add(label1);
@@ -81,7 +166,7 @@ namespace UIControlCode
                 label2.TextAlign = ContentAlignment.MiddleCenter;
                 label2.ForeColor = Color.Black;
                 label2.Size = new Size(101, 13);
-                label2.Name = "Time_" + device.Random;
+                label2.Name = "Time_" + device.Random + "_" + device.Type;
                 label2.Text = device.Time;
                 label2.Location = new Point(183, y);
                 panel.Controls.Add(label2);
@@ -91,7 +176,7 @@ namespace UIControlCode
                 label3.TextAlign = ContentAlignment.MiddleCenter;
                 label3.ForeColor = Color.Black;
                 label3.Size = new Size(101, 13);
-                label3.Name = "Bitrate_" + device.Random;
+                label3.Name = "Bitrate_" + device.Random + "_" + device.Type;
                 label3.Text = device.Kbps.ToString() + " kbps";
                 label3.Location = new Point(290, y);
                 panel.Controls.Add(label3);
@@ -101,7 +186,7 @@ namespace UIControlCode
                 pic0.Image = (device.Active) ? Properties.Resources.ok : Properties.Resources.cancel;
                 pic0.Location = new Point(363, y);
                 pic0.Size = new Size(20, 20);
-                pic0.Name = (device.Active) ? "Inactive_" + device.Random: "Active_" + device.Random;
+                pic0.Name = (device.Active) ? "Inactive_" + device.Random + "_" + device.Type : "Active_" + device.Random + "_" + device.Type;
                 tooltip.SetToolTip(pic0, (device.Active) ? "Desactivar equipo" : "Activar equipo");
                 pic0.Click += new EventHandler(handlerDevices_Click);
                 panel.Controls.Add(pic0);
@@ -110,7 +195,7 @@ namespace UIControlCode
                 pic1.Image = (device.Working) ? Properties.Resources.on_20x20 : Properties.Resources.off_20x20;
                 pic1.Location = new Point(386, y);
                 pic1.Size = new Size(20, 20);
-                pic1.Name = "Working_" + device.Random;
+                pic1.Name = "Working_" + device.Random + "_" + device.Type;
                 panel.Controls.Add(pic1);
                 // picturebox for delete
                 PictureBox pic2 = new PictureBox();
@@ -118,7 +203,7 @@ namespace UIControlCode
                 pic2.Image = Properties.Resources.delete_20x20;
                 pic2.Location = new Point(409, y);
                 pic2.Size = new Size(20, 20);
-                pic2.Name = "Delete_" + device.Random;
+                pic2.Name = "Delete_" + device.Random + "_" + device.Type;
                 tooltip.SetToolTip(pic2, "Borrar equipo");
                 pic2.Click += new EventHandler(handlerDevices_Click);
                 panel.Controls.Add(pic2);
@@ -128,7 +213,7 @@ namespace UIControlCode
                 pic3.Image = Properties.Resources.edit_20x20;
                 pic3.Location = new Point(432, y);
                 pic3.Size = new Size(20, 20);
-                pic3.Name = "Edit_" + device.Random;
+                pic3.Name = "Edit_" + device.Random + "_" + device.Type;
                 tooltip.SetToolTip(pic3, "Editar equipo");
                 pic3.Click += new EventHandler(handlerDevices_Click);
                 panel.Controls.Add(pic3);
@@ -140,7 +225,7 @@ namespace UIControlCode
                     pic4.Image = Properties.Resources.add2_20x20;
                     pic4.Location = new Point(455, y);
                     pic4.Size = new Size(20, 20);
-                    pic4.Name = "AddDeco_" + device.Random;
+                    pic4.Name = "AddDeco_" + device.Random + "_" + device.Type;
                     tooltip.SetToolTip(pic4, "Añadir un Nuevo Decoder");
                     pic4.Click += new EventHandler(handlerDevices_Click);
                     panel.Controls.Add(pic4);
@@ -186,7 +271,7 @@ namespace UIControlCode
                         case "Inactive":
                         case "Active":
                             crtl.Image = (device.Active) ? Properties.Resources.ok : Properties.Resources.cancel;
-                            crtl.Name = (device.Active) ? "Inactive_" + device.Random : "Active_" + device.Random;
+                            crtl.Name = (device.Active) ? "Inactive_" + device.Random + "_" + device.Type : "Active_" + device.Random + "_" + device.Type;
                             break;
                         case "Working":
                             crtl.Image = (device.Working) ? Properties.Resources.on_20x20 : Properties.Resources.off_20x20;

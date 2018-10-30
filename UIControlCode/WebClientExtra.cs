@@ -16,9 +16,22 @@ namespace UIControlCode
             return wr;
         }
 
+        private string GetHTTPString(Uri uri)
+        {
+            try
+            {
+                return DownloadString(uri);
+            }
+            catch
+            {
+                // err
+                return null;
+            }
+        }
+
         public Task<string> GetHTTStringPTaskAsync(Uri uri)
         {
-            return Task<string>.Run(() => DownloadString(uri));
+            return Task<string>.Run(() => GetHTTPString(uri));
         }
     }
 }

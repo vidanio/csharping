@@ -20,6 +20,18 @@ namespace UIControlCode
             InitializeComponent();
         }
 
+        public void Reset()
+        {
+            DeviceName = "";
+            DeviceActive = false;
+        }
+
+        public void LoadData(string name, bool active)
+        {
+            DeviceName = name;
+            DeviceActive = active;
+        }
+
         private void FormDevice_Load(object sender, EventArgs e)
         {
             txtName.Text = DeviceName;
