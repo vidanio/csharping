@@ -70,15 +70,19 @@ namespace UIControlCode
                 string random = words[1];
                 string type = words[2];
 
+                string rnd;
+
+                if (board < 2) // admin or root
+                {
+                    rnd = rndquery;
+                }
+                else // user streamer
+                {
+                    rnd = rndlogin;
+                }
+
                 if (action == "AddDeco")
                 {
-                    string rnd;
-                    
-                    if (board < 2) // admin or root
-                        rnd = rndquery;
-                    else // user streamer
-                        rnd = rndlogin;
-
                     formDevice.Reset();
                     if (formDevice.ShowDialog() == DialogResult.OK)
                     {
@@ -100,12 +104,69 @@ namespace UIControlCode
                 {
                     switch (action)
                     {
-
+                        case "Inactive":
+                            if (MessageBox.Show("Esta seguro de que quiere desactivar a este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&active=0", ServerURL, rnd, random)));
+                                }
+                                catch
+                                {
+                                    // err msg
+                                }
+                            }
+                            break;
+                        case "Active":
+                            if (MessageBox.Show("Esta seguro de que quiere activar a este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&active=1", ServerURL, rnd, random)));
+                                }
+                                catch
+                                {
+                                    // err msg
+                                }
+                            }
+                            break;
+                        case "Delete":
+                            if (MessageBox.Show("Esta seguro de que quiere borrar este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=3&rnd={1}&enc={2}", ServerURL, rnd, random)));
+                                }
+                                catch
+                                {
+                                    // err msg
+                                }
+                            }
+                            break;
+                        case "Edit":
+                            Device device = GetDeviceByRandom(random);
+                            formDevice.LoadData(device.Name, device.Active);
+                            if (formDevice.ShowDialog() == DialogResult.OK)
+                            {
+                                try
+                                {
+                                    await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&name={3}&active={4}", 
+                                        ServerURL, rnd, random, formDevice.DeviceName, (formDevice.DeviceActive) ? "1":"0")));
+                                }
+                                catch
+                                {
+                                    // error msg
+                                }
+                            }
+                            break;
                     }
                 }
                 else // decoder
                 {
-
+                    // rnd = (executor), dec = random, averiguar enc al q pertenece
+                    string result = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=11&rnd={1}&dec={2}", ServerURL, rnd, random)));
+                    string enc = result.Trim(EOL);
+                    txtDebug.AppendText("Owns to : " + enc + "\r\n");
                 }
 
             }
