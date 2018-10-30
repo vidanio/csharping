@@ -159,12 +159,98 @@ namespace UIControlCode
         }
 
         // select index changed event handler for all comboboxes in the window
-        private void handlerCombos_SelectedIndexChanged(object sender, EventArgs e)
+        private async void handlerCombos_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cbox = (ComboBox)sender;
             if (cbox.SelectedIndex != -1)
             {
+                string sum = "", statsum = "", date = "", url = "";
+                DataGridView dgv = null;
+
                 txtDebug.AppendText(String.Format("{0} selected [{1}] = {2}\r\n", cbox.Name, cbox.SelectedIndex.ToString(), cbox.Items[cbox.SelectedIndex].ToString()));
+
+                if (board == 2) // user streamer (user_mon, user_day)
+                {
+                    switch (cbox.Name)
+                    {
+                        case "cbox_Month_user_mon":
+                            monMonth = String.Format("{0:D2}", cbox.SelectedIndex + 1);
+                            sum = "user_mon";
+                            statsum = "mon";
+                            date = String.Format("{0}-{1}", monYear, monMonth);
+                            dgv = dgv_user_mon;
+                            break;
+                        case "cbox_Year_user_mon":
+                            monYear = String.Format("{0}", cbox.Items[cbox.SelectedIndex].ToString());
+                            sum = "user_mon";
+                            statsum = "mon";
+                            date = String.Format("{0}-{1}", monYear, monMonth);
+                            dgv = dgv_user_mon;
+                            break;
+                        case "cbox_Month_user_day":
+                            dayMonth = String.Format("{0:D2}", cbox.SelectedIndex + 1);
+                            sum = "user_day";
+                            statsum = "day";
+                            date = String.Format("{0}-{1}", dayYear, dayMonth);
+                            dgv = dgv_user_day;
+                            break;
+                        case "cbox_Year_user_day":
+                            dayYear = String.Format("{0}", cbox.Items[cbox.SelectedIndex].ToString());
+                            sum = "user_day";
+                            statsum = "day";
+                            date = String.Format("{0}-{1}", dayYear, dayMonth);
+                            dgv = dgv_user_day;
+                            break;
+                    }
+                    url = String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum={3}", ServerURL, rndlogin, date, statsum);
+                }
+                else // admin or root (admin_mon, user_day)
+                {
+                    switch (cbox.Name)
+                    {
+                        case "cbox_Month_admin_mon":
+                            monMonth = String.Format("{0:D2}", cbox.SelectedIndex + 1);
+                            sum = "admin_mon";
+                            statsum = "mon";
+                            date = String.Format("{0}-{1}", monYear, monMonth);
+                            dgv = dgv_admin_mon;
+                            url = String.Format("{0}admin.cgi?cmd=8&date={1}", ServerURL, date);
+                            break;
+                        case "cbox_Year_admin_mon":
+                            monYear = String.Format("{0}", cbox.Items[cbox.SelectedIndex].ToString());
+                            sum = "admin_mon";
+                            statsum = "mon";
+                            date = String.Format("{0}-{1}", monYear, monMonth);
+                            dgv = dgv_admin_mon;
+                            url = String.Format("{0}admin.cgi?cmd=8&date={1}", ServerURL, date);
+                            break;
+                        case "cbox_Month_user_day":
+                            dayMonth = String.Format("{0:D2}", cbox.SelectedIndex + 1);
+                            sum = "user_day";
+                            statsum = "day";
+                            date = String.Format("{0}-{1}", dayYear, dayMonth);
+                            dgv = dgv_user_day;
+                            if (selected == "") return;
+                            url = String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum={3}", ServerURL, rndquery, date, statsum);
+                            break;
+                        case "cbox_Year_user_day":
+                            dayYear = String.Format("{0}", cbox.Items[cbox.SelectedIndex].ToString());
+                            sum = "user_day";
+                            statsum = "day";
+                            date = String.Format("{0}-{1}", dayYear, dayMonth);
+                            dgv = dgv_user_day;
+                            if (selected == "") return;
+                            url = String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum={3}", ServerURL, rndquery, date, statsum);
+                            break;
+                    }
+                }
+                // call HTTP server and load Stats table
+                // txtDebug.AppendText(url + "\r\n");
+                string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(url));
+                dgv.Rows.Clear();
+                if (csv != null)
+                    LoadStatsOnDGV(dgv, csv, sum);
+
             }
         }
     }

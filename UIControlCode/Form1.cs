@@ -17,6 +17,7 @@ namespace UIControlCode
         private string ServerURL = "http://192.168.1.47/";
         private string LoginName, LoginMail, LoginPass;
         private int LoginServer = 1;
+        private string monYear, monMonth, dayYear, dayMonth;
 
         public MainForm()
         {
@@ -30,6 +31,14 @@ namespace UIControlCode
             formLogin.LoginServer = (int)Properties.Settings.Default["LoginServer"];
             formLogin.LoginMail = (string)Properties.Settings.Default["LoginMail"];
             formLogin.LoginPass = (string)Properties.Settings.Default["LoginPass"];
+            // Date of today
+            DateTime today = DateTime.Today;
+            monYear = String.Format("{0:D4}", today.Year);
+            dayYear = monYear;
+            monMonth = String.Format("{0:D2}", today.Month);
+            dayMonth = monMonth;
+            txtDebug.AppendText(String.Format("mon {0}-{1}\r\n", monYear, monMonth));
+            txtDebug.AppendText(String.Format("day {0}-{1}\r\n", dayYear, dayMonth));
         }
 
         private async void logInToolStripMenuItem_Click(object sender, EventArgs e)
