@@ -35,8 +35,7 @@ namespace UIControlCode
         {
             if (formLogin.ShowDialog() == DialogResult.OK)
             {
-                bool success = false;
-                string result = "";
+                string result;
 
                 timer.Stop();
                 panel.Controls.Clear();
@@ -47,90 +46,66 @@ namespace UIControlCode
                 statusLblMsg.ForeColor = Color.Blue;
                 statusLblMsg.Text = String.Format("Intentando conectar con el Server {0} ...", formLogin.LoginServer);
 
-                try
+                result = await webClient.GetHTTPStringPTaskAsync(url);
+                if (result == null)
                 {
-                    result = await webClient.GetHTTPStringPTaskAsync(url);
-                    success = true;
-                }
-                catch (Exception ex)
-                {
-                    success = false;
-                    txtDebug.AppendText(String.Format("Error: {0}\r\n", ex.Message));
                     statusLblMsg.ForeColor = Color.Red;
-                    statusLblMsg.Text = String.Format("Error al conectar al Server {0} ({1})", formLogin.LoginServer, ex.Message);
+                    statusLblMsg.Text = String.Format("Error al conectar al Server {0}", formLogin.LoginServer);
                     formLogin.LoginServer = 1;
                     formLogin.LoginMail = "";
                     formLogin.LoginPass = "";
+                    return;
                 }
 
-                if (success)
-                {
-                    DateTime today = DateTime.Today;
-                    string date = String.Format("{0}-{1}", today.Year, today.Month);
-                    // Save settings
-                    Properties.Settings.Default["LoginServer"] = formLogin.LoginServer;
-                    Properties.Settings.Default["LoginMail"] = formLogin.LoginMail;
-                    Properties.Settings.Default["LoginPass"] = formLogin.LoginPass;
-                    Properties.Settings.Default.Save();
+                DateTime today = DateTime.Today;
+                string date = String.Format("{0}-{1}", today.Year, today.Month);
+                // Save settings
+                Properties.Settings.Default["LoginServer"] = formLogin.LoginServer;
+                Properties.Settings.Default["LoginMail"] = formLogin.LoginMail;
+                Properties.Settings.Default["LoginPass"] = formLogin.LoginPass;
+                Properties.Settings.Default.Save();
 
-                    txtDebug.AppendText(result + "\r\n");
-                    var words = result.Split('=');
-                    LoginName = words[2];
-                    rndlogin = words[1];
-                    statusLblMsg.ForeColor = Color.Green;
-                    statusLblMsg.Text = String.Format("Conectado al Server {0} como {1}", formLogin.LoginServer, LoginName);
-                    if (formLogin.LoginMail == "admin")
+                txtDebug.AppendText(result + "\r\n");
+                var words = result.Split('=');
+                LoginName = words[2];
+                rndlogin = words[1];
+                statusLblMsg.ForeColor = Color.Green;
+                statusLblMsg.Text = String.Format("Conectado al Server {0} como {1}", formLogin.LoginServer, LoginName);
+                if (formLogin.LoginMail == "admin")
+                {
+                    board = 0; // Root board
+                    PaintRootBoard();
+                    string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=8&rnd={1}&date={2}", ServerURL, rndlogin, date)));
+                    if (csv != null)
+                        LoadStatsOnDGV(dgv_admin_mon, csv, "admin_mon");
+                }
+                else
+                {
+                    if (words[0] == "0")
                     {
-                        board = 0; // Root board
-                        PaintRootBoard();
-                        try
-                        {
-                            string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=8&rnd={1}&date={2}", ServerURL, rndlogin, date)));
+                        board = 1; // Admin board
+                        PaintAdminBoard(LoginName);
+                        string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=8&rnd={1}&date={2}", ServerURL, rndlogin, date)));
+                        if (csv != null)
                             LoadStatsOnDGV(dgv_admin_mon, csv, "admin_mon");
-                        }
-                        catch
-                        {
-                            // error msg
-                        }
                     }
                     else
                     {
-                        if (words[0] == "0")
-                        {
-                            board = 1; // Admin board
-                            PaintAdminBoard(LoginName);
-                            try
-                            {
-                                string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=8&rnd={1}&date={2}", ServerURL, rndlogin, date)));
-                                LoadStatsOnDGV(dgv_admin_mon, csv, "admin_mon");
-                            }
-                            catch
-                            {
-                                // error msg
-                            }
-                        }
-                        else
-                        {
-                            board = 2; // User board
-                            PaintUserBoard(LoginName);
-                            try
-                            {
-                                string csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=mon", ServerURL, rndlogin, date)));
-                                LoadStatsOnDGV(dgv_user_mon, csv, "user_mon");
-                                csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=day", ServerURL, rndlogin, date)));
-                                LoadStatsOnDGV(dgv_user_day, csv, "user_day");
-                                csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=now", ServerURL, rndlogin, date)));
-                                LoadStatsOnDGV(dgv_user_now, csv, "user_now");
-                            }
-                            catch
-                            {
-                                // error msg
-                            }
-                        }
+                        board = 2; // User board
+                        PaintUserBoard(LoginName);
+                        string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=mon", ServerURL, rndlogin, date)));
+                        if (csv != null)
+                            LoadStatsOnDGV(dgv_user_mon, csv, "user_mon");
+                        csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=day", ServerURL, rndlogin, date)));
+                        if (csv != null)
+                            LoadStatsOnDGV(dgv_user_day, csv, "user_day");
+                        csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=now", ServerURL, rndlogin, date)));
+                        if (csv != null)
+                            LoadStatsOnDGV(dgv_user_now, csv, "user_now");
                     }
-                    // start timer to update Lists every 1 sec
-                    timer.Start();
                 }
+                // start timer to update Lists every 1 sec
+                timer.Start();
             }
         }
 
@@ -151,11 +126,8 @@ namespace UIControlCode
                 List<User> admins = new List<User>();
                 List<User> users = new List<User>();
                 List<Device> devices = new List<Device>();
-                try
-                {
-                    csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=11&rnd={1}&user={2}", ServerURL, rndlogin, rndquery)));
-                }
-                catch
+                csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=11&rnd={1}&user={2}", ServerURL, rndlogin, rndquery)));
+                if (csv == null)
                 {
                     // error msg
                     timer.Start();
@@ -203,11 +175,8 @@ namespace UIControlCode
             {
                 List<User> users = new List<User>();
                 List<Device> devices = new List<Device>();
-                try
-                {
-                    csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=12&rnd={1}&user={2}", ServerURL, rndlogin, rndquery)));
-                }
-                catch
+                csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=12&rnd={1}&user={2}", ServerURL, rndlogin, rndquery)));
+                if (csv == null)
                 {
                     // error msg
                     timer.Start();
@@ -244,11 +213,8 @@ namespace UIControlCode
             else // user
             {
                 List<Device> devices = new List<Device>();
-                try
-                {
-                    csv = await webClient.GetHTTStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=10&rnd={1}", ServerURL, rndlogin)));
-                }
-                catch
+                csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=10&rnd={1}", ServerURL, rndlogin)));
+                if (csv == null)
                 {
                     // error msg
                     timer.Start();
