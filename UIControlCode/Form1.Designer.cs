@@ -37,9 +37,9 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.status = new System.Windows.Forms.StatusStrip();
+            this.statusLblMsg = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel = new System.Windows.Forms.Panel();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.statusLblMsg = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu.SuspendLayout();
             this.status.SuspendLayout();
             this.SuspendLayout();
@@ -109,6 +109,11 @@
             this.status.TabIndex = 4;
             this.status.Text = "statusStrip1";
             // 
+            // statusLblMsg
+            // 
+            this.statusLblMsg.Name = "statusLblMsg";
+            this.statusLblMsg.Size = new System.Drawing.Size(0, 17);
+            // 
             // panel
             // 
             this.panel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -121,11 +126,6 @@
             // 
             this.timer.Interval = 1000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // statusLblMsg
-            // 
-            this.statusLblMsg.Name = "statusLblMsg";
-            this.statusLblMsg.Size = new System.Drawing.Size(0, 17);
             // 
             // MainForm
             // 

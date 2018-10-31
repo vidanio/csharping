@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
-using System;
 
 namespace UIControlCode
 {

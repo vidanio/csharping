@@ -1,5 +1,4 @@
-﻿// 24 global objects used in the Window
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using System.Collections.Generic;
 
 namespace UIControlCode
