@@ -14,6 +14,7 @@ namespace UIControlCode
     {
         public string DeviceName { get; set; } = "";
         public bool DeviceActive { get; set; } = false;
+        private bool cancelled = false;
 
         public FormDevice()
         {
@@ -42,12 +43,35 @@ namespace UIControlCode
         {
             DeviceName = txtName.Text;
             DeviceActive = chkActive.Checked;
+
             this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            cancelled = true;
             this.Close();
+        }
+
+        private void txtName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = e.KeyChar != (char)Keys.Back && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '@') && (e.KeyChar != '.');
+        }
+
+        private void FormDevice_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (cancelled)
+            {
+                e.Cancel = false;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(DeviceName))
+            {
+                MessageBox.Show("Todos los campos de texto son obligatorios", "Importante", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cancelled = false;
+                e.Cancel = true;
+            }
         }
     }
 }

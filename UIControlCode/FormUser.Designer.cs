@@ -58,6 +58,7 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(198, 20);
             this.txtMail.TabIndex = 0;
+            this.txtMail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMail_KeyPress);
             // 
             // btnCancel
             // 
@@ -104,6 +105,7 @@
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(198, 20);
             this.txtPass.TabIndex = 1;
+            this.txtPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPass_KeyPress);
             // 
             // txtName
             // 
@@ -112,6 +114,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(198, 20);
             this.txtName.TabIndex = 2;
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // lblMail
             // 
@@ -169,6 +172,7 @@
             this.Name = "FormUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ajustes de Usuario";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormUser_FormClosing);
             this.Load += new System.EventHandler(this.FormUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -68,6 +68,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(172, 20);
             this.txtName.TabIndex = 0;
+            this.txtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtName_KeyPress);
             // 
             // lblHeader
             // 
@@ -122,6 +123,7 @@
             this.Name = "FormDevice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ajustes del Dispositivo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDevice_FormClosing);
             this.Load += new System.EventHandler(this.FormDevice_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
