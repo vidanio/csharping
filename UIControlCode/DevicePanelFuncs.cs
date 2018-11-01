@@ -207,6 +207,7 @@ namespace UIControlCode
                 label1.Size = new Size(47, 13);
                 label1.Name = "Delay_" + device.Random + "_" + device.Type;
                 label1.Text = device.Delay.ToString() + " ms";
+                tooltip.SetToolTip(label1, "buffer delay");
                 label1.Location = new Point(131, y);
                 panel.Controls.Add(label1);
                 // label for time
@@ -217,6 +218,7 @@ namespace UIControlCode
                 label2.Size = new Size(101, 13);
                 label2.Name = "Time_" + device.Random + "_" + device.Type;
                 label2.Text = device.Time;
+                tooltip.SetToolTip(label2, "tiempo conectado");
                 label2.Location = new Point(183, y);
                 panel.Controls.Add(label2);
                 // label for bitrate
@@ -227,6 +229,7 @@ namespace UIControlCode
                 label3.Size = new Size(101, 13);
                 label3.Name = "Bitrate_" + device.Random + "_" + device.Type;
                 label3.Text = device.Kbps.ToString() + " kbps";
+                tooltip.SetToolTip(label3, "bitrate en Kbps");
                 label3.Location = new Point(290, y);
                 panel.Controls.Add(label3);
                 // picturebox for active
@@ -245,6 +248,7 @@ namespace UIControlCode
                 pic1.Location = new Point(386, y);
                 pic1.Size = new Size(20, 20);
                 pic1.Name = "Working_" + device.Random + "_" + device.Type;
+                tooltip.SetToolTip(pic1, (device.Working) ? "equipo connectado" : "equipo desconectado");
                 panel.Controls.Add(pic1);
                 // picturebox for delete
                 PictureBox pic2 = new PictureBox();
