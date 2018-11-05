@@ -134,6 +134,7 @@
             this.controlarEquipoToolStripMenuItem.Name = "controlarEquipoToolStripMenuItem";
             this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.controlarEquipoToolStripMenuItem.Text = "Dispostivos Locales";
+            this.controlarEquipoToolStripMenuItem.Click += new System.EventHandler(this.controlarEquipoToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tmds.MDns;
+using System.Threading;
 
 namespace ServiceFinder
 {
@@ -10,7 +11,7 @@ namespace ServiceFinder
         {
             List<string> serviceTypes = new List<string>();
             serviceTypes.Add("_https._tcp");
-            serviceTypes.Add("_ftp._tcp");
+            serviceTypes.Add("_http._tcp");
 
             ServiceBrowser serviceBrowser = new ServiceBrowser();
             serviceBrowser.ServiceAdded += onServiceAdded;
@@ -19,6 +20,9 @@ namespace ServiceFinder
 
             Console.WriteLine("Browsing for types: ");
             serviceBrowser.StartBrowse(serviceTypes);
+            //Thread.Sleep(10000);
+            //serviceBrowser.StopBrowse();
+            Console.WriteLine("Stop Browse");
             Console.ReadLine();
         }
 
@@ -47,3 +51,15 @@ namespace ServiceFinder
         }
     }
 }
+/*
+Browsing for type _https._tcp
++ 'OneStream Share on debian9' on Ethernet
+        Host: debian9 (192.168.1.47, fe80::a00:27ff:fe6f:278b%15)
+        Port: 1968
+        Txt : [path=/usr/local/bin]
+Browsing for type _http._tcp
++ 'OneStream Share on debian32' on Ethernet
+        Host: debian32 (192.168.1.48, fe80::a00:27ff:fe61:b01d%15)
+        Port: 80
+        Txt : [path=/usr/local/bin]
+ */

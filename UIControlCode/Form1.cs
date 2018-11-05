@@ -15,7 +15,7 @@ namespace UIControlCode
         {
             InitializeComponent();
             webClient.Encoding = Encoding.UTF8;
-            panel.Visible = false;
+            panel.Visible = true;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -252,6 +252,17 @@ namespace UIControlCode
                 LoadStatsOnDGV(dgv_user_now, words[1], "user_now");
             }
             timer.Start();
+        }
+
+        private void controlarEquipoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormMDNS formMDNS = new FormMDNS();
+
+            if (formMDNS.ShowDialog() == DialogResult.OK)
+            {
+                panel.Visible = false;
+                txtDebug.AppendText(formMDNS.mDNSURL + "\r\n");
+            }
         }
     }
 }

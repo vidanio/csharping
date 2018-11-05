@@ -44,6 +44,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tmds.MDns, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tmds.MDns.0.7.0\lib\net45\Tmds.MDns.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminPanelFuncs.cs">
@@ -74,6 +77,12 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMDNS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMDNS.Designer.cs">
+      <DependentUpon>FormMDNS.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +95,7 @@
     <Compile Include="LoadFuncs.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="mDNSObject.cs" />
     <Compile Include="PaintBoards.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +120,9 @@
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMDNS.resx">
+      <DependentUpon>FormMDNS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormUser.resx">
       <DependentUpon>FormUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +136,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -213,6 +227,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\user20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
