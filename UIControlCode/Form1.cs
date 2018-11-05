@@ -110,6 +110,7 @@ namespace UIControlCode
                 }
                 // start timer to update Lists every 1 sec
                 timer.Start();
+                timer_Tick(null, null);
             }
         }
 
@@ -272,6 +273,8 @@ namespace UIControlCode
                 mDNSURL = formMDNS.mDNSURL;
                 statusLblMsg.ForeColor = Color.Green;
                 statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", formMDNS.mDNSName);
+                timerMDNS.Start();
+                timerMDNS_Tick(null, null);
             }
         }
 
@@ -317,7 +320,11 @@ namespace UIControlCode
 
         private void timerMDNS_Tick(object sender, EventArgs e)
         {
+            timerMDNS.Stop();
 
+            // let's start with UI updates
+
+            timerMDNS.Start();
         }
     }
 }
