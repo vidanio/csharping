@@ -15,6 +15,7 @@ namespace UIControlCode
         {
             InitializeComponent();
             webClient.Encoding = Encoding.UTF8;
+            panel.Visible = false;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
