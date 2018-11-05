@@ -262,6 +262,8 @@ namespace UIControlCode
             {
                 panel.Visible = false;
                 txtDebug.AppendText(formMDNS.mDNSURL + "\r\n");
+                statusLblMsg.ForeColor = Color.Green;
+                statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", formMDNS.mDNSName);
             }
         }
     }

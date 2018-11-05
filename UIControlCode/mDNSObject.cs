@@ -11,7 +11,7 @@ namespace UIControlCode
         // properties
         public string Type { get; set; } // http, https
         public string Name { get; set; } // service.Instance
-        public string Address { get; set; } // IPv4 addr
+        public string Address { get; set; } = ""; // IPv4 addr
         public int Port { get; set; } // service.Port
 
         public mDNSObject()

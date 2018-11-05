@@ -10,6 +10,8 @@ namespace UIControlCode
     public partial class FormMDNS : Form
     {
         public string mDNSURL { get; set; } = "";
+        public string mDNSName { get; set; } = "";
+
         ServiceBrowser serviceBrowser = new ServiceBrowser();
         List<mDNSObject> services = new List<mDNSObject>();
 
@@ -26,12 +28,12 @@ namespace UIControlCode
                 mDNSObject mDNS = new mDNSObject();
                 mDNS = services.Find(x => x.Name == combo.Items[combo.SelectedIndex].ToString());
                 mDNSURL = String.Format("{0}://{1}:{2}", mDNS.Type, mDNS.Address, mDNS.Port);
+                mDNSName = mDNS.Name;
             }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-
             // clean before exit
             serviceBrowser.StopBrowse();
             this.Close();
@@ -39,7 +41,6 @@ namespace UIControlCode
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
             // clean before exit
             serviceBrowser.StopBrowse();
             this.Close();
@@ -84,6 +85,7 @@ namespace UIControlCode
                     mDNS.Address = ipaddr.ToString();
                 }
             }
+            if (mDNS.Address == "") return;
             mDNS.Port = service.Port;
             services.Add(mDNS);
             cboxDevice.Items.Add(mDNS.Name);
