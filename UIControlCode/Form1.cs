@@ -38,6 +38,7 @@ namespace UIControlCode
             {
                 string result;
 
+                panel.Visible = true;
                 timer.Stop();
                 panel.Controls.Clear();
                 LoginMail = formLogin.LoginMail;
@@ -114,6 +115,8 @@ namespace UIControlCode
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            timerMDNS.Stop();
+            timerMDNS.Dispose();
             timer.Stop();
             timer.Dispose();
             this.Close();
@@ -261,10 +264,63 @@ namespace UIControlCode
             if (formMDNS.ShowDialog() == DialogResult.OK)
             {
                 panel.Visible = false;
+                lblText1E.Text = "";
+                lblText1D.Text = "";
+                lblText2E.Text = "";
+                lblText2D.Text = "";
                 txtDebug.AppendText(formMDNS.mDNSURL + "\r\n");
+                mDNSURL = formMDNS.mDNSURL;
                 statusLblMsg.ForeColor = Color.Green;
                 statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", formMDNS.mDNSName);
             }
         }
+
+        private void btnStart1E_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStop1E_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStart2E_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStop2E_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStart1D_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStop1D_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStart2D_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStop2D_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timerMDNS_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+/*
+0*http://192.168.1.168/0.ts*smart://192.168.1.47/VRbybdDBvtEsdVol*16*3058\r\n
+*/

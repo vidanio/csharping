@@ -80,6 +80,7 @@
             this.btnStop2D = new System.Windows.Forms.Button();
             this.btnStart2D = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
+            this.timerMDNS = new System.Windows.Forms.Timer(this.components);
             this.menu.SuspendLayout();
             this.status.SuspendLayout();
             this.grpEmisor1.SuspendLayout();
@@ -195,6 +196,7 @@
             this.btnStart1E.TabStop = false;
             this.btnStart1E.Text = "Emitir";
             this.btnStart1E.UseVisualStyleBackColor = true;
+            this.btnStart1E.Click += new System.EventHandler(this.btnStart1E_Click);
             // 
             // numServID1E
             // 
@@ -272,6 +274,7 @@
             this.btnStop1E.TabStop = false;
             this.btnStop1E.Text = "Parar";
             this.btnStop1E.UseVisualStyleBackColor = true;
+            this.btnStop1E.Click += new System.EventHandler(this.btnStop1E_Click);
             // 
             // txtSmartkey1E
             // 
@@ -383,6 +386,7 @@
             this.btnStop2E.TabStop = false;
             this.btnStop2E.Text = "Parar";
             this.btnStop2E.UseVisualStyleBackColor = true;
+            this.btnStop2E.Click += new System.EventHandler(this.btnStop2E_Click);
             // 
             // btnStart2E
             // 
@@ -393,6 +397,7 @@
             this.btnStart2E.TabStop = false;
             this.btnStart2E.Text = "Emitir";
             this.btnStart2E.UseVisualStyleBackColor = true;
+            this.btnStart2E.Click += new System.EventHandler(this.btnStart2E_Click);
             // 
             // grpReceptor1
             // 
@@ -488,6 +493,7 @@
             this.btnStop1D.TabStop = false;
             this.btnStop1D.Text = "Parar";
             this.btnStop1D.UseVisualStyleBackColor = true;
+            this.btnStop1D.Click += new System.EventHandler(this.btnStop1D_Click);
             // 
             // btnStart1D
             // 
@@ -498,6 +504,7 @@
             this.btnStart1D.TabStop = false;
             this.btnStart1D.Text = "Emitir";
             this.btnStart1D.UseVisualStyleBackColor = true;
+            this.btnStart1D.Click += new System.EventHandler(this.btnStart1D_Click);
             // 
             // lblcopypaste1D
             // 
@@ -611,6 +618,7 @@
             this.btnStop2D.TabStop = false;
             this.btnStop2D.Text = "Parar";
             this.btnStop2D.UseVisualStyleBackColor = true;
+            this.btnStop2D.Click += new System.EventHandler(this.btnStop2D_Click);
             // 
             // btnStart2D
             // 
@@ -621,6 +629,7 @@
             this.btnStart2D.TabStop = false;
             this.btnStart2D.Text = "Emitir";
             this.btnStart2D.UseVisualStyleBackColor = true;
+            this.btnStart2D.Click += new System.EventHandler(this.btnStart2D_Click);
             // 
             // panel
             // 
@@ -630,6 +639,11 @@
             this.panel.Size = new System.Drawing.Size(465, 595);
             this.panel.TabIndex = 7;
             this.panel.Visible = false;
+            // 
+            // timerMDNS
+            // 
+            this.timerMDNS.Interval = 1000;
+            this.timerMDNS.Tick += new System.EventHandler(this.timerMDNS_Tick);
             // 
             // MainForm
             // 
@@ -723,6 +737,7 @@
         private System.Windows.Forms.Button btnStop2D;
         private System.Windows.Forms.Button btnStart2D;
         private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Timer timerMDNS;
     }
 }
 
