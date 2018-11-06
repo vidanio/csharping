@@ -170,6 +170,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(375, 241);
             this.Name = "FormLogin";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Log In";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogin_FormClosing);

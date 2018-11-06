@@ -170,6 +170,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(351, 260);
             this.Name = "FormUser";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ajustes de Usuario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormUser_FormClosing);

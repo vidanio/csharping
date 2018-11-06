@@ -121,6 +121,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(351, 205);
             this.Name = "FormDevice";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ajustes del Dispositivo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDevice_FormClosing);
