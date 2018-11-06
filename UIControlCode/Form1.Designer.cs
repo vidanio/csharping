@@ -189,6 +189,7 @@
             // 
             // lblText1E
             // 
+            this.lblText1E.ForeColor = System.Drawing.Color.Blue;
             this.lblText1E.Location = new System.Drawing.Point(30, 203);
             this.lblText1E.Name = "lblText1E";
             this.lblText1E.Size = new System.Drawing.Size(341, 23);
@@ -264,7 +265,7 @@
             // 
             // btnStop1E
             // 
-            this.btnStop1E.Location = new System.Drawing.Point(171, 149);
+            this.btnStop1E.Location = new System.Drawing.Point(159, 149);
             this.btnStop1E.Name = "btnStop1E";
             this.btnStop1E.Size = new System.Drawing.Size(75, 23);
             this.btnStop1E.TabIndex = 0;
@@ -304,6 +305,7 @@
             // 
             // lblText2E
             // 
+            this.lblText2E.ForeColor = System.Drawing.Color.Blue;
             this.lblText2E.Location = new System.Drawing.Point(30, 203);
             this.lblText2E.Name = "lblText2E";
             this.lblText2E.Size = new System.Drawing.Size(341, 23);
@@ -379,7 +381,7 @@
             // 
             // btnStop2E
             // 
-            this.btnStop2E.Location = new System.Drawing.Point(171, 149);
+            this.btnStop2E.Location = new System.Drawing.Point(159, 149);
             this.btnStop2E.Name = "btnStop2E";
             this.btnStop2E.Size = new System.Drawing.Size(75, 23);
             this.btnStop2E.TabIndex = 0;
@@ -419,6 +421,7 @@
             // 
             // lblText1D
             // 
+            this.lblText1D.ForeColor = System.Drawing.Color.Blue;
             this.lblText1D.Location = new System.Drawing.Point(30, 203);
             this.lblText1D.Name = "lblText1D";
             this.lblText1D.Size = new System.Drawing.Size(341, 23);
@@ -497,7 +500,7 @@
             // 
             // btnStop1D
             // 
-            this.btnStop1D.Location = new System.Drawing.Point(171, 149);
+            this.btnStop1D.Location = new System.Drawing.Point(159, 149);
             this.btnStop1D.Name = "btnStop1D";
             this.btnStop1D.Size = new System.Drawing.Size(75, 23);
             this.btnStop1D.TabIndex = 0;
@@ -537,6 +540,7 @@
             // 
             // lblText2D
             // 
+            this.lblText2D.ForeColor = System.Drawing.Color.Blue;
             this.lblText2D.Location = new System.Drawing.Point(30, 203);
             this.lblText2D.Name = "lblText2D";
             this.lblText2D.Size = new System.Drawing.Size(341, 23);
@@ -615,7 +619,7 @@
             // 
             // btnStop2D
             // 
-            this.btnStop2D.Location = new System.Drawing.Point(171, 149);
+            this.btnStop2D.Location = new System.Drawing.Point(159, 149);
             this.btnStop2D.Name = "btnStop2D";
             this.btnStop2D.Size = new System.Drawing.Size(75, 23);
             this.btnStop2D.TabIndex = 0;

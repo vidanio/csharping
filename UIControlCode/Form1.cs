@@ -303,7 +303,9 @@ namespace UIControlCode
             Properties.Settings.Default["ServID1E"] = numServID1E.Value;
 
             btnStart1E.Visible = false;
+            lblText1E.Text = "Conectando (espere no más de 20 segundos) ...";
             startProxyTaskAsync(proxy, source, destiny);
+            lblText1E.Text = "";
             btnStop1E.Visible = true;
         }
 
@@ -312,7 +314,9 @@ namespace UIControlCode
             int proxy = 0;
 
             btnStop1E.Visible = false;
+            lblText1E.Text = "Desconectando ...";
             stopProxyTaskAsync(proxy);
+            lblText1E.Text = "";
             btnStart1E.Visible = true;
         }
 
@@ -326,7 +330,9 @@ namespace UIControlCode
             Properties.Settings.Default["ServID2E"] = numServID2E.Value;
 
             btnStart2E.Visible = false;
+            lblText2E.Text = "Conectando (espere no más de 20 segundos) ...";
             await startProxyTaskAsync(proxy, source, destiny);
+            lblText2E.Text = "";
             btnStop2E.Visible = true;
         }
 
@@ -335,7 +341,9 @@ namespace UIControlCode
             int proxy = 1;
 
             btnStop2E.Visible = false;
+            lblText2E.Text = "Desconectando ...";
             await stopProxyTaskAsync(proxy);
+            lblText2E.Text = "";
             btnStart2E.Visible = true;
         }
 
@@ -348,7 +356,9 @@ namespace UIControlCode
             Properties.Settings.Default["ServID1D"] = numServID1D.Value;
 
             btnStart1D.Visible = false;
+            lblText1D.Text = "Conectando (espere no más de 20 segundos) ...";
             await startProxyTaskAsync(proxy, source, destiny);
+            lblText1D.Text = "";
             btnStop1D.Visible = true;
             tcp1D = destiny;
         }
@@ -358,7 +368,9 @@ namespace UIControlCode
             int proxy = 2;
 
             btnStop1D.Visible = false;
+            lblText1D.Text = "Desconectando ...";
             await stopProxyTaskAsync(proxy);
+            lblText1D.Text = "";
             btnStart1D.Visible = true;
             tcp1D = "";
         }
@@ -372,7 +384,9 @@ namespace UIControlCode
             Properties.Settings.Default["ServID2D"] = numServID2D.Value;
 
             btnStart2D.Visible = false;
+            lblText2D.Text = "Conectando (espere no más de 20 segundos) ...";
             await startProxyTaskAsync(proxy, source, destiny);
+            lblText2D.Text = "";
             btnStop2D.Visible = true;
             tcp2D = destiny;
         }
@@ -382,7 +396,9 @@ namespace UIControlCode
             int proxy = 3;
 
             btnStop2D.Visible = false;
+            lblText2D.Text = "Desconectando ...";
             await stopProxyTaskAsync(proxy);
+            lblText2D.Text = "";
             btnStart2D.Visible = true;
             tcp2D = "";
         }
