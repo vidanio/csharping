@@ -11,6 +11,7 @@ namespace UIControlCode
     {
         public string mDNSURL { get; set; } = "";
         public string mDNSName { get; set; } = "";
+        public string mDNSIP { get; set; } = "";
 
         ServiceBrowser serviceBrowser = new ServiceBrowser();
         List<mDNSObject> services = new List<mDNSObject>();
@@ -29,6 +30,7 @@ namespace UIControlCode
                 mDNS = services.Find(x => x.Name == combo.Items[combo.SelectedIndex].ToString());
                 mDNSURL = String.Format("{0}://{1}:{2}", mDNS.Type, mDNS.Address, mDNS.Port);
                 mDNSName = mDNS.Name;
+                mDNSIP = mDNS.Address;
             }
         }
 

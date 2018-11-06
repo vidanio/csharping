@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace UIControlCode
 {
@@ -24,6 +25,16 @@ namespace UIControlCode
             formLogin.LoginServer = (int)Properties.Settings.Default["LoginServer"];
             formLogin.LoginMail = (string)Properties.Settings.Default["LoginMail"];
             formLogin.LoginPass = (string)Properties.Settings.Default["LoginPass"];
+            txtSource1E.Text = (string)Properties.Settings.Default["Source1E"];
+            txtSource2E.Text = (string)Properties.Settings.Default["Source2E"];
+            txtSmartkey1E.Text = (string)Properties.Settings.Default["Smartkey1E"];
+            txtSmartkey2E.Text = (string)Properties.Settings.Default["Smartkey2E"];
+            txtSmartkey1D.Text = (string)Properties.Settings.Default["Smartkey1D"];
+            txtSmartkey2D.Text = (string)Properties.Settings.Default["Smartkey2D"];
+            numServID1E.Value = (int)Properties.Settings.Default["ServID1E"];
+            numServID2E.Value = (int)Properties.Settings.Default["ServID2E"];
+            numServID1D.Value = (int)Properties.Settings.Default["ServID1D"];
+            numServID2D.Value = (int)Properties.Settings.Default["ServID2D"];
             // Date of today
             DateTime today = DateTime.Today;
             monYear = String.Format("{0:D4}", today.Year);
@@ -269,10 +280,13 @@ namespace UIControlCode
                 lblText1D.Text = "";
                 lblText2E.Text = "";
                 lblText2D.Text = "";
-                txtDebug.AppendText(formMDNS.mDNSURL + "\r\n");
                 mDNSURL = formMDNS.mDNSURL;
+                mDNSName = formMDNS.mDNSName;
+                mDNSIP = formMDNS.mDNSIP;
+                mDNSconnected = true;
+                txtDebug.AppendText(mDNSURL + "\r\n");
                 statusLblMsg.ForeColor = Color.Green;
-                statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", formMDNS.mDNSName);
+                statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", mDNSName);
                 timerMDNS.Start();
                 timerMDNS_Tick(null, null);
             }
@@ -280,7 +294,9 @@ namespace UIControlCode
 
         private void btnStart1E_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default["Source1E"] = txtSource1E.Text;
+            Properties.Settings.Default["Smartkey1E"] = txtSmartkey1E.Text;
+            Properties.Settings.Default["ServID1E"] = numServID1E.Value;
         }
 
         private void btnStop1E_Click(object sender, EventArgs e)
@@ -290,7 +306,9 @@ namespace UIControlCode
 
         private void btnStart2E_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default["Source2E"] = txtSource2E.Text;
+            Properties.Settings.Default["Smartkey2E"] = txtSmartkey2E.Text;
+            Properties.Settings.Default["ServID2E"] = numServID2E.Value;
         }
 
         private void btnStop2E_Click(object sender, EventArgs e)
@@ -300,7 +318,8 @@ namespace UIControlCode
 
         private void btnStart1D_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default["Smartkey1D"] = txtSmartkey1D.Text;
+            Properties.Settings.Default["ServID1D"] = numServID1D.Value;
         }
 
         private void btnStop1D_Click(object sender, EventArgs e)
@@ -310,7 +329,8 @@ namespace UIControlCode
 
         private void btnStart2D_Click(object sender, EventArgs e)
         {
-
+            Properties.Settings.Default["Smartkey2D"] = txtSmartkey2D.Text;
+            Properties.Settings.Default["ServID2D"] = numServID2D.Value;
         }
 
         private void btnStop2D_Click(object sender, EventArgs e)
@@ -318,16 +338,51 @@ namespace UIControlCode
 
         }
 
-        private void timerMDNS_Tick(object sender, EventArgs e)
+        private async void timerMDNS_Tick(object sender, EventArgs e)
         {
             timerMDNS.Stop();
 
             // let's start with UI updates
+            string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}/cmd.cgi?cmd=4", mDNSURL)));
+            if (csv == null)
+            {
+                mDNSconnected = false;
+                statusLblMsg.ForeColor = Color.Red;
+                statusLblMsg.Text = String.Format("Desconectado del Dispositivo Local: {0}", mDNSName);
+                timerMDNS.Start();
+                return;
+            }
+            if (!mDNSconnected)
+            {
+                statusLblMsg.ForeColor = Color.Green;
+                statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", mDNSName);
+            }
 
             timerMDNS.Start();
+        }
+
+        private void lblcopypaste1D_Click(object sender, EventArgs e)
+        {
+            if (tcp1D != "")
+            {
+                Clipboard.SetText(tcp1D);
+            }
+        }
+
+        private void lblcopypaste2D_Click(object sender, EventArgs e)
+        {
+            if (tcp2D != "")
+            {
+                Clipboard.SetText(tcp2D);
+            }
         }
     }
 }
 /*
-0*http://192.168.1.168/0.ts*smart://192.168.1.47/VRbybdDBvtEsdVol*16*3058\r\n
+0*http://192.168.1.168/0.ts*smart://192.168.1.47/VRbybdDBvtEsdVol*16*3058*false*true\r\n
+
+0*NULL
+1*NULL
+2*NULL
+3*NULL
 */

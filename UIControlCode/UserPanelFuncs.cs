@@ -96,6 +96,7 @@ namespace UIControlCode
                         // error msg
                         dgv_user_day.Rows.Clear();
                     }
+                    timer_Tick(null, null);
                 }
             }
         }

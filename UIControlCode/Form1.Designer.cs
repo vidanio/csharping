@@ -40,15 +40,15 @@
             this.statusLblMsg = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.grpEmisor1 = new System.Windows.Forms.GroupBox();
-            this.btnStart1E = new System.Windows.Forms.Button();
-            this.numServID1E = new System.Windows.Forms.NumericUpDown();
-            this.txtSource1E = new System.Windows.Forms.TextBox();
-            this.lblSource1E = new System.Windows.Forms.Label();
-            this.lblSrt1E = new System.Windows.Forms.Label();
-            this.lblSmartkey1E = new System.Windows.Forms.Label();
             this.lblText1E = new System.Windows.Forms.Label();
-            this.btnStop1E = new System.Windows.Forms.Button();
+            this.lblSmartkey1E = new System.Windows.Forms.Label();
+            this.lblSrt1E = new System.Windows.Forms.Label();
+            this.lblSource1E = new System.Windows.Forms.Label();
             this.txtSmartkey1E = new System.Windows.Forms.TextBox();
+            this.txtSource1E = new System.Windows.Forms.TextBox();
+            this.numServID1E = new System.Windows.Forms.NumericUpDown();
+            this.btnStop1E = new System.Windows.Forms.Button();
+            this.btnStart1E = new System.Windows.Forms.Button();
             this.grpEmisor2 = new System.Windows.Forms.GroupBox();
             this.lblText2E = new System.Windows.Forms.Label();
             this.lblSmartkey2E = new System.Windows.Forms.Label();
@@ -63,12 +63,12 @@
             this.lblText1D = new System.Windows.Forms.Label();
             this.lblSmartkey1D = new System.Windows.Forms.Label();
             this.lblSrt1D = new System.Windows.Forms.Label();
+            this.lblcopypaste1D = new System.Windows.Forms.Label();
             this.lblTCPlocal1D = new System.Windows.Forms.Label();
             this.txtSmartkey1D = new System.Windows.Forms.TextBox();
             this.numServID1D = new System.Windows.Forms.NumericUpDown();
             this.btnStop1D = new System.Windows.Forms.Button();
             this.btnStart1D = new System.Windows.Forms.Button();
-            this.lblcopypaste1D = new System.Windows.Forms.Label();
             this.grpReceptor2 = new System.Windows.Forms.GroupBox();
             this.lblText2D = new System.Windows.Forms.Label();
             this.lblSmartkey2D = new System.Windows.Forms.Label();
@@ -126,26 +126,26 @@
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.logInToolStripMenuItem.Text = "Smart SRT Server";
             this.logInToolStripMenuItem.Click += new System.EventHandler(this.logInToolStripMenuItem_Click);
             // 
             // controlarEquipoToolStripMenuItem
             // 
             this.controlarEquipoToolStripMenuItem.Name = "controlarEquipoToolStripMenuItem";
-            this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.controlarEquipoToolStripMenuItem.Text = "Dispostivos Locales";
             this.controlarEquipoToolStripMenuItem.Click += new System.EventHandler(this.controlarEquipoToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(173, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -187,16 +187,57 @@
             this.grpEmisor1.TabStop = false;
             this.grpEmisor1.Text = "Emisor 1";
             // 
-            // btnStart1E
+            // lblText1E
             // 
-            this.btnStart1E.Location = new System.Drawing.Point(159, 149);
-            this.btnStart1E.Name = "btnStart1E";
-            this.btnStart1E.Size = new System.Drawing.Size(75, 23);
-            this.btnStart1E.TabIndex = 0;
-            this.btnStart1E.TabStop = false;
-            this.btnStart1E.Text = "Emitir";
-            this.btnStart1E.UseVisualStyleBackColor = true;
-            this.btnStart1E.Click += new System.EventHandler(this.btnStart1E_Click);
+            this.lblText1E.Location = new System.Drawing.Point(30, 203);
+            this.lblText1E.Name = "lblText1E";
+            this.lblText1E.Size = new System.Drawing.Size(341, 23);
+            this.lblText1E.TabIndex = 3;
+            this.lblText1E.Text = "(none)";
+            this.lblText1E.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSmartkey1E
+            // 
+            this.lblSmartkey1E.AutoSize = true;
+            this.lblSmartkey1E.Location = new System.Drawing.Point(168, 103);
+            this.lblSmartkey1E.Name = "lblSmartkey1E";
+            this.lblSmartkey1E.Size = new System.Drawing.Size(55, 13);
+            this.lblSmartkey1E.TabIndex = 3;
+            this.lblSmartkey1E.Text = "SmartKey:";
+            // 
+            // lblSrt1E
+            // 
+            this.lblSrt1E.AutoSize = true;
+            this.lblSrt1E.Location = new System.Drawing.Point(45, 100);
+            this.lblSrt1E.Name = "lblSrt1E";
+            this.lblSrt1E.Size = new System.Drawing.Size(55, 13);
+            this.lblSrt1E.TabIndex = 3;
+            this.lblSrt1E.Text = "Server ID:";
+            // 
+            // lblSource1E
+            // 
+            this.lblSource1E.AutoSize = true;
+            this.lblSource1E.Location = new System.Drawing.Point(34, 42);
+            this.lblSource1E.Name = "lblSource1E";
+            this.lblSource1E.Size = new System.Drawing.Size(66, 13);
+            this.lblSource1E.TabIndex = 3;
+            this.lblSource1E.Text = "URL Origen:";
+            // 
+            // txtSmartkey1E
+            // 
+            this.txtSmartkey1E.Location = new System.Drawing.Point(229, 100);
+            this.txtSmartkey1E.MaxLength = 16;
+            this.txtSmartkey1E.Name = "txtSmartkey1E";
+            this.txtSmartkey1E.Size = new System.Drawing.Size(142, 20);
+            this.txtSmartkey1E.TabIndex = 2;
+            // 
+            // txtSource1E
+            // 
+            this.txtSource1E.Location = new System.Drawing.Point(106, 39);
+            this.txtSource1E.MaxLength = 255;
+            this.txtSource1E.Name = "txtSource1E";
+            this.txtSource1E.Size = new System.Drawing.Size(265, 20);
+            this.txtSource1E.TabIndex = 0;
             // 
             // numServID1E
             // 
@@ -221,50 +262,6 @@
             0,
             0});
             // 
-            // txtSource1E
-            // 
-            this.txtSource1E.Location = new System.Drawing.Point(106, 39);
-            this.txtSource1E.MaxLength = 255;
-            this.txtSource1E.Name = "txtSource1E";
-            this.txtSource1E.Size = new System.Drawing.Size(265, 20);
-            this.txtSource1E.TabIndex = 0;
-            // 
-            // lblSource1E
-            // 
-            this.lblSource1E.AutoSize = true;
-            this.lblSource1E.Location = new System.Drawing.Point(34, 42);
-            this.lblSource1E.Name = "lblSource1E";
-            this.lblSource1E.Size = new System.Drawing.Size(66, 13);
-            this.lblSource1E.TabIndex = 3;
-            this.lblSource1E.Text = "URL Origen:";
-            // 
-            // lblSrt1E
-            // 
-            this.lblSrt1E.AutoSize = true;
-            this.lblSrt1E.Location = new System.Drawing.Point(45, 100);
-            this.lblSrt1E.Name = "lblSrt1E";
-            this.lblSrt1E.Size = new System.Drawing.Size(55, 13);
-            this.lblSrt1E.TabIndex = 3;
-            this.lblSrt1E.Text = "Server ID:";
-            // 
-            // lblSmartkey1E
-            // 
-            this.lblSmartkey1E.AutoSize = true;
-            this.lblSmartkey1E.Location = new System.Drawing.Point(168, 103);
-            this.lblSmartkey1E.Name = "lblSmartkey1E";
-            this.lblSmartkey1E.Size = new System.Drawing.Size(55, 13);
-            this.lblSmartkey1E.TabIndex = 3;
-            this.lblSmartkey1E.Text = "SmartKey:";
-            // 
-            // lblText1E
-            // 
-            this.lblText1E.Location = new System.Drawing.Point(30, 203);
-            this.lblText1E.Name = "lblText1E";
-            this.lblText1E.Size = new System.Drawing.Size(341, 23);
-            this.lblText1E.TabIndex = 3;
-            this.lblText1E.Text = "(none)";
-            this.lblText1E.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnStop1E
             // 
             this.btnStop1E.Location = new System.Drawing.Point(171, 149);
@@ -276,13 +273,16 @@
             this.btnStop1E.UseVisualStyleBackColor = true;
             this.btnStop1E.Click += new System.EventHandler(this.btnStop1E_Click);
             // 
-            // txtSmartkey1E
+            // btnStart1E
             // 
-            this.txtSmartkey1E.Location = new System.Drawing.Point(229, 100);
-            this.txtSmartkey1E.MaxLength = 16;
-            this.txtSmartkey1E.Name = "txtSmartkey1E";
-            this.txtSmartkey1E.Size = new System.Drawing.Size(142, 20);
-            this.txtSmartkey1E.TabIndex = 2;
+            this.btnStart1E.Location = new System.Drawing.Point(159, 149);
+            this.btnStart1E.Name = "btnStart1E";
+            this.btnStart1E.Size = new System.Drawing.Size(75, 23);
+            this.btnStart1E.TabIndex = 0;
+            this.btnStart1E.TabStop = false;
+            this.btnStart1E.Text = "Emitir";
+            this.btnStart1E.UseVisualStyleBackColor = true;
+            this.btnStart1E.Click += new System.EventHandler(this.btnStart1E_Click);
             // 
             // grpEmisor2
             // 
@@ -444,6 +444,17 @@
             this.lblSrt1D.TabIndex = 3;
             this.lblSrt1D.Text = "Server ID:";
             // 
+            // lblcopypaste1D
+            // 
+            this.lblcopypaste1D.AutoSize = true;
+            this.lblcopypaste1D.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblcopypaste1D.Location = new System.Drawing.Point(190, 105);
+            this.lblcopypaste1D.Name = "lblcopypaste1D";
+            this.lblcopypaste1D.Size = new System.Drawing.Size(74, 13);
+            this.lblcopypaste1D.TabIndex = 3;
+            this.lblcopypaste1D.Text = "copiar y pegar";
+            this.lblcopypaste1D.Click += new System.EventHandler(this.lblcopypaste1D_Click);
+            // 
             // lblTCPlocal1D
             // 
             this.lblTCPlocal1D.AutoSize = true;
@@ -506,15 +517,6 @@
             this.btnStart1D.UseVisualStyleBackColor = true;
             this.btnStart1D.Click += new System.EventHandler(this.btnStart1D_Click);
             // 
-            // lblcopypaste1D
-            // 
-            this.lblcopypaste1D.AutoSize = true;
-            this.lblcopypaste1D.Location = new System.Drawing.Point(190, 105);
-            this.lblcopypaste1D.Name = "lblcopypaste1D";
-            this.lblcopypaste1D.Size = new System.Drawing.Size(74, 13);
-            this.lblcopypaste1D.TabIndex = 3;
-            this.lblcopypaste1D.Text = "copiar y pegar";
-            // 
             // grpReceptor2
             // 
             this.grpReceptor2.Controls.Add(this.lblText2D);
@@ -563,11 +565,13 @@
             // lblcopypaste2D
             // 
             this.lblcopypaste2D.AutoSize = true;
+            this.lblcopypaste2D.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblcopypaste2D.Location = new System.Drawing.Point(190, 105);
             this.lblcopypaste2D.Name = "lblcopypaste2D";
             this.lblcopypaste2D.Size = new System.Drawing.Size(74, 13);
             this.lblcopypaste2D.TabIndex = 3;
             this.lblcopypaste2D.Text = "copiar y pegar";
+            this.lblcopypaste2D.Click += new System.EventHandler(this.lblcopypaste2D_Click);
             // 
             // lblTCPlocal2D
             // 

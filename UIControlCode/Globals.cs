@@ -7,7 +7,8 @@ namespace UIControlCode
     {
         // interface globals
         int board = 2; // (0 = root, 1 = admin, 2 = streamer)
-        string rndlogin = "x", rndquery = "x", selected = "", mDNSURL = ""; // randoms of login and the streamer we query
+        string rndlogin = "x", rndquery = "x", selected = "", mDNSURL = "", mDNSName = "", mDNSIP = "", tcp1D ="", tcp2D = ""; // randoms of login and the streamer we query
+        bool mDNSconnected = false;
         List<User> adminsList = new List<User>();
         List<User> usersList = new List<User>();
         List<Device> devicesList = new List<Device>();
