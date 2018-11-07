@@ -24,6 +24,9 @@ namespace UIControlCode
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Load FormInit to start the Linux VM
+            FormInit forminit = new FormInit();
+            forminit.ShowDialog();
             // Get settings saved
             formLogin.LoginServer = (int)Properties.Settings.Default["LoginServer"];
             formLogin.LoginMail = (string)Properties.Settings.Default["LoginMail"];
@@ -569,6 +572,11 @@ namespace UIControlCode
                 return false;
             Thread.Sleep(2000);
             return true;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Stop OVA and exit
         }
     }
 }

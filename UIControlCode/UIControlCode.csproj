@@ -71,6 +71,12 @@
     <Compile Include="FormDevice.Designer.cs">
       <DependentUpon>FormDevice.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInit.Designer.cs">
+      <DependentUpon>FormInit.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDevice.resx">
       <DependentUpon>FormDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInit.resx">
+      <DependentUpon>FormInit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -230,6 +239,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader4.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
