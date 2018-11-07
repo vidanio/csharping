@@ -13,6 +13,7 @@ namespace UIControlCode
     {
         // globales internas
         private string ServerURL = "http://192.168.1.47/";
+        private string ServerIP = "192.168.1.47";
 
         public MainForm()
         {
@@ -300,6 +301,7 @@ namespace UIControlCode
             int proxy = 0;
             string source = txtSource1E.Text;
             string destiny = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID1E.Value, txtSmartkey1E.Text);
+            destiny = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey1E.Text); // ==> erase for real tests outside
             Properties.Settings.Default["Source1E"] = txtSource1E.Text;
             Properties.Settings.Default["Smartkey1E"] = txtSmartkey1E.Text;
             Properties.Settings.Default["ServID1E"] = (int)numServID1E.Value; 
@@ -341,6 +343,7 @@ namespace UIControlCode
             int proxy = 1;
             string source = txtSource2E.Text;
             string destiny = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID2E.Value, txtSmartkey2E.Text);
+            destiny = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey2E.Text); // ==> erase for real tests outside
             Properties.Settings.Default["Source2E"] = txtSource2E.Text;
             Properties.Settings.Default["Smartkey2E"] = txtSmartkey2E.Text;
             Properties.Settings.Default["ServID2E"] = (int)numServID2E.Value;
@@ -381,6 +384,7 @@ namespace UIControlCode
             if (!mDNSconnected) return;
             int proxy = 2;
             string source = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID1D.Value, txtSmartkey1D.Text);
+            source = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey1D.Text); // ==> erase for real tests outside
             string destiny = String.Format("tcp://{0}:1024", mDNSIP);
             Properties.Settings.Default["Smartkey1D"] = txtSmartkey1D.Text;
             Properties.Settings.Default["ServID1D"] = (int)numServID1D.Value;
@@ -427,6 +431,7 @@ namespace UIControlCode
             if (!mDNSconnected) return;
             int proxy = 3;
             string source = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID2D.Value, txtSmartkey2D.Text);
+            source = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey2D.Text); // ==> erase for real tests outside
             string destiny = String.Format("tcp://{0}:1026", mDNSIP);
             Properties.Settings.Default["Smartkey2D"] = txtSmartkey2D.Text;
             Properties.Settings.Default["ServID2D"] = (int)numServID2D.Value;
@@ -546,15 +551,17 @@ namespace UIControlCode
             return Task<bool>.Run(() => stopProxySlow(proxy));
         }
 
+        // this will take at most 12 seconds
         private bool startProxySlow(int proxy, string src, string dst)
         {
             string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst)));
             if (csv == null)
                 return false;
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             return true;
         }
 
+        // this will take at most 7 seconds
         private bool stopProxySlow(int proxy)
         {
             string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=1&proxy={1}", mDNSURL, proxy)));
