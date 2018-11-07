@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace UIControlCode
 {
@@ -306,9 +307,17 @@ namespace UIControlCode
 
             btnStart1E.Visible = false;
             lblText1E.Text = "Conectando (espere no más de 20 segundos) ...";
-            await startProxyTaskAsync(proxy, source, destiny);
+            if (await startProxyTaskAsync(proxy, source, destiny))
+            {
+                btnStart1E.Visible = false;
+                btnStop1E.Visible = true;
+            }
+            else
+            {
+                btnStart1E.Visible = true;
+                btnStop1E.Visible = false;
+            }
             lblText1E.Text = "";
-            btnStop1E.Visible = true;
         }
 
         private async void btnStop1E_Click(object sender, EventArgs e)
@@ -318,9 +327,12 @@ namespace UIControlCode
 
             btnStop1E.Visible = false;
             lblText1E.Text = "Desconectando ...";
-            await stopProxyTaskAsync(proxy);
-            lblText1E.Text = "";
-            btnStart1E.Visible = true;
+            if (await stopProxyTaskAsync(proxy))
+            {
+                lblText1E.Text = "";
+                btnStop1E.Visible = false;
+                btnStart1E.Visible = true;
+            }
         }
 
         private async void btnStart2E_Click(object sender, EventArgs e)
@@ -336,9 +348,17 @@ namespace UIControlCode
 
             btnStart2E.Visible = false;
             lblText2E.Text = "Conectando (espere no más de 20 segundos) ...";
-            await startProxyTaskAsync(proxy, source, destiny);
-            lblText2E.Text = "";
-            btnStop2E.Visible = true;
+            if (await startProxyTaskAsync(proxy, source, destiny))
+            {
+                btnStart2E.Visible = false;
+                btnStop2E.Visible = true;
+            }
+            else
+            {
+                btnStart2E.Visible = true;
+                btnStop2E.Visible = false;
+            }
+            lblText1E.Text = "";
         }
 
         private async void btnStop2E_Click(object sender, EventArgs e)
@@ -348,9 +368,12 @@ namespace UIControlCode
 
             btnStop2E.Visible = false;
             lblText2E.Text = "Desconectando ...";
-            await stopProxyTaskAsync(proxy);
-            lblText2E.Text = "";
-            btnStart2E.Visible = true;
+            if (await stopProxyTaskAsync(proxy))
+            {
+                lblText2E.Text = "";
+                btnStop2E.Visible = false;
+                btnStart2E.Visible = true;
+            }
         }
 
         private async void btnStart1D_Click(object sender, EventArgs e)
@@ -365,11 +388,21 @@ namespace UIControlCode
 
             btnStart1D.Visible = false;
             lblText1D.Text = "Conectando (espere no más de 20 segundos) ...";
-            await startProxyTaskAsync(proxy, source, destiny);
+            if (await startProxyTaskAsync(proxy, source, destiny))
+            {
+                btnStart1D.Visible = false;
+                btnStop1D.Visible = true;
+                tcp1D = String.Format("tcp://{0}:1025", mDNSIP);
+                tooltip.SetToolTip(lblcopypaste1D, "Copiar en el Portapapeles: " + tcp1D);
+            }
+            else
+            {
+                btnStart1D.Visible = true;
+                btnStop1D.Visible = false;
+                tcp1D = "";
+                tooltip.SetToolTip(lblcopypaste1D, "");
+            }
             lblText1D.Text = "";
-            btnStop1D.Visible = true;
-            tcp1D = String.Format("tcp://{0}:1025", mDNSIP);
-            tooltip.SetToolTip(lblcopypaste1D,"Copiar en el Portapapeles: " + tcp1D);
         }
 
         private async void btnStop1D_Click(object sender, EventArgs e)
@@ -379,11 +412,14 @@ namespace UIControlCode
 
             btnStop1D.Visible = false;
             lblText1D.Text = "Desconectando ...";
-            await stopProxyTaskAsync(proxy);
-            lblText1D.Text = "";
-            btnStart1D.Visible = true;
-            tcp1D = "";
-            tooltip.SetToolTip(lblcopypaste1D, "");
+            if (await stopProxyTaskAsync(proxy))
+            {
+                lblText1D.Text = "";
+                btnStop1D.Visible = false;
+                btnStart1D.Visible = true;
+                tcp1D = "";
+                tooltip.SetToolTip(lblcopypaste1D, "");
+            }
         }
 
         private async void btnStart2D_Click(object sender, EventArgs e)
@@ -398,11 +434,21 @@ namespace UIControlCode
 
             btnStart2D.Visible = false;
             lblText2D.Text = "Conectando (espere no más de 20 segundos) ...";
-            await startProxyTaskAsync(proxy, source, destiny);
-            lblText2D.Text = "";
-            btnStop2D.Visible = true;
-            tcp2D = String.Format("tcp://{0}:1027", mDNSIP);
-            tooltip.SetToolTip(lblcopypaste2D, "Copiar en el Portapapeles: " + tcp2D);
+            if (await startProxyTaskAsync(proxy, source, destiny))
+            {
+                btnStart2D.Visible = false;
+                btnStop2D.Visible = true;
+                tcp2D = String.Format("tcp://{0}:1027", mDNSIP);
+                tooltip.SetToolTip(lblcopypaste1D, "Copiar en el Portapapeles: " + tcp2D);
+            }
+            else
+            {
+                btnStart2D.Visible = true;
+                btnStop2D.Visible = false;
+                tcp2D = "";
+                tooltip.SetToolTip(lblcopypaste2D, "");
+            }
+            lblText1D.Text = "";
         }
 
         private async void btnStop2D_Click(object sender, EventArgs e)
@@ -412,11 +458,14 @@ namespace UIControlCode
 
             btnStop2D.Visible = false;
             lblText2D.Text = "Desconectando ...";
-            await stopProxyTaskAsync(proxy);
-            lblText2D.Text = "";
-            btnStart2D.Visible = true;
-            tcp2D = "";
-            tooltip.SetToolTip(lblcopypaste2D, "");
+            if (await stopProxyTaskAsync(proxy))
+            {
+                lblText2D.Text = "";
+                btnStop2D.Visible = false;
+                btnStart2D.Visible = true;
+                tcp2D = "";
+                tooltip.SetToolTip(lblcopypaste2D, "");
+            }
         }
 
         private async void timerMDNS_Tick(object sender, EventArgs e)
@@ -435,8 +484,37 @@ namespace UIControlCode
             }
             if (!mDNSconnected)
             {
+                mDNSconnected = true;
                 statusLblMsg.ForeColor = Color.Green;
                 statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", mDNSName);
+            }
+
+            StringReader strReader = new StringReader(csv);
+            while (true)
+            {
+                string line = strReader.ReadLine();
+                if (line != null)
+                {
+                    string[] word = csv.Split('*');
+                    if (word.Length < 7) continue;
+                    if (word[5] != "true") continue; // moving data
+                    switch (word[0])
+                    {
+                        case "0":
+                            lblText1E.Text = String.Format("Enviando {0} seg. a {1} kbps", word[3], word[4]);
+                            break;
+                        case "1":
+                            lblText2E.Text = String.Format("Enviando {0} seg. a {1} kbps", word[3], word[4]);
+                            break;
+                        case "2":
+                            lblText1D.Text = String.Format("Recibiendo {0} seg. a {1} kbps", word[3], word[4]);
+                            break;
+                        case "3":
+                            lblText2D.Text = String.Format("Recibiendo {0} seg. a {1} kbps", word[3], word[4]);
+                            break;
+                    }
+                }
+                else break;
             }
 
             timerMDNS.Start();
@@ -458,32 +536,32 @@ namespace UIControlCode
             }
         }
 
-        private Task startProxyTaskAsync(int proxy, string src, string dst)
+        private Task<bool> startProxyTaskAsync(int proxy, string src, string dst)
         {
-            return Task.Run(() => startProxySlow(proxy, src, dst));
+            return Task<bool>.Run(() => startProxySlow(proxy, src, dst));
         }
 
-        private Task stopProxyTaskAsync(int proxy)
+        private Task<bool> stopProxyTaskAsync(int proxy)
         {
-            return Task.Run(() => stopProxySlow(proxy));
+            return Task<bool>.Run(() => stopProxySlow(proxy));
         }
 
-        private void startProxySlow(int proxy, string src, string dst)
+        private bool startProxySlow(int proxy, string src, string dst)
         {
-
+            string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst)));
+            if (csv == null)
+                return false;
+            Thread.Sleep(5000);
+            return true;
         }
 
-        private void stopProxySlow(int proxy)
+        private bool stopProxySlow(int proxy)
         {
-
+            string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}", mDNSURL, proxy)));
+            if (csv == null)
+                return false;
+            Thread.Sleep(2000);
+            return true;
         }
     }
 }
-/*
-0*http://192.168.1.168/0.ts*smart://192.168.1.47/VRbybdDBvtEsdVol*16*3058*false*true\r\n
-
-0*NULL
-1*NULL
-2*NULL
-3*NULL
-*/

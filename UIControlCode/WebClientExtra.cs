@@ -13,7 +13,7 @@ namespace UIControlCode
             return wr;
         }
 
-        private string GetHTTPString(Uri uri)
+        public string GetHTTPString(Uri uri)
         {
             try
             {
