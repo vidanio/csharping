@@ -557,7 +557,7 @@ namespace UIControlCode
 
         private bool stopProxySlow(int proxy)
         {
-            string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}", mDNSURL, proxy)));
+            string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=1&proxy={1}", mDNSURL, proxy)));
             if (csv == null)
                 return false;
             Thread.Sleep(2000);
