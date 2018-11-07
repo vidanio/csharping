@@ -272,6 +272,7 @@
             this.btnStop1E.TabStop = false;
             this.btnStop1E.Text = "Parar";
             this.btnStop1E.UseVisualStyleBackColor = true;
+            this.btnStop1E.Visible = false;
             this.btnStop1E.Click += new System.EventHandler(this.btnStop1E_Click);
             // 
             // btnStart1E
@@ -388,6 +389,7 @@
             this.btnStop2E.TabStop = false;
             this.btnStop2E.Text = "Parar";
             this.btnStop2E.UseVisualStyleBackColor = true;
+            this.btnStop2E.Visible = false;
             this.btnStop2E.Click += new System.EventHandler(this.btnStop2E_Click);
             // 
             // btnStart2E
@@ -507,6 +509,7 @@
             this.btnStop1D.TabStop = false;
             this.btnStop1D.Text = "Parar";
             this.btnStop1D.UseVisualStyleBackColor = true;
+            this.btnStop1D.Visible = false;
             this.btnStop1D.Click += new System.EventHandler(this.btnStop1D_Click);
             // 
             // btnStart1D
@@ -626,6 +629,7 @@
             this.btnStop2D.TabStop = false;
             this.btnStop2D.Text = "Parar";
             this.btnStop2D.UseVisualStyleBackColor = true;
+            this.btnStop2D.Visible = false;
             this.btnStop2D.Click += new System.EventHandler(this.btnStop2D_Click);
             // 
             // btnStart2D

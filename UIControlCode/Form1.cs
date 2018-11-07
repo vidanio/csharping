@@ -293,41 +293,46 @@ namespace UIControlCode
             }
         }
 
-        private void btnStart1E_Click(object sender, EventArgs e)
+        private async void btnStart1E_Click(object sender, EventArgs e)
         {
+            if (!mDNSconnected) return;
             int proxy = 0;
             string source = txtSource1E.Text;
             string destiny = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID1E.Value, txtSmartkey1E.Text);
             Properties.Settings.Default["Source1E"] = txtSource1E.Text;
             Properties.Settings.Default["Smartkey1E"] = txtSmartkey1E.Text;
-            Properties.Settings.Default["ServID1E"] = numServID1E.Value;
+            Properties.Settings.Default["ServID1E"] = (int)numServID1E.Value; 
+            Properties.Settings.Default.Save();
 
             btnStart1E.Visible = false;
             lblText1E.Text = "Conectando (espere no más de 20 segundos) ...";
-            startProxyTaskAsync(proxy, source, destiny);
+            await startProxyTaskAsync(proxy, source, destiny);
             lblText1E.Text = "";
             btnStop1E.Visible = true;
         }
 
-        private void btnStop1E_Click(object sender, EventArgs e)
+        private async void btnStop1E_Click(object sender, EventArgs e)
         {
+            if (!mDNSconnected) return;
             int proxy = 0;
 
             btnStop1E.Visible = false;
             lblText1E.Text = "Desconectando ...";
-            stopProxyTaskAsync(proxy);
+            await stopProxyTaskAsync(proxy);
             lblText1E.Text = "";
             btnStart1E.Visible = true;
         }
 
         private async void btnStart2E_Click(object sender, EventArgs e)
         {
+            if (!mDNSconnected) return;
             int proxy = 1;
             string source = txtSource2E.Text;
             string destiny = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID2E.Value, txtSmartkey2E.Text);
             Properties.Settings.Default["Source2E"] = txtSource2E.Text;
             Properties.Settings.Default["Smartkey2E"] = txtSmartkey2E.Text;
-            Properties.Settings.Default["ServID2E"] = numServID2E.Value;
+            Properties.Settings.Default["ServID2E"] = (int)numServID2E.Value;
+            Properties.Settings.Default.Save();
 
             btnStart2E.Visible = false;
             lblText2E.Text = "Conectando (espere no más de 20 segundos) ...";
@@ -338,6 +343,7 @@ namespace UIControlCode
 
         private async void btnStop2E_Click(object sender, EventArgs e)
         {
+            if (!mDNSconnected) return;
             int proxy = 1;
 
             btnStop2E.Visible = false;
@@ -349,22 +355,26 @@ namespace UIControlCode
 
         private async void btnStart1D_Click(object sender, EventArgs e)
         {
+            if (!mDNSconnected) return;
             int proxy = 2;
             string source = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID1D.Value, txtSmartkey1D.Text);
             string destiny = String.Format("tcp://{0}:1024", mDNSIP);
             Properties.Settings.Default["Smartkey1D"] = txtSmartkey1D.Text;
-            Properties.Settings.Default["ServID1D"] = numServID1D.Value;
+            Properties.Settings.Default["ServID1D"] = (int)numServID1D.Value;
+            Properties.Settings.Default.Save();
 
             btnStart1D.Visible = false;
             lblText1D.Text = "Conectando (espere no más de 20 segundos) ...";
             await startProxyTaskAsync(proxy, source, destiny);
             lblText1D.Text = "";
             btnStop1D.Visible = true;
-            tcp1D = destiny;
+            tcp1D = String.Format("tcp://{0}:1025", mDNSIP);
+            tooltip.SetToolTip(lblcopypaste1D,"Copiar en el Portapapeles: " + tcp1D);
         }
 
         private async void btnStop1D_Click(object sender, EventArgs e)
         {
+            if (!mDNSconnected) return;
             int proxy = 2;
 
             btnStop1D.Visible = false;
@@ -373,26 +383,31 @@ namespace UIControlCode
             lblText1D.Text = "";
             btnStart1D.Visible = true;
             tcp1D = "";
+            tooltip.SetToolTip(lblcopypaste1D, "");
         }
 
         private async void btnStart2D_Click(object sender, EventArgs e)
         {
+            if (!mDNSconnected) return;
             int proxy = 3;
             string source = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID2D.Value, txtSmartkey2D.Text);
             string destiny = String.Format("tcp://{0}:1026", mDNSIP);
             Properties.Settings.Default["Smartkey2D"] = txtSmartkey2D.Text;
-            Properties.Settings.Default["ServID2D"] = numServID2D.Value;
+            Properties.Settings.Default["ServID2D"] = (int)numServID2D.Value;
+            Properties.Settings.Default.Save();
 
             btnStart2D.Visible = false;
             lblText2D.Text = "Conectando (espere no más de 20 segundos) ...";
             await startProxyTaskAsync(proxy, source, destiny);
             lblText2D.Text = "";
             btnStop2D.Visible = true;
-            tcp2D = destiny;
+            tcp2D = String.Format("tcp://{0}:1027", mDNSIP);
+            tooltip.SetToolTip(lblcopypaste2D, "Copiar en el Portapapeles: " + tcp2D);
         }
 
         private async void btnStop2D_Click(object sender, EventArgs e)
         {
+            if (!mDNSconnected) return;
             int proxy = 3;
 
             btnStop2D.Visible = false;
@@ -401,6 +416,7 @@ namespace UIControlCode
             lblText2D.Text = "";
             btnStart2D.Visible = true;
             tcp2D = "";
+            tooltip.SetToolTip(lblcopypaste2D, "");
         }
 
         private async void timerMDNS_Tick(object sender, EventArgs e)
