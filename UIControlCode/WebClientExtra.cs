@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Net;
 
 namespace UIControlCode
@@ -8,9 +9,15 @@ namespace UIControlCode
     {
         protected override WebRequest GetWebRequest(Uri address)
         {
-            WebRequest wr = base.GetWebRequest(address);
-            wr.Timeout = 5000; // timeout in milliseconds (ms) - 5 seconds
-            return wr;
+            HttpWebRequest req = (HttpWebRequest)base.GetWebRequest(address);
+            req.ServicePoint.ConnectionLimit = 50;
+            req.Timeout = 5000; // timeout in milliseconds (ms) - 5 seconds
+            return req;
+        }
+
+        public Task<string> GetHTTPStringPTaskAsync(Uri uri)
+        {
+            return Task<string>.Run(() => GetHTTPStringRetry(uri, 3));
         }
 
         public string GetHTTPString(Uri uri)
@@ -25,9 +32,20 @@ namespace UIControlCode
             }
         }
 
-        public Task<string> GetHTTPStringPTaskAsync(Uri uri)
+        public string GetHTTPStringRetry(Uri uri, int times)
         {
-            return Task<string>.Run(() => GetHTTPString(uri));
+            int counter = 0;
+            string resp;
+
+            do
+            {
+                counter++;
+                resp = GetHTTPString(uri);
+                if (resp != null) break;
+                Thread.Sleep(100);
+            } while (counter < times);
+
+            return resp;
         }
     }
 }

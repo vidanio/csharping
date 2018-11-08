@@ -318,7 +318,7 @@ namespace UIControlCode
             {
                 btnStart1E.Visible = false;
                 btnStop1E.Visible = true;
-                lblText1E.Text = "Comienza el envío de datos SRT";
+                lblText1E.Text = "Negociando el envío de datos SRT (espere ...)";
             }
             else
             {
@@ -367,7 +367,7 @@ namespace UIControlCode
             {
                 btnStart2E.Visible = false;
                 btnStop2E.Visible = true;
-                lblText1E.Text = "Comienza el envío de datos SRT";
+                lblText1E.Text = "Negociando el envío de datos SRT (espere ...)";
             }
             else
             {
@@ -417,7 +417,7 @@ namespace UIControlCode
                 btnStop1D.Visible = true;
                 tcp1D = String.Format("tcp://{0}:1025", mDNSIP);
                 tooltip.SetToolTip(lblcopypaste1D, "Copiar en el Portapapeles: " + tcp1D);
-                lblText1D.Text = "Comienza la recepción de datos SRT";
+                lblText1D.Text = "Negociando la recepción de datos SRT (espere ...)";
             }
             else
             {
@@ -471,7 +471,7 @@ namespace UIControlCode
                 btnStop2D.Visible = true;
                 tcp2D = String.Format("tcp://{0}:1027", mDNSIP);
                 tooltip.SetToolTip(lblcopypaste1D, "Copiar en el Portapapeles: " + tcp2D);
-                lblText2D.Text = "Comienza la recepción de datos SRT";
+                lblText2D.Text = "Negociando la recepción de datos SRT (espere ...)";
             }
             else
             {
@@ -588,7 +588,7 @@ namespace UIControlCode
         private bool startProxySlow(int proxy, string src, string dst)
         {
             txtDebug.AppendText(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst) + "\r\n");
-            string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst)));
+            string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst)), 3);
             if (csv == null)
                 return false;
             Thread.Sleep(2000);
@@ -598,7 +598,7 @@ namespace UIControlCode
         // this will take at most 7 seconds
         private bool stopProxySlow(int proxy)
         {
-            string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=1&proxy={1}", mDNSURL, proxy)));
+            string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=1&proxy={1}", mDNSURL, proxy)), 3);
             if (csv == null)
                 return false;
             Thread.Sleep(2000);

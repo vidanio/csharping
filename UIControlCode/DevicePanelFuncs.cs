@@ -248,7 +248,7 @@ namespace UIControlCode
                 pic1.Location = new Point(386, y);
                 pic1.Size = new Size(20, 20);
                 pic1.Name = "Working_" + device.Random + "_" + device.Type;
-                tooltip.SetToolTip(pic1, (device.Working) ? "equipo connectado" : "equipo desconectado");
+                tooltip.SetToolTip(pic1, (device.Working) ? "equipo conectado" : "equipo desconectado");
                 panel.Controls.Add(pic1);
                 // picturebox for delete
                 PictureBox pic2 = new PictureBox();
@@ -328,11 +328,11 @@ namespace UIControlCode
                             break;
                         case "Working":
                             crtl.Image = (device.Working) ? Properties.Resources.on_20x20 : Properties.Resources.off_20x20;
+                            tooltip.SetToolTip(crtl, (device.Working) ? "equipo conectado" : "equipo desconectado");
                             break;
                     }
                 }
             }
         }
-
     }
 }
