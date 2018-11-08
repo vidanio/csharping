@@ -341,6 +341,12 @@ namespace UIControlCode
                 btnStop1E.Visible = false;
                 btnStart1E.Visible = true;
             }
+            else
+            {
+                lblText1E.Text = "No se pudo parar. Vuelva a intentarlo";
+                btnStop1E.Visible = true;
+                btnStart1E.Visible = false;
+            }
         }
 
         private async void btnStart2E_Click(object sender, EventArgs e)
@@ -384,6 +390,12 @@ namespace UIControlCode
                 btnStop2E.Visible = false;
                 btnStart2E.Visible = true;
             }
+            else
+            {
+                lblText2E.Text = "No se pudo parar. Vuelva a intentarlo";
+                btnStop2E.Visible = true;
+                btnStart2E.Visible = false;
+            }
         }
 
         private async void btnStart1D_Click(object sender, EventArgs e)
@@ -405,6 +417,7 @@ namespace UIControlCode
                 btnStop1D.Visible = true;
                 tcp1D = String.Format("tcp://{0}:1025", mDNSIP);
                 tooltip.SetToolTip(lblcopypaste1D, "Copiar en el Portapapeles: " + tcp1D);
+                lblText1D.Text = "Comienza la recepción de datos SRT";
             }
             else
             {
@@ -412,8 +425,8 @@ namespace UIControlCode
                 btnStop1D.Visible = false;
                 tcp1D = "";
                 tooltip.SetToolTip(lblcopypaste1D, "");
+                lblText1D.Text = "";
             }
-            lblText1D.Text = "";
         }
 
         private async void btnStop1D_Click(object sender, EventArgs e)
@@ -430,6 +443,12 @@ namespace UIControlCode
                 btnStart1D.Visible = true;
                 tcp1D = "";
                 tooltip.SetToolTip(lblcopypaste1D, "");
+            }
+            else
+            {
+                lblText1D.Text = "No se pudo parar. Vuelva a intentarlo";
+                btnStop1D.Visible = true;
+                btnStart1D.Visible = false;
             }
         }
 
@@ -452,6 +471,7 @@ namespace UIControlCode
                 btnStop2D.Visible = true;
                 tcp2D = String.Format("tcp://{0}:1027", mDNSIP);
                 tooltip.SetToolTip(lblcopypaste1D, "Copiar en el Portapapeles: " + tcp2D);
+                lblText2D.Text = "Comienza la recepción de datos SRT";
             }
             else
             {
@@ -459,8 +479,8 @@ namespace UIControlCode
                 btnStop2D.Visible = false;
                 tcp2D = "";
                 tooltip.SetToolTip(lblcopypaste2D, "");
+                lblText1D.Text = "";
             }
-            lblText1D.Text = "";
         }
 
         private async void btnStop2D_Click(object sender, EventArgs e)
@@ -477,6 +497,12 @@ namespace UIControlCode
                 btnStart2D.Visible = true;
                 tcp2D = "";
                 tooltip.SetToolTip(lblcopypaste2D, "");
+            }
+            else
+            {
+                lblText1D.Text = "No se pudo parar. Vuelva a intentarlo";
+                btnStop1D.Visible = true;
+                btnStart1D.Visible = false;
             }
         }
 
