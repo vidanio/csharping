@@ -12,8 +12,8 @@ namespace UIControlCode
     public partial class MainForm : Form
     {
         // globales internas
-        private string ServerURL = "http://192.168.1.47/";
-        private string ServerIP = "192.168.1.47";
+        private string ServerURL = "http://192.168.1.38/";
+        private string ServerIP = "192.168.1.38";
 
         public MainForm()
         {
@@ -47,6 +47,8 @@ namespace UIControlCode
             dayYear = monYear;
             monMonth = String.Format("{0:D2}", today.Month);
             dayMonth = monMonth;
+            //want to know where is the executable path of this app
+            txtDebug.AppendText(Path.GetDirectoryName(Application.ExecutablePath) + "\r\n");
         }
 
         private async void logInToolStripMenuItem_Click(object sender, EventArgs e)
@@ -316,13 +318,14 @@ namespace UIControlCode
             {
                 btnStart1E.Visible = false;
                 btnStop1E.Visible = true;
+                lblText1E.Text = "Comienza el envío de datos SRT";
             }
             else
             {
                 btnStart1E.Visible = true;
                 btnStop1E.Visible = false;
+                lblText1E.Text = "";
             }
-            lblText1E.Text = "";
         }
 
         private async void btnStop1E_Click(object sender, EventArgs e)
@@ -358,13 +361,14 @@ namespace UIControlCode
             {
                 btnStart2E.Visible = false;
                 btnStop2E.Visible = true;
+                lblText1E.Text = "Comienza el envío de datos SRT";
             }
             else
             {
                 btnStart2E.Visible = true;
                 btnStop2E.Visible = false;
+                lblText1E.Text = "";
             }
-            lblText1E.Text = "";
         }
 
         private async void btnStop2E_Click(object sender, EventArgs e)
@@ -388,7 +392,7 @@ namespace UIControlCode
             int proxy = 2;
             string source = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID1D.Value, txtSmartkey1D.Text);
             source = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey1D.Text); // ==> erase for real tests outside
-            string destiny = String.Format("tcp://{0}:1024", mDNSIP);
+            string destiny = String.Format("tcp://127.0.0.1:1024");
             Properties.Settings.Default["Smartkey1D"] = txtSmartkey1D.Text;
             Properties.Settings.Default["ServID1D"] = (int)numServID1D.Value;
             Properties.Settings.Default.Save();
@@ -435,7 +439,7 @@ namespace UIControlCode
             int proxy = 3;
             string source = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID2D.Value, txtSmartkey2D.Text);
             source = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey2D.Text); // ==> erase for real tests outside
-            string destiny = String.Format("tcp://{0}:1026", mDNSIP);
+            string destiny = String.Format("tcp://127.0.0.1:1026");
             Properties.Settings.Default["Smartkey2D"] = txtSmartkey2D.Text;
             Properties.Settings.Default["ServID2D"] = (int)numServID2D.Value;
             Properties.Settings.Default.Save();
@@ -503,7 +507,7 @@ namespace UIControlCode
                 string line = strReader.ReadLine();
                 if (line != null)
                 {
-                    string[] word = csv.Split('*');
+                    string[] word = line.Split('*');
                     if (word.Length < 7) continue;
                     if (word[5] != "true") continue; // moving data
                     switch (word[0])
@@ -557,6 +561,7 @@ namespace UIControlCode
         // this will take at most 12 seconds
         private bool startProxySlow(int proxy, string src, string dst)
         {
+            txtDebug.AppendText(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst) + "\r\n");
             string csv = webClient.GetHTTPString(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst)));
             if (csv == null)
                 return false;

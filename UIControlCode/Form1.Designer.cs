@@ -519,7 +519,7 @@
             this.btnStart1D.Size = new System.Drawing.Size(75, 23);
             this.btnStart1D.TabIndex = 0;
             this.btnStart1D.TabStop = false;
-            this.btnStart1D.Text = "Emitir";
+            this.btnStart1D.Text = "Recibir";
             this.btnStart1D.UseVisualStyleBackColor = true;
             this.btnStart1D.Click += new System.EventHandler(this.btnStart1D_Click);
             // 
@@ -639,16 +639,16 @@
             this.btnStart2D.Size = new System.Drawing.Size(75, 23);
             this.btnStart2D.TabIndex = 0;
             this.btnStart2D.TabStop = false;
-            this.btnStart2D.Text = "Emitir";
+            this.btnStart2D.Text = "Recibir";
             this.btnStart2D.UseVisualStyleBackColor = true;
             this.btnStart2D.Click += new System.EventHandler(this.btnStart2D_Click);
             // 
             // panel
             // 
-            this.panel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel.Location = new System.Drawing.Point(939, 24);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel.Location = new System.Drawing.Point(0, 24);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(465, 595);
+            this.panel.Size = new System.Drawing.Size(1000, 595);
             this.panel.TabIndex = 7;
             this.panel.Visible = false;
             // 
