@@ -367,13 +367,13 @@ namespace UIControlCode
             {
                 btnStart2E.Visible = false;
                 btnStop2E.Visible = true;
-                lblText1E.Text = "Negociando el envío de datos SRT (espere ...)";
+                lblText2E.Text = "Negociando el envío de datos SRT (espere ...)";
             }
             else
             {
                 btnStart2E.Visible = true;
                 btnStop2E.Visible = false;
-                lblText1E.Text = "";
+                lblText2E.Text = "";
             }
         }
 
@@ -470,7 +470,7 @@ namespace UIControlCode
                 btnStart2D.Visible = false;
                 btnStop2D.Visible = true;
                 tcp2D = String.Format("tcp://{0}:1027", mDNSIP);
-                tooltip.SetToolTip(lblcopypaste1D, "Copiar en el Portapapeles: " + tcp2D);
+                tooltip.SetToolTip(lblcopypaste2D, "Copiar en el Portapapeles: " + tcp2D);
                 lblText2D.Text = "Negociando la recepción de datos SRT (espere ...)";
             }
             else
@@ -479,7 +479,7 @@ namespace UIControlCode
                 btnStop2D.Visible = false;
                 tcp2D = "";
                 tooltip.SetToolTip(lblcopypaste2D, "");
-                lblText1D.Text = "";
+                lblText2D.Text = "";
             }
         }
 
@@ -500,9 +500,9 @@ namespace UIControlCode
             }
             else
             {
-                lblText1D.Text = "No se pudo parar. Vuelva a intentarlo";
-                btnStop1D.Visible = true;
-                btnStart1D.Visible = false;
+                lblText2D.Text = "No se pudo parar. Vuelva a intentarlo";
+                btnStop2D.Visible = true;
+                btnStart2D.Visible = false;
             }
         }
 
@@ -540,15 +540,35 @@ namespace UIControlCode
                     {
                         case "0":
                             lblText1E.Text = String.Format("Enviando {0} seg. a {1} kbps", word[3], word[4]);
+                            if (btnStart1E.Visible)
+                            {
+                                btnStart1E.Visible = false;
+                                btnStop1E.Visible = true;
+                            }
                             break;
                         case "1":
                             lblText2E.Text = String.Format("Enviando {0} seg. a {1} kbps", word[3], word[4]);
+                            if (btnStart2E.Visible)
+                            {
+                                btnStart2E.Visible = false;
+                                btnStop2E.Visible = true;
+                            }
                             break;
                         case "2":
                             lblText1D.Text = String.Format("Recibiendo {0} seg. a {1} kbps", word[3], word[4]);
+                            if (btnStart1D.Visible)
+                            {
+                                btnStart1D.Visible = false;
+                                btnStop1D.Visible = true;
+                            }
                             break;
                         case "3":
                             lblText2D.Text = String.Format("Recibiendo {0} seg. a {1} kbps", word[3], word[4]);
+                            if (btnStart2D.Visible)
+                            {
+                                btnStart2D.Visible = false;
+                                btnStop2D.Visible = true;
+                            }
                             break;
                     }
                 }
@@ -587,7 +607,6 @@ namespace UIControlCode
         // this will take at most 12 seconds
         private bool startProxySlow(int proxy, string src, string dst)
         {
-            txtDebug.AppendText(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst) + "\r\n");
             string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst)), 3);
             if (csv == null)
                 return false;
