@@ -314,6 +314,7 @@ namespace UIControlCode
 
             btnStart1E.Visible = false;
             lblText1E.Text = "Conectando (espere no más de 20 segundos) ...";
+            timerMDNS_Tick(null, null);
             if (await startProxyTaskAsync(proxy, source, destiny))
             {
                 btnStart1E.Visible = false;
@@ -335,6 +336,7 @@ namespace UIControlCode
 
             btnStop1E.Visible = false;
             lblText1E.Text = "Desconectando ...";
+            timerMDNS_Tick(null, null);
             if (await stopProxyTaskAsync(proxy))
             {
                 lblText1E.Text = "";
@@ -363,6 +365,7 @@ namespace UIControlCode
 
             btnStart2E.Visible = false;
             lblText2E.Text = "Conectando (espere no más de 20 segundos) ...";
+            timerMDNS_Tick(null, null);
             if (await startProxyTaskAsync(proxy, source, destiny))
             {
                 btnStart2E.Visible = false;
@@ -384,6 +387,7 @@ namespace UIControlCode
 
             btnStop2E.Visible = false;
             lblText2E.Text = "Desconectando ...";
+            timerMDNS_Tick(null, null);
             if (await stopProxyTaskAsync(proxy))
             {
                 lblText2E.Text = "";
@@ -411,6 +415,7 @@ namespace UIControlCode
 
             btnStart1D.Visible = false;
             lblText1D.Text = "Conectando (espere no más de 20 segundos) ...";
+            timerMDNS_Tick(null, null);
             if (await startProxyTaskAsync(proxy, source, destiny))
             {
                 btnStart1D.Visible = false;
@@ -436,6 +441,7 @@ namespace UIControlCode
 
             btnStop1D.Visible = false;
             lblText1D.Text = "Desconectando ...";
+            timerMDNS_Tick(null, null);
             if (await stopProxyTaskAsync(proxy))
             {
                 lblText1D.Text = "";
@@ -465,6 +471,7 @@ namespace UIControlCode
 
             btnStart2D.Visible = false;
             lblText2D.Text = "Conectando (espere no más de 20 segundos) ...";
+            timerMDNS_Tick(null, null);
             if (await startProxyTaskAsync(proxy, source, destiny))
             {
                 btnStart2D.Visible = false;
@@ -490,6 +497,7 @@ namespace UIControlCode
 
             btnStop2D.Visible = false;
             lblText2D.Text = "Desconectando ...";
+            timerMDNS_Tick(null, null);
             if (await stopProxyTaskAsync(proxy))
             {
                 lblText2D.Text = "";
