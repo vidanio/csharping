@@ -279,6 +279,14 @@ namespace UIControlCode
 
         private void controlarEquipoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (running1 || running2 || running3 || running4)
+            {
+                panel.Visible = false;
+                mDNSconnected = true;
+                statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", mDNSName);
+                return;
+            }
+
             FormMDNS formMDNS = new FormMDNS();
 
             if (formMDNS.ShowDialog() == DialogResult.OK)
@@ -320,6 +328,7 @@ namespace UIControlCode
                 btnStart1E.Visible = false;
                 btnStop1E.Visible = true;
                 lblText1E.Text = "Negociando el envío de datos SRT (espere ...)";
+                running1 = true;
             }
             else
             {
@@ -342,6 +351,7 @@ namespace UIControlCode
                 lblText1E.Text = "";
                 btnStop1E.Visible = false;
                 btnStart1E.Visible = true;
+                running1 = false;
             }
             else
             {
@@ -371,6 +381,7 @@ namespace UIControlCode
                 btnStart2E.Visible = false;
                 btnStop2E.Visible = true;
                 lblText2E.Text = "Negociando el envío de datos SRT (espere ...)";
+                running2 = true;
             }
             else
             {
@@ -393,6 +404,7 @@ namespace UIControlCode
                 lblText2E.Text = "";
                 btnStop2E.Visible = false;
                 btnStart2E.Visible = true;
+                running2 = false;
             }
             else
             {
@@ -423,6 +435,7 @@ namespace UIControlCode
                 tcp1D = String.Format("tcp://{0}:1025", mDNSIP);
                 tooltip.SetToolTip(lblcopypaste1D, "Copiar en el Portapapeles: " + tcp1D);
                 lblText1D.Text = "Negociando la recepción de datos SRT (espere ...)";
+                running3 = true;
             }
             else
             {
@@ -449,6 +462,7 @@ namespace UIControlCode
                 btnStart1D.Visible = true;
                 tcp1D = "";
                 tooltip.SetToolTip(lblcopypaste1D, "");
+                running3 = false;
             }
             else
             {
@@ -479,6 +493,7 @@ namespace UIControlCode
                 tcp2D = String.Format("tcp://{0}:1027", mDNSIP);
                 tooltip.SetToolTip(lblcopypaste2D, "Copiar en el Portapapeles: " + tcp2D);
                 lblText2D.Text = "Negociando la recepción de datos SRT (espere ...)";
+                running4 = true;
             }
             else
             {
@@ -505,6 +520,7 @@ namespace UIControlCode
                 btnStart2D.Visible = true;
                 tcp2D = "";
                 tooltip.SetToolTip(lblcopypaste2D, "");
+                running4 = false;
             }
             else
             {
