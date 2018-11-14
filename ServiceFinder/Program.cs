@@ -52,14 +52,9 @@ namespace ServiceFinder
     }
 }
 /*
-Browsing for type _https._tcp
-+ 'OneStream Share on debian9' on Ethernet
-        Host: debian9 (192.168.1.47, fe80::a00:27ff:fe6f:278b%15)
-        Port: 1968
-        Txt : [path=/usr/local/bin]
 Browsing for type _http._tcp
 + 'OneStream Share on debian32' on Ethernet
-        Host: debian32 (192.168.1.48, fe80::a00:27ff:fe61:b01d%15)
+        Host: debian32 (192.168.1.39, fe80::a00:27ff:fe61:b01d%15)
         Port: 80
-        Txt : [path=/usr/local/bin]
- */
+        Txt : [uuid=FAFEE14F-89E8-40AA-8B39-43A7404BB8D7]
+*/

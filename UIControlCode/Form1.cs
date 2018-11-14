@@ -49,6 +49,7 @@ namespace UIControlCode
             dayMonth = monMonth;
             //want to know where is the executable path of this app
             txtDebug.AppendText(Path.GetDirectoryName(Application.ExecutablePath) + "\r\n");
+            txtDebug.AppendText(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + "\r\n");
         }
 
         private async void logInToolStripMenuItem_Click(object sender, EventArgs e)

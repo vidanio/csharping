@@ -1,4 +1,4 @@
-﻿namespace UIControlCode
+﻿namespace BonjourBrowser
 {
     class mDNSObject
     {

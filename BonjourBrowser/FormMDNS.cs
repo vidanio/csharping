@@ -5,7 +5,7 @@ using Tmds.MDns;
 using System.Net;
 using System.Net.Sockets;
 
-namespace UIControlCode
+namespace BonjourBrowser
 {
     public partial class FormMDNS : Form
     {
