@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Management;
 using System.Net.NetworkInformation;
 
 namespace NetDevice
@@ -11,23 +8,54 @@ namespace NetDevice
     {
         static void Main(string[] args)
         {
-            //Retrive all network interface using GetAllNetworkInterface() method off NetworkInterface class.
-            NetworkInterface[] niArr = NetworkInterface.GetAllNetworkInterfaces();
+            UseNetworkInterface();
+            //SelectFromWMIClass();
 
-            Console.WriteLine("Retriving basic information of network.\n\n");
+            Console.ReadLine();
+        }
 
-            //Display all information of NetworkInterface using foreach loop.
+        //private static void SelectFromWMIClass()
+        //{
+        //    Console.WriteLine("Using SelectFromWMIClass.\n\n");
 
-            foreach (NetworkInterface tempNetworkInterface in niArr)
+        //    SelectQuery netObjQry = new SelectQuery("Win32_NetworkAdapter");
+        //    ManagementObjectSearcher searcher = new ManagementObjectSearcher(netObjQry);
+
+        //    foreach (ManagementObject netAdapters in searcher.Get())
+        //    {
+        //        Object adapterTypeObj = netAdapters.GetPropertyValue("AdapterType");
+        //        string adapterType = "";
+        //        if (adapterTypeObj != null)
+        //        {
+        //            adapterType = adapterTypeObj.ToString();
+        //        }
+
+        //        Object adapterTypeIDObj = netAdapters.GetPropertyValue("AdapterTypeID");
+        //        string adapterTypeID = "";
+        //        if (adapterTypeIDObj != null)
+        //        {
+        //            adapterTypeID = adapterTypeIDObj.ToString();
+        //        }
+        //        Console.WriteLine("Network Adapter Name: " + netAdapters.GetPropertyValue("Name").ToString());
+        //        Console.WriteLine("Adapter Type: " + adapterTypeObj);
+        //        Console.WriteLine("Adapter Type ID:" + adapterTypeID + "\n");
+        //    }
+        //}
+
+        private static void UseNetworkInterface()
+        {
+            Console.WriteLine("Using UseNetworkInterface.\n\n");
+
+            foreach (NetworkInterface adapter in NetworkInterface.GetAllNetworkInterfaces())
             {
-                Console.WriteLine("Network Description        : " + tempNetworkInterface.Description);
-                Console.WriteLine("Network ID                 : " + tempNetworkInterface.Id);
-                Console.WriteLine("Network Name               : " + tempNetworkInterface.Name);
-                Console.WriteLine("Network Interface Type     : " + tempNetworkInterface.NetworkInterfaceType.ToString());
-                Console.WriteLine("Network Operational Status : " + tempNetworkInterface.OperationalStatus);
-                Console.WriteLine("Network Spped              : " + tempNetworkInterface.Speed);
-                Console.WriteLine("Support Multicast          : " + tempNetworkInterface.SupportsMulticast);
-                Console.ReadLine();
+                Console.WriteLine("Network Description        : " + adapter.Description);
+                Console.WriteLine("Network ID                 : " + adapter.Id);
+                Console.WriteLine("Network Name               : " + adapter.Name);
+                Console.WriteLine("Network Interface Type     : " + adapter.NetworkInterfaceType.ToString());
+                Console.WriteLine("Network Operational Status : " + adapter.OperationalStatus);
+                Console.WriteLine("Network Spped              : " + adapter.Speed);
+                Console.WriteLine("Support Multicast          : " + adapter.SupportsMulticast);
+                Console.WriteLine();
             }
         }
     }
@@ -40,4 +68,4 @@ Network Interface Type     : Ethernet
 Network Operational Status : Up
 Network Spped              : 1000000000
 Support Multicast          : True
- */
+*/
