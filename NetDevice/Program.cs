@@ -32,3 +32,12 @@ namespace NetDevice
         }
     }
 }
+/*
+Network Description        : Broadcom NetXtreme Gigabit Ethernet
+Network ID                 : {C8A27172-DF97-435A-B87A-45DF20F3AEF8}
+Network Name               : Ethernet
+Network Interface Type     : Ethernet
+Network Operational Status : Up
+Network Spped              : 1000000000
+Support Multicast          : True
+ */
