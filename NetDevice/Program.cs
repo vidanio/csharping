@@ -9,38 +9,46 @@ namespace NetDevice
         static void Main(string[] args)
         {
             UseNetworkInterface();
-            //SelectFromWMIClass();
+            SelectFromWMIClass();
 
             Console.ReadLine();
         }
 
-        //private static void SelectFromWMIClass()
-        //{
-        //    Console.WriteLine("Using SelectFromWMIClass.\n\n");
+        private static void SelectFromWMIClass()
+        {
+            Console.WriteLine("Using SelectFromWMIClass.\n\n");
 
-        //    SelectQuery netObjQry = new SelectQuery("Win32_NetworkAdapter");
-        //    ManagementObjectSearcher searcher = new ManagementObjectSearcher(netObjQry);
+            SelectQuery netObjQry = new SelectQuery("Win32_NetworkAdapter");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(netObjQry);
 
-        //    foreach (ManagementObject netAdapters in searcher.Get())
-        //    {
-        //        Object adapterTypeObj = netAdapters.GetPropertyValue("AdapterType");
-        //        string adapterType = "";
-        //        if (adapterTypeObj != null)
-        //        {
-        //            adapterType = adapterTypeObj.ToString();
-        //        }
+            foreach (ManagementObject netAdapters in searcher.Get())
+            {
+                Object adapterTypeObj = netAdapters.GetPropertyValue("AdapterType");
+                string adapterType = "";
+                if (adapterTypeObj != null)
+                {
+                    adapterType = adapterTypeObj.ToString();
+                }
 
-        //        Object adapterTypeIDObj = netAdapters.GetPropertyValue("AdapterTypeID");
-        //        string adapterTypeID = "";
-        //        if (adapterTypeIDObj != null)
-        //        {
-        //            adapterTypeID = adapterTypeIDObj.ToString();
-        //        }
-        //        Console.WriteLine("Network Adapter Name: " + netAdapters.GetPropertyValue("Name").ToString());
-        //        Console.WriteLine("Adapter Type: " + adapterTypeObj);
-        //        Console.WriteLine("Adapter Type ID:" + adapterTypeID + "\n");
-        //    }
-        //}
+                Object adapterTypeIDObj = netAdapters.GetPropertyValue("AdapterTypeID");
+                string adapterTypeID = "";
+                if (adapterTypeIDObj != null)
+                {
+                    adapterTypeID = adapterTypeIDObj.ToString();
+                }
+                Object adapterSpeedObj = netAdapters.GetPropertyValue("Speed");
+                string adapterSpeed = "";
+                if (adapterSpeedObj != null)
+                {
+                    adapterSpeed = adapterSpeedObj.ToString();
+                }
+
+                Console.WriteLine("Network Adapter Name: " + netAdapters.GetPropertyValue("Name").ToString());
+                Console.WriteLine("Adapter Type: " + adapterType);
+                Console.WriteLine("Adapter Type ID:" + adapterTypeID);
+                Console.WriteLine("Adapter Speed:" + adapterSpeed + "\n");
+            }
+        }
 
         private static void UseNetworkInterface()
         {
