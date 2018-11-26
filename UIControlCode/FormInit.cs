@@ -67,7 +67,6 @@ namespace UIControlCode
             process.BeginOutputReadLine();
             lblMessage.Text = "Buscando nuestra VM ...";
             await WaitForExitTaskAsync(process);
-            lblMessage.Text = "VM encontrada";
 
             // Import OVA
             if (UUID == "")
@@ -94,8 +93,8 @@ namespace UIControlCode
                     btnOK.Visible = true;
                     return;
                 }
-                lblMessage.Text = "VM encontrada";
             }
+            lblMessage.Text = "VM encontrada";
 
             // Get all possible Bridge Network Interfaces
             proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
@@ -130,19 +129,10 @@ namespace UIControlCode
 
             // Launch our VM
             proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
-            // startvm "TodoStreaming" --type headless
             proccessInfo.Arguments = String.Format("startvm \"TodoStreaming\" --type headless");
             process = Process.Start(proccessInfo);
             lblMessage.Text = "Arrancando VM ...";
             await WaitForExitTaskAsync(process);
-            if (process.ExitCode != 0)
-            {
-                // Error, Nuestra VM no arranca bien
-                lblMessage.Text = "La VM no arranca correctamente. No podrá emitir ni recibir";
-                Result = "VM_NOT_RUN";
-                btnOK.Visible = true;
-                return;
-            }
 
             // Searching for local VM server
             ServiceBrowser serviceBrowser = new ServiceBrowser();
@@ -166,12 +156,13 @@ namespace UIControlCode
 
             mDNS.Type = (service.Type == "_https._tcp") ? "https" : "http";
             mDNS.Name = service.Instance;
-            if (!mDNS.Name.Contains("TodoStreaming Internal")) return;
+            if (!mDNS.Name.Contains("TodoStreaming Control on SRTProxy")) return;
             foreach (string txt in service.Txt)
             {
                 if (txt.Contains("uuid"))
                 {
-                    mDNS.Txt = txt;
+                    string[] word = txt.Split('=');
+                    mDNS.Txt = word[1];
                 }
             }
             foreach (IPAddress ipaddr in service.Addresses)

@@ -37,9 +37,6 @@ namespace UIControlCode
                 case "NET_NOT_FOUND":
                     this.Close();
                     break;
-                case "VM_NOT_RUN":
-                    VMInternatoolStripMenuItem.Enabled = false;
-                    break;
             }
             mDNSIP = forminit.mDNSIP;
             mDNSName = forminit.mDNSName;
@@ -298,14 +295,6 @@ namespace UIControlCode
 
         private void controlarEquipoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (running1 || running2 || running3 || running4)
-            {
-                panel.Visible = false;
-                mDNSconnected = true;
-                statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", mDNSName);
-                return;
-            }
-
             FormMDNS formMDNS = new FormMDNS();
 
             if (formMDNS.ShowDialog() == DialogResult.OK)
