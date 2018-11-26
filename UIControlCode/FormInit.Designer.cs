@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnOK = new System.Windows.Forms.Button();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOK
@@ -45,6 +46,15 @@
             this.btnOK.Visible = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // lblMessage
+            // 
+            this.lblMessage.Location = new System.Drawing.Point(12, 358);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(938, 23);
+            this.lblMessage.TabIndex = 1;
+            this.lblMessage.Text = "(none)";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormInit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -53,6 +63,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(962, 419);
             this.ControlBox = false;
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.btnOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -70,5 +81,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Label lblMessage;
     }
 }

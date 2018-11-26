@@ -104,6 +104,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="mDNSObject.cs" />
+    <Compile Include="NetIF.cs" />
     <Compile Include="PaintBoards.cs">
       <SubType>Form</SubType>
     </Compile>

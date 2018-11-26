@@ -81,6 +81,7 @@
             this.btnStart2D = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
             this.timerMDNS = new System.Windows.Forms.Timer(this.components);
+            this.VMInternatoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.status.SuspendLayout();
             this.grpEmisor1.SuspendLayout();
@@ -116,6 +117,7 @@
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logInToolStripMenuItem,
+            this.VMInternatoolStripMenuItem,
             this.controlarEquipoToolStripMenuItem,
             this.toolStripMenuItem1,
             this.salirToolStripMenuItem});
@@ -126,26 +128,26 @@
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logInToolStripMenuItem.Text = "Smart SRT Server";
             this.logInToolStripMenuItem.Click += new System.EventHandler(this.logInToolStripMenuItem_Click);
             // 
             // controlarEquipoToolStripMenuItem
             // 
             this.controlarEquipoToolStripMenuItem.Name = "controlarEquipoToolStripMenuItem";
-            this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.controlarEquipoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.controlarEquipoToolStripMenuItem.Text = "Dispostivos Locales";
             this.controlarEquipoToolStripMenuItem.Click += new System.EventHandler(this.controlarEquipoToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(173, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -657,6 +659,13 @@
             this.timerMDNS.Interval = 1000;
             this.timerMDNS.Tick += new System.EventHandler(this.timerMDNS_Tick);
             // 
+            // VMInternatoolStripMenuItem
+            // 
+            this.VMInternatoolStripMenuItem.Name = "VMInternatoolStripMenuItem";
+            this.VMInternatoolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.VMInternatoolStripMenuItem.Text = "VM Interna";
+            this.VMInternatoolStripMenuItem.Click += new System.EventHandler(this.VMInternatoolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -751,6 +760,7 @@
         private System.Windows.Forms.Button btnStart2D;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Timer timerMDNS;
+        private System.Windows.Forms.ToolStripMenuItem VMInternatoolStripMenuItem;
     }
 }
 

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Diagnostics;
 
 namespace UIControlCode
 {
@@ -27,6 +28,23 @@ namespace UIControlCode
             // Load FormInit to start the Linux VM
             FormInit forminit = new FormInit();
             forminit.ShowDialog();
+            string result = forminit.Result;
+
+            switch (result)
+            {
+                case "VBOX_NOT_FOUND":
+                case "VM_NOT_FOUND":
+                case "NET_NOT_FOUND":
+                    this.Close();
+                    break;
+                case "VM_NOT_RUN":
+                    VMInternatoolStripMenuItem.Enabled = false;
+                    break;
+            }
+            mDNSIP = forminit.mDNSIP;
+            mDNSName = forminit.mDNSName;
+            mDNSURL = forminit.mDNSURL;
+
             // Get settings saved
             formLogin.LoginServer = (int)Properties.Settings.Default["LoginServer"];
             formLogin.LoginMail = (string)Properties.Settings.Default["LoginMail"];
@@ -649,9 +667,40 @@ namespace UIControlCode
             return true;
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        Process process = new Process();
+        ProcessStartInfo proccessInfo = new ProcessStartInfo();
+
+        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // Stop OVA and exit
+            proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
+            proccessInfo.Arguments = @"controlvm TodoStreaming acpipowerbutton";
+            try
+            {
+                process = Process.Start(proccessInfo);
+                await WaitForExitTaskAsync(process);
+            }
+            catch
+            {
+                // Error executing
+            }
+        }
+
+        private Task WaitForExitTaskAsync(Process proc)
+        {
+            return Task.Run(() => WaitForExitSlow(proc));
+        }
+
+        private void WaitForExitSlow(Process proc)
+        {
+            proc.WaitForExit();
+        }
+
+        private void VMInternatoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel.Visible = false;
+            mDNSconnected = true;
+            statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", mDNSName);
         }
     }
 }
