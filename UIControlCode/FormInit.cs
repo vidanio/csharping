@@ -20,7 +20,6 @@ namespace UIControlCode
 
         Process process = new Process();
         ProcessStartInfo proccessInfo = new ProcessStartInfo();
-        string stdout, stderr;
         List<NetIF> netIFs = new List<NetIF>();
         NetIF currentIF = new NetIF();
         bool vmfound = false;
@@ -48,6 +47,7 @@ namespace UIControlCode
                 process = Process.Start(proccessInfo);
                 lblMessage.Text = "Comienza la Configuración ...";
                 await WaitForExitTaskAsync(process);
+                await WaitForSecondsTaskAsync(3);
                 lblMessage.Text = "Configuración Finalizada";
             }
             catch
@@ -60,31 +60,31 @@ namespace UIControlCode
             }
 
             // List all VMs
-            proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
             proccessInfo.Arguments = @"list vms";
             process = Process.Start(proccessInfo);
             process.OutputDataReceived += Process_ListOutputDataReceived;
             process.BeginOutputReadLine();
             lblMessage.Text = "Buscando nuestra VM ...";
             await WaitForExitTaskAsync(process);
+            await WaitForSecondsTaskAsync(1);
 
             // Import OVA
             if (UUID == "")
             {
-                proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
                 proccessInfo.Arguments = @"import libs\TodoStreaming.ova";
                 process = Process.Start(proccessInfo);
-                lblMessage.Text = "Comienza la Importación VM ...";
+                lblMessage.Text = "Este es el primer arranque. Importando VM ... (por favor espere)";
                 await WaitForExitTaskAsync(process);
+                await WaitForSecondsTaskAsync(3);
                 lblMessage.Text = "Importación VM terminada";
                 // list and find TodoStreaming VM
-                proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
                 proccessInfo.Arguments = @"list vms";
                 process = Process.Start(proccessInfo);
                 process.OutputDataReceived += Process_ListOutputDataReceived;
                 process.BeginOutputReadLine();
                 lblMessage.Text = "Buscando nuestra VM ...";
                 await WaitForExitTaskAsync(process);
+                await WaitForSecondsTaskAsync(2);
                 if (UUID == "")
                 {
                     // Error, VM TodoStreaming not found
@@ -97,13 +97,13 @@ namespace UIControlCode
             lblMessage.Text = "VM encontrada";
 
             // Get all possible Bridge Network Interfaces
-            proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
             proccessInfo.Arguments = @"list bridgedifs";
             process = Process.Start(proccessInfo);
             process.OutputDataReceived += Process_NetIFOutputDataReceived;
             process.BeginOutputReadLine();
-            lblMessage.Text = "Buscando interfaces de red ...";
+            lblMessage.Text = "Buscando interfaces de red ... (espere por favor)";
             await WaitForExitTaskAsync(process);
+            await WaitForSecondsTaskAsync(2);
             if (netIFs.Count == 0)
             {
                 // Error, No hay red conectada, Exit
@@ -123,17 +123,16 @@ namespace UIControlCode
                 }
                 ifname = netif.Name;
             }
-            proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
             proccessInfo.Arguments = String.Format("modifyvm \"TodoStreaming\" --bridgeadapter1 \"{0}\"", ifname);
             process = Process.Start(proccessInfo);
+            await WaitForSecondsTaskAsync(2);
 
             // Launch our VM
-            proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
             proccessInfo.Arguments = String.Format("startvm \"TodoStreaming\" --type headless");
             process = Process.Start(proccessInfo);
             lblMessage.Text = "Arrancando VM ...";
             await WaitForExitTaskAsync(process);
-
+            await WaitForSecondsTaskAsync(2);
             // Searching for local VM server
             ServiceBrowser serviceBrowser = new ServiceBrowser();
             List<string> serviceTypes = new List<string>();
@@ -141,8 +140,9 @@ namespace UIControlCode
             serviceTypes.Add("_http._tcp");
             serviceBrowser.ServiceAdded += onServiceAdded;
             serviceBrowser.StartBrowse(serviceTypes);
-            lblMessage.Text = "Buscando VM para conectar ...";
-            await WaitForVMFoundTaskAsync();
+            lblMessage.Text = "Buscando VM para conectar ... (esto puede tardar más de 30 segundos)";
+            await WaitForVMFoundTaskAsync(60);
+            serviceBrowser.StopBrowse();
             lblMessage.Text = "VM arrancada y preparada. Todo listo para trabajar";
 
             // Once finished show button
@@ -230,16 +230,30 @@ namespace UIControlCode
             proc.WaitForExit();
         }
 
-        private Task WaitForVMFoundTaskAsync()
+        private Task WaitForSecondsTaskAsync(int seconds)
         {
-            return Task.Run(() => WaitForVMFound());
+            return Task.Run(() => WaitForSeconds(seconds));
         }
 
-        private void WaitForVMFound()
+        private void WaitForSeconds(int seconds)
         {
-            while(!vmfound)
+            Thread.Sleep(seconds * 1000);
+        }
+
+        private Task WaitForVMFoundTaskAsync(int timeout)
+        {
+            return Task.Run(() => WaitForVMFound(timeout));
+        }
+
+        private void WaitForVMFound(int timeout)
+        {
+            long now = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+            while (!vmfound)
             {
-                Thread.Sleep(100);
+                if (DateTimeOffset.UtcNow.ToUnixTimeSeconds() - now > timeout)
+                    break;
+                Thread.Sleep(500);
             }
         }
 

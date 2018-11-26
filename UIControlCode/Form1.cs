@@ -41,6 +41,7 @@ namespace UIControlCode
             mDNSIP = forminit.mDNSIP;
             mDNSName = forminit.mDNSName;
             mDNSURL = forminit.mDNSURL;
+            controlarEquipoToolStripMenuItem.Visible = false;
 
             // Get settings saved
             formLogin.LoginServer = (int)Properties.Settings.Default["LoginServer"];
@@ -547,16 +548,12 @@ namespace UIControlCode
             if (csv == null)
             {
                 mDNSconnected = false;
-                statusLblMsg.ForeColor = Color.Red;
-                statusLblMsg.Text = String.Format("Desconectado del Dispositivo Local: {0}", mDNSName);
                 timerMDNS.Start();
                 return;
             }
             if (!mDNSconnected)
             {
                 mDNSconnected = true;
-                statusLblMsg.ForeColor = Color.Green;
-                statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", mDNSName);
             }
 
             StringReader strReader = new StringReader(csv);
@@ -687,9 +684,15 @@ namespace UIControlCode
 
         private void VMInternatoolStripMenuItem_Click(object sender, EventArgs e)
         {
+            lblText1E.Text = "";
+            lblText1D.Text = "";
+            lblText2E.Text = "";
+            lblText2D.Text = "";
             panel.Visible = false;
             mDNSconnected = true;
-            statusLblMsg.Text = String.Format("Conectado al Dispositivo Local: {0}", mDNSName);
+            txtDebug.AppendText(mDNSURL + "\r\n");
+            timerMDNS.Start();
+            timerMDNS_Tick(null, null);
         }
     }
 }
