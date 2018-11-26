@@ -13,7 +13,7 @@ namespace UIControlCode
     {
         // globales internas
         private string ServerURL = "http://192.168.1.38/";
-        private string ServerIP = "192.168.1.38";
+        //private string ServerIP = "192.168.1.38";
 
         public MainForm()
         {
@@ -64,7 +64,7 @@ namespace UIControlCode
                 LoginMail = formLogin.LoginMail;
                 LoginPass = formLogin.LoginPass;
                 LoginServer = formLogin.LoginServer;
-                // ServerURL = String.Format("https://srt{0}.todostreaming.es/", formLogin.LoginServer); //===>
+                ServerURL = String.Format("http://srt{0}.todostreaming.es/", formLogin.LoginServer); //===>
 
                 txtDebug.AppendText(String.Format("Login[{0}]: User={1} Pass={2}\r\n", formLogin.LoginServer, LoginMail, LoginPass));
                 statusLblMsg.ForeColor = Color.Blue;
@@ -315,7 +315,7 @@ namespace UIControlCode
             int proxy = 0;
             string source = txtSource1E.Text;
             string destiny = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID1E.Value, txtSmartkey1E.Text);
-            destiny = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey1E.Text); // ==> erase for real tests outside
+            //destiny = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey1E.Text); // ==> erase for real tests outside
             Properties.Settings.Default["Source1E"] = txtSource1E.Text;
             Properties.Settings.Default["Smartkey1E"] = txtSmartkey1E.Text;
             Properties.Settings.Default["ServID1E"] = (int)numServID1E.Value; 
@@ -368,7 +368,7 @@ namespace UIControlCode
             int proxy = 1;
             string source = txtSource2E.Text;
             string destiny = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID2E.Value, txtSmartkey2E.Text);
-            destiny = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey2E.Text); // ==> erase for real tests outside
+            //destiny = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey2E.Text); // ==> erase for real tests outside
             Properties.Settings.Default["Source2E"] = txtSource2E.Text;
             Properties.Settings.Default["Smartkey2E"] = txtSmartkey2E.Text;
             Properties.Settings.Default["ServID2E"] = (int)numServID2E.Value;
@@ -420,7 +420,7 @@ namespace UIControlCode
             if (!mDNSconnected) return;
             int proxy = 2;
             string source = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID1D.Value, txtSmartkey1D.Text);
-            source = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey1D.Text); // ==> erase for real tests outside
+            //source = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey1D.Text); // ==> erase for real tests outside
             string destiny = String.Format("tcp://127.0.0.1:1024");
             Properties.Settings.Default["Smartkey1D"] = txtSmartkey1D.Text;
             Properties.Settings.Default["ServID1D"] = (int)numServID1D.Value;
@@ -478,7 +478,7 @@ namespace UIControlCode
             if (!mDNSconnected) return;
             int proxy = 3;
             string source = String.Format("smart://srt{0}.todostreaming.es/{1}", numServID2D.Value, txtSmartkey2D.Text);
-            source = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey2D.Text); // ==> erase for real tests outside
+            //source = String.Format("smart://{0}/{1}", ServerIP, txtSmartkey2D.Text); // ==> erase for real tests outside
             string destiny = String.Format("tcp://127.0.0.1:1026");
             Properties.Settings.Default["Smartkey2D"] = txtSmartkey2D.Text;
             Properties.Settings.Default["ServID2D"] = (int)numServID2D.Value;
