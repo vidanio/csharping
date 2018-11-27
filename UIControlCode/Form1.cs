@@ -636,7 +636,7 @@ namespace UIControlCode
         // this will take at most 12 seconds
         private bool startProxySlow(int proxy, string src, string dst)
         {
-            string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}", mDNSURL, proxy, src, dst)), 3);
+            string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}&delay=500", mDNSURL, proxy, src, dst)), 3);
             if (csv == null)
                 return false;
             Thread.Sleep(2000);
@@ -684,10 +684,13 @@ namespace UIControlCode
 
         private void VMInternatoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lblText1E.Text = "";
-            lblText1D.Text = "";
-            lblText2E.Text = "";
-            lblText2D.Text = "";
+            if (!(running1 || running2 || running3 || running4))
+            {
+                lblText1E.Text = "";
+                lblText1D.Text = "";
+                lblText2E.Text = "";
+                lblText2D.Text = "";
+            }
             panel.Visible = false;
             mDNSconnected = true;
             txtDebug.AppendText(mDNSURL + "\r\n");

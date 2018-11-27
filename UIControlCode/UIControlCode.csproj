@@ -7,7 +7,7 @@
     <ProjectGuid>{82589AF4-B471-4A4C-AC12-E4DDC12CCEA9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>UIControlCode</RootNamespace>
-    <AssemblyName>UIControlCode</AssemblyName>
+    <AssemblyName>SmartSRT</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>SmartSRT.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -260,6 +263,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\init.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\calendar.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\device.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\find.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\find2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\find3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\login.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\SmartSRT.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\stats.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\users.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SmartSRT.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
