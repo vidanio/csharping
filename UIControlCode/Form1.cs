@@ -332,7 +332,7 @@ namespace UIControlCode
             btnStart1E.Visible = false;
             lblText1E.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny))
+            if (await startProxyTaskAsync(proxy, source, destiny, 0))
             {
                 btnStart1E.Visible = false;
                 btnStop1E.Visible = true;
@@ -385,7 +385,7 @@ namespace UIControlCode
             btnStart2E.Visible = false;
             lblText2E.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny))
+            if (await startProxyTaskAsync(proxy, source, destiny, 0))
             {
                 btnStart2E.Visible = false;
                 btnStop2E.Visible = true;
@@ -437,7 +437,7 @@ namespace UIControlCode
             btnStart1D.Visible = false;
             lblText1D.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny))
+            if (await startProxyTaskAsync(proxy, source, destiny, 1000))
             {
                 btnStart1D.Visible = false;
                 btnStop1D.Visible = true;
@@ -495,7 +495,7 @@ namespace UIControlCode
             btnStart2D.Visible = false;
             lblText2D.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny))
+            if (await startProxyTaskAsync(proxy, source, destiny, 1000))
             {
                 btnStart2D.Visible = false;
                 btnStop2D.Visible = true;
@@ -623,9 +623,9 @@ namespace UIControlCode
             }
         }
 
-        private Task<bool> startProxyTaskAsync(int proxy, string src, string dst)
+        private Task<bool> startProxyTaskAsync(int proxy, string src, string dst, int delay)
         {
-            return Task<bool>.Run(() => startProxySlow(proxy, src, dst));
+            return Task<bool>.Run(() => startProxySlow(proxy, src, dst, delay));
         }
 
         private Task<bool> stopProxyTaskAsync(int proxy)
@@ -634,9 +634,9 @@ namespace UIControlCode
         }
 
         // this will take at most 12 seconds
-        private bool startProxySlow(int proxy, string src, string dst)
+        private bool startProxySlow(int proxy, string src, string dst, int delay)
         {
-            string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}&delay=500", mDNSURL, proxy, src, dst)), 3);
+            string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}&delay={4}", mDNSURL, proxy, src, dst, delay)), 3);
             if (csv == null)
                 return false;
             Thread.Sleep(2000);
