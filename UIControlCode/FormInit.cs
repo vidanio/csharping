@@ -96,6 +96,12 @@ namespace UIControlCode
             }
             lblMessage.Text = "VM encontrada";
 
+            // close old VM if bad exit
+            proccessInfo.Arguments = @"controlvm TodoStreaming poweroff";
+            process = Process.Start(proccessInfo);
+            await WaitForExitTaskAsync(process);
+            await WaitForSecondsTaskAsync(1);
+
             // Get all possible Bridge Network Interfaces
             proccessInfo.Arguments = @"list bridgedifs";
             process = Process.Start(proccessInfo);

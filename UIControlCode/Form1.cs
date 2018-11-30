@@ -332,7 +332,7 @@ namespace UIControlCode
             btnStart1E.Visible = false;
             lblText1E.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny, 0))
+            if (await startProxyTaskAsync(proxy, source, destiny, 250))
             {
                 btnStart1E.Visible = false;
                 btnStop1E.Visible = true;
@@ -437,7 +437,7 @@ namespace UIControlCode
             btnStart1D.Visible = false;
             lblText1D.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny, 1000))
+            if (await startProxyTaskAsync(proxy, source, destiny, 750))
             {
                 btnStart1D.Visible = false;
                 btnStop1D.Visible = true;
