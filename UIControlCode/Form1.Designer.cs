@@ -77,7 +77,7 @@
             // 
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
             this.logInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.logInToolStripMenuItem.Text = "Smart SRT Server";
+            this.logInToolStripMenuItem.Text = "Servidor SmartSRT";
             this.logInToolStripMenuItem.Click += new System.EventHandler(this.logInToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1

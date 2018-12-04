@@ -4,9 +4,6 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Diagnostics;
 
 namespace UIControlCode
 {
