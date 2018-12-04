@@ -171,7 +171,9 @@ namespace UIControlCode
 
                 if (action == "Name")
                 {
-                    Clipboard.SetText(random);
+                    // smartN://random/0
+                    //Clipboard.SetText(random);
+                    Clipboard.SetText(String.Format("smart{0}://{1}/0", LoginServer, random));
                 }
             }
         }
