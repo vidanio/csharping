@@ -13,8 +13,7 @@ namespace UIControlCode
     public partial class MainForm : Form
     {
         // globales internas
-        private string ServerURL = "http://192.168.1.38/";
-        //private string ServerIP = "192.168.1.38";
+        private string ServerURL = "";
 
         public MainForm()
         {
