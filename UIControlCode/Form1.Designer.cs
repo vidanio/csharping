@@ -82,7 +82,6 @@
             this.btnStart2D = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
             this.timerMDNS = new System.Windows.Forms.Timer(this.components);
-            this.VMInternatoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.status.SuspendLayout();
             this.grpEmisor1.SuspendLayout();
@@ -118,7 +117,6 @@
             // 
             this.archivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logInToolStripMenuItem,
-            this.VMInternatoolStripMenuItem,
             this.controlarEquipoToolStripMenuItem,
             this.toolStripMenuItem1,
             this.salirToolStripMenuItem});
@@ -660,13 +658,6 @@
             this.timerMDNS.Interval = 1000;
             this.timerMDNS.Tick += new System.EventHandler(this.timerMDNS_Tick);
             // 
-            // VMInternatoolStripMenuItem
-            // 
-            this.VMInternatoolStripMenuItem.Name = "VMInternatoolStripMenuItem";
-            this.VMInternatoolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.VMInternatoolStripMenuItem.Text = "VM Interna";
-            this.VMInternatoolStripMenuItem.Click += new System.EventHandler(this.VMInternatoolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -685,7 +676,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SmartSRT Control";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -762,7 +752,6 @@
         private System.Windows.Forms.Button btnStart2D;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Timer timerMDNS;
-        private System.Windows.Forms.ToolStripMenuItem VMInternatoolStripMenuItem;
     }
 }
 

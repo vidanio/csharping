@@ -25,24 +25,6 @@ namespace UIControlCode
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Load FormInit to start the Linux VM
-            FormInit forminit = new FormInit();
-            forminit.ShowDialog();
-            string result = forminit.Result;
-
-            switch (result)
-            {
-                case "VBOX_NOT_FOUND":
-                case "VM_NOT_FOUND":
-                case "NET_NOT_FOUND":
-                    this.Close();
-                    break;
-            }
-            mDNSIP = forminit.mDNSIP;
-            mDNSName = forminit.mDNSName;
-            mDNSURL = forminit.mDNSURL;
-            controlarEquipoToolStripMenuItem.Visible = false;
-
             // Get settings saved
             formLogin.LoginServer = (int)Properties.Settings.Default["LoginServer"];
             formLogin.LoginMail = (string)Properties.Settings.Default["LoginMail"];
@@ -332,7 +314,7 @@ namespace UIControlCode
             btnStart1E.Visible = false;
             lblText1E.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny, 250))
+            if (await startProxyTaskAsync(proxy, source, destiny, 1000))
             {
                 btnStart1E.Visible = false;
                 btnStop1E.Visible = true;
@@ -437,7 +419,7 @@ namespace UIControlCode
             btnStart1D.Visible = false;
             lblText1D.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny, 750))
+            if (await startProxyTaskAsync(proxy, source, destiny, 1000))
             {
                 btnStart1D.Visible = false;
                 btnStop1D.Visible = true;
@@ -495,7 +477,7 @@ namespace UIControlCode
             btnStart2D.Visible = false;
             lblText2D.Text = "Conectando (espere no más de 20 segundos) ...";
             timerMDNS_Tick(null, null);
-            if (await startProxyTaskAsync(proxy, source, destiny, 1000))
+            if (await startProxyTaskAsync(proxy, source, destiny, 0))
             {
                 btnStart2D.Visible = false;
                 btnStop2D.Visible = true;
@@ -636,7 +618,9 @@ namespace UIControlCode
         // this will take at most 12 seconds
         private bool startProxySlow(int proxy, string src, string dst, int delay)
         {
-            string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}&delay={4}", mDNSURL, proxy, src, dst, delay)), 3);
+            string cmd = String.Format("{0}/cmd.cgi?cmd=0&proxy={1}&src={2}&dst={3}&delay={4}", mDNSURL, proxy, src, dst, delay);
+            txtDebug.AppendText(cmd + "\r\n");
+            string csv = webClient.GetHTTPStringRetry(new Uri(cmd), 3);
             if (csv == null)
                 return false;
             Thread.Sleep(2000);
@@ -646,30 +630,13 @@ namespace UIControlCode
         // this will take at most 7 seconds
         private bool stopProxySlow(int proxy)
         {
-            string csv = webClient.GetHTTPStringRetry(new Uri(String.Format("{0}/cmd.cgi?cmd=1&proxy={1}", mDNSURL, proxy)), 3);
+            string cmd = String.Format("{0}/cmd.cgi?cmd=1&proxy={1}", mDNSURL, proxy);
+            txtDebug.AppendText(cmd + "\r\n");
+            string csv = webClient.GetHTTPStringRetry(new Uri(cmd), 3);
             if (csv == null)
                 return false;
             Thread.Sleep(2000);
             return true;
-        }
-
-        Process process = new Process();
-        ProcessStartInfo proccessInfo = new ProcessStartInfo();
-
-        private async void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Stop OVA and exit
-            proccessInfo.FileName = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles) + @"\Oracle\VirtualBox\VBoxManage.exe";
-            proccessInfo.Arguments = @"controlvm TodoStreaming acpipowerbutton";
-            try
-            {
-                process = Process.Start(proccessInfo);
-                await WaitForExitTaskAsync(process);
-            }
-            catch
-            {
-                // Error executing
-            }
         }
 
         private Task WaitForExitTaskAsync(Process proc)
@@ -682,20 +649,5 @@ namespace UIControlCode
             proc.WaitForExit();
         }
 
-        private void VMInternatoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!(running1 || running2 || running3 || running4))
-            {
-                lblText1E.Text = "";
-                lblText1D.Text = "";
-                lblText2E.Text = "";
-                lblText2D.Text = "";
-            }
-            panel.Visible = false;
-            mDNSconnected = true;
-            txtDebug.AppendText(mDNSURL + "\r\n");
-            timerMDNS.Start();
-            timerMDNS_Tick(null, null);
-        }
-    }
+     }
 }
