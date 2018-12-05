@@ -198,7 +198,7 @@ namespace UIControlCode
                 label0.Text = device.Name;
                 label0.Location = new Point(9, y);
                 label0.Cursor = Cursors.Hand;
-                tooltip.SetToolTip(label0, "Copiar smartkey");
+                tooltip.SetToolTip(label0, (device.Type == "E") ? "Copiar encoder smart url": "Copiar Streaming URL");
                 label0.Click += new EventHandler(handlerDevices_Click);
                 panel.Controls.Add(label0);
                 // label for delay
