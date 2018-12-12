@@ -212,7 +212,7 @@ namespace UIControlCode
                             statsum = "mon";
                             date = String.Format("{0}-{1}", monYear, monMonth);
                             dgv = dgv_admin_mon;
-                            url = String.Format("{0}admin.cgi?cmd=8&date={1}", ServerURL, date);
+                            url = String.Format("{0}admin.cgi?cmd=8&date={1}&rnd={2}", ServerURL, date, rndlogin);
                             break;
                         case "cbox_Year_admin_mon":
                             monYear = String.Format("{0}", cbox.Items[cbox.SelectedIndex].ToString());
@@ -220,7 +220,7 @@ namespace UIControlCode
                             statsum = "mon";
                             date = String.Format("{0}-{1}", monYear, monMonth);
                             dgv = dgv_admin_mon;
-                            url = String.Format("{0}admin.cgi?cmd=8&date={1}", ServerURL, date);
+                            url = String.Format("{0}admin.cgi?cmd=8&date={1}&rnd={2}", ServerURL, date, rndlogin);
                             break;
                         case "cbox_Month_user_day":
                             dayMonth = String.Format("{0:D2}", cbox.SelectedIndex + 1);
@@ -243,11 +243,14 @@ namespace UIControlCode
                     }
                 }
                 // call HTTP server and load Stats table
-                // txtDebug.AppendText(url + "\r\n");
+                txtDebug.AppendText(url + "\r\n");
                 string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(url));
                 dgv.Rows.Clear();
                 if (csv != null)
+                {
                     LoadStatsOnDGV(dgv, csv, sum);
+                    txtDebug.AppendText("Response: " + csv + "\r\n");
+                }
 
             }
         }
