@@ -59,7 +59,7 @@
             this.archivoToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1404, 24);
+            this.menu.Size = new System.Drawing.Size(984, 24);
             this.menu.TabIndex = 3;
             this.menu.Text = "menuStrip1";
             // 
@@ -76,19 +76,19 @@
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.logInToolStripMenuItem.Text = "Servidor SmartSRT";
             this.logInToolStripMenuItem.Click += new System.EventHandler(this.logInToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(167, 6);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -98,7 +98,7 @@
             this.statusLblMsg});
             this.status.Location = new System.Drawing.Point(0, 619);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(1404, 22);
+            this.status.Size = new System.Drawing.Size(984, 22);
             this.status.TabIndex = 4;
             this.status.Text = "statusStrip1";
             // 
@@ -125,13 +125,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1404, 641);
+            this.ClientSize = new System.Drawing.Size(984, 641);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.status);
             this.Controls.Add(this.txtDebug);
             this.Controls.Add(this.menu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu;
+            this.MaximumSize = new System.Drawing.Size(1000, 680);
+            this.MinimumSize = new System.Drawing.Size(1000, 680);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SmartSRT Control";

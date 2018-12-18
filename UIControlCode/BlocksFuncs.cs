@@ -111,7 +111,7 @@ namespace UIControlCode
             addDevice.Name = "addDevice";
             addDevice.Cursor = Cursors.Hand;
             addDevice.Click += new EventHandler(handlerDevices_Click);
-            tooltip.SetToolTip(addDevice, "Añadir un Nuevo Encoder");
+            tooltip.SetToolTip(addDevice, "Añadir un Nuevo Emisor");
             panel.Controls.Add(addDevice);
         }
 
@@ -243,13 +243,13 @@ namespace UIControlCode
                     }
                 }
                 // call HTTP server and load Stats table
-                txtDebug.AppendText(url + "\r\n");
+                //txtDebug.AppendText(url + "\r\n");
                 string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(url));
                 dgv.Rows.Clear();
                 if (csv != null)
                 {
                     LoadStatsOnDGV(dgv, csv, sum);
-                    txtDebug.AppendText("Response: " + csv + "\r\n");
+                    //txtDebug.AppendText("Response: " + csv + "\r\n");
                 }
 
             }

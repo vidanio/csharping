@@ -90,19 +90,19 @@ namespace UIControlCode
                     switch (action)
                     {
                         case "Inactive":
-                            if (MessageBox.Show("Esta seguro de que quiere desactivar a este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show("Esta seguro de que quiere desactivar a este Emisor?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&active=0", ServerURL, rnd, random)));
                             }
                             break;
                         case "Active":
-                            if (MessageBox.Show("Esta seguro de que quiere activar a este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show("Esta seguro de que quiere activar a este Emisor?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=4&rnd={1}&enc={2}&active=1", ServerURL, rnd, random)));
                             }
                             break;
                         case "Delete":
-                            if (MessageBox.Show("Esta seguro de que quiere borrar este Encoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show("Esta seguro de que quiere borrar este Emisor?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=3&rnd={1}&enc={2}", ServerURL, rnd, random)));
                             }
@@ -128,19 +128,19 @@ namespace UIControlCode
                     switch (action)
                     {
                         case "Inactive":
-                            if (MessageBox.Show("Esta seguro de que quiere desactivar a este Decoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show("Esta seguro de que quiere desactivar a este Receptor?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&active=0", ServerURL, rnd, enc, random)));
                             }
                             break;
                         case "Active":
-                            if (MessageBox.Show("Esta seguro de que quiere activar a este Decoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show("Esta seguro de que quiere activar a este Receptor?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=7&rnd={1}&enc={2}&dec={3}&active=1", ServerURL, rnd, enc, random)));
                             }
                             break;
                         case "Delete":
-                            if (MessageBox.Show("Esta seguro de que quiere borrar este Decoder?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show("Esta seguro de que quiere borrar este Receptor?", "Importante", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=6&rnd={1}&enc={2}&dec={3}", ServerURL, rnd, enc, random)));
                             }
@@ -281,7 +281,7 @@ namespace UIControlCode
                     pic4.Location = new Point(455, y);
                     pic4.Size = new Size(20, 20);
                     pic4.Name = "AddDeco_" + device.Random + "_" + device.Type;
-                    tooltip.SetToolTip(pic4, "Añadir un Nuevo Decoder");
+                    tooltip.SetToolTip(pic4, "Añadir un Nuevo Receptor");
                     pic4.Click += new EventHandler(handlerDevices_Click);
                     panel.Controls.Add(pic4);
                 }
