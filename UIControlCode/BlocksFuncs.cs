@@ -6,6 +6,16 @@ namespace UIControlCode
 {
     public partial class MainForm : Form
     {
+        private async void handlerPassChange_Click(object sender, EventArgs e)
+        {
+            FormNewPass form = new FormNewPass();
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=1&rnd={1}&pass={2}", ServerURL, rndlogin, form.LoginPass)));
+            }
+        }
+
         private void DrawLoggingBlock(int x, int y, string text)
         {
             // Login picture
@@ -13,6 +23,8 @@ namespace UIControlCode
             loggingPicture.Size = new Size(20, 20);
             loggingPicture.Image = Properties.Resources.pass20x20;
             loggingPicture.Name = "loggingPicture";
+            loggingPicture.Cursor = Cursors.Hand;
+            loggingPicture.Click += new EventHandler(handlerPassChange_Click);
             panel.Controls.Add(loggingPicture);
             // Login label
             loggingLabel.Location = new Point(x + 22, y + 7);
