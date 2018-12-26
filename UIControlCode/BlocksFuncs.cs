@@ -24,6 +24,7 @@ namespace UIControlCode
             loggingPicture.Image = Properties.Resources.pass20x20;
             loggingPicture.Name = "loggingPicture";
             loggingPicture.Cursor = Cursors.Hand;
+            tooltip.SetToolTip(loggingPicture, "Cambie su Clave");
             loggingPicture.Click += new EventHandler(handlerPassChange_Click);
             panel.Controls.Add(loggingPicture);
             // Login label

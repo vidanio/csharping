@@ -132,6 +132,7 @@
             this.Controls.Add(this.menu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1000, 680);
             this.MinimumSize = new System.Drawing.Size(1000, 680);
             this.Name = "MainForm";
