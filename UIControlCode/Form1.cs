@@ -48,7 +48,7 @@ namespace UIControlCode
                 LoginMail = formLogin.LoginMail;
                 LoginPass = formLogin.LoginPass;
                 LoginServer = formLogin.LoginServer;
-                ServerURL = String.Format("http://srt{0}.todostreaming.es/", formLogin.LoginServer); //===>
+                ServerURL = String.Format("https://srt{0}.todostreaming.es/", formLogin.LoginServer); //===>
 
                 txtDebug.AppendText(String.Format("Login[{0}]: User={1} Pass={2}\r\n", formLogin.LoginServer, LoginMail, LoginPass));
                 statusLblMsg.ForeColor = Color.Blue;

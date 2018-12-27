@@ -12,6 +12,7 @@ namespace UIControlCode
             HttpWebRequest req = (HttpWebRequest)base.GetWebRequest(address);
             req.ServicePoint.ConnectionLimit = 24;
             req.Timeout = 5000; // timeout in milliseconds (ms) - 5 seconds
+            req.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true; // ignore ssl cert check
             return req;
         }
 
