@@ -34,6 +34,7 @@ namespace UIControlCode
         {
             if (cancelled)
             {
+                cancelled = false;
                 e.Cancel = false;
                 return;
             }
