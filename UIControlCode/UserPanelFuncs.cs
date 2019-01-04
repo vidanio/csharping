@@ -87,7 +87,7 @@ namespace UIControlCode
                     {
                         DateTime today = DateTime.Today;
                         string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=8&rnd={1}&date={2}&sum=day",
-                                    ServerURL, rndquery, String.Format("{0}-{1}", today.Year, today.Month))));
+                                    ServerURL, rndquery, String.Format("{0}-{1:D2}", today.Year, today.Month))));
                         if (csv != null)
                             LoadStatsOnDGV(dgv_user_day, csv, "user_day");
                     }

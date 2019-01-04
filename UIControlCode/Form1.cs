@@ -66,7 +66,7 @@ namespace UIControlCode
                 }
 
                 DateTime today = DateTime.Today;
-                string date = String.Format("{0}-{1}", today.Year, today.Month);
+                string date = String.Format("{0}-{1:D2}", today.Year, today.Month);
                 // Save settings
                 Properties.Settings.Default["LoginServer"] = formLogin.LoginServer;
                 Properties.Settings.Default["LoginMail"] = formLogin.LoginMail;

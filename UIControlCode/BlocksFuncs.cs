@@ -256,7 +256,7 @@ namespace UIControlCode
                     }
                 }
                 // call HTTP server and load Stats table
-                //txtDebug.AppendText(url + "\r\n");
+                txtDebug.AppendText(url + "\r\n");
                 string csv = await webClient.GetHTTPStringPTaskAsync(new Uri(url));
                 dgv.Rows.Clear();
                 if (csv != null)
