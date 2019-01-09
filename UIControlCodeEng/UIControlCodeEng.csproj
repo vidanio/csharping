@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF715429-37B7-401C-B568-1217BB9BCA3D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UIControlCode</RootNamespace>
+    <AssemblyName>SmartSRT</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>SmartSRT.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminPanelFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BlocksFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device.cs" />
+    <Compile Include="DevicePanelFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDevice.Designer.cs">
+      <DependentUpon>FormDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNewPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewPass.Designer.cs">
+      <DependentUpon>FormNewPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUser.Designer.cs">
+      <DependentUpon>FormUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaintBoards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatsFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User.cs" />
+    <Compile Include="UserPanelFuncs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WebClientExtra.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDevice.resx">
+      <DependentUpon>FormDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNewPass.resx">
+      <DependentUpon>FormNewPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUser.resx">
+      <DependentUpon>FormUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\add_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\add2_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\calendar_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\calendar_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\date_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\date_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\delete_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\delete2_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\device20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\edit_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\edit2_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\mail3D22x22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\mail20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\off_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\on_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\pass3D22x22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\pass20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\pass22x22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\server20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\server21x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\stats_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\stats_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\time_20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\user20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\loader4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\init.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\calendar.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\device.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\find.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\find2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\find3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\login.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\SmartSRT.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\stats.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\users.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SmartSRT.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

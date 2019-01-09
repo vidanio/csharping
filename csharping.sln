@@ -75,6 +75,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLEdit", "XMLEdit\XMLEdit.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetDevice", "NetDevice\NetDevice.csproj", "{D53BBBAF-1C16-4FEC-9F2B-9B2713383FC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIControlCodeEng", "UIControlCodeEng\UIControlCodeEng.csproj", "{BF715429-37B7-401C-B568-1217BB9BCA3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -225,6 +227,10 @@ Global
 		{D53BBBAF-1C16-4FEC-9F2B-9B2713383FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D53BBBAF-1C16-4FEC-9F2B-9B2713383FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D53BBBAF-1C16-4FEC-9F2B-9B2713383FC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF715429-37B7-401C-B568-1217BB9BCA3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF715429-37B7-401C-B568-1217BB9BCA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF715429-37B7-401C-B568-1217BB9BCA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF715429-37B7-401C-B568-1217BB9BCA3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
