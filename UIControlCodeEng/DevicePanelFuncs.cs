@@ -23,7 +23,8 @@ namespace UIControlCode
                         if (user != null)
                         {
                             // hay user seleccionado, le añadimos un encoder
-                            formDevice.Reset();
+                            FormDevice formDevice = new FormDevice();
+                            //formDevice.Reset();
                             if (formDevice.ShowDialog() == DialogResult.OK)
                             {
                                 string enc = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=2&rnd={1}", ServerURL, rndquery)));
@@ -39,7 +40,8 @@ namespace UIControlCode
                     {
                         // le añadimos un encoder al logged user
                         // hay user seleccionado, le añadimos un encoder
-                        formDevice.Reset();
+                        FormDevice formDevice = new FormDevice();
+                        //formDevice.Reset();
                         if (formDevice.ShowDialog() == DialogResult.OK)
                         {
                             string enc = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=2&rnd={1}", ServerURL, rndlogin)));
@@ -73,7 +75,8 @@ namespace UIControlCode
 
                 if (action == "AddDeco")
                 {
-                    formDevice.Reset();
+                    FormDevice formDevice = new FormDevice();
+                    //formDevice.Reset();
                     if (formDevice.ShowDialog() == DialogResult.OK)
                     {
                         string enc = await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}user.cgi?cmd=5&rnd={1}&enc={2}", ServerURL, rnd, random)));
@@ -109,6 +112,7 @@ namespace UIControlCode
                             break;
                         case "Edit":
                             Device device = GetDeviceByRandom(random);
+                            FormDevice formDevice = new FormDevice();
                             formDevice.LoadData(device.Name, device.Active);
                             if (formDevice.ShowDialog() == DialogResult.OK)
                             {
@@ -147,6 +151,7 @@ namespace UIControlCode
                             break;
                         case "Edit":
                             Device device = GetDeviceByRandom(random);
+                            FormDevice formDevice = new FormDevice();
                             formDevice.LoadData(device.Name, device.Active);
                             if (formDevice.ShowDialog() == DialogResult.OK)
                             {

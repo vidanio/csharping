@@ -21,8 +21,8 @@ namespace UIControlCode
         object[] MonthNames = new object[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
         // instances of forms before using them
         FormLogin formLogin = new FormLogin();
-        FormUser formUser = new FormUser();
-        FormDevice formDevice = new FormDevice();
+        //FormUser formUser = new FormUser();
+        //FormDevice formDevice = new FormDevice();
         // global declaration of all DGVs
         DataGridView dgv_admin_mon, dgv_user_mon, dgv_user_day, dgv_user_now;
         // tooltips for all the controls in the window

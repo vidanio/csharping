@@ -17,7 +17,8 @@ namespace UIControlCode
 
                 if (pic.Name == "addAdmin")
                 {
-                    formUser.Reset();
+                    FormUser formUser = new FormUser();
+                    //formUser.Reset();
                     if (formUser.ShowDialog() == DialogResult.OK)
                     {
                         await webClient.GetHTTPStringPTaskAsync(new Uri(String.Format("{0}admin.cgi?cmd=5&rnd={1}&mail={2}&pass={3}&name={4}&active={5}",
@@ -54,6 +55,7 @@ namespace UIControlCode
                         break;
                     case "Edit":
                         User admin = GetAdminByRandom(random);
+                        FormUser formUser = new FormUser();
                         formUser.LoadData(admin.Mail, admin.Pass, admin.Name, admin.Active);
                         if (formUser.ShowDialog() == DialogResult.OK)
                         {
