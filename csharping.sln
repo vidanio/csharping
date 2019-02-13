@@ -79,6 +79,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIControlCodeEng", "UIContr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebrowserAdv", "WebrowserAdv\WebrowserAdv.csproj", "{71EACEC6-6393-4475-BE3A-4BC840781CB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBrowserComp", "WebBrowserComp\WebBrowserComp.csproj", "{16FAA66E-78EB-4F0D-B1B1-6828B5A5677D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyIP", "MyIP\MyIP.csproj", "{873BEC46-7B64-4FDF-961C-B07859564AE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -237,6 +241,14 @@ Global
 		{71EACEC6-6393-4475-BE3A-4BC840781CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71EACEC6-6393-4475-BE3A-4BC840781CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71EACEC6-6393-4475-BE3A-4BC840781CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16FAA66E-78EB-4F0D-B1B1-6828B5A5677D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16FAA66E-78EB-4F0D-B1B1-6828B5A5677D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16FAA66E-78EB-4F0D-B1B1-6828B5A5677D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16FAA66E-78EB-4F0D-B1B1-6828B5A5677D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{873BEC46-7B64-4FDF-961C-B07859564AE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{873BEC46-7B64-4FDF-961C-B07859564AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{873BEC46-7B64-4FDF-961C-B07859564AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{873BEC46-7B64-4FDF-961C-B07859564AE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
