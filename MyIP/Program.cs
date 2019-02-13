@@ -18,7 +18,7 @@ namespace MyIP
                 {
                     try
                     {
-                        socket.Connect("8.8.8.8", 65530);
+                        socket.Connect("www.todostreaming.es", 65530);
                         IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
                         localIP = endPoint.Address.ToString();
                     }
