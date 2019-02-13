@@ -11,14 +11,29 @@ namespace MyIP
     {
         static void Main(string[] args)
         {
-            string localIP;
-            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            string localIP="";
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
-                socket.Connect("8.8.8.8", 65530);
-                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-                localIP = endPoint.Address.ToString();
+                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+                {
+                    try
+                    {
+                        socket.Connect("8.8.8.8", 65530);
+                        IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                        localIP = endPoint.Address.ToString();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Socket Error");
+                    }
+                }
+                Console.WriteLine("IP local(1): " + localIP);
             }
-            Console.WriteLine("IP local: " + localIP);
+            else
+            {
+                Console.WriteLine("Not Available Network");
+            }
+
             Console.ReadLine();
         }
     }
