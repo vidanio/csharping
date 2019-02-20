@@ -33,6 +33,12 @@ namespace MyIP
             {
                 Console.WriteLine("Not Available Network");
             }
+            try
+            {
+                var address = Dns.GetHostAddresses("jrweb.todostreaming.es")[0]; // DNS to IPv4
+                Console.WriteLine("DNS = " + address.ToString());
+            }
+            catch { }
 
             Console.ReadLine();
         }
